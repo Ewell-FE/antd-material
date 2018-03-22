@@ -1,0 +1,84 @@
+
+#login {
+  //background-image: linear-gradient(-180deg, #3D4372 0%, #172455 100%);
+  //overflow: hidden;
+  //height: 100%;
+  font-family: Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  .header{
+    width: 100%;
+    padding: 34px 59px 0;
+    z-index: 11;
+    position:absolute;
+    .logo{
+      position: relative;
+      display: block;
+      width: 271px;
+      height: 44px;
+      background: url(../../../assets/Login/logo.png) no-repeat left center;
+    }
+  }
+  .login-bg{
+    position: absolute;
+    width: 100%;
+    //z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    text-align: center;
+    background: url(../../../assets/Login/login-bg.jpg) no-repeat;
+    background-size: cover;
+  }
+  .content{
+    position: absolute;
+    width: 1200px;
+    top: 50%;
+    left: 50%;
+    margin: -145px 0 0 -600px;
+    .login-form{
+      position: absolute;
+      width: 264px;
+      height: 290px;
+      right: 0;
+      background: #FFFFFF;
+      border-radius: 14px;
+      h3{
+        margin: 20px 0 22px;
+        text-align: center;
+        font-size: 20px;
+        color: #4A4A4A;
+        font-weight: normal;
+      }
+      form{
+        padding: 0 25px;
+        .errorRequired{
+          height:0;
+          span{
+            position: relative;
+            top:-26px;
+            color: #f04134;
+            font-size: 14px;
+          }
+          }
+
+        .input{
+          margin:0 0 30px;
+        }
+        div.errorMsg{
+          position: relative;
+          top: -26px;
+          .Msg{
+            position: absolute;
+            color: #f04134;
+            top: 32px;
+            font-size: 14px;
+          }
+        }
+      }
+      button{
+        width:100%;
+        height:40px;
+      }
+    }
+  }
+}

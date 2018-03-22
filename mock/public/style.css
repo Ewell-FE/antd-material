@@ -1,0 +1,10 @@
+body{
+    background-color: #fafafa;
+}
+.send-btn{
+    width: 100%;
+}
+.reqType{
+    color: #dc277d;
+    margin-right: 15px;
+}

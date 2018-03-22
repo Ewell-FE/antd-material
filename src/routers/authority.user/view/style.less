@@ -1,0 +1,488 @@
+#user {
+  #tool {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    background: #fff;
+    .input {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .input-icon-wrapper .input-suffix-R, .input-suffix-clear-icon {
+      top: 47%;
+    }
+    .select {
+      -webkit-appearance: menulist;
+      appearance: menulist;
+      width: 103px;
+      height: 32px;
+      margin: 0;
+      margin-left: 10px;
+      padding: 0;
+      padding-left: 15px;
+      background: #FFFFFF;
+      border: 1px solid #D9D9D9;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px;
+      &:focus {
+        outline: none;
+      }
+    }
+    #add {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      i{
+        font-size:14px;
+        font-style:normal;
+      }
+    }
+  }
+  #content {
+    padding: 0 20px;
+    background: #fff;
+    border-top: 1px solid #DFDFDF;
+    table {
+      thead {
+        tr {
+          height: 40px;
+          th {
+            &:first-child {
+              width: 80px;
+            }
+            &:last-child {
+              width: 200px;
+            }
+            &:nth-last-child(2) {
+              width: 80px;
+            }
+          }
+
+        }
+      }
+      tbody {
+        tr {
+          height: 40px;
+          background: #F7F7F7;
+          color: #333333;
+          td {
+            border-bottom: none;
+            p {
+              margin: 4px 0;
+            }
+          }
+          &:nth-child(odd) {
+            background: #fff;
+          }
+        }
+      }
+    }
+
+    .operate {
+      span {
+        margin-right: 10px;
+        font-size: 14px;
+        color: #27A1D5;
+        cursor: pointer;
+      }
+    }
+    .des {
+      span {
+        font-size: 12px;
+        color: #777777;
+      }
+      .line {
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+    }
+  }
+
+  #userComponent{
+    &>header {
+      line-height: 50px;
+      background-color: #ffffff;
+      h3 {
+        position: relative;
+        padding-left: 30px;
+        margin: 0;
+        color: #333333;
+        .right{
+          position: absolute;
+          right: 20px;
+        }
+      }
+    }
+    .title{
+      height: 43px;
+      line-height: 43px;
+      background: #F7F7F7;
+      font-weight: bold;
+      font-size: 16px;
+      padding-left: 20px;
+      color: #333333;
+    }
+    .left,.middle,.content {
+      position: absolute;
+      left: 10px;
+      top: 120px;
+      bottom: 0;
+      width: 220px;
+      background-color: #ffffff;
+      .detail{
+        padding: 10px 20px;
+      }
+    }
+    .left,.middle{
+      .detail{
+        padding:10px 0;
+        .mCustomScrollBox{
+          margin-right:0;
+          padding:0 20px;
+        }
+        .mCSB_scrollTools{
+          right:-6px;
+        }
+      }
+    }
+    .middle{
+      left: 240px;
+      width: 200px;
+      .item,.addrole{
+        width: 158px;
+        height:32px;
+        margin-bottom: 10px;
+        line-height:32px;
+        text-align:center;
+        font-size: 14px;
+        color: rgba(0,0,0,0.65);
+        border:1px dashed #D9D9D9;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        cursor: pointer;
+        &.active,&:hover{
+          border: 1px solid #0068B3;
+          color: #0068B3;
+        }
+      }
+      .addrole{
+        border: 1px solid #D9D9D9;
+        margin-left: 20px;
+      }
+    }
+    .content {
+      left:450px;
+      right: 10px;
+      width: auto;
+    }
+  }
+  .in{
+    display: block;
+  }
+  .out{
+    display: none;
+  }
+}
+#baseMoadl,#roleMoadl,#AddRole{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #FFFFFF;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  &:focus{
+    outline:none;
+  }
+  .modalHeader{
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 15px;
+    line-height: 40px;
+    background: #F7F7F7;
+    font-size: 16px;
+    color: #666666;
+    .close{
+      float: right;
+      cursor: pointer;
+      line-height:40px;
+    }
+  }
+  .modalBody{
+    background-color: #fff;
+    .title{
+      height: 30px;
+      padding-left: 10px;
+      line-height: 30px;
+      background: #F7F7F7;
+      font-size: 14px;
+      color: rgba(0,0,0,0.85);
+      font-weight: bolder;
+    }
+  }
+}
+#baseMoadl{
+  width: 400px;
+  min-height:184px;
+  .modalBody{
+    p{
+      margin: 8px 0;
+      font-size: 16px;
+
+      .bloder{
+        font-weight: bolder;
+        color: rgba(0,0,0,0.85);
+      }
+      .red{
+        color: #FF5353;
+      }
+      .gray{
+        color: rgba(0,0,0,0.65);
+      }
+    }
+  }
+}
+#roleMoadl{
+  width: 572px;
+  //height:516px;
+  .modalBody{
+    position: relative;
+    padding:15px;
+    .left{
+      //position: absolute;
+      width:100%;
+      //left:10px;
+      //top:10px;
+      //bottom: 0;
+      //width: 162px;
+      .detail{
+        min-height:50px;
+        .no-data{
+          margin:0;
+          color: rgba(0, 0, 0, 0.54);
+          width: 100%;
+          text-align: center;
+          height:50px;
+          line-height: 50px;
+          font-size: 14px;
+        }
+        .item{
+          width: 142px;
+          height:30px;
+          line-height: 30px;
+          margin: 10px 10px 10px 0;
+          text-align: center;
+          font-size: 14px;
+          color: #02B58E;
+          background: rgba(2,181,142,0.20);
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          -o-border-radius: 4px;
+          border-radius: 4px;
+          display:inline-block;
+        }
+      }
+    }
+    .content{
+      //position: absolute;
+      //left:182px;
+      //top:10px;
+      //bottom: 0;
+      //right: 10px;
+      width:100%;
+      .detail{
+        height:450px;
+        .no-data{
+          margin:0;
+          color: rgba(0, 0, 0, 0.54);
+          width: 100%;
+          text-align: center;
+          height:400px;
+          line-height: 400px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+#AddRole{
+  width: 930px;
+  height:668px;
+  .modalBody{
+    position: relative;
+    .input,textarea{
+      width: 160px;
+    }
+    .left{
+      position: absolute;
+      left:10px;
+      top:10px;
+      bottom: 80px;
+      width: 180px;
+      .detail{
+        padding: 10px;
+      }
+    }
+    .content{
+      position: absolute;
+      left:200px;
+      top:10px;
+      bottom: 80px;
+      right: 10px;
+    }
+    .footer{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 548px;
+      height: 80px;
+      line-height: 80px;
+      background: #F7F7F7;
+      text-align: center;
+    }
+  }
+}
+.tree,.roletree{
+  .ztree *{
+    font-size: 14px;
+    font-family: Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  }
+  .ztree ul{
+    margin-left: 40px !important;
+  }
+  .ztree li a,.ztree li a:hover{
+    margin-bottom: 10px !important;
+    text-decoration: none;
+    color:rgba(0,0,0,0.73);
+  }
+  .ztree li a.curSelectedNode,a:hover{
+    background-color:#fff;
+    border:none;
+  }
+  .ztree li span.button.center_docu,
+  .ztree li span.button.bottom_docu,
+  .ztree li ul.line,.ztree li span.button.ico_docu,
+  .ztree li span.button.ico_open,
+  .ztree li span.button.ico_close
+  {
+    width: 7px;
+    margin-right: 7px;
+    background-image: none;
+  }
+  .ztree li span.button.ico_open,
+  .ztree li span.button.ico_docu,
+  .ztree li span.button.ico_close{
+    display: none;
+  }
+  .ztree li span.button.chk.checkbox_false_full,
+  .ztree li span.button.chk.checkbox_true_full,
+  .ztree li span.button.chk.checkbox_false_full_focus,
+  .ztree li span.button.chk.checkbox_true_full_focus,
+  .ztree li span.button.chk.checkbox_true_part,
+  .ztree li span.button.chk.checkbox_true_part_focus,
+  .ztree li span.button.roots_open,
+  .ztree li span.button.center_open,
+  .ztree li span.button.bottom_open,
+  .ztree li span.button.bottom_close,
+  .ztree li span.button.center_close,
+  .ztree li span.button.chk.checkbox_false_part,
+  .ztree li span.button.chk.checkbox_true_part_focus,
+  .ztree li span.button.roots_close,
+  .ztree li span.button.chk.checkbox_false_part_focus,
+  .ztree li span.button.root_open,
+  .ztree li span.button.root_close
+  {
+    background-size: contain;
+    background-position: center;
+    background-image: url("../../../assets/User/no-select.png");
+  }
+  .ztree li span.button.chk.checkbox_true_full,
+  .ztree li span.button.chk.checkbox_true_full_focus{
+    background-image: url("../../../assets/User/select-all.png");
+
+  }
+  .ztree li span.button.chk.checkbox_true_part,
+  .ztree li span.button.chk.checkbox_true_part_focus{
+    background-image: url("../../../assets/User/half-select.png");
+  }
+  .ztree li span.button.roots_open,
+  .ztree li span.button.center_open,
+  .ztree li span.button.bottom_open,
+  .ztree li span.button.root_open{
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    background-image: url("../../../assets/User/down.png");
+  }
+  .ztree li span.button.bottom_close,
+  .ztree li span.button.center_close,
+  .ztree li span.button.roots_close,
+  .ztree li span.button.root_close{
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    background-image: url("../../../assets/User/left.png");
+  }
+  ul.level0{
+    margin-left: 25px;
+  }
+  ul.level1{
+    margin-left: 50px;
+  }
+  ul.level2{
+    margin-left: 45px;
+  }
+}
+#user form,#AddRole form{
+  .renderField{
+    margin-bottom: 20px;
+  }
+  .input,textarea{
+    width: 180px;
+    height: 32px;
+    margin-bottom: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    &:focus{
+      outline: none;
+    }
+  }
+  textarea{
+    min-height:64px;
+  }
+  label{
+    font-size: 14px;
+    color: rgba(0,0,0,0.65);
+    text-align: left;
+    vertical-align: text-top;
+  }
+  .label{
+    margin-bottom: 5px;
+    span{
+      color: #FF5353;
+      margin-right: 5px;
+    }
+  }
+  .errorRequired{
+    font-size: 12px;
+    color: #FF5353;
+  }
+}
