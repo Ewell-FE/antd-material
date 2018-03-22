@@ -25,14 +25,15 @@ let Icon = {
     'info': 'fa-info-circle',
     'error': 'fa-times-circle'
 }
+let box = null;
 let index = 0;
-let div = [];
+let div = {};
 @withStyles(styles)
 export class Message extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            index: props.index
+            key: props.index
         }
     }
 
@@ -45,7 +46,10 @@ export class Message extends Component {
             timer = 2000
         }
         setTimeout(function () {
-            document.body.removeChild(div[that.props.index])
+            let key = that.state.key
+            box.removeChild(div[key])
+            //todo:如果
+            delete div[key]
             callback && callback()
         }, timer)
     }
@@ -54,14 +58,12 @@ export class Message extends Component {
         const {classes} = this.props
         return (
             <Slide direction="down" in={true}>
-                <div className="yh-message-box">
-                    <div className="yh-message">
-                        <div className={classnames('yh-message-icon',)}>
-                            <i className={classnames('fa',Icon[this.props.type],classes[this.props.type])}
-                               aria-hidden="true"></i>
-                        </div>
-                        <div className="yh-message-group"><p>{this.props.msg}</p></div>
+                <div className="yh-message">
+                    <div className={classnames('yh-message-icon',)}>
+                        <i className={classnames('fa',Icon[this.props.type],classes[this.props.type])}
+                           aria-hidden="true"></i>
                     </div>
+                    <div className="yh-message-group"><p>{this.props.msg}</p></div>
                 </div>
             </Slide>
         )
@@ -70,13 +72,18 @@ export class Message extends Component {
 let show = function (options) {
     let defaultOptions = {
         type: 'success',
-        index: index++
+        index: ++index
     }
     Object.assign(defaultOptions, options || {})
-    var dom = document.createElement('div')
-    document.body.appendChild(dom);
-    div.push(dom)
-    ReactDOM.render(<Message {...defaultOptions}/>, dom);
+    if (!box) {
+        box = document.createElement('div')
+        box.className = 'yh-message-box'
+        document.body.appendChild(box);
+    }
+    let messageBox = document.createElement('div')
+    box.appendChild(messageBox);
+    div[index] = messageBox
+    ReactDOM.render(<Message {...defaultOptions}/>, messageBox);
 }
 export default {
     success: function (str, timer, callback) {

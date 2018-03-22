@@ -8,11 +8,11 @@ export default class App extends Component {
     constructor(props) {
         super(props)
     }
-    
+
     render() {
         return (
             <div>
-                <Button  type="Primary">Primary</Button>
+                <Button type="Primary">Primary</Button>
                 <Button style={{marginLeft:10}}>Default</Button>
                 <Button style={{marginLeft:10}} type="Dashed">Dashed</Button>
                 <Button style={{marginLeft:10}} type="Danger">Danger</Button>
