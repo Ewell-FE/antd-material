@@ -11,7 +11,6 @@ import theme from './theme'
 import HOME from './routers/authority'
 import login from './routers/login'
 import pageError from './routers/PageError'
-import systemList from './routers/authority.systemList'
 var cookieStore = require('store')
 
 const checkLogin = (PageComp)=>{
@@ -36,7 +35,6 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/material/login" component={login}/>
                         <Route exact path="/material/pageError" component={pageError}/>
-                        <Route exact path="/material/systemList"render={()=>checkLogin(systemList)}/>
                         <Route  path="/material/docs" render={()=>checkLogin(HOME)}/>
                         <Route exact path="/material" component={()=><Redirect to="/material/docs"/>}/>
                         <Route exact path="/" component={()=><Redirect to="/material"/>}/>
