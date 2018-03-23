@@ -1,10 +1,5 @@
 import * as ACTIONS from '../actions'
 const ACTION_HANDLERS = {
-    ['HOME_FETCH_COMPONENTS_START']: (state, action) => (
-        Object.assign({}, state, {
-            fetching: true
-        })
-    ),
     [ACTIONS.AUTHORITY_MENULIST_LOGINNAME_SUCCESS]: (state, action) => (
         Object.assign({}, state, {
             components: action.components,

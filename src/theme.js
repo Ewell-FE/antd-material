@@ -2,11 +2,12 @@
  * Created by lilei on 2018/1/10.
  */
 import {createMuiTheme} from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+
 const fontWeightMedium = 500;
+
 export default createMuiTheme({
-    status: {
-        success: 'green'
-    },
+    primary: blue,
     typography: {
         // Use the system font.
         fontFamily: 'Tahoma, Helvetica, Arial,"Hiragino Sans GB", "Microsoft Yahei"',

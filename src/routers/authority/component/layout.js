@@ -101,7 +101,7 @@ const styles = theme => ({
 
 class PersistentDrawer extends React.Component {
     state = {
-        open: false,
+        open: true,
         anchor: 'left',
     };
 

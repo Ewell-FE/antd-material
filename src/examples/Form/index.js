@@ -5,10 +5,6 @@ import React, {Component} from 'react';
 import Message from '@/components/Message'
 
 export default class App extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div>

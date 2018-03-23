@@ -22,34 +22,83 @@
 
 ```
 .
-├── config                   # 配置 包括gulpfile 、webpack以及垫片的配置
-├── mock                     # 模拟接口
-├── public                   # 静态资源（全局）
-├── scripts                  # 脚本 包括项目启动 Mock服务启动 打包编译等
-├── src                      # Application source code
-│   ├── assets               # 项目用到的图片资源
-│   ├── classes              # 定义全局公用的jss 样式对象
-│   ├── components           # 组件库
-│   │   ├──Alert             # ➜ 阿磊
-│   │   ├──Button            # ➜ 阿磊 ✓
-│   │   ├──Form              # ➜ 阿磊
-│   │   ├──Input             # ➜ 阿磊
-│   │   ├──Layout            # ➜ 阿磊
-│   │   ├──Message           # ➜ 阿磊 ✓
-│   │   ├──Modal             # ➜ 阿磊
-│   │   ├──Select            # ➜ 阿磊
-│   │   ├──Spin              # ➜ 阿磊
-│   │   ├──Tree              # ➜ 阿磊
-│   ├── examples             # 对应组件库的demo
-│   ├── lib                  # 第三方工具类/库
-│   ├── routers              # Global Reusable Container Components
-│   ├── store                # Redux-specific pieces
-│   │   ├── createStore.js   # Create and instrument redux store
-│   │   └── reducers.js      # Reducer registry and injection
-│   │   └── sagas.js         # sagas   registry and injection
-│   ├── util                 # 自己定义工具类/库
-│   ├── base.less            # 项目全局的基础公共样式
-└── package                  # 包信息
+├── config                    # 配置 包括gulpfile 、webpack以及垫片的配置
+├── mock                      # 模拟接口
+├── public                    # 静态资源（全局）
+├── scripts                   # 脚本 包括项目启动 Mock服务启动 打包编译等
+├── src                       # Application source code
+│   ├── assets                # 项目用到的图片资源
+│   ├── classes               # 定义全局公用的jss 样式对象
+│   ├── components            # 组件库
+│   ├─── General
+│   │   ├───Button            # ➜ 阿磊 ✓
+│   │   ├───Icon              # ➜ 阿磊 ✓
+│   ├─── Layout
+│   │   ├───Grid              # ➜ 阿磊
+│   │   ├───Layout            # ➜ 阿磊
+│   ├─── Navigation
+│   │   ├───Affix             # ➜ 阿磊
+│   │   ├───Breadcrumb        # ➜ 阿磊
+│   │   ├───Dropdown          # ➜ 阿磊
+│   │   ├───Menu              # ➜ 阿磊
+│   │   ├───Pagination        # ➜ 何家佳 ✓
+│   │   ├───Steps             # ➜ 阿磊
+│   ├─── Data Entry
+│   │   ├───AutoComplete      # ➜ 阿磊
+│   │   ├───Cascader          # ➜ 阿磊
+│   │   ├───Checkbox          # ➜ 阿磊
+│   │   ├───DatePicker        # ➜ 阿磊 ✓
+│   │   ├───Form              # ➜ 阿磊 ✓
+│   │   ├───Input             # ➜ 阿磊 ✓
+│   │   ├───InputNumber       # ➜ 阿磊
+│   │   ├───Mention           # ➜ 阿磊
+│   │   ├───Rate              # ➜ 阿磊
+│   │   ├───Radio             # ➜ 阿磊
+│   │   ├───Select            # ➜ 阿磊
+│   │   ├───Slider            # ➜ 阿磊
+│   │   ├───Switch            # ➜ 阿磊
+│   │   ├───TreeSelect        # ➜ 阿磊
+│   │   ├───TimePicker        # ➜ 阿磊 ✓
+│   │   ├───Transfer          # ➜ 阿磊
+│   │   ├───Upload            # ➜ 阿磊
+│   ├─── Data Display
+│   │   ├───Avatar            # ➜ 阿磊
+│   │   ├───Badge             # ➜ 阿磊
+│   │   ├───Calendar          # ➜ 阿磊
+│   │   ├───Card              # ➜ 阿磊
+│   │   ├───Carousel          # ➜ 阿磊
+│   │   ├───Collapse          # ➜ 何家佳 ✓
+│   │   ├───List              # ➜ 阿磊
+│   │   ├───Popover           # ➜ 阿磊
+│   │   ├───Tooltip           # ➜ 何家佳 ✓
+│   │   ├───Table             # ➜ 阿磊
+│   │   ├───Tabs              # ➜ 阿磊
+│   │   ├───Tag               # ➜ 阿磊
+│   │   ├───Timeline          # ➜ 阿磊
+│   │   ├───Tree              # ➜ 阿磊
+│   ├─── Feedback
+│   │   ├───Alert             # ➜ 阿磊
+│   │   ├───Modal             # ➜ 何家佳 ✓
+│   │   ├───Message           # ➜ 阿磊 ✓ complete！
+│   │   ├───Notification      # ➜ 阿磊
+│   │   ├───Progress          # ➜ 阿磊
+│   │   ├───Popconfirm        # ➜ 何家佳 ✓
+│   │   ├───Spin              # ➜ 阿磊 ✓
+│   ├──── Other
+│   │   ├───Anchor            # ➜ 阿磊
+│   │   ├───BackTop           # ➜ 阿磊
+│   │   ├───Divider           # ➜ 阿磊
+│   │   ├───LocaleProvider    # ➜ 阿磊
+│   ├── examples              # 对应组件库的demo
+│   ├── lib                   # 第三方工具类/库
+│   ├── routers               # Global Reusable Container Components
+│   ├── store                 # Redux-specific pieces
+│   │   ├── createStore.js    # Create and instrument redux store
+│   │   └── reducers.js       # Reducer registry and injection
+│   │   └── sagas.js          # sagas   registry and injection
+│   ├── util                  # 自己定义工具类/库
+│   ├── base.less             # 项目全局的基础公共样式
+└── package                   # 包信息
 ```
 
 ## 审核方式

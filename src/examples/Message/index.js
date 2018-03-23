@@ -6,10 +6,6 @@ import Button from '@/components/Button'
 import Message from '@/components/Message'
 
 export default class App extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div>

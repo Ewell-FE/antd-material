@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import Layout from '../component/layout'
 import "./style.less"
-var cookieStore = require('store')
 
 class App extends Component {
     constructor(props) {

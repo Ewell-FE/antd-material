@@ -48,8 +48,11 @@ export class Message extends Component {
         setTimeout(function () {
             let key = that.state.key
             box.removeChild(div[key])
-            //todo:如果
             delete div[key]
+            if (_.isEqual(div, {})) {
+                document.body.removeChild(box);
+                box = null;
+            }
             callback && callback()
         }, timer)
     }

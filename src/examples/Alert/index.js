@@ -2,17 +2,14 @@
  * Created by lilei on 2018/3/21.
  */
 import React, {Component} from 'react';
-import Message from '@/components/Message'
+import Alert from '@/components/Alert'
+import Button from '@/components/Button'
 
 export default class App extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div>
-                <button onClick={()=>{Message.success('hello~')}}>点击触发22</button>
+                <Button onClick={()=>{Alert.success('hello~')}}>点击触发22</Button>
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import {call, put, take, fork, takeEvery} from 'redux-saga/effects'
 import * as API from "../api"
 import * as actions from '../actions'
-var cookieStore = require('store')
 //查看权限
 export function* authorityMenuListByLoginNamePost() {
     while (true) {

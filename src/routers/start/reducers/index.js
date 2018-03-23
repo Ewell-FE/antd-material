@@ -1,5 +1,3 @@
-import * as ACTIONS from '../actions'
-
 const ACTION_HANDLERS = {
 
 }

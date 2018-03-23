@@ -19,23 +19,23 @@ const styles = theme => ({
     Default: {
         '&:hover': {
             background: '#FFFFFF',
-            color: '#40a9ff',
-            borderColor: '#40a9ff'
+            color: theme.primary[300],
+            borderColor: theme.primary[300]
         },
     },
     Primary: {
         color: '#FFFFFF',
-        background: '#1890ff',
+        background: theme.primary[500],
         border: '0',
         '&:hover': {
-            background: '#40a9ff'
+            background: theme.primary[300]
         },
     },
     Dashed: {
         borderStyle: 'dashed',
         '&:hover': {
-            color: '#40a9ff',
-            borderColor: '#40a9ff',
+            color: theme.primary[300],
+            borderColor: theme.primary[300],
             background: '#FFFFFF'
         },
     },
@@ -54,11 +54,6 @@ const styles = theme => ({
 
 @withStyles(styles,{ name: 'MuiButton-yh' })
 export default class app extends Component {
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         const {classes} = this.props
         return (
