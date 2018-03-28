@@ -28,7 +28,7 @@ let Icon = {
 let box = null;
 let index = 0;
 let div = {};
-@withStyles(styles)
+@withStyles(styles, {name: 'Message'})
 export class Message extends Component {
     constructor(props) {
         super(props)

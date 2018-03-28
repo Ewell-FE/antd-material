@@ -4,17 +4,11 @@
 import {createMuiTheme} from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 
-const fontWeightMedium = 500;
-
 export default createMuiTheme({
-    primary: blue,
+    primary: blue,//主色调
     typography: {
         // Use the system font.
-        fontFamily: 'Tahoma, Helvetica, Arial,"Hiragino Sans GB", "Microsoft Yahei"',
-        fontWeightMedium,
-        body1: {
-            fontWeight: fontWeightMedium,
-        }
+        fontFamily: 'Tahoma, Helvetica, Arial,"Hiragino Sans GB", "Microsoft Yahei"'
     },
     overrides: {
         MuiTab: {
