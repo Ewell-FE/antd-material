@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import classnames from 'classnames'
 
 const styles = theme => {
     return {
@@ -38,3 +36,6 @@ export default class app extends Component {
         )
     }
 }
+app.propTypes = {
+    onChange: PropTypes.func
+};

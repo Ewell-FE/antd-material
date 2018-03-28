@@ -47,7 +47,7 @@
 │   │   ├───Button            # ➜ 阿磊 ✓
 │   │   ├───Icon              # ➜ 阿磊 ✓
 │   ├─── Layout
-│   │   ├───Grid              # ➜ 阿磊
+│   │   ├───Grid              # ➜ 杨林林 ✓
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 朱宇 ✓
@@ -55,52 +55,52 @@
 │   │   ├───Dropdown          # ➜ 朱宇 ✓
 │   │   ├───Menu              # ➜ 朱宇 ✓
 │   │   ├───Pagination        # ➜ 何家佳 ✓
-│   │   ├───Steps             # ➜ 朱宇 ✓ 
+│   │   ├───Steps             # ➜ 朱宇 ✓
 │   ├─── Data Entry
-│   │   ├───AutoComplete      # ➜ 阿磊
+│   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
 │   │   ├───Cascader          # ➜ 阿磊
 │   │   ├───Checkbox          # ➜ 胡昌哲 ✓
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
 │   │   ├───Form              # ➜ 阿磊 ✓
 │   │   ├───Input             # ➜ 阿磊 ✓
-│   │   ├───InputNumber       # ➜ 阿磊
+│   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊
-│   │   ├───Rate              # ➜ 阿磊
-│   │   ├───Radio             # ➜ 阿磊
-│   │   ├───Select            # ➜ 阿磊
+│   │   ├───Rate              # ➜ 曾辉艳 ✓
+│   │   ├───Radio             # ➜ 曾辉艳 ✓
+│   │   ├───Select            # ➜ 杨单丹 ✓
 │   │   ├───Slider            # ➜ 阿磊
-│   │   ├───Switch            # ➜ 阿磊
+│   │   ├───Switch            # ➜ 曾辉艳 ✓
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓
-│   │   ├───Transfer          # ➜ 阿磊
+│   │   ├───Transfer          # ➜ 杨林林 ✓
 │   │   ├───Upload            # ➜ 阿磊
 │   ├─── Data Display
-│   │   ├───Avatar            # ➜ 阿磊
-│   │   ├───Badge             # ➜ 阿磊
+│   │   ├───Avatar            # ➜ 郭丽丽 ✓
+│   │   ├───Badge             # ➜ 郭丽丽 ✓
 │   │   ├───Calendar          # ➜ 阿磊
 │   │   ├───Card              # ➜ 胡昌哲 ✓
-│   │   ├───Carousel          # ➜ 阿磊
+│   │   ├───Carousel          # ➜ 曾辉艳 ✓
 │   │   ├───Collapse          # ➜ 何家佳 ✓
-│   │   ├───List              # ➜ 阿磊
-│   │   ├───Popover           # ➜ 阿磊
+│   │   ├───List              # ➜ 林铭偲 ✓
+│   │   ├───Popover           # ➜ 林铭偲 ✓
 │   │   ├───Tooltip           # ➜ 何家佳 ✓
 │   │   ├───Table             # ➜ 胡昌哲 ✓
-│   │   ├───Tabs              # ➜ 阿磊
-│   │   ├───Tag               # ➜ 阿磊
-│   │   ├───Timeline          # ➜ 阿磊
+│   │   ├───Tabs              # ➜ 杨单丹 ✓
+│   │   ├───Tag               # ➜ 杨单丹 ✓
+│   │   ├───Timeline          # ➜ 杨林林 ✓
 │   │   ├───Tree              # ➜ 阿磊
 │   ├─── Feedback
-│   │   ├───Alert             # ➜ 阿磊
+│   │   ├───Alert             # ➜ 林铭偲 ✓
 │   │   ├───Modal             # ➜ 何家佳 ✓
 │   │   ├───Message           # ➜ 阿磊 ✓ complete！
-│   │   ├───Notification      # ➜ 阿磊
+│   │   ├───Notification      # ➜ 郭丽丽 ✓
 │   │   ├───Progress          # ➜ 胡昌哲 ✓
 │   │   ├───Popconfirm        # ➜ 何家佳 ✓
 │   │   ├───Spin              # ➜ 阿磊 ✓
 │   ├──── Other
-│   │   ├───Anchor            # ➜ 阿磊
-│   │   ├───BackTop           # ➜ 阿磊
-│   │   ├───Divider           # ➜ 阿磊
+│   │   ├───Anchor            # ➜ 林铭偲 ✓
+│   │   ├───BackTop           # ➜ 杨林林 ✓
+│   │   ├───Divider           # ➜ 杨林林 ✓
 │   │   ├───LocaleProvider    # ➜ 阿磊
 │   ├── examples              # 对应组件库的demo
 │   ├── lib                   # 第三方工具类/库
