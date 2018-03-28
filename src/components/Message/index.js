@@ -3,20 +3,21 @@ import ReactDOM from 'react-dom'
 import {withStyles} from 'material-ui/styles';
 import Slide from 'material-ui/transitions/Slide';
 import './style.less'
+import style from '../style'
 import classnames from 'classnames'
 import _ from 'lodash'
 const styles = theme => ({
     success: {
-        color: '#00a854'
+        color: style.theme.colors.success
     },
     warn: {
-        color: '#ffbf00'
+        color: style.theme.colors.warning
     },
     info: {
-        color: '#108ee9'
+        color: style.theme.colors.info
     },
     error: {
-        color: '#f04134'
+        color: style.theme.colors.error
     }
 });
 let Icon = {
@@ -28,7 +29,7 @@ let Icon = {
 let box = null;
 let index = 0;
 let div = {};
-@withStyles(styles, {name: 'Message'})
+@withStyles(styles, {name: 'MuiMessageAnt'})
 export class Message extends Component {
     constructor(props) {
         super(props)

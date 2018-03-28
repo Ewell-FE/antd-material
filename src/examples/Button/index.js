@@ -7,7 +7,6 @@ import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 
 const ButtonGroup = Button.Group
-console.log(ButtonGroup)
 export default class App extends Component {
     render() {
         return (

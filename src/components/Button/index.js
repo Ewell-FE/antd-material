@@ -5,7 +5,6 @@ import Button from 'material-ui/Button';
 import classnames from 'classnames'
 import ButtonGroup from './button-group'
 const styles = theme => {
-    console.log(theme)
     return {
         spacingr: {marginRight: `${theme.spacing.unit / 2}px`},
         spacingl: {marginLeft: `${theme.spacing.unit / 2}px`},
@@ -21,23 +20,23 @@ const styles = theme => {
         Default: {
             '&:hover': {
                 background: '#FFFFFF',
-                color: theme.primary[300],
-                borderColor: theme.primary[300]
+                color: theme.button.hover,
+                borderColor: theme.button.hover
             },
         },
         Primary: {
             color: '#FFFFFF',
-            background: theme.primary[500],
+            background: theme.colors.primary,
             border: '0',
             '&:hover': {
-                background: theme.primary[300]
+                background: theme.button.hover
             },
         },
         Dashed: {
             borderStyle: 'dashed',
             '&:hover': {
-                color: theme.primary[300],
-                borderColor: theme.primary[300],
+                color: theme.button.hover,
+                borderColor: theme.button.hover,
                 background: '#FFFFFF'
             },
         },

@@ -7,18 +7,19 @@ import {
 } from 'react-router-dom';
 import {CssBaseline} from 'material-ui';
 import {MuiThemeProvider} from 'material-ui/styles';
+import style from '@/components/style'
 import theme from './theme'
 import HOME from './routers/authority'
 import login from './routers/login'
 import pageError from './routers/PageError'
 var cookieStore = require('store')
 
-const checkLogin = (PageComp)=>{
+const checkLogin = (PageComp)=> {
     var isLogin = false
-    if(cookieStore.get('userInfo')){
+    if (cookieStore.get('userInfo')) {
         isLogin = true
     }
-    return(
+    return (
         isLogin ? (
             <PageComp />
         ) : (
@@ -30,12 +31,12 @@ class App extends Component {
     render() {
         return (
             <ConnectedRouter history={this.props.history}>
-                <MuiThemeProvider theme={theme}>
+                <MuiThemeProvider theme={style.use('theme',theme)}>
                     <CssBaseline />
                     <Switch>
                         <Route exact path="/material/login" component={login}/>
                         <Route exact path="/material/pageError" component={pageError}/>
-                        <Route  path="/material/docs" render={()=>checkLogin(HOME)}/>
+                        <Route path="/material/docs" render={()=>checkLogin(HOME)}/>
                         <Route exact path="/material" component={()=><Redirect to="/material/docs"/>}/>
                         <Route exact path="/" component={()=><Redirect to="/material"/>}/>
                     </Switch>
