@@ -72,12 +72,14 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
+        height: '100vh',
+        overflow: 'auto',
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-        }),
+        })
     },
     'content-left': {
         marginLeft: -drawerWidth,
@@ -114,9 +116,8 @@ class PersistentDrawer extends React.Component {
     };
 
     render() {
-        const {classes, theme} = this.props;
+        const {classes, theme, components} = this.props;
         const {anchor, open} = this.state;
-
         const drawer = (
             <Drawer
                 variant="persistent"
@@ -143,18 +144,28 @@ class PersistentDrawer extends React.Component {
                         >Material Design of React</NavLink></li>
                     </List>
                 </div>
-                {this.props.components.map((item, i)=> {
+                {Object.keys(components).map((title, i)=> {
                     return (
                         <div key={i}>
                             <Divider />
-                            <List style={{paddingLeft:'20px'}}>
-                                <li key={i}><NavLink
-                                    to={"/material/docs/"+item}
-                                    activeStyle={{
-                                        color: 'red'
-                                    }}
-                                >{item}</NavLink></li>
+                            <List style={{paddingLeft:'20px',color:' rgba(0, 0, 0, 0.45)'}}>
+                                <li key={i}>{title}</li>
                             </List>
+                            {components[title].map((item, j)=> {
+                                return (
+                                    <div key={j}>
+                                        <Divider />
+                                        <List style={{paddingLeft:'40px'}}>
+                                            <li><NavLink
+                                                to={"/material/docs/"+item.name}
+                                                activeStyle={{
+                                                            color: 'red'
+                                                        }}
+                                            >{item.name + "  " + item.desc}</NavLink></li>
+                                        </List>
+                                    </div>
+                                )
+                            })}
                         </div>
                     )
                 })}
@@ -205,9 +216,14 @@ class PersistentDrawer extends React.Component {
                         <Route exact path="/material/docs"
                                component={() => <Redirect to="/material/docs/start"/>}/>
                         <Route exact path="/material/docs/start" component={demo['start']}/>
-                        {this.props.components.map((item, i)=> {
+                        {Object.values(components).map(function (arr) {
                             return (
-                                <Route key={i} exact path={"/material/docs/"+item} component={demo[item]}/>
+                                arr.map((item, i)=> {
+                                    return (
+                                        <Route key={i} exact path={"/material/docs/"+item.name}
+                                               component={demo[item.name]}/>
+                                    )
+                                })
                             )
                         })}
                     </main>

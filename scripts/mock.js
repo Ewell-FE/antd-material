@@ -54,4 +54,5 @@ fs.writeFile(path.join(process.cwd(), 'src/routers/authority/examples.js'),
         console.log('It\'s saved!');
     });
 
+
 app.listen(8000);

@@ -11,7 +11,7 @@ const ACTION_HANDLERS = {
 
 const initialState = {
     fetching: true,
-    components: []
+    components: {}
 }
 export function Reducer(state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type]

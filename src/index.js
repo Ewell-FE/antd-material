@@ -11,6 +11,6 @@ const factory = createStore(initialState);
 
 ReactDOM.render(
     <Provider store={factory.store}>
-      <App history={factory.history}/>
+        <App history={factory.history}/>
     </Provider>,
     document.getElementById('root'));
