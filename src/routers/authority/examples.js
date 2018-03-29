@@ -5,4 +5,6 @@ export {default as Form} from '@/examples/Form';
 export {default as Icon} from '@/examples/Icon';
 export {default as Input} from '@/examples/Input';
 export {default as Message} from '@/examples/Message';
-export {default as Spin} from '@/examples/Spin'
+export {default as Pagination} from '@/examples/Pagination';
+export {default as Spin} from '@/examples/Spin';
+export {default as Template} from '@/examples/Template'

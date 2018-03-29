@@ -2,7 +2,7 @@
  * Created by lilei on 2018/3/21.
  */
 import React, {Component} from 'react';
-import Spin from '@/components/Spin'
+import Spin from '@/components/spin'
 
 export default class App extends Component {
     render() {

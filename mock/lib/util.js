@@ -66,7 +66,8 @@ const menuList = [
     {name: "Anchor", type: "Other", sort: 10, desc: '锚点'},
     {name: "BackTop", type: "Other", sort: 20, desc: '回到顶部'},
     {name: "Divider", type: "Other", sort: 30, desc: '分割线'},
-    {name: "LocaleProvider", type: "Other", sort: 40, desc: '国际化'}
+    {name: "LocaleProvider", type: "Other", sort: 40, desc: '国际化'},
+    {name: "Template", type: "Other", sort: 50, desc: '模版'}
 ]
 
 //数组排除选项
