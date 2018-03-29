@@ -1,4 +1,4 @@
-var demo = require("./components")
+var components = require("./components")
 var assign = require("lodash.assign")
 
-module.exports = assign(demo)
+module.exports = assign(components)
