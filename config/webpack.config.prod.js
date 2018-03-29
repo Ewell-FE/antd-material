@@ -17,7 +17,6 @@ const getClientEnvironment = require('./env');
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
-console.log(publicPath)
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -192,6 +191,7 @@ module.exports = {
                                         {
                                             loader: require.resolve('postcss-loader'),
                                             options: {
+                                                sourceMap: shouldUseSourceMap,
                                                 // Necessary for external CSS imports to work
                                                 // https://github.com/facebookincubator/create-react-app/issues/2677
                                                 ident: 'postcss',

@@ -66,8 +66,7 @@ const menuList = [
     {name: "Anchor", type: "Other", sort: 10, desc: '锚点'},
     {name: "BackTop", type: "Other", sort: 20, desc: '回到顶部'},
     {name: "Divider", type: "Other", sort: 30, desc: '分割线'},
-    {name: "LocaleProvider", type: "Other", sort: 40, desc: '国际化'},
-    {name: "Template", type: "Other", sort: 50, desc: '模版'}
+    {name: "LocaleProvider", type: "Other", sort: 40, desc: '国际化'}
 ]
 
 //数组排除选项
@@ -106,6 +105,11 @@ function createComponents() {
             return o.sort;
         }]);
     }
+    return menuClass
+}
+//生成静态菜单数据
+function createStaticMenu() {
+    let menuClass = createComponents()
     //生成数据文件
     fs.writeFileSync(path.join(process.cwd(), 'src/lib/menu.json'),
         JSON.stringify(menuClass, null, 4),
@@ -113,7 +117,25 @@ function createComponents() {
             if (err) throw err;
             console.log('create data success!');
         });
-    return menuClass
+}
+//根据路由生成静态页面
+function createRouterPage() {
+    let menuClass = createComponents()
+    let indexPage = fs.readFileSync(path.join(process.cwd(), 'build/index.html'))
+    fs.mkdirSync(path.join(process.cwd(), 'build/material'))
+    fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
+    Object.values(menuClass).forEach((item)=> {
+        item.forEach((file)=> {
+            console.log(file.name)
+            fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + file.name + '.html'),
+                indexPage,
+                function (err) {
+                    if (err) throw err;
+                    console.log('create data success!');
+                });
+            console.log(file.name + "创建成功！")
+        })
+    })
 }
 
 //动态添加路由页面
@@ -133,5 +155,7 @@ function createExampleRouter() {
 module.exports = {
     ignore,
     createComponents,
-    createExampleRouter
+    createExampleRouter,
+    createStaticMenu,
+    createRouterPage
 }

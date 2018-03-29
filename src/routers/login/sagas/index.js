@@ -13,7 +13,7 @@ export function* logining() {
         if(result.httpCode === 200){
             yield put(actions.importUserInfo(result));
             cookieStore.set('userInfo',result.data)
-            yield put(push("/authority/systemList"));
+            yield put(push("/material/docs"));
             yield put(actions.changeLoginState(false))
         }else{
             action.callBack(result);
@@ -21,6 +21,7 @@ export function* logining() {
         }
     }
 }
+
 export default function* () {
     yield fork(logining);
 }

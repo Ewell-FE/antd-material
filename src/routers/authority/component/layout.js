@@ -137,7 +137,7 @@ class PersistentDrawer extends React.Component {
                     <Divider />
                     <List style={{paddingLeft:'20px'}}>
                         <li><NavLink
-                            to="/material/docs/start"
+                            to="/material/docs/start.html"
                             activeStyle={{
                                 color: 'red'
                                }}
@@ -157,7 +157,7 @@ class PersistentDrawer extends React.Component {
                                         <Divider />
                                         <List style={{paddingLeft:'40px'}}>
                                             <li><NavLink
-                                                to={"/material/docs/"+item.name}
+                                                to={"/material/docs/"+item.name+".html"}
                                                 activeStyle={{
                                                             color: 'red'
                                                         }}
@@ -214,13 +214,13 @@ class PersistentDrawer extends React.Component {
                     >
                         <div className={classes.drawerHeader}/>
                         <Route exact path="/material/docs"
-                               component={() => <Redirect to="/material/docs/start"/>}/>
-                        <Route exact path="/material/docs/start" component={demo['start']}/>
+                               component={() => <Redirect to="/material/docs/start.html"/>}/>
+                        <Route exact path={"/material/docs/start.html"} component={demo['start']}/>
                         {Object.values(components).map(function (arr) {
                             return (
                                 arr.map((item, i)=> {
                                     return (
-                                        <Route key={i} exact path={"/material/docs/"+item.name}
+                                        <Route key={i} exact path={"/material/docs/"+item.name+'.html'}
                                                component={demo[item.name]}/>
                                     )
                                 })

@@ -23,7 +23,7 @@ const checkLogin = (PageComp)=> {
         isLogin ? (
             <PageComp />
         ) : (
-            <Redirect to="/authority/login"/>
+            <Redirect to="/material/login"/>
         )
     )
 }

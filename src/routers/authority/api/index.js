@@ -6,11 +6,15 @@ function timeout(ms) {
     });
 }
 const getData = {
-    "development": axios.post('/getComponents'),
-    "production": timeout(500)
+    "development": function () {
+        return axios.post('/getComponents')
+    },
+    "production": ()=> {
+        return timeout(500)
+    }
 }
 export function getComponents(opts) {
-    return getData[process.env.NODE_ENV]
+    return getData[process.env.NODE_ENV]()
         .then(function (result) {
             return result.data
         })

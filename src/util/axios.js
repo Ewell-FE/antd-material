@@ -30,7 +30,7 @@ var instance = axios.create({
             return status
         }
         if(status === 500){
-            window.location.href = "/authority/pageError";
+            window.location.href = "/material/pageError";
         }
     }
 })
