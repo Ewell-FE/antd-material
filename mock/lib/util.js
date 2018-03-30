@@ -80,7 +80,7 @@ function ignore(arr, removes) {
 //根据组件目录创建菜单数据格式
 function createComponents() {
     let files = fs.readdirSync(path.resolve(paths.appSrc, 'components'));
-    ignore(files, ['index.js', 'style'])
+    ignore(files, ['index.js', 'Style'])
     let menuClass = {
         "General": [],
         "Layout": [],

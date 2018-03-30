@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {withStyles} from 'material-ui/styles';
 
 let styles=(theme)=>{
-    console.log(theme);
     let activeColor=theme.palette.primary.main,
         disabledColor=theme.palette.grey[200],
         fontColor=theme.palette.text.primary;

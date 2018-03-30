@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {withStyles} from 'material-ui/styles';
 import Slide from 'material-ui/transitions/Slide';
 import './style.less'
-import style from '../style'
+import style from '../Style'
 import classnames from 'classnames'
 import _ from 'lodash'
 const styles = theme => ({

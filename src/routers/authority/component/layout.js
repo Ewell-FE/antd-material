@@ -128,7 +128,7 @@ class PersistentDrawer extends React.Component {
         }}
             >
                 <div className={classes.drawerHeader}>
-                    <p style={{width:165}}>Material-design<br/>v0.1.0</p>
+                    <p style={{width:165}}>antd-Material<br/>v0.1.0</p>
                     <IconButton onClick={this.handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
@@ -141,7 +141,7 @@ class PersistentDrawer extends React.Component {
                             activeStyle={{
                                 color: 'red'
                                }}
-                        >Material Design of React</NavLink></li>
+                        >Ant Design of Material</NavLink></li>
                     </List>
                 </div>
                 {Object.keys(components).map((title, i)=> {

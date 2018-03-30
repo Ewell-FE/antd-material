@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom';
 import {CssBaseline} from 'material-ui';
 import {MuiThemeProvider} from 'material-ui/styles';
-import style from '@/components/style'
+import style from '@/components/Style'
 import theme from './theme'
 import HOME from './routers/authority'
 import login from './routers/login'
 import pageError from './routers/PageError'
+import './style.less'
 var cookieStore = require('store')
 
 const checkLogin = (PageComp)=> {

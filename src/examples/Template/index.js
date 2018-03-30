@@ -1,40 +1,40 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import HighLight from 'react-highlight';
 import {withStyles} from 'material-ui/styles';
 import './atom-one-light.css'
 import Collapse from 'material-ui/transitions/Collapse';
 import Pagination from '@/components/Pagination';
 
-class DemoCode extends Component{
-    constructor(props){
+class DemoCode extends Component {
+    constructor(props) {
         super(props);
-        this.toggleFun=this.toggleFun.bind(this);
-        this.state={
-            isShow:false
+        this.toggleFun = this.toggleFun.bind(this);
+        this.state = {
+            isShow: false
         }
     }
 
-    toggleFun(){
+    toggleFun() {
         this.setState({
-            isShow:!this.state.isShow
+            isShow: !this.state.isShow
         })
     }
 
-    render(){
+    render() {
         const {classes}=this.props,
-              codeLink=classes.codeLink;
-        let codeString="import React,{Component} from 'react';\n" +
+            codeLink = classes.codeLink;
+        let codeString = "import React,{Component} from 'react';\n" +
             "import Pagination from '@/components/Pagination';\n" +
             "\n" +
             "export default class App extends Component{\n" +
             "    render(){\n" +
             "        return (\n" +
-        "                <Pagination\n" +
-        "                    defaultCurrent={1}\n" +
-        "                    total={50}\n" +
-        "                    onChange={(page)=>{console.log('当前页:'+page)}}\n" +
-        "                    showQuickJumper\n" +
-        "                    showTotal={(total,range)=>(`${range[0]}-${range[1]} / ${total} 条`)}/>\n" +
+            "                <Pagination\n" +
+            "                    defaultCurrent={1}\n" +
+            "                    total={50}\n" +
+            "                    onChange={(page)=>{console.log('当前页:'+page)}}\n" +
+            "                    showQuickJumper\n" +
+            "                    showTotal={(total,range)=>(`${range[0]}-${range[1]} / ${total} 条`)}/>\n" +
             "        )\n" +
             "    }\n" +
             "}";
@@ -51,64 +51,64 @@ class DemoCode extends Component{
     }
 }
 
-const styles=(theme)=>{
+const styles = (theme)=> {
     console.log(theme)
     return {
-        componentName:{
-            color:theme.palette.grey[600],
-            fontWeight:'normal',
-            margin:'0 0 30px'
+        componentName: {
+            color: theme.palette.grey[600],
+            fontWeight: 'normal',
+            margin: '0 0 30px'
         },
-        demoName:{
-            color:theme.palette.grey[600],
-            fontWeight:'normal',
-            fontSize:'18px',
-            margin:'0 0 20px'
+        demoName: {
+            color: theme.palette.grey[600],
+            fontWeight: 'normal',
+            fontSize: '18px',
+            margin: '0 0 20px'
         },
-        demoIntro:{
-            color:theme.palette.grey[600],
-            fontSize:'14px',
-            margin:'0 0 10px'
+        demoIntro: {
+            color: theme.palette.grey[600],
+            fontSize: '14px',
+            margin: '0 0 10px'
         },
-        demoBox:{
-            background:theme.palette.grey[200],
-            padding:'48px 24px 16px',
-            position:'relative',
-            marginBottom:'40px'
+        demoBox: {
+            background: theme.palette.grey[200],
+            padding: '48px 24px 16px',
+            position: 'relative',
+            marginBottom: '40px'
         },
-        demo:{
-            display:'flex',
-            justifyContent:'center'
+        demo: {
+            display: 'flex',
+            justifyContent: 'center'
         },
-        codeLink:{
-            position:'absolute',
-            right:'20px',
-            top:'10px',
-            width:'71px',
-            height:'71px',
-            fontSize:'20px',
-            textAlign:'center',
-            fontWeight:'bold',
-            color:theme.palette.text.primary
+        codeLink: {
+            position: 'absolute',
+            right: '20px',
+            top: '10px',
+            width: '71px',
+            height: '71px',
+            fontSize: '20px',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            color: theme.palette.text.primary
         }
     }
 }
 
 @withStyles(styles)
-export default class App extends Component{
-    constructor(props){
+export default class App extends Component {
+    constructor(props) {
         super(props)
     }
 
-    render(){
+    render() {
         const {classes}=this.props,
-              {...otherProps}=this.props,
-              demoName=classes.demoName,
-              demoIntro=classes.demoIntro,
-              demoBox=classes.demoBox,
-              demo=classes.demo;
+            {...otherProps}=this.props,
+            demoName = classes.demoName,
+            demoIntro = classes.demoIntro,
+            demoBox = classes.demoBox,
+            demo = classes.demo;
         return (
-            <div>
+            <div  style={{width:900,padding:'0 24px',margin:'0 auto'}}>
                 <h1 className={classes.componentName}>控件名称</h1>
                 <h6 className={demoName}>控件demo名称</h6>
                 <p className={demoIntro}>控件demo说明</p>
