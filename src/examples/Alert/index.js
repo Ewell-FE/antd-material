@@ -1,15 +1,18 @@
-/**
- * Created by lilei on 2018/3/21.
- */
 import React, {Component} from 'react';
-import Alert from '@/components/Alert'
-import Button from '@/components/Button'
+import Typography from 'material-ui/Typography';
+import Api from './Api'
+import Title from './Title'
+import Templete from '../Template'
+
+
 
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <Button onClick={()=>{Alert.success('hello~')}}>点击触发22</Button>
+            <div style={{width:900,padding:'0 24px',margin:'0 auto'}}>
+                <Title />
+                
+                <Api />
             </div>
         )
     }

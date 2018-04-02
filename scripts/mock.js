@@ -42,6 +42,8 @@ app.all(pkg.root + '/*', (req, res, next) => {
 });
 //动态生成例子路由
 util.createExampleRouter()
+//动态组装代码文档
+util.createDemoApi()
 
 
 app.listen(8000);

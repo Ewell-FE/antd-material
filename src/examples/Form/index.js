@@ -1,14 +1,18 @@
-/**
- * Created by lilei on 2018/3/21.
- */
 import React, {Component} from 'react';
-import Message from '@/components/Message'
+import Typography from 'material-ui/Typography';
+import Api from './Api'
+import Title from './Title'
+import Templete from '../Template'
+
+
 
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <button onClick={()=>{Message.success('hello~')}}>点击触发</button>
+            <div style={{width:900,padding:'0 24px',margin:'0 auto'}}>
+                <Title />
+                
+                <Api />
             </div>
         )
     }

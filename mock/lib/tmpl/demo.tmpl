@@ -1,0 +1,29 @@
+import React, {Component} from 'react';
+import Typography from 'material-ui/Typography';
+import Api from './Api'
+import Title from './Title'
+import Templete from '../Template'
+
+<% _.forEach(examples, function(item) { %>import <%- item.name %> from './<%= item.name %>';<% }); %>
+
+export default class App extends Component {
+    render() {
+        return (
+            <div style={{width:900,padding:'0 24px',margin:'0 auto'}}>
+                <Title />
+                <% _.forEach(examples, function(item) { %>
+                     <Typography variant="display1" gutterBottom>
+                                    <%= item.type %>
+                                </Typography>
+                                <p style={{margin:'24px 0 12px 0'}}>
+                                    <%= item.desc %>
+                                </p>
+                    <Templete code={`<%= item.code %>`}>
+                        <<%- item.name  %>/>
+                    </Templete>
+                <% }); %>
+                <Api />
+            </div>
+        )
+    }
+}

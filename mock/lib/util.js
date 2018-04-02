@@ -126,7 +126,6 @@ function createRouterPage() {
     fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
     Object.values(menuClass).forEach((item)=> {
         item.forEach((file)=> {
-            console.log(file.name)
             fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + file.name + '.html'),
                 indexPage,
                 function (err) {
@@ -137,6 +136,40 @@ function createRouterPage() {
         })
     })
 }
+//根据demo组装成文档
+function createDemoApi() {
+    let files = fs.readdirSync(path.resolve(paths.appSrc, 'examples'));
+    ignore(files, ['Template'])
+    files.forEach((file)=> {
+        let Buttons = fs.readdirSync(path.resolve(paths.appSrc, 'examples/' + file));
+        ignore(Buttons, ['Title.js', 'Api.js', 'index.js'])
+        let renderData = Buttons.map((item)=> {
+                let demo = fs.readFileSync(path.resolve(paths.appSrc, `examples/${file}/${item}`))
+                let demoCoder = demo.toString().split('\r\n')
+                return {
+                    name: item.slice(0, -3),
+                    type: demoCoder.slice(0, 1)[0].split('：')[1],
+                    desc: demoCoder.slice(1, 2)[0].split('：')[1],
+                    code: new Buffer(demoCoder.slice(2).join('\r\n').replace(/`/g, '\\`').replace(/\$/g, '\\$')
+                    )
+                }
+            }
+        )
+
+        let demoTmpl = fs.readFileSync(path.resolve(paths.appMock, 'lib/tmpl/demo.tmpl'))
+        var compiled = _.template(demoTmpl.toString());
+        let html = compiled({examples: renderData})
+        fs.writeFileSync(path.resolve(paths.appSrc, `examples/${file}/index.js`),
+            html,
+            function (err) {
+                if (err) throw err;
+                console.log('Examples create success!');
+            }
+        )
+    })
+
+}
+
 
 //动态添加路由页面
 function createExampleRouter() {
@@ -157,5 +190,6 @@ module.exports = {
     createComponents,
     createExampleRouter,
     createStaticMenu,
-    createRouterPage
+    createRouterPage,
+    createDemoApi
 }

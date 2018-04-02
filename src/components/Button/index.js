@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 import classnames from 'classnames'
 import ButtonGroup from './button-group'
 const styles = theme => {
+    console.log(theme)
     return {
         spacingr: {marginRight: `${theme.spacing.unit / 2}px`},
         spacingl: {marginLeft: `${theme.spacing.unit / 2}px`},

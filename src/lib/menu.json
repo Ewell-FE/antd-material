@@ -327,8 +327,8 @@
         {
             "name": "Template",
             "type": "Other",
-            "sort": 50,
-            "desc": "模版"
+            "sort": 100,
+            "desc": "New"
         }
     ]
 }

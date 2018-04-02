@@ -1,12 +1,16 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
+var path = require('path');
 var paths = require('./paths');
 
 // nodemon 的配置
 var nodemonConfig = {
     script: paths.appMockJs,
-    ext: 'js',
-    watch: [paths.appMockJs, paths.appMock, paths.appMock],
+    ext: 'js tmpl',
+    ignore: [
+        path.resolve(paths.appSrc, 'examples/**/index.js')
+    ],
+    watch: [paths.appMockJs, paths.appMock, path.resolve(paths.appSrc, 'examples')],
     env: {
         "NODE_ENV": "development"
     }

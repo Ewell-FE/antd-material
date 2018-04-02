@@ -67,7 +67,7 @@ const styles = theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        padding: '0 8px',
+        padding: '0 8px 0 20px',
         ...theme.mixins.toolbar,
     },
     content: {
@@ -201,7 +201,7 @@ class PersistentDrawer extends React.Component {
                                 <MenuIcon />
                             </IconButton>
                             <Typography variant="title" color="inherit" noWrap>
-                                Material Design of React
+                                Ant Design of Material
                             </Typography>
                         </Toolbar>
                     </AppBar>
