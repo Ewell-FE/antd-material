@@ -20,7 +20,8 @@ class DemoCode extends Component {
     }
 
     render() {
-        const {classes}=this.props
+        const {classes}=this.props,
+              codeLink=classes.codeLink;
         return (
             <div>
                 <Collapse in={this.state.isShow}>
@@ -64,14 +65,10 @@ const styles = (theme)=> {
             color: theme.palette.text.primary
         }
     }
-}
+};
 
 @withStyles(styles)
 export default class App extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         const {classes}=this.props,
             demoBox = classes.demoBox,
