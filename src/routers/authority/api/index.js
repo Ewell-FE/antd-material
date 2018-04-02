@@ -7,7 +7,7 @@ function timeout(ms) {
 }
 const getData = {
     "development": function () {
-        return axios.post('/getComponents')
+        return timeout(500)
     },
     "production": ()=> {
         return timeout(500)

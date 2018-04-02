@@ -6,7 +6,7 @@ var paths = require('./paths');
 // nodemon 的配置
 var nodemonConfig = {
     script: paths.appMockJs,
-    ext: 'js tmpl',
+    ext: 'js tmpl md',
     ignore: [
         path.resolve(paths.appSrc, 'examples/**/index.js')
     ],

@@ -3,8 +3,65 @@ import Typography from 'material-ui/Typography';
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
+import Button from '@/components/Button'
+import Icon from '@/components/Icon'
 
-import demo1 from './demo1';import demo2 from './demo2';import Demo3 from './Demo3';import Demo4 from './Demo4';
+const ButtonGroup = Button.Group
+
+
+
+export class Demo1md extends Component {
+    render() {
+        return (
+            <div>
+                <Button type="Primary" disabled>Primary</Button>
+                <Button>Default</Button>
+                <Button type="Dashed">Dashed</Button>
+                <Button type="Danger">Danger</Button>
+            </div>
+        )
+    }
+}
+
+
+export class Demo2md extends Component {
+    render() {
+        return (
+            <div>
+                <Button size="small" type="Primary">small</Button>
+                <Button size="medium" type="Primary">medium</Button>
+                <Button size="large" type="Primary">large</Button>
+            </div>
+        )
+    }
+}
+
+
+export class Demo3md extends Component {
+    render() {
+        return (
+            <div>
+                 <Button><Icon type="music"></Icon></Button>
+                 <Button><Icon type="download"></Icon> Download</Button>
+                 <Button> heart<Icon type="heart"></Icon></Button>
+            </div>
+        )
+    }
+}
+
+
+export class Demo4md extends Component {
+    render() {
+        return (
+            <div>
+                <Button size="small" type="Primary">small</Button>
+                <Button size="medium" type="Primary">medium</Button>
+                <Button size="large" type="Primary">large</Button>
+            </div>
+        )
+    }
+}
+
 
 export default class App extends Component {
     render() {
@@ -13,15 +70,14 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                    按钮类型
+                                      按钮类型
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                    按钮有四种类型
+                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
                                 </p>
-                    <Templete code={`
-import React, {Component} from 'react';
-import Button from '@/components/Button'
-export default class App extends Component {
+                    <Templete code={`import Button from '@/components/Button'
+
+export class Demo1md extends Component {
     render() {
         return (
             <div>
@@ -33,21 +89,18 @@ export default class App extends Component {
         )
     }
 }`}>
-                        <demo1/>
+                        <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                    按钮大小
+                                    
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                    按钮有四种类型
+                                    
                                 </p>
-                    <Templete code={`
+                    <Templete code={`import Button from '@/components/Button'
 
-import React, {Component} from 'react';
-import Button from '@/components/Button'
-
-export default class App extends Component {
+export class Demo2md extends Component {
     render() {
         return (
             <div>
@@ -58,60 +111,54 @@ export default class App extends Component {
         )
     }
 }`}>
-                        <demo2/>
+                        <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                    图表按钮
+                                    
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                    按钮有四种类型
+                                    
                                 </p>
-                    <Templete code={`
-import React, {Component} from 'react';
-import Button from '@/components/Button'
+                    <Templete code={`import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 
-export default class App extends Component {
+export class Demo3md extends Component {
     render() {
         return (
             <div>
-                <Button><Icon type="music"></Icon></Button>
-                <Button><Icon type="download"></Icon> Download</Button>
-                <Button> heart<Icon type="heart"></Icon></Button>
+                 <Button><Icon type="music"></Icon></Button>
+                 <Button><Icon type="download"></Icon> Download</Button>
+                 <Button> heart<Icon type="heart"></Icon></Button>
             </div>
         )
     }
 }`}>
-                        <Demo3/>
+                        <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                    按钮组
+                                    
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                    按钮有四种类型
+                                    
                                 </p>
-                    <Templete code={`
-import React, {Component} from 'react';
-import Button from '@/components/Button'
-
+                    <Templete code={`import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 const ButtonGroup = Button.Group
-export default class App extends Component {
+
+export class Demo4md extends Component {
     render() {
         return (
             <div>
-                <ButtonGroup>
-                    <Button><Icon type="music"></Icon></Button>
-                    <Button><Icon type="download"></Icon> Download</Button>
-                    <Button> heart<Icon type="heart"></Icon></Button>
-                </ButtonGroup>
+                <Button size="small" type="Primary">small</Button>
+                <Button size="medium" type="Primary">medium</Button>
+                <Button size="large" type="Primary">large</Button>
             </div>
         )
     }
 }`}>
-                        <Demo4/>
+                        <Demo4md />
                     </Templete>
                 
                 <Api />

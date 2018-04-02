@@ -3,8 +3,13 @@ import Typography from 'material-ui/Typography';
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-
-<% _.forEach(examples, function(item) { %>import <%- item.name %> from './<%= item.name %>';<% }); %>
+<% _.forEach(imports, function(item) { %><%= item %>
+<% }); %>
+<% _.forEach(consts, function(item) { %><%= item %>
+<% }); %>
+<% _.forEach(examples, function(item) { %>
+<%= item.component %>
+<% }); %>
 
 export default class App extends Component {
     render() {
@@ -19,7 +24,7 @@ export default class App extends Component {
                                     <%= item.desc %>
                                 </p>
                     <Templete code={`<%= item.code %>`}>
-                        <<%- item.name  %>/>
+                        <<%=item.name%> />
                     </Templete>
                 <% }); %>
                 <Api />

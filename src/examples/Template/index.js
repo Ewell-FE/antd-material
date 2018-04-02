@@ -20,14 +20,12 @@ class DemoCode extends Component {
     }
 
     render() {
-        const {classes}=this.props,
-              codeLink=classes.codeLink;
         return (
             <div>
                 <Collapse in={this.state.isShow}>
                     <HighLight>{this.props.code}</HighLight>
                 </Collapse>
-                <a className={codeLink} onClick={this.toggleFun}>
+                <a href="javascript:void(0)" className={classes.codeLink} onClick={this.toggleFun}>
                     <i className="fa fa-code" aria-hidden="true"></i>
                 </a>
             </div>

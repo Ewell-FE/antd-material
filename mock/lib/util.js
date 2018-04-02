@@ -76,6 +76,58 @@ function ignore(arr, removes) {
         arr.splice(index, 1)
     })
 }
+//按行截取文本片段
+function cutText(str, start, end) {
+    var lines = str.toString().split('\r\n')
+    var startIndex = 0
+    var endIndex = lines.length;
+    lines.forEach(function (line, i) {
+        if (line.indexOf(start) >= 0) {
+            startIndex = i
+        }
+        if (line.indexOf(end) >= 0) {
+            endIndex = i
+        }
+    })
+    if (endIndex < lines.length) {
+        lines.splice(endIndex, 1)
+    }
+    if (startIndex > 0) {
+        lines.splice(startIndex, 1)
+    }
+    return lines.slice(startIndex, endIndex).join('\r\n').replace(/`/g, '\\`').replace(/\$/g, '\\$')
+}
+//根据前缀获取行前缀后的值
+function cutStrByStart(str, start) {
+    var lines = str.toString().split('\r\n')
+    var value = ""
+    for (let i = 0; i < lines.length; i++) {
+        if (_.startsWith(_.trim(lines[i]), start)) {
+            value = _.trimStart(lines[i], start);
+            break;
+        }
+    }
+    return value
+}
+//切割react代码，区分开来import和render
+var imports = []
+var consts = []
+function cutJsx(render) {
+    var lines = render.toString().split('\r\n')
+    var component = []
+    for (let i = 0; i < lines.length; i++) {
+        if (_.startsWith(_.trim(lines[i]), 'import')) {
+            imports = _.uniqBy(imports.concat(lines[i]), _.camelCase);
+        } else if (_.startsWith(_.trim(lines[i]), 'const')) {
+            consts = _.uniqBy(consts.concat(lines[i]), _.camelCase);
+        } else {
+            component.push(lines[i])
+        }
+    }
+    return {
+        component: component.join('\r\n')
+    }
+}
 
 //根据组件目录创建菜单数据格式
 function createComponents() {
@@ -143,22 +195,26 @@ function createDemoApi() {
     files.forEach((file)=> {
         let Buttons = fs.readdirSync(path.resolve(paths.appSrc, 'examples/' + file));
         ignore(Buttons, ['Title.js', 'Api.js', 'index.js'])
+        imports = []
+        consts = []
         let renderData = Buttons.map((item)=> {
                 let demo = fs.readFileSync(path.resolve(paths.appSrc, `examples/${file}/${item}`))
-                let demoCoder = demo.toString().split('\r\n')
+                var reacter = _.template(demo);
+                let DomeJsx = reacter({component: _.capitalize(_.camelCase(item))})
+                let demoCoder = cutText(DomeJsx, '````jsx', '````')
+                let renderObj = cutJsx(demoCoder)
                 return {
-                    name: item.slice(0, -3),
-                    type: demoCoder.slice(0, 1)[0].split('：')[1],
-                    desc: demoCoder.slice(1, 2)[0].split('：')[1],
-                    code: new Buffer(demoCoder.slice(2).join('\r\n').replace(/`/g, '\\`').replace(/\$/g, '\\$')
-                    )
+                    name: _.capitalize(_.camelCase(item)),
+                    component: renderObj.component,
+                    type: cutStrByStart(DomeJsx, "#"),
+                    desc: cutStrByStart(DomeJsx, "##"),
+                    code: new Buffer(demoCoder)
                 }
             }
         )
-
         let demoTmpl = fs.readFileSync(path.resolve(paths.appMock, 'lib/tmpl/demo.tmpl'))
         var compiled = _.template(demoTmpl.toString());
-        let html = compiled({examples: renderData})
+        let html = compiled({examples: renderData, imports: imports, consts: consts})
         fs.writeFileSync(path.resolve(paths.appSrc, `examples/${file}/index.js`),
             html,
             function (err) {
@@ -167,7 +223,6 @@ function createDemoApi() {
             }
         )
     })
-
 }
 
 

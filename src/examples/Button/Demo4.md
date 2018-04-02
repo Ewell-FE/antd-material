@@ -1,11 +1,12 @@
-//name：按钮大小
-//desc：按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+#
+##
 
-
-import React, {Component} from 'react';
+````jsx
 import Button from '@/components/Button'
+import Icon from '@/components/Icon'
+const ButtonGroup = Button.Group
 
-export default class App extends Component {
+export class <%=component%> extends Component {
     render() {
         return (
             <div>
@@ -16,3 +17,4 @@ export default class App extends Component {
         )
     }
 }
+````
