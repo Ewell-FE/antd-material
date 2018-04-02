@@ -43,7 +43,7 @@ class DemoCode extends Component {
                 <Collapse in={this.state.isShow}>
                     <HighLight>{codeString}</HighLight>
                 </Collapse>
-                <a href="javascript:;" className={codeLink} onClick={this.toggleFun}>
+                <a className={codeLink} onClick={this.toggleFun}>
                     <i className="fa fa-code" aria-hidden="true"></i>
                 </a>
             </div>

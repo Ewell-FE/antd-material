@@ -11,6 +11,13 @@ export default class App extends Component{
                 <p>更多分页:</p>
                 <Pagination defaultCurrent={6} total={500}/>
                 <br />
+                <p>改变每页显示条目数:</p>
+                <Pagination
+                    defaultCurrent={6}
+                    total={500}
+                    showSizeChanger
+                    onShowSizeChange={(current,pageSize)=>{console.log(current,pageSize)}}/>
+                <br />
                 <p>快速跳转到某一页:</p>
                 <Pagination  defaultCurrent={6} total={500}/>
                 <br />
