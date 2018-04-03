@@ -113,13 +113,14 @@ function cutStrByStart(str, start) {
 var imports = []
 var consts = []
 function cutJsx(render) {
-    let isFunctionJsx = 0
+    let isFunctionJsx = 0//react 生命周期外部方法
     var lines = render.toString().split('\r\n')
     var component = []
+    var isReact = 0 //react 生命周期
     for (let i = 0; i < lines.length; i++) {
         if (_.startsWith(_.trim(lines[i]), 'import')) {
             imports = _.uniqBy(imports.concat(lines[i]), _.camelCase);
-        } else if (_.startsWith(_.trim(lines[i]), 'const')) {
+        } else if (_.startsWith(_.trim(lines[i]), 'const ') && isReact <= 0) {
             consts = _.uniqBy(consts.concat(lines[i]));
             if (lines[i].indexOf('function') > -1 || lines[i].indexOf('=>') > -1) {
                 isFunctionJsx = 1
@@ -132,6 +133,17 @@ function cutJsx(render) {
                 isFunctionJsx--
             }
             consts = consts.concat(lines[i])
+        } else if (_.startsWith(_.trim(lines[i]), 'export')) {
+            isReact = 1
+            component.push(lines[i])
+        } else if (isReact > 0) {
+            if (lines[i].indexOf('{') > -1) {
+                isReact++
+            }
+            if (lines[i].indexOf('}') > -1) {
+                isReact--
+            }
+            component.push(lines[i])
         } else {
             component.push(lines[i])
         }

@@ -5,7 +5,6 @@ import Button from 'material-ui/Button';
 import classnames from 'classnames'
 import ButtonGroup from './button-group'
 const styles = theme => {
-    console.log(theme)
     return {
         spacingr: {marginRight: `${theme.spacing.unit / 2}px`},
         spacingl: {marginLeft: `${theme.spacing.unit / 2}px`},
@@ -18,45 +17,81 @@ const styles = theme => {
             transition: `all 0.3s ${theme.transitions.easing.easeInOut}`,
             textTransform: 'capitalize'
         },
+        disabled: {
+            color: "rgba(0,0,0,.25)",
+            backgroundColor: "#f5f5f5",
+            borderColor: "#d9d9d9",
+            cursor: "not-allowed",
+            "&:hover": {
+                backgroundColor: '#f5f5f5'
+            }
+        },
         Default: {
-            '&:hover': {
+            '&:hover,&.active': {
                 background: '#FFFFFF',
                 color: theme.button.hover,
                 borderColor: theme.button.hover
             },
+            "&:disabled": {
+                color: "rgba(0,0,0,.25)",
+                backgroundColor: "#f5f5f5",
+                borderColor: "#d9d9d9",
+                cursor: "not-allowed"
+            }
         },
         Primary: {
             color: '#FFFFFF',
             background: theme.colors.primary,
             border: '0',
-            '&:hover': {
+            '&:hover,&.active': {
                 background: theme.button.hover
             },
+            "&:disabled": {
+                color: "rgba(0,0,0,.25)",
+                backgroundColor: "#f5f5f5",
+                borderColor: "#d9d9d9",
+                cursor: "not-allowed"
+            }
         },
         Dashed: {
             borderStyle: 'dashed',
-            '&:hover': {
+            '&:hover,&.active': {
                 color: theme.button.hover,
                 borderColor: theme.button.hover,
                 background: '#FFFFFF'
             },
+            "&:disabled": {
+                color: "rgba(0,0,0,.25)",
+                backgroundColor: "#f5f5f5",
+                borderColor: "#d9d9d9",
+                cursor: "not-allowed"
+            }
         },
         Danger: {
             background: '#f5f5f5',
             borderColor: '#d9d9d9',
             color: '#f5222d',
-            '&:hover': {
+            '&:hover,&.active': {
                 color: '#FFFFFF',
                 borderColor: '#ff4d4f',
                 background: '#ff4d4f'
+            },
+            "&:disabled": {
+                color: "rgba(0,0,0,.25)",
+                backgroundColor: "#f5f5f5",
+                borderColor: "#d9d9d9",
+                cursor: "not-allowed"
             }
         }
     }
 };
 
-
 @withStyles(styles, {name: 'MuiButton-ant'})
 export default class app extends Component {
+    constructor(props) {
+        super(props)
+    }
+
     static defaultProps = {
         type: 'Default'
     }
@@ -67,8 +102,10 @@ export default class app extends Component {
             <Button
                 style={this.props.style}
                 size={this.props.size}
-                className={classnames(classes.root,classes[this.props.type])}
+                className={classnames(classes.root,classes[this.props.type],{'active':(this.props.activeValue===this.props.value)})}
                 onClick={this.props.onClick}
+                disabled={this.props.disabled}
+                value={this.props.value}
             >
                 {[].concat(this.props.children).map((item, i)=> {
                     if (typeof item === 'object') {
@@ -88,7 +125,10 @@ export default class app extends Component {
 
 app.propTypes = {
     type: PropTypes.oneOf(['Default', 'Primary', 'Dashed', 'Danger']),
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
-    onClick: PropTypes.func
+    size: PropTypes.oneOf(['small', 'large']),
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    value: PropTypes.string,
+    activeValue: PropTypes.string,
 };
 app.Group = ButtonGroup
