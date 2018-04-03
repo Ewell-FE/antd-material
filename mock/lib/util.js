@@ -113,13 +113,25 @@ function cutStrByStart(str, start) {
 var imports = []
 var consts = []
 function cutJsx(render) {
+    let isFunctionJsx = 0
     var lines = render.toString().split('\r\n')
     var component = []
     for (let i = 0; i < lines.length; i++) {
         if (_.startsWith(_.trim(lines[i]), 'import')) {
             imports = _.uniqBy(imports.concat(lines[i]), _.camelCase);
         } else if (_.startsWith(_.trim(lines[i]), 'const')) {
-            consts = _.uniqBy(consts.concat(lines[i]), _.camelCase);
+            consts = _.uniqBy(consts.concat(lines[i]));
+            if (lines[i].indexOf('function') > -1 || lines[i].indexOf('=>') > -1) {
+                isFunctionJsx = 1
+            }
+        } else if (isFunctionJsx > 0) {
+            if (lines[i].indexOf('{') > -1) {
+                isFunctionJsx++
+            }
+            if (lines[i].indexOf('}') > -1) {
+                isFunctionJsx--
+            }
+            consts = consts.concat(lines[i])
         } else {
             component.push(lines[i])
         }
