@@ -5,7 +5,6 @@ import {withStyles} from 'material-ui/styles';
 import Fade from 'material-ui/transitions/Fade';
 
 let styles=(theme)=>{
-    console.log(theme)
     let activeColor=theme.palette.primary.main,
         disabledColor=theme.palette.grey[200],
         fontColor=theme.palette.text.primary;
@@ -253,9 +252,7 @@ class App extends Component{
                 e.target.value='';
                 return false;
             }
-            this.setState({
-                current:+inputVal
-            })
+            this.changeCurrent(+inputVal);
             e.target.value='';
         }
     }
