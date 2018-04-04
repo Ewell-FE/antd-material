@@ -47,7 +47,7 @@
 │   │   ├───Button            # ➜ 阿磊 ✓ complete！
 │   │   ├───Icon              # ➜ 阿磊 ✓ complete！
 │   ├─── Layout
-│   │   ├───Grid              # ➜ 阿磊 ✓ 
+│   │   ├───Grid              # ➜ 阿磊 ✓
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 朱宇 ✓
