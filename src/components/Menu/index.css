@@ -1,3 +1,5 @@
 /*清除浮动代码*/
 .clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
 .clearfloat{zoom:1}
+
+.antd-material-menu-horizontal>li{float: left;}
