@@ -54,12 +54,6 @@ export class Demo1md extends Component {
                 <Menu.Item>
                     <i className="fa fa-pencil-square-o" aria-hidden="true" style={{marginRight:'10px'}}></i>导航二
                 </Menu.Item>
-                <Menu.SubMenu title={<span><i className="fa fa-cog" aria-hidden="true" style={{marginRight:'10px'}}></i>导航三</span>}>
-                    <Menu.Item>子菜单1</Menu.Item>
-                    <Menu.Item>子菜单2</Menu.Item>
-                    <Menu.Item>子菜单3</Menu.Item>
-                    <Menu.Item>子菜单4</Menu.Item>
-                </Menu.SubMenu>
                 <Menu.Item>
                    <i className="fa fa-tty" aria-hidden="true" style={{marginRight:'10px'}}></i>导航三
                 </Menu.Item>
