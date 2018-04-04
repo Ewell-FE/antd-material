@@ -1,0 +1,33 @@
+.yh-switch{
+  display: inline-block;
+  position: relative;
+  .yh-unChecked{
+    position: absolute;
+    right: 2px;
+    top: 14px;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+  }
+  .yh-loading{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    svg{
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  .yh-checked{
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+  }
+}

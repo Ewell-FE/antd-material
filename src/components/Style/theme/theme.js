@@ -11,7 +11,9 @@ export default {
         processing: primaryColor[600],
         error: red[600],
         warning: yellow[600],
-        normal: '#d9d9d9'
+        normal: '#d9d9d9',
+        hovering:'#E6F7FF',
+        tableHead:'#fafafa'
     },
     disabled: {
         color: grey[400],
