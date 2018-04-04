@@ -12,7 +12,7 @@ export class Demo1md extends Component {
     render() {
         return (
             <div>
-                <Button type="Primary" onClick={()=>{Message.success("success!")}}>success</Button>
+                <Button type="Primary" onClick={()=>{Message.success("success!")}} disabled>success</Button>
                 <Button type="Default" onClick={()=>{Message.warn('warn~')}}>warn</Button>
                 <Button type="Dashed"  onClick={()=>{Message.info('info~')}}>info</Button>
                 <Button type="Danger"  onClick={()=>{Message.error('error~')}}>error</Button>
@@ -42,7 +42,7 @@ export class Demo1md extends Component {
     render() {
         return (
             <div>
-                <Button type="Primary" onClick={()=>{Message.success("success!")}}>success</Button>
+                <Button type="Primary" onClick={()=>{Message.success("success!")}} disabled>success</Button>
                 <Button type="Default" onClick={()=>{Message.warn('warn~')}}>warn</Button>
                 <Button type="Dashed"  onClick={()=>{Message.info('info~')}}>info</Button>
                 <Button type="Danger"  onClick={()=>{Message.error('error~')}}>error</Button>

@@ -44,10 +44,10 @@
 │   ├── classes               # 定义全局公用的jss 样式对象
 │   ├── components            # 组件库
 │   ├─── General
-│   │   ├───Button            # ➜ 阿磊 ✓
-│   │   ├───Icon              # ➜ 阿磊 ✓
+│   │   ├───Button            # ➜ 阿磊 ✓ complete！
+│   │   ├───Icon              # ➜ 阿磊 ✓ complete！
 │   ├─── Layout
-│   │   ├───Grid              # ➜ 杨林林 ✓
+│   │   ├───Grid              # ➜ 阿磊 ✓ 
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 朱宇 ✓

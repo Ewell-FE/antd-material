@@ -3,16 +3,13 @@
 
 
 ````jsx
-import Button from '@/components/Button'
+import Input from '@/components/Input'
 
 export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                <Button type="Primary">Primary</Button>
-                <Button>Default</Button>
-                <Button type="Dashed">Dashed</Button>
-                <Button type="Danger">Danger</Button>
+                <Input placeholder="Basic usage"/>
             </div>
         )
     }
