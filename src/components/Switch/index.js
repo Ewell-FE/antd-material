@@ -40,7 +40,7 @@ const styles = theme =>({
             marginTop: -9,
         }
 })
-@withStyles(styles, {name: 'MuiSwitch'})
+@withStyles(styles,'MuiSwitch')
 export default class App extends Component {
     constructor(props) {
         super(props)
@@ -77,8 +77,7 @@ export default class App extends Component {
     }
     render() {
         const {classes, checked,loading,size} = this.props
-        const props = {}
-        const icons = {}
+        const props = {},icons = {}
         if(loading){
             Object.assign(icons,{
                 'icon':<span className="yh-loading"><CircularProgress size={14} /></span>,
@@ -101,13 +100,12 @@ export default class App extends Component {
                         disableRipple
                         {...icons}
                         onChange={this.onChangeCheck}
-                        classes={{...classes}}
-                    >
+                        classes={{...classes}}>
                     </Switch>
                     {
                         checkValue ?
                             <span className="yh-checked"
-                                               onClick={() => this.handleChange(checkValue)}>
+                                  onClick={() => this.handleChange(checkValue)}>
                         {props.checkedChildren}
                         </span>
                             :
@@ -121,17 +119,16 @@ export default class App extends Component {
         } else {
             return (
                 <div className='yh-switch'>
-                <Switch
-                    {...props}
-                    {...icons}
-                    onChange={this.onDefaultChange}
-                    disableRipple
-                    classes={{...classes}}>
-                </Switch>
+                    <Switch
+                        {...props}
+                        {...icons}
+                        onChange={this.onDefaultChange}
+                        disableRipple
+                        classes={{...classes}}>
+                    </Switch>
                 </div>
             )
         }
-
     }
 }
 

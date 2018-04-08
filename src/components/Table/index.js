@@ -5,7 +5,6 @@ import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Tabl
 import Pagination from '@/components/Pagination';
 import Checkbox from 'material-ui/Checkbox';
 import _ from 'lodash'
-
 const styles = theme => {
     let activeColor = theme.palette.primary.main,
         fontColor = theme.palette.text.primary
@@ -54,6 +53,25 @@ const styles = theme => {
         },
         checkedColor: {
             color: activeColor
+        },
+        hideExpand:{
+            display:'none'
+        },
+        expandRow:{
+            background: '#fbfbfb'
+        },
+        expandParentTd:{
+            position:'relative',
+            '&>i':{
+                position:'absolute',
+                cursor: 'pointer',
+                left:2,
+                fontSize:18,
+                top:20
+            }
+        },
+        expandTr:{
+
         }
     });
 }
@@ -68,7 +86,8 @@ export class SimpleTable extends Component {
         this.state = {
             page: pagination.defaultCurrent || pagination.current || 1,
             rowsPerPage: pageSize,
-            selectedRowKeys: rowSelection.selectedRowKeys || []
+            selectedRowKeys: rowSelection.selectedRowKeys || [],
+            expandKey:[]
 
         }
     }
@@ -88,15 +107,24 @@ export class SimpleTable extends Component {
     };
 
     //选择全部
-    onSelectAllClick(e, checked) {
-        let selectedRowKeys = []
-        const {rowKey, dataSource} = this.props;
+    onSelectAllClick(e, checked,arr) {
+        let selectedRowKeys = this.state.selectedRowKeys
+        const {rowKey} = this.props;
         let rowSelection = this.props.rowSelection || {}
-        const {page, rowsPerPage} = this.state
         if (checked) {
-            dataSource.map((item, i) => {
-                if (i >= (page - 1) * rowsPerPage && i <= (page - 1) * rowsPerPage + (rowsPerPage - 1)) {
-                    selectedRowKeys.push(item[`${rowKey}`])
+            //添加未选择的
+            arr.map((item, i) => {
+                if(_.indexOf(selectedRowKeys,item[`${rowKey}`]) === -1){
+                   selectedRowKeys.push(item[`${rowKey}`])
+                }
+            })
+        }else{
+            //删除已选的
+            arr.map((item, i) => {
+                if(_.indexOf(selectedRowKeys,item[`${rowKey}`]) !== -1){
+                    selectedRowKeys = _.remove(selectedRowKeys, function (n) {
+                        return item[`${rowKey}`] !== n
+                    });
                 }
             })
         }
@@ -160,8 +188,25 @@ export class SimpleTable extends Component {
         return type
     }
 
+ //点击打开扩展项
+    onExpand(key){
+        let list = this.state.expandKey
+        if(_.indexOf(list, key) === -1){
+            list.push(key)
+        }else{
+            list = _.remove(list, function (n) {
+                return key !== n
+            });
+        }
+        this.setState({
+            expandKey:list
+        })
+
+    }
+
     render() {
         const {classes, columns, showPagination, rowKey} = this.props;
+        const {expandKey} = this.state
         let tableObj = this.dealCurrentData()
         let rowSelection = this.props.rowSelection
         let pagination = tableObj.pagination
@@ -177,7 +222,7 @@ export class SimpleTable extends Component {
                                         <Checkbox
                                             indeterminate={type === 1 ? true : false}
                                             checked={type === 2 ? true : false}
-                                            onChange={(e, checked) => this.onSelectAllClick(e, checked)}
+                                            onChange={(e, checked) => this.onSelectAllClick(e, checked,tableObj.arr)}
                                         />
                                     </TableCell>
                                     : null
@@ -191,9 +236,10 @@ export class SimpleTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {tableObj.arr.map((n, j) => {
-                            return (
-                                <TableRow key={n.key} className={classes.bodyTr}>
+                        {
+                            tableObj.arr.map((n,j)=>{
+                                let list = []
+                                list.push(<TableRow key={n.key} className={classes.bodyTr}>
                                     {
                                         rowSelection ?
                                             <TableCell className={classes.selectBox}>
@@ -205,14 +251,24 @@ export class SimpleTable extends Component {
                                     }
                                     {
                                         columns.map((item, i) => {
+                                            let ele = ''
+                                            let expandClass = classes.bodyTd
+                                            if(i === 0 && n.children){
+                                                        expandClass = expandClass + " " + classes.expandParentTd
+                                                        let str = "fa fa-plus-square-o"
+                                                if(_.indexOf(expandKey,n[`${rowKey}`]) !== -1){
+                                                            str = 'fa fa-minus-square-o'
+                                                }
+                                                ele =<i  onClick={()=>this.onExpand(n.key)} className={str} aria-hidden="true"></i>
+                                            }
                                             if (item.dataIndex) {
                                                 if (item.render) {
-                                                    return <TableCell className={classes.bodyTd}
-                                                                      key={item.key}>{item.render(n[item.dataIndex], n, j)}</TableCell>
+                                                    return <TableCell className={expandClass}
+                                                                      key={item.key}>{ele} {item.render(n[item.dataIndex], n, j)}</TableCell>
 
                                                 } else {
-                                                    return <TableCell className={classes.bodyTd}
-                                                                      key={item.key}>{n[item.dataIndex]}</TableCell>
+                                                    return <TableCell className={expandClass}
+                                                                      key={item.key}>{ele}{n[item.dataIndex]}</TableCell>
 
                                                 }
                                             } else {
@@ -229,9 +285,55 @@ export class SimpleTable extends Component {
 
                                         })
                                     }
-                                </TableRow>
-                            )
-                        })}
+                                </TableRow>)
+                                if(n.children){
+                                    n.children.map((obj,k)=>{
+                                        let showChild = classes.bodyTr + ' ' + classes.expandRow
+                                        if(_.indexOf(expandKey,n.key) === -1){
+                                            showChild = showChild + " " + classes.hideExpand
+                                        }
+                                      list.push((<TableRow key={obj.key} className={showChild}>
+                                          {
+                                              rowSelection ?
+                                                  <TableCell className={classes.selectBox}>
+                                                      <Checkbox
+                                                          checked={_.indexOf(rowSelection.selectedRowKeys, obj[`${rowKey}`]) > -1 ? true : false}
+                                                          onChange={(e, checked) => this.onSelectOne(e, checked, obj[`${rowKey}`])}/>
+                                                  </TableCell>
+                                                  : null
+                                          }
+                                          {
+                                              columns.map((item, i) => {
+                                                  if (item.dataIndex) {
+                                                      if (item.render) {
+                                                          return <TableCell className={classes.bodyTd}
+                                                                            key={item.key}>{item.render(obj[item.dataIndex], obj, k)}</TableCell>
+
+                                                      } else {
+                                                          return <TableCell className={classes.bodyTd}
+                                                                            key={item.key}>{obj[item.dataIndex]}</TableCell>
+
+                                                      }
+                                                  } else {
+                                                      if (item.render) {
+                                                          return <TableCell
+                                                              className={classes.bodyTd + ' ' + classes.activeText}
+                                                              key={item.key}>{item.render(null, obj, k)}</TableCell>
+
+                                                      } else {
+                                                          return <TableCell className={classes.bodyTd}
+                                                                            key={item.key}> </TableCell>
+                                                      }
+                                                  }
+
+                                              })
+                                          }
+                                      </TableRow>))
+                                  })
+                                }
+                                return list
+                            })
+                        }
                     </TableBody>
 
                 </Table>
@@ -249,7 +351,7 @@ export class SimpleTable extends Component {
                         </div>
                 }
             </div>
-        );
+        )
     }
 }
 

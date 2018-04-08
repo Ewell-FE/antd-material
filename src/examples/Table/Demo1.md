@@ -11,7 +11,13 @@ let data1 = [{
     key: '1',
     name: '胡彦斌1',
     age: 32,
-    address: '西湖区湖底公园1号'
+    address: '西湖区湖底公园1号',
+     children:[{
+              key: '7',
+              name: '胡彦祖7',
+              age: 88,
+              address: '西湖区湖底公园2号'
+              }]
 }, {
     key: '2',
     name: '胡彦祖2',
@@ -22,6 +28,12 @@ let data1 = [{
     name: '胡彦祖3',
     age: 42,
     address: '西湖区湖底公园1号'
+    ,children:[{
+                  key: '9',
+                  name: 'aaa',
+                  age: 88,
+                  address: 'hhh'
+                  }]
 }, {
     key: '4',
     name: '胡彦祖4',

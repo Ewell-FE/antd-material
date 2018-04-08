@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
 import {withStyles} from 'material-ui/styles';
+import PropTypes from 'prop-types';
 
 let styles = (theme) => {
     let activeColor = theme.colors.warning,
@@ -63,7 +64,6 @@ let styles = (theme) => {
         }
     }
 };
-
 class App extends Component {
     constructor(props) {
         super(props)
@@ -207,5 +207,15 @@ class App extends Component {
     }
 }
 
-App.propTypes = {}
+App.propTypes = {
+    allowHalf:PropTypes.bool, //是否支持半星
+    count:PropTypes.number, //星的总数
+    value:PropTypes.number, //选中的value值
+    onChange:PropTypes.func, //选择时的回调函数，参数为选择的星数值
+    disabled:PropTypes.bool, //是否只读
+    allowClear:PropTypes.bool, //是否允许再次点击后清除 默认为true
+    character:PropTypes.any, //自定义字符
+    style:PropTypes.object, //自定义样式
+    className:PropTypes.string //自定义类名
+}
 export default withStyles(styles, {name: 'MuiRate'})(App);
