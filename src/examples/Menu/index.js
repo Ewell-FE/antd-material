@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Menu from '@/components/Menu'
+import Menu from '@/components/Menu'
 
 
 
@@ -27,7 +27,7 @@ export class Demo1md extends Component {
             </Menu>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -37,10 +37,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      顶部导航
+                                      顶部导航
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     水平的顶部导航菜单。
+                                     水平的顶部导航菜单。
                                 </p>
                     <Templete code={`import Menu from '@/components/Menu'
 
@@ -63,7 +63,7 @@ export class Demo1md extends Component {
             </Menu>
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 

@@ -54,7 +54,7 @@
 │   │   ├───Breadcrumb        # ➜ 朱宇 ✓
 │   │   ├───Dropdown          # ➜ 朱宇 ✓
 │   │   ├───Menu              # ➜ 朱宇 ✓
-│   │   ├───Pagination        # ➜ 何家佳 ✓
+│   │   ├───Pagination        # ➜ 何家佳 ✓ complete！
 │   │   ├───Steps             # ➜ 朱宇 ✓
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓

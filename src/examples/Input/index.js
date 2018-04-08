@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Input from '@/components/Input'
+import Input from '@/components/Input'
 
 
 
@@ -16,7 +16,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -26,10 +26,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      按钮类型
+                                      按钮类型
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
                                 </p>
                     <Templete code={`import Input from '@/components/Input'
 
@@ -41,7 +41,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 

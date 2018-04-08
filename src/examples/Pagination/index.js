@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Pagination from '@/components/Pagination'
+import Pagination from '@/components/Pagination'
 
 
 
@@ -14,7 +14,7 @@ export class Demo1md extends Component {
             <Pagination defaultCurrent={3} total={50} />
         )
     }
-}
+}
 
 
 export class Demo2md extends Component {
@@ -23,7 +23,7 @@ export class Demo2md extends Component {
             <Pagination defaultCurrent={10} total={500} />
         )
     }
-}
+}
 
 
 export class Demo3md extends Component {
@@ -36,7 +36,7 @@ export class Demo3md extends Component {
                 total={500} />
         )
     }
-}
+}
 
 
 export class Demo4md extends Component {
@@ -50,7 +50,7 @@ export class Demo4md extends Component {
             />
         )
     }
-}
+}
 
 
 export class Demo5md extends Component {
@@ -73,7 +73,7 @@ export class Demo5md extends Component {
 
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -83,10 +83,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      基本
+                                      基本
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     页码比较少的情况的分页。
+                                     页码比较少的情况的分页。
                                 </p>
                     <Templete code={`import Pagination from '@/components/Pagination'
 
@@ -96,15 +96,15 @@ export class Demo1md extends Component {
             <Pagination defaultCurrent={3} total={50} />
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      更多
+                                      更多
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     页码比较多的情况的分页。
+                                     页码比较多的情况的分页。
                                 </p>
                     <Templete code={`import Pagination from '@/components/Pagination'
 
@@ -114,15 +114,15 @@ export class Demo2md extends Component {
             <Pagination defaultCurrent={10} total={500} />
         )
     }
-}`}>
+}`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      改变
+                                      改变
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     改变每页显示条目数。
+                                     改变每页显示条目数。
                                 </p>
                     <Templete code={`import Pagination from '@/components/Pagination'
 
@@ -136,15 +136,15 @@ export class Demo3md extends Component {
                 total={500} />
         )
     }
-}`}>
+}`}>
                         <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      跳转
+                                      跳转
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     快速跳转到某一页。
+                                     快速跳转到某一页。
                                 </p>
                     <Templete code={`import Pagination from '@/components/Pagination'
 
@@ -159,15 +159,15 @@ export class Demo4md extends Component {
             />
         )
     }
-}`}>
+}`}>
                         <Demo4md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      总数
+                                      总数
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     通过设置 showTotal 展示总共有多少数据。
+                                     通过设置 showTotal 展示总共有多少数据。
                                 </p>
                     <Templete code={`import Pagination from '@/components/Pagination'
 
@@ -191,7 +191,7 @@ export class Demo5md extends Component {
 
         )
     }
-}`}>
+}`}>
                         <Demo5md />
                     </Templete>
                 

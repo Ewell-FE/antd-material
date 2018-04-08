@@ -78,7 +78,7 @@ function ignore(arr, removes) {
 }
 //按行截取文本片段
 function cutText(str, start, end) {
-    var lines = str.toString().split('\r\n')
+    var lines = str.toString().split('\n')
     var startIndex = 0
     var endIndex = lines.length;
     lines.forEach(function (line, i) {
@@ -95,11 +95,11 @@ function cutText(str, start, end) {
     if (startIndex > 0) {
         lines.splice(startIndex, 1)
     }
-    return lines.slice(startIndex, endIndex).join('\r\n').replace(/`/g, '\\`').replace(/\$/g, '\\$')
+    return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`').replace(/\$/g, '\\$')
 }
 //根据前缀获取行前缀后的值
 function cutStrByStart(str, start) {
-    var lines = str.toString().split('\r\n')
+    var lines = str.toString().split('\n')
     var value = ""
     for (let i = 0; i < lines.length; i++) {
         if (_.startsWith(_.trim(lines[i]), start)) {
@@ -110,20 +110,25 @@ function cutStrByStart(str, start) {
     return value
 }
 //切割react代码，区分开来import和render
-var imports = []
-var consts = []
-function cutJsx(render) {
-    let isFunctionJsx = 0//react 生命周期外部方法
-    var lines = render.toString().split('\r\n')
+
+function cutJsx(render, imports, consts) {
+    var lines = render.toString().split('\n')
     var component = []
-    var isReact = 0 //react 生命周期
+    let isFunctionJsx = 0//react 生命周期外部方法
+    let isReact = 0 //react 生命周期
     for (let i = 0; i < lines.length; i++) {
         if (_.startsWith(_.trim(lines[i]), 'import')) {
-            imports = _.uniqBy(imports.concat(lines[i]), _.camelCase);
+            let arrs = lines[i].split('')
+            if (arrs.indexOf(';') > -1) {
+                arrs.splice(arrs.indexOf(';'), 1)
+            }
+            imports = _.uniqBy(imports.concat(arrs.join('')), _.camelCase);
         } else if (_.startsWith(_.trim(lines[i]), 'const ') && isReact <= 0) {
-            consts = _.uniqBy(consts.concat(lines[i]));
+            consts.push(lines[i])
             if (lines[i].indexOf('function') > -1 || lines[i].indexOf('=>') > -1) {
-                isFunctionJsx = 1
+                if (lines[i].indexOf('}') === -1) {
+                    isFunctionJsx = 1
+                }
             }
         } else if (isFunctionJsx > 0) {
             if (lines[i].indexOf('{') > -1) {
@@ -132,7 +137,7 @@ function cutJsx(render) {
             if (lines[i].indexOf('}') > -1) {
                 isFunctionJsx--
             }
-            consts = consts.concat(lines[i])
+            consts.push(lines[i])
         } else if (_.startsWith(_.trim(lines[i]), 'export')) {
             isReact = 1
             component.push(lines[i])
@@ -149,9 +154,38 @@ function cutJsx(render) {
         }
     }
     return {
-        component: component.join('\r\n')
+        imports: imports,
+        consts: consts,
+        component: component
     }
 }
+//imports 相同引用不同参数的引用问题
+function ignoreImports(imps) {
+    let temp = {}
+    let newImports = []
+    imps.forEach(function (item) {
+        let strs = item.split(' ')
+        let start = item.split('').indexOf('{')
+        let end = item.split('').indexOf('}')
+        if (start > -1 && end > -1) {
+            temp[strs[strs.length - 1]] = temp[strs[strs.length - 1]] || {requires: [], children: []}
+            temp[strs[strs.length - 1]].children = _.uniqBy(temp[strs[strs.length - 1]].children.concat(item.slice(start + 1, end).split(',')))
+            temp[strs[strs.length - 1]].requires = _.remove(item.slice(7, start).split(','))
+
+        } else {
+            temp[strs[strs.length - 1]] = item
+        }
+    })
+    for (let obj in temp) {
+        if (_.isObject(temp[obj])) {
+            newImports.push('import ' + temp[obj].requires + '{' + temp[obj].children + '} from ' + obj)
+        } else {
+            newImports.push(temp[obj])
+        }
+    }
+    return newImports
+}
+
 
 //根据组件目录创建菜单数据格式
 function createComponents() {
@@ -219,26 +253,33 @@ function createDemoApi() {
     files.forEach((file)=> {
         let Buttons = fs.readdirSync(path.resolve(paths.appSrc, 'examples/' + file));
         ignore(Buttons, ['Title.js', 'Api.js', 'index.js'])
-        imports = []
-        consts = []
+        let imports = [
+            `import Typography from 'material-ui/Typography'`,
+            `import Api from './Api'`,
+            `import Title from './Title'`,
+            `import Templete from '../Template'`]
+        let constsArr = []
         let renderData = Buttons.map((item)=> {
                 let demo = fs.readFileSync(path.resolve(paths.appSrc, `examples/${file}/${item}`))
                 var reacter = _.template(demo);
                 let DomeJsx = reacter({component: _.capitalize(_.camelCase(item))})
                 let demoCoder = cutText(DomeJsx, '````jsx', '````')
-                let renderObj = cutJsx(demoCoder)
+                let renderObj = cutJsx(demoCoder, imports, constsArr)
+                imports = renderObj.imports
+                constsArr = renderObj.consts
                 return {
                     name: _.capitalize(_.camelCase(item)),
-                    component: renderObj.component,
+                    component: renderObj.component.join('\n'),
                     type: cutStrByStart(DomeJsx, "#"),
                     desc: cutStrByStart(DomeJsx, "##"),
                     code: new Buffer(demoCoder)
                 }
             }
         )
+
         let demoTmpl = fs.readFileSync(path.resolve(paths.appMock, 'lib/tmpl/demo.tmpl'))
         var compiled = _.template(demoTmpl.toString());
-        let html = compiled({examples: renderData, imports: imports, consts: consts})
+        let html = compiled({examples: renderData, imports: ignoreImports(imports), consts: constsArr})
         fs.writeFileSync(path.resolve(paths.appSrc, `examples/${file}/index.js`),
             html,
             function (err) {
@@ -258,7 +299,7 @@ function createExampleRouter() {
     })
     text.unshift(`export {default as start} from '../start'`)
     fs.writeFile(path.join(process.cwd(), 'src/routers/authority/examples.js'),
-        text.join(';\r\n'),
+        text.join(';\n'),
         function (err) {
             if (err) throw err;
             console.log('create route success!');

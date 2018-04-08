@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Button from '@/components/Button'
+import Icon from '@/components/Icon'
 
-const ButtonGroup = Button.Group
+const ButtonGroup = Button.Group
 
 
 
@@ -21,7 +21,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export class Demo2md extends Component {
@@ -34,7 +34,7 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export class Demo3md extends Component {
@@ -47,7 +47,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export class Demo4md extends Component {
@@ -67,7 +67,7 @@ export class Demo4md extends Component {
             </ButtonGroup>
         )
     }
-}
+}
 
 
 export class Demo5md extends Component {
@@ -81,7 +81,7 @@ export class Demo5md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -91,10 +91,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      按钮类型
+                                      按钮类型
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
                                 </p>
                     <Templete code={`import Button from '@/components/Button'
 
@@ -109,15 +109,15 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      按钮尺寸
+                                      按钮尺寸
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     按钮有大、中、小三种尺寸。 通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中
+                                     按钮有大、中、小三种尺寸。 通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中
                                 </p>
                     <Templete code={`import Button from '@/components/Button'
 
@@ -131,15 +131,15 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                       图标按钮
+                                       图标按钮
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                      当需要在 Button 内嵌入 Icon 时，直接在 Button 内使用 Icon 组件，组件内部会根据位置自动调节边距方向。
+                                      当需要在 Button 内嵌入 Icon 时，直接在 Button 内使用 Icon 组件，组件内部会根据位置自动调节边距方向。
                                 </p>
                     <Templete code={`import Button from '@/components/Button'
 import Icon from '@/components/Icon'
@@ -154,15 +154,15 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      按钮组合
+                                      按钮组合
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     可以将多个 Button 放入 Button.Group 的容器中。按钮组的size会覆盖button的size
+                                     可以将多个 Button 放入 Button.Group 的容器中。按钮组的size会覆盖button的size
                                 </p>
                     <Templete code={`import Button from '@/components/Button'
 import Icon from '@/components/Icon'
@@ -185,15 +185,15 @@ export class Demo4md extends Component {
             </ButtonGroup>
         )
     }
-}`}>
+}`}>
                         <Demo4md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      不可用状态
+                                      不可用状态
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     添加 disabled 属性即可让按钮处于不可用状态，同时按钮样式也会改变
+                                     添加 disabled 属性即可让按钮处于不可用状态，同时按钮样式也会改变
                                 </p>
                     <Templete code={`import Button from '@/components/Button'
 
@@ -208,7 +208,7 @@ export class Demo5md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo5md />
                     </Templete>
                 

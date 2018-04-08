@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Button from '@/components/Button'
-import Message from '@/components/Message'
+import Button from '@/components/Button'
+import Message from '@/components/Message'
 
 
 
@@ -21,7 +21,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -51,7 +51,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 

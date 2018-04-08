@@ -1,27 +1,27 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Icon from '@/components/Icon'
-import {withStyles} from 'material-ui/styles';
+import Icon from '@/components/Icon'
+import {withStyles} from 'material-ui/styles'
 
-const styles = theme => {
-    return {
-         icon: {
-            margin: theme.spacing.unit * 2,
-         },
-         icon2: {
-                 margin: theme.spacing.unit * 2,
-                 fontSize:'28px'
-         },
-         icon3: {
-                 margin: theme.spacing.unit * 2,
-                 fontSize:'48px',
-                 color:theme.colors.error
-         }
-    }
-}
+const styles = theme => {
+    return {
+         icon: {
+            margin: theme.spacing.unit * 2,
+         },
+         icon2: {
+                 margin: theme.spacing.unit * 2,
+                 fontSize:'28px'
+         },
+         icon3: {
+                 margin: theme.spacing.unit * 2,
+                 fontSize:'48px',
+                 color:theme.colors.error
+         }
+    }
+}
 
 
 
@@ -38,7 +38,7 @@ export class Demomd extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -48,10 +48,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      字体图标
+                                      字体图标
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     字体图标就是字体，所以我们不推荐再字体上写样式，字体要加样式就父级元素上加
+                                     字体图标就是字体，所以我们不推荐再字体上写样式，字体要加样式就父级元素上加
                                 </p>
                     <Templete code={`import Icon from '@/components/Icon'
 import {withStyles} from 'material-ui/styles';
@@ -85,7 +85,7 @@ export class Demomd extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demomd />
                     </Templete>
                 
