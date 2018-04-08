@@ -15,6 +15,16 @@ export default {
         hovering:'#E6F7FF',
         tableHead:'#fafafa'
     },
+    clearfloat:{
+        zoom:1,
+        '&:after':{
+            display:'block',
+            clear:'both',
+            content:'""',
+            visibility:'hidden',
+            height:0
+        }
+    },
     disabled: {
         color: grey[400],
         backgroundColor: grey[200],

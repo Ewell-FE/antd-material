@@ -6,7 +6,6 @@ import {withStyles} from 'material-ui/styles';
 import ClassNames from 'classnames';
 import './index.css';
 
-
 const styles=theme=>{
     return {
         menuUl:{
@@ -16,35 +15,69 @@ const styles=theme=>{
             padding:0,
             lineHeight:'46px',
             color:theme.palette.text.primary
-        }
+        },
+        clearFloat:theme.clearfloat
     }
 }
 
 class App extends Component{
+    constructor(props){
+        super(props);
+        this.openKeysChanges=this.openKeysChanges.bind(this);
+        this.selectedKeyChange=this.selectedKeyChange.bind(this);
+        this.state={
+            openKeys:this.props.defaultOpenKeys,
+            selectedKey:this.props.selectedKey
+        }
+    }
+
     static Item=MenuItem
     static SubMenu=SubMenu
     static defaultProps={
-        mode:'horizontal'
+        mode:'vertical',
+        style:{},
+        openKeys:[],
+        defaultOpenKeys:[]
     }
-    getChildContext(){
-        return {
-            mode:this.props.mode
-        }
+
+
+
+    openKeysChanges(openKeys){
+        this.setState({
+            openKeys:openKeys
+        })
     }
+
+    selectedKeyChange(selectedKey){
+        this.setState({
+            selectedKey:selectedKey
+        })
+    }
+
     render(){
-        const {classes,mode}=this.props;
+        const {classes,mode,onClick,children,style}=this.props;
+        let selectedKey=this.state.selectedKey;
         return (
             <div>
-                <ul className={mode==='horizontal'?ClassNames(classes.menuUl,'clearfloat','antd-material-menu-horizontal'):ClassNames(classes.menuUl,'clearfloat')}>
-                    {this.props.children}
+                <ul className={mode==='horizontal'?ClassNames(classes.menuUl,classes.clearFloat):ClassNames(classes.menuUl)}
+                    style={style}>
+                    {
+                        React.Children.map(children, child=>{
+                            return React.cloneElement(child,{
+                                    mode:mode,
+                                    onClick:onClick ? onClick :()=>{},
+                                    selectedKey:selectedKey ? selectedKey:'',
+                                    keyValue:child.key ? child.key:'',
+                                    openKeys:this.state.openKeys,
+                                    openKeysChanges:this.openKeysChanges,
+                                    selectedKeyChange:this.selectedKeyChange
+                               })
+                        })
+                    }
                 </ul>
             </div>
         )
     }
-}
-
-App.childContextTypes={
-    mode:PropTypes.oneOf(['vertical','vertical-right','horizontal','inline'])
 }
 
 export default withStyles(styles,{name:'MuiMenu-ant'})(App);

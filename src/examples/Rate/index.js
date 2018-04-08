@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Rate from '@/components/Rate'
+import Rate from '@/components/Rate'
 
 
 
@@ -18,7 +18,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -31,7 +31,7 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -54,7 +54,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -68,7 +68,7 @@ export class Demo4md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -78,10 +78,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                     基础
+                                     基础
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     基础用法
+                                     基础用法
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -95,15 +95,15 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     半星
+                                     半星
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     支持半星选中
+                                     支持半星选中
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -117,15 +117,15 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     可控的
+                                     可控的
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     操作是否选择
+                                     操作是否选择
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -149,15 +149,15 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     其他字符
+                                     其他字符
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     可以将星星替换为其他字符，比如字母，数字，字体图标甚至中文。
+                                     可以将星星替换为其他字符，比如字母，数字，字体图标甚至中文。
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -172,7 +172,7 @@ export class Demo4md extends Component {
             </div>
         )
     }
-}`}>
+}`}>
                         <Demo4md />
                     </Templete>
                 

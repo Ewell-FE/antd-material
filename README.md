@@ -44,17 +44,17 @@
 │   ├── classes               # 定义全局公用的jss 样式对象
 │   ├── components            # 组件库
 │   ├─── General
-│   │   ├───Button            # ➜ 阿磊 ✓ complete！
-│   │   ├───Icon              # ➜ 阿磊 ✓ complete！
+│   │   ├───Button            # ➜ 阿磊 ✓ complete!
+│   │   ├───Icon              # ➜ 阿磊 ✓ complete!
 │   ├─── Layout
-│   │   ├───Grid              # ➜ 阿磊 ✓
+│   │   ├───Grid              # ➜ 阿磊 ✓ complete!
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 朱宇 ✓
 │   │   ├───Breadcrumb        # ➜ 朱宇 ✓
 │   │   ├───Dropdown          # ➜ 朱宇 ✓
-│   │   ├───Menu              # ➜ 朱宇 ✓
-│   │   ├───Pagination        # ➜ 何家佳 ✓ complete！
+│   │   ├───Menu              # ➜ 何家佳 ✓ dev
+│   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
 │   │   ├───Steps             # ➜ 朱宇 ✓
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
@@ -65,7 +65,7 @@
 │   │   ├───Input             # ➜ 阿磊 ✓
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊
-│   │   ├───Rate              # ➜ 曾辉艳 ✓
+│   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓
 │   │   ├───Select            # ➜ 杨单丹 ✓
 │   │   ├───Slider            # ➜ 阿磊
@@ -84,7 +84,7 @@
 │   │   ├───List              # ➜ 林铭偲 ✓
 │   │   ├───Popover           # ➜ 林铭偲 ✓
 │   │   ├───Tooltip           # ➜ 何家佳 ✓
-│   │   ├───Table             # ➜ 胡昌哲 ✓
+│   │   ├───Table             # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Tabs              # ➜ 杨单丹 ✓
 │   │   ├───Tag               # ➜ 杨单丹 ✓
 │   │   ├───Timeline          # ➜ 杨林林 ✓

@@ -267,8 +267,7 @@ class App extends Component{
     }
 
     render(){
-        const {total,classes,showQuickJumper,showTotal,showSizeChanger,hideOnSinglePage}=this.props,
-              {...allProps}=this.props;
+        const {total,classes,showQuickJumper,showTotal,showSizeChanger,hideOnSinglePage}=this.props;
         let pageSize=this.state.pageSize,
             pageCount=Math.ceil(total/pageSize),
             pageArr=[],
@@ -360,7 +359,7 @@ class App extends Component{
                             {/*pageSize下拉框*/}
                             {   showSizeChanger &&
                                 <li className={classNames(pageItem, selectOption)}>
-                                    <Select {...allProps} pageChange={this.pageChangeFun}/>
+                                    <Select {...this.props} pageChange={this.pageChangeFun}/>
                                 </li>
                             }
                             {/*快速跳转*/}

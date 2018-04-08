@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Switch from '@/components/Switch'
-import Button from '@/components/Button'
+import Switch from '@/components/Switch'
+import Button from '@/components/Button'
 
 
 
@@ -18,7 +18,7 @@ export class Demo1md extends Component {
 
             )
         }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -42,7 +42,7 @@ export class Demo2md extends Component {
               </div>
         )
     }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -59,7 +59,7 @@ export class Demo3md extends Component {
                 </div>
             )
         }
-}
+}
 
 /**
  * Created by zhy on 2018/3/21.
@@ -70,7 +70,7 @@ export class Demo4md extends Component {
                     <Switch loading={true}/>
             )
         }
-}
+}
 
 
 export default class App extends Component {
@@ -80,10 +80,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                     基本
+                                     基本
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     最简单的用法
+                                     最简单的用法
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -96,15 +96,15 @@ export class Demo1md extends Component {
 
             )
         }
-}`}>
+}`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     禁用
+                                     禁用
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     不可操作
+                                     不可操作
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -130,15 +130,15 @@ export class Demo2md extends Component {
               </div>
         )
     }
-}`}>
+}`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     字符
+                                     字符
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     可以添加文字和图标
+                                     可以添加文字和图标
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -156,15 +156,15 @@ export class Demo3md extends Component {
                 </div>
             )
         }
-}`}>
+}`}>
                         <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                     加载中
+                                     加载中
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     标识开关操作仍在执行中
+                                     标识开关操作仍在执行中
                                 </p>
                     <Templete code={`/**
  * Created by zhy on 2018/3/21.
@@ -176,7 +176,7 @@ export class Demo4md extends Component {
                     <Switch loading={true}/>
             )
         }
-}`}>
+}`}>
                         <Demo4md />
                     </Templete>
                 
