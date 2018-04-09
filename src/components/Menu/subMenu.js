@@ -4,6 +4,7 @@ import {withStyles} from 'material-ui/styles';
 import ClassNames from 'classnames';
 import './index.css';
 import Collapse from 'material-ui/transitions/Collapse';
+import { MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 import PropTypes from "prop-types";
 
 class RenderInBody extends Component{
@@ -28,7 +29,9 @@ class RenderInBody extends Component{
     }
 }
 
+let curTheme={};
 const styles=theme=>{
+    curTheme=createMuiTheme(theme);
     return {
         subUl:{
             position:'absolute',
@@ -37,6 +40,9 @@ const styles=theme=>{
             zIndex:10,
             listStyle:'none',
             background:'#fff',
+            boxShadow:theme.shadows[3],
+            lineHeight:'36px',
+            borderRadius:'2px',
             '&>li':{
                 border:'none'
             }
@@ -47,11 +53,10 @@ const styles=theme=>{
             padding:'0',
             margin:'0',
             '&>li':{
-                border:'none'
+                borderBottom:'none'
             }
         },
         menuLi:{
-            padding:'0 20px',
             cursor:'pointer',
             position:'relative',
             transition:'all .3s ease',
@@ -60,39 +65,53 @@ const styles=theme=>{
                 color:'currentColor'
             }
         },
-        subDiv:{
-            position:'relative',
-            '&:hover':{
-                color:theme.palette.primary.main
-            }
-        },
-        activeLi:{
-            borderBottomColor:theme.palette.primary.main,
-            color:theme.palette.primary.main,
-            '&:hover>a':{
-                color:theme.palette.primary.main
-            }
-        },
         floatLi:{
             float:'left',
-            borderBottomWidth:'1px',
+            borderBottomWidth:'2px',
             borderBottomStyle:'solid',
             borderBottomColor:theme.palette.grey[300]
+        },
+        subDiv:{
+            position:'relative',
+            padding:'0 16px',
+            '&:hover':{
+                color:theme.colors.primary
+            }
+        },
+        activeSubDiv:{
+            color:theme.colors.primary
+        },
+        activeLi:{
+            borderBottomColor:theme.colors.primary,
+            color:theme.colors.primary,
+            '&:hover>a':{
+                color:theme.colors.primary
+            }
         },
         hidden:{
             display:'none'
         },
-        animationIn:{
+        animationUpIn:{
             animation:'slideUpIn .5s ease'
         },
-        animationOut:{
+        animationUpOut:{
             animation:'slideUpOut .5s ease'
+        },
+        animationLeftIn:{
+            animation:'slideLeftIn .5s ease'
+        },
+        animationLeftOut:{
+            animation:'slideLeftOut .5s ease'
         },
         menuIcon:{
             position:'absolute',
-            right:'0',
+            right:'20px',
             top:'50%',
+            transition:`all .3s ${theme.transitions.easing.easeInOut}`,
             transform:'translateY(-50%)'
+        },
+        showMenuIcon:{
+            transform:'rotate(180deg) translateY(50%)'
         }
     }
 }
@@ -107,6 +126,8 @@ class SubMenu extends Component{
         this.leaveFun=this.leaveFun.bind(this);
         this.subClickFun=this.subClickFun.bind(this);
         this.handleClick=this.handleClick.bind(this);
+        this.hoverIn=this.hoverIn.bind(this);
+        this.hoverOut=this.hoverOut.bind(this);
         this.state={
             location:{
                 left:0,
@@ -151,28 +172,69 @@ class SubMenu extends Component{
 
     enterFun(){
         if(this.props.mode==='inline') return;
+        this.isEnter=true;
         let elem=this._subParent,
             minWidth=0;
-        if(this.props.mode==='horizontal') minWidth=this.getWidth(elem);
-        this.setState({
-            location:{
-                left:this.getOffset(elem).left,
-                top:this.getOffset(elem).top+this.getHeight(elem),
-                minWidth:minWidth
-            },
-            isShow:true
-        })
+        if(this.props.mode==='horizontal'){
+            minWidth=this.getWidth(elem);
+            this.setState({
+                location:{
+                    left:this.getOffset(elem).left,
+                    top:this.getOffset(elem).top+this.getHeight(elem),
+                    minWidth:minWidth
+                },
+                isShow:true
+            })
+        }else if(this.props.mode==='vertical'){
+            if(this.props.isSubMenu){
+                this.setState({
+                    location:{
+                        left:this.getWidth(elem)+3,
+                        top:0,
+                        minWidth:160
+                    },
+                    isShow:true
+                })
+            }else{
+                this.setState({
+                    location:{
+                        left:this.getOffset(elem).left+this.getWidth(elem)+3,
+                        top:this.getOffset(elem).top,
+                        minWidth:160
+                    },
+                    isShow:true
+                })
+            }
+        }
     }
 
     leaveFun(){
         if(this.props.mode==='inline') return;
+        this.isEnter=false;
         this.setState({
             isShow:false
         })
     }
 
+    hoverIn(){
+        if(this.props.mode==='inline') return;
+        this.isEnter=true;
+        setTimeout(()=>{
+            this.isEnter && this.enterFun();
+        },200);
+    }
+
+    hoverOut(){
+        if(this.props.mode==='inline') return;
+        this.isEnter=false;
+        setTimeout(()=>{
+            !this.isEnter && this.leaveFun();
+        },300);
+
+    }
+
     subClickFun(){
-        this.leaveFun();
+        this.hoverOut();
     }
 
     handleClick(){
@@ -182,7 +244,7 @@ class SubMenu extends Component{
         }else{
             openKeys.push(this.props.keyValue);
         }
-        if(this.props.mode==='inline') this.props.openKeysChanges(openKeys);
+        this.props.mode==='inline' && openKeys.length!==0 && this.props.openKeysChanges(openKeys);
         this.setState({
             isShow:!this.state.isShow
         })
@@ -190,7 +252,7 @@ class SubMenu extends Component{
 
     componentDidMount(){
         if(this.props.mode==='inline'){
-            this.props.openKeys.length!=0 && this.props.openKeys.map(item,index=>{
+            this.props.openKeys.length!==0 && this.props.openKeys.map((item,index)=>{
                 if(item===this.props.keyValue){
                     this.setState({
                         isShow:true
@@ -200,27 +262,40 @@ class SubMenu extends Component{
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.openKeys && nextProps.openKeys.length===1 && nextProps.openKeys[0]!==this.props.keyValue){
+            this.setState({
+                isShow:false
+            })
+        }
+    }
+
+
     render(){
-        const {classes,mode,children,onClick,selectedKey,openKeysChanges}=this.props;
-        let liClass=mode==='horizontal'?(this.state.isShow?ClassNames(classes.menuLi,classes.floatLi,classes.activeLi):ClassNames(classes.menuLi,classes.floatLi)):(classes.menuLi);
+        const {classes,mode,children,onClick,selectedKey}=this.props;
+        let liClass=mode==='horizontal'?(this.state.isShow?ClassNames(classes.menuLi,classes.activeLi,classes.floatLi):ClassNames(classes.menuLi,classes.floatLi)):(classes.menuLi);
         return (
             <li className={liClass}
                 ref={(el)=>this._subParent=el}
-                onMouseEnter={this.enterFun}
-                onMouseLeave={this.leaveFun}
+                onMouseEnter={this.hoverIn}
+                onMouseLeave={this.hoverOut}
                 onClick={this.handleClick}>
-                <div className={classes.subDiv}>
+                <div className={(this.state.isShow && mode!=='inline')?ClassNames(classes.subDiv,classes.activeSubDiv):classes.subDiv}>
                     {this.props.title}
                     {   mode==='inline' &&
-                        <i className={ClassNames('fa','fa-angle-down',classes.menuIcon)} aria-hidden="true"></i>
+                        <i className={ClassNames('fa','fa-angle-down',this.state.isShow?ClassNames(classes.menuIcon,classes.showMenuIcon):classes.menuIcon)} aria-hidden="true"></i>
+                    }
+                    {   mode==='vertical' &&
+                        <i className={ClassNames('fa','fa-angle-right',classes.menuIcon)} aria-hidden="true"></i>
                     }
                 </div>
-                { (mode==='horizontal') &&
+                { (mode==='horizontal' || (mode==='vertical' && !this.props.isSubMenu)) &&
                     <RenderInBody>
-                        <ul className={this.state.isShow?ClassNames(classes.subUl,classes.animationIn):ClassNames(classes.animationOut,classes.hidden)}
+                        <MuiThemeProvider theme={curTheme}>
+                        <ul className={this.state.isShow?ClassNames(classes.subUl,mode==='horizontal'?classes.animationUpIn:classes.animationLeftIn):ClassNames(mode==='horizontal'?classes.animationUpOut:classes.animationLeftOut,classes.hidden)}
                             style={this.state.location}
                             onMouseEnter={this.enterFun}
-                            onMouseLeave={this.leaveFun}>
+                            onMouseLeave={this.hoverOut}>
                             {
                                 React.Children.map(children,child=>{
                                     return React.cloneElement(child,{
@@ -229,15 +304,40 @@ class SubMenu extends Component{
                                         onClick:onClick ? onClick :()=>{},
                                         selectedKey:selectedKey ? selectedKey:'',
                                         keyValue:child.key ? child.key:'',
-                                        subClickFun:this.subClickFun
+                                        subClickFun:this.subClickFun,
+                                        selectedKeyChange:this.props.selectedKeyChange,
+                                        theme:curTheme
                                     })
                                 })
                             }
                         </ul>
+                        </MuiThemeProvider>
                     </RenderInBody>
+                }
+                {   mode==='vertical' && this.props.isSubMenu &&
+                    <MuiThemeProvider theme={curTheme}>
+                        <ul className={this.state.isShow?ClassNames(classes.subUl,classes.animationLeftIn):ClassNames(classes.animationLeftOut,classes.hidden)}
+                            style={this.state.location}>
+                            {
+                                React.Children.map(children,child=>{
+                                    return React.cloneElement(child,{
+                                        mode:mode,
+                                        isSubMenu:true,
+                                        onClick:onClick ? onClick :()=>{},
+                                        selectedKey:selectedKey ? selectedKey:'',
+                                        keyValue:child.key ? child.key:'',
+                                        subClickFun:this.subClickFun,
+                                        selectedKeyChange:this.props.selectedKeyChange,
+                                        theme:curTheme
+                                    })
+                                })
+                            }
+                        </ul>
+                    </MuiThemeProvider>
                 }
                 {   mode==='inline' &&
                     <Collapse in={this.state.isShow}>
+                        <MuiThemeProvider theme={curTheme}>
                         <ul className={classes.inlineSubUl}>
                             {
                                 React.Children.map(children,child=>{
@@ -248,12 +348,13 @@ class SubMenu extends Component{
                                         selectedKey:selectedKey ? selectedKey:'',
                                         keyValue:child.key ? child.key:'',
                                         subClickFun:this.subClickFun,
-                                        openKeysChanges:openKeysChanges,
-                                        selectedKeyChange:this.props.selectedKeyChange
+                                        selectedKeyChange:this.props.selectedKeyChange,
+                                        theme:curTheme
                                     })
                                 })
                             }
                         </ul>
+                        </MuiThemeProvider>
                     </Collapse>
                 }
             </li>

@@ -6,6 +6,7 @@ const primaryColor = blue
 export default {
     colors: {
         primary: primaryColor[600],
+        light:primaryColor[50],
         info: primaryColor[600],
         success: green[600],
         processing: primaryColor[600],

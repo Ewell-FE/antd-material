@@ -84,7 +84,7 @@
 │   │   ├───List              # ➜ 林铭偲 ✓
 │   │   ├───Popover           # ➜ 林铭偲 ✓
 │   │   ├───Tooltip           # ➜ 何家佳 ✓
-│   │   ├───Table             # ➜ 曾辉艳 ✓ complete!
+│   │   ├───Table             # ➜ 曾辉艳 ✓ dev
 │   │   ├───Tabs              # ➜ 杨单丹 ✓
 │   │   ├───Tag               # ➜ 杨单丹 ✓
 │   │   ├───Timeline          # ➜ 杨林林 ✓

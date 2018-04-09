@@ -26,8 +26,8 @@ class App extends Component{
         this.openKeysChanges=this.openKeysChanges.bind(this);
         this.selectedKeyChange=this.selectedKeyChange.bind(this);
         this.state={
-            openKeys:this.props.defaultOpenKeys,
-            selectedKey:this.props.selectedKey
+            openKeys:this.props.defaultOpenKeys || this.props.openKeys,
+            selectedKey:this.props.selectedKey || this.props.defaultSelectedKey
         }
     }
 
@@ -37,10 +37,16 @@ class App extends Component{
         mode:'vertical',
         style:{},
         openKeys:[],
-        defaultOpenKeys:[]
+        defaultOpenKeys:[],
+        defaultSelectedKey:''
     }
 
-
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            selectedKey:nextProps.selectedKey,
+            openKeys:nextProps.openKeys
+        })
+    }
 
     openKeysChanges(openKeys){
         this.setState({
@@ -50,7 +56,7 @@ class App extends Component{
 
     selectedKeyChange(selectedKey){
         this.setState({
-            selectedKey:selectedKey
+            selectedKey:selectedKey.key
         })
     }
 
@@ -69,7 +75,7 @@ class App extends Component{
                                     selectedKey:selectedKey ? selectedKey:'',
                                     keyValue:child.key ? child.key:'',
                                     openKeys:this.state.openKeys,
-                                    openKeysChanges:this.openKeysChanges,
+                                    openKeysChanges:this.props.onOpenChange || this.openKeysChanges,
                                     selectedKeyChange:this.selectedKeyChange
                                })
                         })

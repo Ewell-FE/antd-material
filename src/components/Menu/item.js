@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import ClassNames from 'classnames';
 
 const styles=theme=>{
-    console.log(theme)
     return {
         menuLi:{
-            padding:'0 20px',
+            padding:'0 16px',
             cursor:'pointer',
             position:'relative',
             transition:'all .3s ease',
@@ -16,29 +15,27 @@ const styles=theme=>{
                 color:'currentColor'
             },
             '&:hover':{
-                color:theme.palette.primary.main
+                color:theme.colors.primary
             },
             '&:hover>a':{
-                color:theme.palette.primary.main
+                color:theme.colors.primary
             }
         },
         floatLi:{
             float:'left',
-            borderBottomWidth:'1px',
+            borderBottomWidth:'2px',
             borderBottomStyle:'solid',
             borderBottomColor:theme.palette.grey[300],
             '&:hover':{
-                borderBottomColor:theme.palette.primary.main
+                borderBottomColor:theme.colors.primary
             }
         },
         subMenuLi:{
             fontFamily:'"Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif',
-            lineHeight:'36px',
-            padding:'0 10px',
-            fontSize:'14px',
+            padding:'0 16px',
             cursor:'pointer',
             '&:hover':{
-                color:theme.palette.primary.main
+                color:theme.colors.primary
             },
             '& > a':{
                 color:'currentColor',
@@ -46,24 +43,24 @@ const styles=theme=>{
             }
         },
         activeLi:{
-            borderBottomColor:theme.palette.primary.main,
-            color:theme.palette.primary.main,
+            borderBottomColor:theme.colors.primary,
+            color:theme.colors.primary,
             '&>a':{
-                color:theme.palette.primary.main
+                color:theme.colors.primary
             }
         },
         activeSubLi:{
-            color:theme.palette.primary.main,
+            background:theme.colors.light,
+            color:theme.colors.primary,
             '&>a':{
                 color:'currentColor',
                 textDecoration:'none'
             }
         },
         activeInlineLi:{
-            background:theme.palette.primary.light,
-            '&:hover':{
-                color:theme.palette.text.primary
-            }
+            background:theme.colors.light,
+            color:theme.colors.primary,
+            borderRight:`2px solid ${theme.colors.primary}`
         }
     }
 }
@@ -79,9 +76,8 @@ class MenuItem extends Component{
         e.nativeEvent.stopImmediatePropagation();
         if(this.props.mode!=='inline'){
             this.props.isSubMenu && this.props.subClickFun();
-        }else{
-            this.props.selectedKeyChange(keyValue);
         }
+        this.props.selectedKeyChange({key:keyValue});
         this.props.onClick({key:keyValue});
     }
 
@@ -101,5 +97,4 @@ class MenuItem extends Component{
     }
 }
 
-
-export default withStyles(styles,{name:'MuiMenuItem-ant'})(MenuItem);
+export default withStyles(styles,{name:'MuiMenuItem-ant'})(MenuItem)
