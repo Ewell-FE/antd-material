@@ -4,7 +4,17 @@ import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
 import Input from '@/components/Input'
+import Icon from '@/components/Icon'
+import { withStyles } from 'material-ui/styles'
 
+const styles = theme => ({
+  root:{
+    "& > input,& > span":{
+        width:200,
+        marginTop:5
+    }
+  }
+})
 
 
 
@@ -19,6 +29,55 @@ export class Demo1md extends Component {
 }
 
 
+export class Demo2md extends Component {
+    constructor(props) {
+            super(props)
+    }
+
+    onPressEnter(){
+        console.log(this.input.value)
+    }
+
+    render() {
+        return (
+            <div>
+                <Input
+                    style={{width: 200}}
+                    withRef={(e)=>{this.input = e}}
+                    onPressEnter={()=>{this.onPressEnter()}}
+                    suffix={<Icon type="search" />}
+                    placeholder="input search text"/>
+            </div>
+        )
+    }
+}
+
+
+
+@withStyles(styles, {name: 'MuiInput-ant-demo'})
+export class Demo3md extends Component {
+    constructor(props) {
+            super(props)
+    }
+
+    onPressEnter(){
+        console.log(this.input.value)
+    }
+
+    render() {
+        return (
+            <div className={this.props.classes.root}>
+                <Input size="small" placeholder="small size"/>
+                <br />
+                <Input placeholder="default size" suffix={<Icon type="search" />}/>
+                <br />
+                <Input size="large" placeholder="large size"/>
+            </div>
+        )
+    }
+}
+
+
 export default class App extends Component {
     render() {
         return (
@@ -26,10 +85,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      按钮类型
+                                      基本使用
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+                                     常规输入框
                                 </p>
                     <Templete code={`import Input from '@/components/Input'
 
@@ -43,6 +102,84 @@ export class Demo1md extends Component {
     }
 }`}>
                         <Demo1md />
+                    </Templete>
+                
+                     <Typography variant="display1" gutterBottom>
+                                      搜索框
+                                </Typography>
+                                <p style={{margin:'24px 0 12px 0'}}>
+                                     带有搜索图表的输入框,并利用 withRef 获取真实dom元素
+                                </p>
+                    <Templete code={`import Input from '@/components/Input'
+import Icon from '@/components/Icon'
+
+export class Demo2md extends Component {
+    constructor(props) {
+            super(props)
+    }
+
+    onPressEnter(){
+        console.log(this.input.value)
+    }
+
+    render() {
+        return (
+            <div>
+                <Input
+                    style={{width: 200}}
+                    withRef={(e)=>{this.input = e}}
+                    onPressEnter={()=>{this.onPressEnter()}}
+                    suffix={<Icon type="search" />}
+                    placeholder="input search text"/>
+            </div>
+        )
+    }
+}`}>
+                        <Demo2md />
+                    </Templete>
+                
+                     <Typography variant="display1" gutterBottom>
+                                      三种大小
+                                </Typography>
+                                <p style={{margin:'24px 0 12px 0'}}>
+                                     我们为{`<Input />`}输入框定义了三种尺寸（大、默认、小），高度分别为40px、32px和24px
+                                </p>
+                    <Templete code={`import Input from '@/components/Input'
+import { withStyles } from 'material-ui/styles';
+import Icon from '@/components/Icon'
+
+const styles = theme => ({
+  root:{
+    "& > input,& > span":{
+        width:200,
+        marginTop:5
+    }
+  }
+})
+
+@withStyles(styles, {name: 'MuiInput-ant-demo'})
+export class Demo3md extends Component {
+    constructor(props) {
+            super(props)
+    }
+
+    onPressEnter(){
+        console.log(this.input.value)
+    }
+
+    render() {
+        return (
+            <div className={this.props.classes.root}>
+                <Input size="small" placeholder="small size"/>
+                <br />
+                <Input placeholder="default size" suffix={<Icon type="search" />}/>
+                <br />
+                <Input size="large" placeholder="large size"/>
+            </div>
+        )
+    }
+}`}>
+                        <Demo3md />
                     </Templete>
                 
                 <Api />

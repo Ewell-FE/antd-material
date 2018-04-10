@@ -49,8 +49,7 @@ const styles = (theme)=> {
             textAlign: 'left'
         },
         demo: {
-            display: 'flex',
-            justifyContent: 'center'
+            textAlign:'center'
         },
         codeLink: {
             position: 'absolute',

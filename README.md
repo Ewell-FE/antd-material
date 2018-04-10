@@ -62,7 +62,7 @@
 │   │   ├───Checkbox          # ➜ 胡昌哲 ✓
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
 │   │   ├───Form              # ➜ 阿磊 ✓
-│   │   ├───Input             # ➜ 阿磊 ✓
+│   │   ├───Input             # ➜ 阿磊 ✓ dev
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!

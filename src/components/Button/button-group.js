@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 
 function nearButton(target) {
-    if (target.nodeName.toUpperCase() == 'BUTTON') {
+    if (target.nodeName.toUpperCase() === 'BUTTON') {
         return target
     }
     return nearButton(target.parentNode)
@@ -61,6 +61,7 @@ export default class app extends Component {
             <div className={classes.root}>
                 {React.Children.map(this.props.children, (child, i)=> {
                     return React.cloneElement(child, {
+                        group: true,
                         size: this.props.size,
                         activeValue: this.state.value,
                         onClick: (e)=> {

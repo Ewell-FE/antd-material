@@ -102,7 +102,7 @@ export default class app extends Component {
             <Button
                 style={this.props.style}
                 size={this.props.size}
-                className={classnames(classes.root,classes[this.props.type],{'active':(this.props.activeValue===this.props.value)})}
+                className={classnames(classes.root,classes[this.props.type],{'active':(this.props.group && this.props.activeValue===this.props.value)})}
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
                 value={this.props.value}

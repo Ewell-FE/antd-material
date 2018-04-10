@@ -1,8 +1,17 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom';
 import {withStyles} from 'material-ui/styles';
+import PropTypes from 'prop-types';
+import omit from 'omit.js';
 import './style.less'
 import classnames from 'classnames'
 
+function fixControlledValue(value) {
+    if (typeof value === 'undefined' || value === null) {
+        return '';
+    }
+    return value;
+}
 
 const styles = theme => {
     return {
@@ -17,94 +26,155 @@ const styles = theme => {
             borderRadius: "4px",
             outline: "0",
             resize: "vertical",
-            transition: "border-color .3s ease"
+            transition: "border-color .3s ease",
+            "&:focus": {
+                borderColor: theme.colors.primary
+            },
+            "&:disabled": {
+                cursor: "not-allowed",
+            }
         },
-        readonly:{
-            border:0,
-            boxShadow:'none'
+        inputIconWrapper: {
+            "listStyle": "none",
+            "position": "relative",
+            "display": "inline-block",
+            "width": "100%",
+            "& > input": {
+                width: "100%"
+            },
         },
-        disabled:{
-            border:0,
-            boxShadow:'none'
+        icon: {
+            "position": "absolute",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "z-index": "2",
+            "line-height": "0",
+            "color": "rgba(0, 0, 0, 0.2)",
         },
-        error:{
-            borderColor:theme.colors.error,
+        inputSuffixL: {
+            left: 12
         },
-        warning:{
-            borderColor:theme.colors.warning,
+        inputSuffixR: {
+            right: 12
         },
-        success:{
-            borderColor:theme.colors.success,
+        default: {
+            height: "32px"
+        },
+        small: {
+            height: "24px"
+        },
+        large: {
+            height: "40px"
+        },
+        readonly: {
+            border: 0,
+            boxShadow: 'none'
+        },
+        disabled: {
+            border: 0,
+            boxShadow: 'none'
+        },
+        error: {
+            borderColor: theme.colors.error,
+        },
+        warning: {
+            borderColor: theme.colors.warning,
+        },
+        success: {
+            borderColor: theme.colors.success,
+        },
+        leftIcon: {
+            paddingLeft: 30
+        },
+        rightIcon: {
+            paddingRight: 30
         }
     }
 };
-@withStyles(styles)
+@withStyles(styles, {name: 'MuiInput-ant'})
+
 export default class Input extends Component {
     static defaultProps = {
         type: 'text',
-        disabled: false
+        disabled: false,
+        size: 'default'
     }
 
-    onClearValue(e) {
-        this.refs.inputValue.value = ''
-        if (this.props.onClear) {
-            this.props.onClear()
+    onPressEnter(e) {
+        if (e.which === 13) {
+            this.props.onPressEnter && this.props.onPressEnter(e)
         }
+        return;
     }
 
-    onSearch(e) {
-        if (this.props.onSearch) {
-            this.props.onSearch()
-        }
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
     }
 
     render() {
-        const props = this.props
+        const props = {...this.props}
         const {classes} = this.props
-        let className = classnames(classes.root, props.className, props.clazz, {'icon-l': props.iconl}, {'icon-c': props.iconclear}, {'icon-c': props.iconclear && props.iconr}, {'icon-r': props.iconr || props.iconclear})
-        let inputProps = {}
-        //排除清除函数回掉的影响
-        for (let key in props) {
-            if (key !== 'onClear' && key !== 'onSearch') {
-                Object.assign(inputProps, {
-                    [`${key}`]: props[key]
-                })
-            }
+        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style'])
+        let className = classnames(
+            classes.root,
+            props.className,
+            classes[props.size],
+            {[classes.leftIcon]: props.prefix},
+            {[classes.rightIcon]: props.suffix}
+        )
+        let style = props.style || {}
+        let otherStyle = omit(props.style, ['width', 'height'])
+        if (props.suffix || props.prefix) {
+            return (
+                <span className={classnames(classes.inputIconWrapper)}
+                      style={{width:style.width,height:style.height}}>
+                     <input type="text"
+                            ref={ref=>this.input =ref}
+                            className={className}
+                            style={otherStyle}
+                            onKeyPress={this.onPressEnter.bind(this)}
+                         {...otherProps}
+                     />
+                    {props.prefix &&
+                    <span className={classnames(classes.icon,classes.inputSuffixL)}>{props.prefix}</span>}
+                    {props.suffix &&
+                    <span className={classnames(classes.icon,classes.inputSuffixR)}>{props.suffix}</span>}
+                </span>
+            )
         }
         if (props.type === 'textarea') {
-            return <textarea {...inputProps}
-                className={className}></textarea>
-        }
-        if (props.iconl || props.iconr) {
-            let str = props.iconr ? 'input-suffix-clear-icon' : 'input-suffix-clear'
             return (
-                <span className="input-icon-wrapper"
-                      style={{width: props.style.width, height: props.style.height}}>
-                    <input type="text" ref='inputValue' {...inputProps} className={className}/>
-                    {props.iconl && <span className="input-suffix-L"><i className={props.iconl}></i></span>}
-                    {props.iconr && <span className="input-suffix-R"><i className={props.iconr}
-                                                                        onClick={(e)=>this.onSearch(e)}></i></span>}
-                    {props.iconclear && props.value && <span className={str}><i onClick={(e)=>this.onClearValue(e)}
-                                                                                className={props.iconclear}></i></span>}
-
-            </span>
+                <textarea className={className}
+                          ref={ref=>this.input =ref}
+                          style={otherStyle}
+                          onKeyPress={this.onPressEnter.bind(this)}
+                    {...otherProps}
+                />
             )
         }
-        if (props.iconclear) {
-            return (
-                <span className="input-icon-wrapper"
-                      style={{width: props.style.width, height: props.style.height}}>
-                    <input ref='inputValue' type="text" {...inputProps} className={className}/>
-                    {props.iconclear && props.value &&
-                    <span className="input-suffix-clear"><i onClick={(e)=>this.onClearValue(e)}
-                                                            className={props.iconclear}></i></span>}
-            </span>
-            )
-
-        }
-        if (props.readOnly || props.readOnly === 'readOnly' || props.readOnly === 'true') {
-            return <input type="text" {...inputProps} className={`${className} readonly`}/>
-        }
-        return <input type="text" {...inputProps} className={className}/>
+        return (
+            <input type="text"
+                   ref={ref=>this.input =ref}
+                   className={className}
+                   style={otherStyle}
+                   onKeyPress={this.onPressEnter.bind(this)}
+                {...otherProps}
+            />
+        )
     }
 }
+Input.propTypes = {
+    type: PropTypes.string,
+    value: PropTypes.string,
+    suffix: PropTypes.node,
+    prefix: PropTypes.node,
+    size: PropTypes.string,
+    id: PropTypes.string,
+    disabled: PropTypes.bool,
+    withRef: PropTypes.func,
+    onPressEnter: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    style: PropTypes.object,
+};
