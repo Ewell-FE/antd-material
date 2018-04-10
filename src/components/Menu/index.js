@@ -20,14 +20,15 @@ const styles=theme=>{
     }
 }
 
-class App extends Component{
+class Menu extends Component{
     constructor(props){
         super(props);
         this.openKeysChanges=this.openKeysChanges.bind(this);
         this.selectedKeyChange=this.selectedKeyChange.bind(this);
         this.state={
             openKeys:this.props.defaultOpenKeys || this.props.openKeys,
-            selectedKey:this.props.selectedKey || this.props.defaultSelectedKey
+            selectedKey:this.props.selectedKey || this.props.defaultSelectedKey,
+            selectedPath:[]
         }
     }
 
@@ -37,8 +38,10 @@ class App extends Component{
         mode:'vertical',
         style:{},
         openKeys:[],
+        selectedKey:'',
         defaultOpenKeys:[],
-        defaultSelectedKey:''
+        defaultSelectedKey:'',
+        onClick:()=>{}
     }
 
     componentWillReceiveProps(nextProps){
@@ -54,9 +57,10 @@ class App extends Component{
         })
     }
 
-    selectedKeyChange(selectedKey){
+    selectedKeyChange(selected){
         this.setState({
-            selectedKey:selectedKey.key
+            selectedKey:selected.key,
+            selectedPath:selected.keyPath
         })
     }
 
@@ -71,12 +75,13 @@ class App extends Component{
                         React.Children.map(children, child=>{
                             return React.cloneElement(child,{
                                     mode:mode,
-                                    onClick:onClick ? onClick :()=>{},
-                                    selectedKey:selectedKey ? selectedKey:'',
-                                    keyValue:child.key ? child.key:'',
+                                    onClick:onClick,
+                                    selectedKey:selectedKey,
+                                    keyValue:child.key,
                                     openKeys:this.state.openKeys,
                                     openKeysChanges:this.props.onOpenChange || this.openKeysChanges,
-                                    selectedKeyChange:this.selectedKeyChange
+                                    selectedKeyChange:this.selectedKeyChange,
+                                    selectedPath:this.state.selectedPath
                                })
                         })
                     }
@@ -86,4 +91,14 @@ class App extends Component{
     }
 }
 
-export default withStyles(styles,{name:'MuiMenu-ant'})(App);
+Menu.propTypes={
+    mode:PropTypes.oneOf(['vertical','horizontal','inline']),
+    onClick:PropTypes.func,
+    selectedKey:PropTypes.string,
+    openKeys:PropTypes.array,
+    defaultOpenKeys:PropTypes.array,
+    defaultSelectedKey:PropTypes.string,
+    style:PropTypes.object
+}
+
+export default withStyles(styles,{name:'MuiMenu-ant'})(Menu);

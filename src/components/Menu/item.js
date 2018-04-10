@@ -69,6 +69,9 @@ class MenuItem extends Component{
     constructor(props){
         super(props);
         this.handleClick=this.handleClick.bind(this);
+        this.state={
+            keyPath:this.props.keyPath || []
+        }
     }
 
     handleClick(keyValue,e){
@@ -77,16 +80,20 @@ class MenuItem extends Component{
         if(this.props.mode!=='inline'){
             this.props.isSubMenu && this.props.subClickFun();
         }
-        this.props.selectedKeyChange({key:keyValue});
-        this.props.onClick({key:keyValue});
+
+        let newArr=this.state.keyPath;
+        newArr.push(keyValue);
+        let result={key:keyValue,keyPath:newArr};
+        this.props.selectedKeyChange(result);
+        this.props.onClick(result);
     }
 
     render(){
         const {classes,mode,isSubMenu,children,keyValue,selectedKey}=this.props;
         let liClass='';
-        liClass=(mode==='horizontal'?ClassNames(classes.menuLi,classes.floatLi):classes.menuLi),
+        liClass=(mode==='horizontal' ? ClassNames(classes.menuLi,classes.floatLi) : classes.menuLi);
         liClass=!isSubMenu?liClass:classes.subMenuLi;
-        liClass=(selectedKey.length!=0 && selectedKey===keyValue)?(!isSubMenu?ClassNames(liClass,mode==='inline'?classes.activeInlineLi:classes.activeLi):ClassNames(liClass,mode==='inline'?classes.activeInlineLi:classes.activeSubLi)):liClass;
+        liClass=(selectedKey.length!==0 && selectedKey===keyValue)?(!isSubMenu?ClassNames(liClass,mode==='inline'?classes.activeInlineLi:classes.activeLi):ClassNames(liClass,mode==='inline'?classes.activeInlineLi:classes.activeSubLi)):liClass;
         return (
             <li className={liClass}
                 onClick={this.handleClick.bind(this,keyValue)}
@@ -95,6 +102,10 @@ class MenuItem extends Component{
             </li>
         )
     }
+}
+
+MenuItem.propTypes={
+    keyValue:PropTypes.string.isRequired
 }
 
 export default withStyles(styles,{name:'MuiMenuItem-ant'})(MenuItem)

@@ -5,7 +5,7 @@ import {withStyles} from 'material-ui/styles';
 import Fade from 'material-ui/transitions/Fade';
 
 let styles=(theme)=>{
-    let activeColor=theme.palette.primary.main,
+    let activeColor=theme.colors.primary,
         disabledColor=theme.palette.grey[200],
         fontColor=theme.palette.text.primary;
     return {
@@ -154,11 +154,12 @@ let styles=(theme)=>{
         optionLi:{
             paddingLeft:'11px',
             '&:hover':{
-                background:theme.palette.grey[400]
+                background:theme.colors.light
             }
         },
         curOption:{
-            background:theme.palette.grey[200]
+            color:theme.colors.primary,
+            background:theme.colors.light
         }
     }
 };

@@ -234,7 +234,7 @@ class SubMenu extends Component{
     }
 
     subClickFun(){
-        this.hoverOut();
+        this.leaveFun();
     }
 
     handleClick(){
@@ -270,17 +270,18 @@ class SubMenu extends Component{
         }
     }
 
-
     render(){
-        const {classes,mode,children,onClick,selectedKey}=this.props;
-        let liClass=mode==='horizontal'?(this.state.isShow?ClassNames(classes.menuLi,classes.activeLi,classes.floatLi):ClassNames(classes.menuLi,classes.floatLi)):(classes.menuLi);
+        const {classes,mode,children,onClick,selectedKey,keyValue,keyPath,selectedPath}=this.props;
+        let liClass=mode==='horizontal'?((this.state.isShow || (selectedPath && selectedPath.includes(keyValue)))?ClassNames(classes.menuLi,classes.activeLi,classes.floatLi):ClassNames(classes.menuLi,classes.floatLi)):(classes.menuLi);
+        let newArr=!keyPath ? [] : keyPath;
+        newArr.push(keyValue);
         return (
             <li className={liClass}
                 ref={(el)=>this._subParent=el}
                 onMouseEnter={this.hoverIn}
                 onMouseLeave={this.hoverOut}
                 onClick={this.handleClick}>
-                <div className={(this.state.isShow && mode!=='inline')?ClassNames(classes.subDiv,classes.activeSubDiv):classes.subDiv}>
+                <div className={((this.state.isShow || (selectedPath && selectedPath.includes(keyValue))) && mode!=='inline' )?ClassNames(classes.subDiv,classes.activeSubDiv):classes.subDiv}>
                     {this.props.title}
                     {   mode==='inline' &&
                         <i className={ClassNames('fa','fa-angle-down',this.state.isShow?ClassNames(classes.menuIcon,classes.showMenuIcon):classes.menuIcon)} aria-hidden="true"></i>
@@ -301,12 +302,14 @@ class SubMenu extends Component{
                                     return React.cloneElement(child,{
                                         mode:mode,
                                         isSubMenu:true,
-                                        onClick:onClick ? onClick :()=>{},
-                                        selectedKey:selectedKey ? selectedKey:'',
-                                        keyValue:child.key ? child.key:'',
+                                        onClick:onClick,
+                                        selectedKey:selectedKey,
+                                        keyValue:child.key,
                                         subClickFun:this.subClickFun,
                                         selectedKeyChange:this.props.selectedKeyChange,
-                                        theme:curTheme
+                                        theme:curTheme,
+                                        keyPath:Array.from(new Set(newArr)),
+                                        selectedPath:selectedPath
                                     })
                                 })
                             }
@@ -323,12 +326,14 @@ class SubMenu extends Component{
                                     return React.cloneElement(child,{
                                         mode:mode,
                                         isSubMenu:true,
-                                        onClick:onClick ? onClick :()=>{},
-                                        selectedKey:selectedKey ? selectedKey:'',
-                                        keyValue:child.key ? child.key:'',
+                                        onClick:onClick,
+                                        selectedKey:selectedKey,
+                                        keyValue:child.key,
                                         subClickFun:this.subClickFun,
                                         selectedKeyChange:this.props.selectedKeyChange,
-                                        theme:curTheme
+                                        theme:curTheme,
+                                        keyPath: Array.from(new Set(newArr)),
+                                        selectedPath:selectedPath
                                     })
                                 })
                             }
@@ -349,7 +354,9 @@ class SubMenu extends Component{
                                         keyValue:child.key ? child.key:'',
                                         subClickFun:this.subClickFun,
                                         selectedKeyChange:this.props.selectedKeyChange,
-                                        theme:curTheme
+                                        theme:curTheme,
+                                        keyPath: Array.from(new Set(newArr)),
+                                        selectedPath:selectedPath
                                     })
                                 })
                             }
@@ -360,6 +367,11 @@ class SubMenu extends Component{
             </li>
         )
     }
+}
+
+SubMenu.propTypes={
+    keyValue:PropTypes.string.isRequired,
+    title:PropTypes.oneOfType([PropTypes.string,PropTypes.node]).isRequired
 }
 
 export default withStyles(styles,{name:'MuiSubMenu-ant'})(SubMenu);

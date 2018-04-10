@@ -34,7 +34,7 @@ export class <%=component%> extends Component {
                 </Menu.Item>
                 <Menu.SubMenu key="nav3" title={<span><i className="fa fa-cog" aria-hidden="true" style={{marginRight:'5px'}}></i>导航三--有子导航</span>}>
                     <Menu.Item key="subNav1">子菜单1</Menu.Item>
-                    <Menu.Item key="subNav2"><a href="http://www.baidu.com" target="_blank">子菜单2</a></Menu.Item>
+                    <Menu.Item key="subNav2"><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer">子菜单2</a></Menu.Item>
                     <Menu.Item key="subNav3">子菜单3</Menu.Item>
                     <Menu.Item key="subNav4">子菜单4</Menu.Item>
                 </Menu.SubMenu>
@@ -42,7 +42,7 @@ export class <%=component%> extends Component {
                    <i className="fa fa-tty" aria-hidden="true" style={{marginRight:'5px'}}></i>导航四
                 </Menu.Item>
                 <Menu.Item key="nav5">
-                   <a href="//www.baidu.com" target="_blank"><i className="fa fa-search" aria-hidden="true" style={{marginRight:'5px'}}></i>导航外链</a>
+                   <a href="//www.baidu.com" target="_blank" rel="noopener noreferrer"><i className="fa fa-search" aria-hidden="true" style={{marginRight:'5px'}}></i>导航外链</a>
                 </Menu.Item>
             </Menu>
         )

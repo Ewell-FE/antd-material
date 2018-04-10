@@ -53,7 +53,7 @@
 │   │   ├───Affix             # ➜ 朱宇 ✓
 │   │   ├───Breadcrumb        # ➜ 朱宇 ✓
 │   │   ├───Dropdown          # ➜ 朱宇 ✓
-│   │   ├───Menu              # ➜ 何家佳 ✓ dev
+│   │   ├───Menu              # ➜ 何家佳 ✓ complete!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
 │   │   ├───Steps             # ➜ 朱宇 ✓
 │   ├─── Data Entry
