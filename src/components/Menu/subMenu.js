@@ -258,6 +258,7 @@ class SubMenu extends Component{
                         isShow:true
                     })
                 }
+                return true
             })
         }
     }

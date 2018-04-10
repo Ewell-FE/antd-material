@@ -26,7 +26,7 @@ class DemoCode extends Component {
                 <Collapse in={this.state.isShow}>
                     <HighLight>{this.props.code}</HighLight>
                 </Collapse>
-                <a href="javascript:void(0)" className={classes.codeLink} onClick={this.toggleFun}>
+                <a className={classes.codeLink} onClick={this.toggleFun}>
                     <i className="fa fa-code" aria-hidden="true"></i>
                 </a>
             </div>
@@ -61,6 +61,7 @@ const styles = (theme)=> {
             fontSize: '20px',
             textAlign: 'center',
             fontWeight: 'bold',
+            cursor:'pointer',
             color: theme.palette.text.primary
         }
     }
