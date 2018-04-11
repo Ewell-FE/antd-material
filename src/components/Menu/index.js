@@ -14,9 +14,10 @@ const styles=theme=>{
             width:'100%',
             padding:0,
             lineHeight:'46px',
-            color:theme.palette.text.primary
+            color:theme.palette.text.primary,
+            textAlign:'left'
         },
-        clearFloat:theme.clearfloat
+        clearFix:theme.clearfix
     }
 }
 
@@ -69,7 +70,7 @@ class Menu extends Component{
         let selectedKey=this.state.selectedKey;
         return (
             <div>
-                <ul className={mode==='horizontal'?ClassNames(classes.menuUl,classes.clearFloat):ClassNames(classes.menuUl)}
+                <ul className={mode==='horizontal'?ClassNames(classes.menuUl,classes.clearFix):ClassNames(classes.menuUl)}
                     style={style}>
                     {
                         React.Children.map(children, child=>{

@@ -14,7 +14,7 @@ export default {
         warning: yellow[600],
         normal: '#d9d9d9',
     },
-    clearfloat:{
+    clearfix:{
         zoom:1,
         '&:after':{
             display:'block',
