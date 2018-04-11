@@ -31,7 +31,7 @@ let styles = (theme) => {
                 transform: 'scale(1.1)'
             }
         },
-        yhRateDisabled:{
+        yhRateDisabled: {
             cursor: 'default'
         },
         yhFirstRate: {
@@ -64,12 +64,13 @@ let styles = (theme) => {
         }
     }
 };
+
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
             stars: 0,
-            factStar:0 //控制悬浮样式
+            factStar: 0 //控制悬浮样式
         }
 
     }
@@ -110,7 +111,7 @@ class App extends Component {
             })
         }
         this.setState({
-            factStar:0
+            factStar: 0
         })
     }
 
@@ -121,14 +122,14 @@ class App extends Component {
             stars = index + num
         }
         this.setState({
-            factStar:stars
+            factStar: stars
         })
     }
 
     //鼠标移出
     onOutMouse() {
         this.setState({
-            factStar:0
+            factStar: 0
         })
     }
 
@@ -140,10 +141,10 @@ class App extends Component {
 
     render() {
         const props = this.props
-        const {stars,factStar} = this.state
+        const {stars, factStar} = this.state
         let arr = _.fill(new Array(props.count || 5), 0);
         let starsNum = props.value || stars
-        if(factStar > 0){
+        if (factStar > 0) {
             starsNum = factStar
         }
         arr.forEach((item, i) => {
@@ -208,14 +209,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-    allowHalf:PropTypes.bool, //是否支持半星
-    count:PropTypes.number, //星的总数
-    value:PropTypes.number, //选中的value值
-    onChange:PropTypes.func, //选择时的回调函数，参数为选择的星数值
-    disabled:PropTypes.bool, //是否只读
-    allowClear:PropTypes.bool, //是否允许再次点击后清除 默认为true
-    character:PropTypes.any, //自定义字符
-    style:PropTypes.object, //自定义样式
-    className:PropTypes.string //自定义类名
+    allowHalf: PropTypes.bool, //是否支持半星
+    count: PropTypes.number, //星的总数
+    value: PropTypes.number, //选中的value值
+    onChange: PropTypes.func, //选择时的回调函数，参数为选择的星数值
+    disabled: PropTypes.bool, //是否只读
+    allowClear: PropTypes.bool, //是否允许再次点击后清除 默认为true
+    character: PropTypes.any, //自定义字符
+    style: PropTypes.object, //自定义样式
+    className: PropTypes.string //自定义类名
 }
 export default withStyles(styles, {name: 'MuiRate'})(App);

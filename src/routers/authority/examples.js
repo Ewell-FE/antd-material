@@ -8,6 +8,7 @@ export {default as Input} from '@/examples/Input';
 export {default as Menu} from '@/examples/Menu';
 export {default as Message} from '@/examples/Message';
 export {default as Pagination} from '@/examples/Pagination';
+export {default as Radio} from '@/examples/Radio';
 export {default as Rate} from '@/examples/Rate';
 export {default as Spin} from '@/examples/Spin';
 export {default as Switch} from '@/examples/Switch';

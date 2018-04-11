@@ -1,9 +1,6 @@
 # 字符
 ## 可以添加文字和图标
 ````jsx
-/**
- * Created by zhy on 2018/3/21.
- */
 import Switch from '@/components/Switch'
 export class <%=component%> extends Component {
         render(){

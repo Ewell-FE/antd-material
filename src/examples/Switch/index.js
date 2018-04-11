@@ -8,21 +8,30 @@ import Button from '@/components/Button'
 
 
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo1md extends Component {
+ constructor(props){
+        super(props)
+        this.state={
+            value:false
+        }
+    }
+    onChangeType(checked){
+        this.setState({value:checked})
+    }
         render() {
             return (
-                        <Switch/>
+                <div>
+                    <Switch  size='small'/>
+                    <br/>
+                    <Switch defaultChecked={true}/>
+                    <br/>
+                    <Switch onChange={(checked)=>this.onChangeType(checked)} checked={this.state.value}/>
+                </div>
 
             )
         }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo2md extends Component {
     constructor(props){
         super(props)
@@ -44,9 +53,6 @@ export class Demo2md extends Component {
     }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo3md extends Component {
         render(){
             return (
@@ -61,13 +67,10 @@ export class Demo3md extends Component {
         }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo4md extends Component {
         render() {
             return (
-                    <Switch loading={true}/>
+                    <Switch  loading={true}/>
             )
         }
 }
@@ -85,14 +88,26 @@ export default class App extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      最简单的用法
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Switch from '@/components/Switch'
+                    <Templete code={`import Switch from '@/components/Switch'
 export class Demo1md extends Component {
+ constructor(props){
+        super(props)
+        this.state={
+            value:false
+        }
+    }
+    onChangeType(checked){
+        this.setState({value:checked})
+    }
         render() {
             return (
-                        <Switch/>
+                <div>
+                    <Switch  size='small'/>
+                    <br/>
+                    <Switch defaultChecked={true}/>
+                    <br/>
+                    <Switch onChange={(checked)=>this.onChangeType(checked)} checked={this.state.value}/>
+                </div>
 
             )
         }
@@ -106,10 +121,7 @@ export class Demo1md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      不可操作
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Switch from '@/components/Switch'
+                    <Templete code={`import Switch from '@/components/Switch'
 import Button from '@/components/Button'
 export class Demo2md extends Component {
     constructor(props){
@@ -140,10 +152,7 @@ export class Demo2md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      可以添加文字和图标
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Switch from '@/components/Switch'
+                    <Templete code={`import Switch from '@/components/Switch'
 export class Demo3md extends Component {
         render(){
             return (
@@ -166,14 +175,11 @@ export class Demo3md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      标识开关操作仍在执行中
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Switch from '@/components/Switch'
+                    <Templete code={`import Switch from '@/components/Switch'
 export class Demo4md extends Component {
         render() {
             return (
-                    <Switch loading={true}/>
+                    <Switch  loading={true}/>
             )
         }
 }`}>

@@ -3,9 +3,6 @@
 
 
 ````jsx
-/**
- * Created by zhy on 2018/3/21.
- */
 import Table from '@/components/Table'
 let data1 = [{
     key: '1',

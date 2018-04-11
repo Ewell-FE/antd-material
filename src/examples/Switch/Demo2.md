@@ -1,9 +1,6 @@
 # 禁用
 ## 不可操作
 ````jsx
-/**
- * Created by zhy on 2018/3/21.
- */
 import Switch from '@/components/Switch'
 import Button from '@/components/Button'
 export class <%=component%> extends Component {

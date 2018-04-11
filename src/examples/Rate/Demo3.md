@@ -1,9 +1,6 @@
 # 可控的
 ## 操作是否选择
 ````jsx
-/**
- * Created by zhy on 2018/3/21.
- */
 import Rate from '@/components/Rate'
 export class <%=component%> extends Component {
   constructor(props) {
