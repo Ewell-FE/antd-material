@@ -16,7 +16,7 @@ export default {
         hovering:'#E6F7FF',
         tableHead:'#fafafa'
     },
-    clearfloat:{
+    clearfix:{
         zoom:1,
         '&:after':{
             display:'block',
