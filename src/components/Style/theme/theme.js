@@ -13,8 +13,6 @@ export default {
         error: red[600],
         warning: yellow[600],
         normal: '#d9d9d9',
-        hovering:'#E6F7FF',
-        tableHead:'#fafafa'
     },
     clearfix:{
         zoom:1,
@@ -36,6 +34,14 @@ export default {
     },
     button: {
         hover: primaryColor[300]
+    },
+    radio:{
+        primary:primaryColor[300],
+        disabled:'#e6e6e6'
+    },
+    table:{
+        hovering:'#E6F7FF',
+        tableHead:'#fafafa'
     },
     typography: {
         // Use the system font.

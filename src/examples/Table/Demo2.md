@@ -3,9 +3,6 @@
 
 
 ````jsx
-/**
- * Created by zhy on 2018/3/21.
- */
 import Table from '@/components/Table'
 let data2 = [{
     key: '1',
@@ -79,6 +76,7 @@ export class <%=component%> extends Component {
             pageSize:5,
             total:6,
             onChange:this.onChange,
+            showQuickJumper:true
         }
         const rowSelection = {
             selectedRowKeys:this.state.selectedRowKeys,

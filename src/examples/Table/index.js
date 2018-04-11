@@ -7,9 +7,6 @@ import Table from '@/components/Table'
 
 
 
-/**
- * Created by zhy on 2018/3/21.
- */
 let data1 = [{
     key: '1',
     name: '胡彦斌1',
@@ -86,9 +83,6 @@ export class Demo1md extends Component {
     }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 let data2 = [{
     key: '1',
     name: '胡彦斌1',
@@ -161,6 +155,7 @@ export class Demo2md extends Component {
             pageSize:5,
             total:6,
             onChange:this.onChange,
+            showQuickJumper:true
         }
         const rowSelection = {
             selectedRowKeys:this.state.selectedRowKeys,
@@ -187,10 +182,7 @@ export default class App extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      简单的表格，最后一列是各种操作。
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Table from '@/components/Table'
+                    <Templete code={`import Table from '@/components/Table'
 let data1 = [{
     key: '1',
     name: '胡彦斌1',
@@ -275,10 +267,7 @@ export class Demo1md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      第一列是联动的选择框。
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Table from '@/components/Table'
+                    <Templete code={`import Table from '@/components/Table'
 let data2 = [{
     key: '1',
     name: '胡彦斌1',
@@ -351,6 +340,7 @@ export class Demo2md extends Component {
             pageSize:5,
             total:6,
             onChange:this.onChange,
+            showQuickJumper:true
         }
         const rowSelection = {
             selectedRowKeys:this.state.selectedRowKeys,

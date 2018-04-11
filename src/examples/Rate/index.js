@@ -7,9 +7,6 @@ import Rate from '@/components/Rate'
 
 
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo1md extends Component {
     render() {
         return (
@@ -20,9 +17,6 @@ export class Demo1md extends Component {
     }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo2md extends Component {
     render() {
         return (
@@ -33,9 +27,6 @@ export class Demo2md extends Component {
     }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo3md extends Component {
   constructor(props) {
         super(props)
@@ -56,9 +47,6 @@ export class Demo3md extends Component {
     }
 }
 
-/**
- * Created by zhy on 2018/3/21.
- */
 export class Demo4md extends Component {
     render() {
         return (
@@ -83,10 +71,7 @@ export default class App extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      基础用法
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Rate from '@/components/Rate'
+                    <Templete code={`import Rate from '@/components/Rate'
 export class Demo1md extends Component {
     render() {
         return (
@@ -105,10 +90,7 @@ export class Demo1md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      支持半星选中
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Rate from '@/components/Rate'
+                    <Templete code={`import Rate from '@/components/Rate'
 export class Demo2md extends Component {
     render() {
         return (
@@ -127,10 +109,7 @@ export class Demo2md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      操作是否选择
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Rate from '@/components/Rate'
+                    <Templete code={`import Rate from '@/components/Rate'
 export class Demo3md extends Component {
   constructor(props) {
         super(props)
@@ -159,10 +138,7 @@ export class Demo3md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      可以将星星替换为其他字符，比如字母，数字，字体图标甚至中文。
                                 </p>
-                    <Templete code={`/**
- * Created by zhy on 2018/3/21.
- */
-import Rate from '@/components/Rate'
+                    <Templete code={`import Rate from '@/components/Rate'
 export class Demo4md extends Component {
     render() {
         return (
