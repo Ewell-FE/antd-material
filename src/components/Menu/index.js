@@ -14,7 +14,8 @@ const styles=theme=>{
             width:'100%',
             padding:0,
             lineHeight:'46px',
-            color:theme.palette.text.primary
+            color:theme.palette.text.primary,
+            textAlign:'left'
         },
         clearFix:theme.clearfix
     }
