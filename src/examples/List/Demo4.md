@@ -7,7 +7,7 @@ import Avatar from 'material-ui/Avatar';
 import List from '@/components/List'
 import Button from '@/components/Button'
 import { CircularProgress } from 'material-ui/Progress';
-import {ListItemMeta} from '@/components/List'
+import ListItemMeta from '@/components/List/ListItemMeta'
 import reqwest from 'reqwest';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 

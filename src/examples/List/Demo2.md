@@ -5,7 +5,7 @@
 
 ````jsx
 import List from '@/components/List'
-import {ListItemMeta} from '@/components/List'
+import ListItemMeta from '@/components/List/ListItemMeta'
 
 export class <%=component%> extends Component {
     dataText=[

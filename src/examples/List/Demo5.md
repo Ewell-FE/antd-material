@@ -5,7 +5,7 @@
 ````jsx
 import Avatar from 'material-ui/Avatar';
 import List from '@/components/List' ;
-import {ListItemMeta} from '@/components/List';
+import ListItemMeta from '@/components/List/ListItemMeta'
 
     export class <%=component%> extends Component {  
         render() { 

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
 import List from '@/components/List'
-import {ListItemMeta} from '@/components/List'
-import Avatar from 'material-ui/Avatar';
+import ListItemMeta from '@/components/List/ListItemMeta'
+import Avatar from 'material-ui/Avatar'
 import Button from '@/components/Button'
-import { CircularProgress } from 'material-ui/Progress';
-import reqwest from 'reqwest';
+import { CircularProgress } from 'material-ui/Progress'
+import reqwest from 'reqwest'
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 
@@ -263,7 +263,7 @@ export default class App extends Component {
                                      列表拥有大、中、小三种尺寸。
                                 </p>
                     <Templete code={`import List from '@/components/List'
-import {ListItemMeta} from '@/components/List'
+import ListItemMeta from '@/components/List/ListItemMeta'
 
 export class Demo2md extends Component {
     dataText=[
@@ -337,7 +337,7 @@ export class Demo2md extends Component {
                                 </p>
                     <Templete code={`import Avatar from 'material-ui/Avatar';
 import List from '@/components/List'
-import {ListItemMeta} from '@/components/List'
+import ListItemMeta from '@/components/List/ListItemMeta'
 
 export class Demo3md extends Component {
     data=[
@@ -395,7 +395,7 @@ export class Demo3md extends Component {
 import List from '@/components/List'
 import Button from '@/components/Button'
 import { CircularProgress } from 'material-ui/Progress';
-import {ListItemMeta} from '@/components/List'
+import ListItemMeta from '@/components/List/ListItemMeta'
 import reqwest from 'reqwest';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 
@@ -481,7 +481,7 @@ export class Demo4md extends Component {
                                 </p>
                     <Templete code={`import Avatar from 'material-ui/Avatar';
 import List from '@/components/List' ;
-import {ListItemMeta} from '@/components/List';
+import ListItemMeta from '@/components/List/ListItemMeta'
 
     export class Demo5md extends Component {  
         render() { 
