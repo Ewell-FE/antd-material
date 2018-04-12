@@ -1,5 +1,8 @@
 export {default as start} from '../start';
 export {default as Alert} from '@/examples/Alert';
+export {default as AutoComplete} from '@/examples/AutoComplete';
+export {default as Avatar} from '@/examples/Avatar';
+export {default as Badge} from '@/examples/Badge';
 export {default as Button} from '@/examples/Button';
 export {default as Checkbox} from '@/examples/Checkbox';
 export {default as Form} from '@/examples/Form';
@@ -8,6 +11,7 @@ export {default as Icon} from '@/examples/Icon';
 export {default as Input} from '@/examples/Input';
 export {default as Menu} from '@/examples/Menu';
 export {default as Message} from '@/examples/Message';
+export {default as Notification} from '@/examples/Notification';
 export {default as Pagination} from '@/examples/Pagination';
 export {default as Radio} from '@/examples/Radio';
 export {default as Rate} from '@/examples/Rate';
