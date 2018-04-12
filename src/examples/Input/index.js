@@ -7,6 +7,7 @@ import Input from '@/components/Input'
 import Icon from '@/components/Icon'
 import { withStyles } from 'material-ui/styles'
 
+const Search = Input.Search
 const styles = theme => ({
   root:{
     "& > input,& > span":{
@@ -29,6 +30,7 @@ export class Demo1md extends Component {
 }
 
 
+
 export class Demo2md extends Component {
     constructor(props) {
             super(props)
@@ -47,6 +49,13 @@ export class Demo2md extends Component {
                     onPressEnter={()=>{this.onPressEnter()}}
                     suffix={<Icon type="search" />}
                     placeholder="input search text"/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}}/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}} enterButton={true}/>
+
             </div>
         )
     }
@@ -72,6 +81,42 @@ export class Demo3md extends Component {
                 <Input placeholder="default size" suffix={<Icon type="search" />}/>
                 <br />
                 <Input size="large" placeholder="large size"/>
+            </div>
+        )
+    }
+}
+
+
+export class Demo4md extends Component {
+    constructor(props) {
+            super(props)
+            this.state={
+                userName:""
+            }
+    }
+
+    emitEmpty = () => {
+        this.userNameInput.focus();
+        this.setState({ userName: '' });
+    }
+
+    onChangeUserName = (e) => {
+        this.setState({ userName: e.target.value });
+    }
+
+    render() {
+        const { userName } = this.state;
+        const suffix = userName ? <Icon type="close" onClick={this.emitEmpty} /> : null;
+        return (
+            <div>
+                <Input
+                    placeholder="Enter your username"
+                    prefix={<Icon type="user-o" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                    suffix={suffix}
+                    value={userName}
+                    onChange={this.onChangeUserName}
+                    withRef={node => this.userNameInput = node}
+                />
             </div>
         )
     }
@@ -113,6 +158,8 @@ export class Demo1md extends Component {
                     <Templete code={`import Input from '@/components/Input'
 import Icon from '@/components/Icon'
 
+const Search = Input.Search
+
 export class Demo2md extends Component {
     constructor(props) {
             super(props)
@@ -131,6 +178,13 @@ export class Demo2md extends Component {
                     onPressEnter={()=>{this.onPressEnter()}}
                     suffix={<Icon type="search" />}
                     placeholder="input search text"/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}}/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}} enterButton={true}/>
+
             </div>
         )
     }
@@ -180,6 +234,52 @@ export class Demo3md extends Component {
     }
 }`}>
                         <Demo3md />
+                    </Templete>
+                
+                     <Typography variant="display1" gutterBottom>
+                                      前缀和后缀
+                                </Typography>
+                                <p style={{margin:'24px 0 12px 0'}}>
+                                     在输入框上添加前缀或后缀图标。
+                                </p>
+                    <Templete code={`import Input from '@/components/Input'
+import Icon from '@/components/Icon'
+
+export class Demo4md extends Component {
+    constructor(props) {
+            super(props)
+            this.state={
+                userName:""
+            }
+    }
+
+    emitEmpty = () => {
+        this.userNameInput.focus();
+        this.setState({ userName: '' });
+    }
+
+    onChangeUserName = (e) => {
+        this.setState({ userName: e.target.value });
+    }
+
+    render() {
+        const { userName } = this.state;
+        const suffix = userName ? <Icon type="close" onClick={this.emitEmpty} /> : null;
+        return (
+            <div>
+                <Input
+                    placeholder="Enter your username"
+                    prefix={<Icon type="user-o" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                    suffix={suffix}
+                    value={userName}
+                    onChange={this.onChangeUserName}
+                    withRef={node => this.userNameInput = node}
+                />
+            </div>
+        )
+    }
+}`}>
+                        <Demo4md />
                     </Templete>
                 
                 <Api />

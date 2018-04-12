@@ -32,6 +32,11 @@ export default {
             backgroundColor: '#f5f5f5'
         }
     },
+    size:{
+        small:"24px",
+        default:"32px",
+        large:"40px"
+    },
     button: {
         hover: primaryColor[300]
     },

@@ -6,6 +6,8 @@
 import Input from '@/components/Input'
 import Icon from '@/components/Icon'
 
+const Search = Input.Search
+
 export class <%=component%> extends Component {
     constructor(props) {
             super(props)
@@ -24,6 +26,13 @@ export class <%=component%> extends Component {
                     onPressEnter={()=>{this.onPressEnter()}}
                     suffix={<Icon type="search" />}
                     placeholder="input search text"/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}}/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:200}} enterButton={true}/>
+
             </div>
         )
     }

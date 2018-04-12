@@ -26,9 +26,10 @@ const styles = theme => {
             borderRadius: "4px",
             outline: "0",
             resize: "vertical",
-            transition: "border-color .3s ease",
+            transition: "all .3s",
             "&:focus": {
-                borderColor: theme.colors.primary
+                borderColor: theme.colors.primary,
+                boxShadow: "0 0 0 2px rgba(24,144,255,.2)"
             },
             "&:disabled": {
                 cursor: "not-allowed",
@@ -50,6 +51,16 @@ const styles = theme => {
             "z-index": "2",
             "line-height": "0",
             "color": "rgba(0, 0, 0, 0.2)",
+            "marginTop": "-1px",
+            "&.small": {
+                fontSize: 12
+            },
+            "&.default": {
+                fontSize: 14
+            },
+            "&.large": {
+                fontSize: 16
+            }
         },
         inputSuffixL: {
             left: 12
@@ -58,13 +69,13 @@ const styles = theme => {
             right: 12
         },
         default: {
-            height: "32px"
+            height: theme.size.default
         },
         small: {
-            height: "24px"
+            height: theme.size.small
         },
         large: {
-            height: "40px"
+            height: theme.size.large
         },
         readonly: {
             border: 0,
@@ -115,6 +126,9 @@ export default class Input extends Component {
         const props = {...this.props}
         const {classes} = this.props
         let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style'])
+        if ('value' in props) {
+            otherProps.value = fixControlledValue(props.value);
+        }
         let className = classnames(
             classes.root,
             props.className,
@@ -136,9 +150,9 @@ export default class Input extends Component {
                          {...otherProps}
                      />
                     {props.prefix &&
-                    <span className={classnames(classes.icon,classes.inputSuffixL)}>{props.prefix}</span>}
+                    <span className={classnames(classes.icon,classes.inputSuffixL,[props.size])}>{props.prefix}</span>}
                     {props.suffix &&
-                    <span className={classnames(classes.icon,classes.inputSuffixR)}>{props.suffix}</span>}
+                    <span className={classnames(classes.icon,classes.inputSuffixR,[props.size])}>{props.suffix}</span>}
                 </span>
             )
         }

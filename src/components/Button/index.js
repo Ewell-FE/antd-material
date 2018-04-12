@@ -82,6 +82,15 @@ const styles = theme => {
                 borderColor: "#d9d9d9",
                 cursor: "not-allowed"
             }
+        },
+        small: {
+            minHeight: theme.size.small
+        },
+        default: {
+            minHeight: theme.size.default
+        },
+        large: {
+            minHeight: theme.size.large
         }
     }
 };
@@ -93,16 +102,17 @@ export default class app extends Component {
     }
 
     static defaultProps = {
-        type: 'Default'
+        type: 'Default',
+        size: 'default'
     }
 
     render() {
+        const props = this.props
         const {classes} = this.props
         return (
             <Button
                 style={this.props.style}
-                size={this.props.size}
-                className={classnames(classes.root,classes[this.props.type],{'active':(this.props.group && this.props.activeValue===this.props.value)})}
+                className={classnames(classes.root,classes[props.size],classes[props.type],{'active':(props.group && props.activeValue===props.value)})}
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
                 value={this.props.value}
@@ -125,7 +135,7 @@ export default class app extends Component {
 
 app.propTypes = {
     type: PropTypes.oneOf(['Default', 'Primary', 'Dashed', 'Danger']),
-    size: PropTypes.oneOf(['small', 'large']),
+    size: PropTypes.oneOf(['small', 'default', 'large']),
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
     value: PropTypes.string,
