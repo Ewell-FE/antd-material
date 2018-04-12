@@ -124,10 +124,18 @@ function cutJsx(render, imports, consts) {
             }
             imports = _.uniqBy(imports.concat(arrs.join('')), _.camelCase);
         } else if (_.startsWith(_.trim(lines[i]), 'const ') && isReact <= 0) {
-            consts.push(lines[i])
             if (lines[i].indexOf('function') > -1 || lines[i].indexOf('=>') > -1) {
+                consts.push(lines[i])
                 if (lines[i].indexOf('}') === -1) {
                     isFunctionJsx = 1
+                }
+            } else {
+                //如果是变量则过滤重复
+                var hasLine = consts.filter(function (line) {
+                    return _.camelCase(line) === _.camelCase(lines[i])
+                })
+                if (hasLine.length <= 0) {
+                    consts.push(lines[i])
                 }
             }
         } else if (isFunctionJsx > 0) {
