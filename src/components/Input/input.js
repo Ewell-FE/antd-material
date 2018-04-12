@@ -101,7 +101,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiInput-ant'})
+@withStyles(styles, {name: 'MuiInputAnt'})
 
 export default class Input extends Component {
     static defaultProps = {

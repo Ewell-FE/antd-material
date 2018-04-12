@@ -22,7 +22,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiSearch-ant'})
+@withStyles(styles, {name: 'MuiSearchAnt'})
 export default class Search extends Component {
     static defaultProps = {
         size: 'default'

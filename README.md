@@ -61,13 +61,13 @@
 │   │   ├───Cascader          # ➜ 阿磊
 │   │   ├───Checkbox          # ➜ 何家佳 ✓ dev
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
-│   │   ├───Form              # ➜ 阿磊 ✓
-│   │   ├───Input             # ➜ 阿磊 ✓ dev
+│   │   ├───Form              # ➜ 阿磊 ✓ dev
+│   │   ├───Input             # ➜ 阿磊 ✓  complete!
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Radio             # ➜ 曾辉艳 ✓
-│   │   ├───Select            # ➜ 杨单丹 ✓
+│   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
+│   │   ├───Select            # ➜ 曾辉艳 ✓ dev
 │   │   ├───Slider            # ➜ 阿磊
 │   │   ├───Switch            # ➜ 曾辉艳 ✓
 │   │   ├───TreeSelect        # ➜ 阿磊
@@ -75,14 +75,14 @@
 │   │   ├───Transfer          # ➜ 杨林林 ✓
 │   │   ├───Upload            # ➜ 阿磊
 │   ├─── Data Display
-│   │   ├───Avatar            # ➜ 郭丽丽 ✓
-│   │   ├───Badge             # ➜ 郭丽丽 ✓
+│   │   ├───Avatar            # ➜ 郭丽丽 ✓ complete!
+│   │   ├───Badge             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Calendar          # ➜ 阿磊
 │   │   ├───Card              # ➜ 胡昌哲 ✓
 │   │   ├───Carousel          # ➜ 曾辉艳 ✓
 │   │   ├───Collapse          # ➜ 何家佳 ✓
-│   │   ├───List              # ➜ 林铭偲 ✓
-│   │   ├───Popover           # ➜ 林铭偲 ✓
+│   │   ├───List              # ➜ 林铭偲 ✓ complete!
+│   │   ├───Popover           # ➜ 林铭偲 ✓ complete!
 │   │   ├───Tooltip           # ➜ 何家佳 ✓
 │   │   ├───Table             # ➜ 曾辉艳 ✓ dev
 │   │   ├───Tabs              # ➜ 杨单丹 ✓
@@ -90,15 +90,15 @@
 │   │   ├───Timeline          # ➜ 杨林林 ✓
 │   │   ├───Tree              # ➜ 阿磊
 │   ├─── Feedback
-│   │   ├───Alert             # ➜ 林铭偲 ✓
+│   │   ├───Alert             # ➜ 林铭偲 ✓ complete!
 │   │   ├───Modal             # ➜ 何家佳 ✓
 │   │   ├───Message           # ➜ 阿磊 ✓ complete！
-│   │   ├───Notification      # ➜ 郭丽丽 ✓
+│   │   ├───Notification      # ➜ 郭丽丽 ✓ dev
 │   │   ├───Progress          # ➜ 胡昌哲 ✓
 │   │   ├───Popconfirm        # ➜ 何家佳 ✓
 │   │   ├───Spin              # ➜ 阿磊 ✓
 │   ├──── Other
-│   │   ├───Anchor            # ➜ 林铭偲 ✓
+│   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
 │   │   ├───BackTop           # ➜ 杨林林 ✓
 │   │   ├───Divider           # ➜ 杨林林 ✓
 │   │   ├───LocaleProvider    # ➜ 阿磊
