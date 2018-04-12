@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import {reduxForm, Field, Form} from 'redux-form'
+import PropTypes from 'prop-types';
 import Input from '@/components/Input'
 import classnames from 'classnames'
 import Grid from 'material-ui/Grid';
@@ -12,28 +13,29 @@ import './style.less'
 let FieldHtml = (field)=> {
     var isError = field.meta.touched && field.meta.error
     var isWarn = field.meta.touched && field.meta.warning
-    if(field.readOnly === true){
+    if (field.readOnly === true) {
         return (
             <div className={field.layout}>
                 {field.label &&
                 <label style={{width:field.labelcol}} htmlFor={`__${field.input.name}__`}>{field.label}:</label>}
                 <div className="yh-input" style={{lineHeight:"32px"}}>
-                    {field.val[field.input.name]?field.val[field.input.name]:''}
+                    {field.val[field.input.name] ? field.val[field.input.name] : ''}
                     {/*<span style={{verticalAlign: 'baseline-middle'}}></span>*/}
                 </div>
             </div>
         )
-    }else if(field.type === 'select'){
+    } else if (field.type === 'select') {
         return (
             <div className={field.layout}>
                 {field.label &&
                 <label style={{width:field.labelcol}} htmlFor={`__${field.input.name}__`}>{field.required &&
                 <span className="required">* </span>}{field.label}:</label>}
                 <div className="yh-input" style={{width:field.wrappercol}}><select
-                    id={`__${field.input.name}__`} {...field} {...field.input} style={{width:field.wrappercol,height:"32px"}}
+                    id={`__${field.input.name}__`} {...field} {...field.input}
+                    style={{width:field.wrappercol,height:"32px"}}
                     clazz={classnames(field.className, {error: isError}, {warn: isWarn})}>
                     <option value="请选择">请选择</option>
-                    {field.options.map(item=>{
+                    {field.options.map(item=> {
                         return (
                             <option value={item} key={item}>{item}</option>
                         )
@@ -44,7 +46,7 @@ let FieldHtml = (field)=> {
                 </div>
             </div>
         )
-    }else{
+    } else {
         return (
             <div className={field.layout}>
                 {field.label &&
@@ -64,7 +66,7 @@ let FieldHtml = (field)=> {
 const renderField = (field) => {
     if (field.layout === 'grid') {
         return (
-            <Grid item xs={field.span} >
+            <Grid item xs={field.span}>
                 <FieldHtml {...field}/>
             </Grid>
         )
@@ -111,7 +113,7 @@ export class FormComponent extends Component {
     }
 
     static defaultProps = {
-        layout: 'field'
+        layout: 'inline'
     }
 
     handleSubmit(values) {
@@ -137,4 +139,8 @@ export class FormComponent extends Component {
         )
     }
 }
+
+Input.propTypes = {
+    layout: PropTypes.oneOf(['inline', 'vertical', 'horizontal', 'grid'])
+};
 export default reduxForm({enableReinitialize: true})(FormComponent)

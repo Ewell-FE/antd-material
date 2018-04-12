@@ -44,17 +44,20 @@ export class Demo2md extends Component {
         return (
             <div>
                 <Input
-                    style={{width: 200}}
+                    style={{width: 300}}
                     withRef={(e)=>{this.input = e}}
                     onPressEnter={()=>{this.onPressEnter()}}
                     suffix={<Icon type="search" />}
                     placeholder="input search text"/>
                  <br />
                  <br />
-                 <Search onSearch={e=>console.log(e)} style={{width:200}}/>
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} placeholder="input search text"/>
                  <br />
                  <br />
-                 <Search onSearch={e=>console.log(e)} style={{width:200}} enterButton={true}/>
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} enterButton placeholder="input search text"/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} enterButton="Search" size="large" placeholder="input search text"/>
 
             </div>
         )
@@ -173,17 +176,20 @@ export class Demo2md extends Component {
         return (
             <div>
                 <Input
-                    style={{width: 200}}
+                    style={{width: 300}}
                     withRef={(e)=>{this.input = e}}
                     onPressEnter={()=>{this.onPressEnter()}}
                     suffix={<Icon type="search" />}
                     placeholder="input search text"/>
                  <br />
                  <br />
-                 <Search onSearch={e=>console.log(e)} style={{width:200}}/>
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} placeholder="input search text"/>
                  <br />
                  <br />
-                 <Search onSearch={e=>console.log(e)} style={{width:200}} enterButton={true}/>
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} enterButton placeholder="input search text"/>
+                 <br />
+                 <br />
+                 <Search onSearch={e=>console.log(e)} style={{width:300}} enterButton="Search" size="large" placeholder="input search text"/>
 
             </div>
         )
