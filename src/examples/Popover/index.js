@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
 import Popover from '@/components/Popover'
 import Button from '@/components/Button'
-
+import Test from '@/components/Popover/test'
 
 
 
@@ -16,6 +16,7 @@ export class Demo1md extends Component {
 
     render() {
         return (
+        <div>
            <Popover
                placement='top'
                title={<div>this is title</div>}
@@ -23,6 +24,21 @@ export class Demo1md extends Component {
                >
                <Button type="Primary">hover me</Button>
            </Popover>
+           <Popover
+              placement='top'
+              title={<div>this is title</div>}
+              content={<div>原生元素无需withRef属性</div>}
+              >
+              <button type="Primary">原生 hover me</button>
+          </Popover>
+          <Popover
+              placement='top'
+              title={<div>this is title</div>}
+              content={<div>自定义组件需要withRef属性</div>}
+              >
+              <Test>test hover me</Test>
+          </Popover>
+        </div>
         )
     }
 }
@@ -41,12 +57,12 @@ export class Demo2md extends Component {
           topRight:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
           rightTop:{marginBottom:'15px',width:'50%',textAlign:'right'},
           right:{marginBottom:'15px',width:'50%',top:'50%',textAlign:'right'},
-          left:{marginBottom:'15px',width:'50%',top:'50%',},
+          left:{marginBottom:'15px',width:'50%',top:'50%',textAlign:'left'},
           rightBottom:{marginBottom:'15px',width:'50%',textAlign:'right'},
           bottomRight:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
           bottomLeft:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
-          leftBottom:{marginBottom:'15px',width:'50%',},
-          leftTop:{marginBottom:'15px',width:'50%',}
+          leftBottom:{marginBottom:'15px',width:'50%',textAlign:'left'},
+          leftTop:{marginBottom:'15px',width:'50%',textAlign:'left'}
         }
     render() {
         console.log(this.state)
@@ -121,7 +137,7 @@ export default class App extends Component {
                                 </p>
                     <Templete code={`import Popover from '@/components/Popover'
 import Button from '@/components/Button'
-
+import Test from '@/components/Popover/test'
 export class Demo1md extends Component {
     constructor(props) {
         super(props);
@@ -129,6 +145,7 @@ export class Demo1md extends Component {
 
     render() {
         return (
+        <div>
            <Popover
                placement='top'
                title={<div>this is title</div>}
@@ -136,6 +153,21 @@ export class Demo1md extends Component {
                >
                <Button type="Primary">hover me</Button>
            </Popover>
+           <Popover
+              placement='top'
+              title={<div>this is title</div>}
+              content={<div>原生元素无需withRef属性</div>}
+              >
+              <button type="Primary">原生 hover me</button>
+          </Popover>
+          <Popover
+              placement='top'
+              title={<div>this is title</div>}
+              content={<div>自定义组件需要withRef属性</div>}
+              >
+              <Test>test hover me</Test>
+          </Popover>
+        </div>
         )
     }
 }`}>
@@ -164,12 +196,12 @@ export class Demo2md extends Component {
           topRight:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
           rightTop:{marginBottom:'15px',width:'50%',textAlign:'right'},
           right:{marginBottom:'15px',width:'50%',top:'50%',textAlign:'right'},
-          left:{marginBottom:'15px',width:'50%',top:'50%',},
+          left:{marginBottom:'15px',width:'50%',top:'50%',textAlign:'left'},
           rightBottom:{marginBottom:'15px',width:'50%',textAlign:'right'},
           bottomRight:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
           bottomLeft:{marginBottom:'15px',width:'33.3%',textAlign:'center'},
-          leftBottom:{marginBottom:'15px',width:'50%',},
-          leftTop:{marginBottom:'15px',width:'50%',}
+          leftBottom:{marginBottom:'15px',width:'50%',textAlign:'left'},
+          leftTop:{marginBottom:'15px',width:'50%',textAlign:'left'}
         }
     render() {
         console.log(this.state)

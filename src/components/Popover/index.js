@@ -136,7 +136,6 @@ export default class Popver extends Component {
     dom=null;
     render() {
         const {visible:visi,trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400}} = this.props;
-        console.log(children)
         const {visible}=this.state
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
@@ -159,19 +158,27 @@ export default class Popver extends Component {
         const popoverClassName=classnames('', {
             [classes['popover']]:trigger=='hover'
         });
+        const defaultChildren={
+            onClick:  trigger==='click'?this.handleOpen:()=>{},
+            onMouseEnter:trigger==='hover'?this.handleOpen:()=>{},
+            onMouseLeave:trigger==='hover'?this.handleClose:()=>{}
+        }
+        if (typeof (children.type)==='function'){
+            Object.assign(defaultChildren,{
+                withRef:(dom)=>this.dom=dom,
+            })
+        }else{
+            Object.assign(defaultChildren,{
+                ref:(dom)=>this.dom=dom,
+            })
+        }
         return(
-            <div>
-                <div ref={(dom)=>this.dom=dom} style={{display:'inline-block'}}>
-                    {
-                        React.cloneElement(children, {
-                            content: 'Chilref:"myInput',
-                            ref:(dom)=>this.dom=dom,
-                            onClick:  trigger==='click'?this.handleOpen:()=>{},
-                            onMouseEnter:trigger==='hover'?this.handleOpen:()=>{},
-                            onMouseLeave:trigger==='hover'?this.handleClose:()=>{}
-                        })
-                    }
-                </div>
+            <div style={{display:'inline-block'}}>
+                {
+                    React.cloneElement(children, {
+                        ...defaultChildren,
+                    })
+                }
                 <Popover
                     open={visible}
                     className={popoverClassName}

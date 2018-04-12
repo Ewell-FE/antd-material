@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames'
 const styles = theme => ({
     yhAnchorLink:{
-        padding: '8px 0 8px 16px',
-        lineHeight: '1'
+        padding: '8px 8px 8px 16px',
+        lineHeight: '1',
+        textAlign: 'left'
     },
     yhAnchorLinkTitle:{
         display: 'block',
