@@ -5,7 +5,7 @@ export default class App extends Component {
         return (
             <div>
                 <Typography variant="display2" gutterBottom>
-                    Alert警告提示
+                    Anchor
                 </Typography>
                 <p style={{margin:'12px 0 30px 0'}}>警告提示，展现需要关注的信息。</p>
                 <Typography variant="display1" gutterBottom>

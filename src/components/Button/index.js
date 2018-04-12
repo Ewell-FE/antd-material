@@ -114,6 +114,8 @@ export default class app extends Component {
                 style={this.props.style}
                 className={classnames(classes.root,classes[props.size],classes[props.type],{'active':(props.group && props.activeValue===props.value)})}
                 onClick={this.props.onClick}
+                onMouseEnter={this.props.onMouseEnter}
+                onMouseLeave={this.props.onMouseLeave}
                 disabled={this.props.disabled}
                 value={this.props.value}
             >

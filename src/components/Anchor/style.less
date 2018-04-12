@@ -1,0 +1,72 @@
+.yh-anchor-link{
+  padding: 8px 0 8px 16px;
+  line-height: 1;
+  .yh-anchor-link-title{
+    display: block;
+    position: relative;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    color: rgba(0,0,0,.65);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+}
+.yh-anchor-link-active>.yh-anchor-link-title{
+  color: #1890ff;
+}
+.yh-anchor-ink{
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  &::before{
+    content: " ";
+    position: relative;
+    width: 2px;
+    height: 100%;
+    display: block;
+    background-color: #e8e8e8;
+    margin: 0 auto;
+  }
+  .yh-anchor-ink-ball{
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid #1890ff;
+    background-color: #fff;
+    left: 50%;
+    -webkit-transition: top .3s ease-in-out;
+    transition: top .3s ease-in-out;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top:10px;
+    &.visible{
+      display: inline-block;
+    }
+  }
+}
+.yh-anchor{
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,.65);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  padding-left: 2px;
+}
+.yh-anchor-wrapper{
+  position: fixed;
+  background-color: #fff;
+  overflow: auto;
+  padding-left: 4px;
+  margin-left: -4px;
+}
