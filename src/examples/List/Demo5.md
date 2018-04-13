@@ -5,7 +5,6 @@
 ````jsx
 import Avatar from 'material-ui/Avatar';
 import List from '@/components/List' ;
-import ListItemMeta from '@/components/List/ListItemMeta'
 
     export class <%=component%> extends Component {  
         render() { 
@@ -42,13 +41,12 @@ import ListItemMeta from '@/components/List/ListItemMeta'
                    <List
                         dataSource={listData} 
                         pagination={pagination}
+                        itemLayout="vertical" 
                         renderItem={(item,index) => ( 
-                            <ListItemMeta
+                            <List.ItemMeta
                                     key={index} 
                                     actions={[<span>156</span>,<span>156</span>,<span>2</span>]} 
                                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                    size="large" 
-                                    itemLayout="vertical" 
                                     title={item.title}
                                     description={item.description} 
                                     content={<div>{item.content}</div>} 

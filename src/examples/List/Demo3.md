@@ -5,7 +5,6 @@
 ````jsx
 import Avatar from 'material-ui/Avatar';
 import List from '@/components/List'
-import ListItemMeta from '@/components/List/ListItemMeta'
 
 export class <%=component%> extends Component {
     data=[
@@ -36,7 +35,7 @@ export class <%=component%> extends Component {
              <List
                   dataSource={this.data}
                   renderItem={(item,index) => (
-                      <ListItemMeta
+                      <List.ItemMeta
                           key={index}
                           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                           title={item.title}
