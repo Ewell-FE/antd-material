@@ -5,14 +5,13 @@ export default class App extends Component {
         return (
             <div>
                 <Typography variant="display2" gutterBottom>
-                    Anchor
+                    Anchor锚点
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>警告提示，展现需要关注的信息。</p>
+                <p style={{margin:'12px 0 30px 0'}}>用于跳转到页面指定位置。</p>
                 <Typography variant="display1" gutterBottom>
                     何时使用
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>当某个页面需要向用户显示警告的信息时。</p>
-                <p style={{margin:'12px 0 30px 0'}}>非浮层的静态展现形式，始终展现，不会自动消失，用户可以点击关闭。</p>
+                <p style={{margin:'12px 0 30px 0'}}>需要展现当前页面上可供跳转的锚点链接，以及快速在锚点之间跳转。</p>
             </div>
         )
     }

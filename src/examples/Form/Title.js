@@ -5,13 +5,23 @@ export default class App extends Component {
         return (
             <div>
                 <Typography variant="display2" gutterBottom>
-                    Button 按钮
+                    Form表单
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>按钮用于开始一个即时操作。</p>
+                <p style={{margin:'12px 0 30px 0'}}>具有数据收集、校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。</p>
                 <Typography variant="display1" gutterBottom>
-                    何时使用
+                    表单
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。</p>
+                <p style={{margin:'12px 0 30px 0'}}>
+                    我们为 form 提供了以下三种排列方式：
+                </p>
+                <ul>
+                    <li> 水平排列：标签和表单控件水平排列；（默认）</li>
+
+                    <li>垂直排列：标签和表单控件上下垂直排列；</li>
+
+                    <li>行内排列：表单项水平行内排列。</li>
+                </ul>
+
             </div>
         )
     }

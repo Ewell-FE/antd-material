@@ -1,6 +1,5 @@
-#  基本使用
-## 常规输入框
-
+#  水平排列 默认排列方式
+## 水平登录栏，常用在顶部导航栏中。layout="inline"
 
 ````jsx
 import Form from '@/components/Form'
@@ -17,22 +16,23 @@ export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                <Form form='roleForm'
+                <Form form='roleForm1'
                   initialValues={{}}
                   Submit={(values) => this.Submit(values)} ref="form1"
                   fields={[{
                       name: "roleName",
-                      label: "角色名",
+                      label: "用户名",
                       required: true,
                       validate:roleLength
                   }, {
                       name: "remark",
-                      label: "角色描述",
-                      type: 'textarea',
+                      label: "密码",
                       rows: '5',
                       validate:roleLength
-                  }]}/>
-                  <Button onClick={() => {this.refs.form1.submit()}}>保 存</Button>
+                  }]}>
+                    <Button style={{verticalAlign:'top'}} onClick={() => {this.refs.form1.submit()}}>保 存</Button>
+                  </Form>
+
             </div>
         )
     }

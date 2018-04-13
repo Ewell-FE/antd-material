@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {withStyles} from 'material-ui/styles';
 import PropTypes from 'prop-types';
 import omit from 'omit.js';
-import './style.less'
 import classnames from 'classnames'
 
 function fixControlledValue(value) {
@@ -102,7 +101,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiInput-ant'})
+@withStyles(styles, {name: 'MuiInputAnt'})
 
 export default class Input extends Component {
     static defaultProps = {
@@ -125,7 +124,7 @@ export default class Input extends Component {
     render() {
         const props = {...this.props}
         const {classes} = this.props
-        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style'])
+        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style', 'classes'])
         if ('value' in props) {
             otherProps.value = fixControlledValue(props.value);
         }
@@ -160,7 +159,7 @@ export default class Input extends Component {
             return (
                 <textarea className={className}
                           ref={ref=>this.input =ref}
-                          style={otherStyle}
+                          style={style}
                           onKeyPress={this.onPressEnter.bind(this)}
                     {...otherProps}
                 />
@@ -170,7 +169,7 @@ export default class Input extends Component {
             <input type="text"
                    ref={ref=>this.input =ref}
                    className={className}
-                   style={otherStyle}
+                   style={style}
                    onKeyPress={this.onPressEnter.bind(this)}
                 {...otherProps}
             />

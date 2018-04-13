@@ -31,7 +31,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiButtonGroup-ant'})
+@withStyles(styles, {name: 'MuiButtonGroupAnt'})
 export default class app extends Component {
     constructor(props) {
         super(props)

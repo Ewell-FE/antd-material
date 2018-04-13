@@ -5,9 +5,9 @@ export default class App extends Component {
         return (
             <div>
                 <Typography variant="display1" gutterBottom>
-                    API
+                    注意
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>表格</p>
+                <p style={{margin:'12px 0 30px 0'}}>请确保 Popover 的子元素能接受 onMouseEnter、onMouseLeave、onClick 事件。</p>
             </div>
         )
     }

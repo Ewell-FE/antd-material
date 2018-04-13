@@ -10,6 +10,10 @@
 # production
 /build
 
+# example
+/src/examples/**/index.js
+!/src/examples/Template/index.js
+
 # misc
 .DS_Store
 .env.local

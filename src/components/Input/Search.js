@@ -3,26 +3,26 @@ import ReactDOM from 'react-dom';
 import {withStyles} from 'material-ui/styles';
 import PropTypes from 'prop-types';
 import omit from 'omit.js';
-import './style.less'
 import Input from './index'
 import Button from '../Button'
 import Icon from '../Icon'
-import classnames from 'classnames'
 
 const styles = theme => {
     return {
         root: {
             position: 'relative',
+            display: 'inline-block',
             "& >button": {
                 position: 'absolute',
                 right: 0,
                 borderBottomLeftRadius: 0,
-                borderTopLeftRadius: 0
+                borderTopLeftRadius: 0,
+                minWidth: 'initial',
             }
         }
     }
 };
-@withStyles(styles, {name: 'MuiSearch-ant'})
+@withStyles(styles, {name: 'MuiSearchAnt'})
 export default class Search extends Component {
     static defaultProps = {
         size: 'default'
@@ -35,7 +35,7 @@ export default class Search extends Component {
     render() {
         let props = {...this.props}
         let {classes} = props
-        let otherProps = omit(props, ['onSearch', 'enterButton'])
+        let otherProps = omit(props, ['onSearch', 'enterButton', 'style'])
         otherProps = Object.assign({}, {
             onPressEnter: ()=> {
                 this.search()
@@ -45,21 +45,24 @@ export default class Search extends Component {
                 this.inputref = ref
             }
         }, otherProps)
+        let style = props.style || {}
         if (props.enterButton) {
             delete otherProps.suffix
+            let otherStyle = omit(props.style, ['width', 'height'])
             return (
-                <span className={classes.root}>
-                    <Input {...otherProps}/>
-                    <Button onClick={this.search()} size={props.size} type="Primary"><Icon type="search"/></Button>
+                <span className={classes.root} style={{width:style.width,height:style.height}}>
+                    <Input {...otherProps} style={otherStyle}/>
+                    <Button onClick={()=>{this.search()}} size={props.size} type="Primary">
+                        {typeof props.enterButton === 'string' ? props.enterButton : <Icon type="search"/>}
+                    </Button>
                 </span>
             )
         }
         return (
-            <Input {...otherProps}/>
+            <Input {...otherProps} style={style}/>
         )
     }
 }
 Search.propTypes = {
-    size: PropTypes.string,
-    enterButton: PropTypes.bool
+    size: PropTypes.string
 };

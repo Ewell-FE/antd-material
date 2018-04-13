@@ -43,13 +43,15 @@ const styles = theme => ({
     yhAlert: {
         position: 'relative',
         width: '350px',
+        margin: '0 auto',
         marginBottom: '10px',
         borderRadius: '4px;',
         boxShadow: 'none',
         padding: '10px 12px',
         boxSizing: 'border-box',
         overflow: 'hidden',
-        minHeight: '40px'
+        minHeight: '40px',
+        textAlign: 'left'
     },
     yhAlertIcon: {
         display: 'inline-block',
@@ -98,7 +100,7 @@ const styles = theme => ({
     yhAlertBanner: {
         position: 'fixed',
         top: '0',
-        left: `'calc(50% - ${test}px)'`,
+        left: `calc(50% - ${test}px)`,
         zIndex: '99999'
     }
 });

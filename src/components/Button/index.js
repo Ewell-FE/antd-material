@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -95,7 +96,7 @@ const styles = theme => {
     }
 };
 
-@withStyles(styles, {name: 'MuiButton-ant'})
+@withStyles(styles, {name: 'MuiButtonAnt'})
 export default class app extends Component {
     constructor(props) {
         super(props)
@@ -106,11 +107,16 @@ export default class app extends Component {
         size: 'default'
     }
 
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.button))
+    }
+
     render() {
         const props = this.props
         const {classes} = this.props
         return (
             <Button
+                ref={ref=>this.button =ref}
                 style={this.props.style}
                 className={classnames(classes.root,classes[props.size],classes[props.type],{'active':(props.group && props.activeValue===props.value)})}
                 onClick={this.props.onClick}

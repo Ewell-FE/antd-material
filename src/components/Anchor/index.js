@@ -17,9 +17,6 @@ const styles = theme => ({
 
     },
     yhAnchorWrapper:{
-        position: 'fixed',
-        top:'64px',
-        left:'250px',
         backgroundColor: '#fff',
         overflow: 'auto',
         paddingLeft: '4px',
@@ -156,6 +153,7 @@ export default class Anchor extends Component {
         super(props);
         this.state = {
             activeLink: null,
+            affixOffest:false
         };
         this.links = [];
     }
@@ -204,9 +202,10 @@ export default class Anchor extends Component {
         if (this.animating) {
             return;
         }
-        const { offsetTop, bounds } = this.props;
+        const { offsetTop, bounds,target = getDefaultTarget } = this.props;
         this.setState({
             activeLink: this.getCurrentAnchor(offsetTop, bounds),
+            affixOffest:this.getCurrentAffix(target,offsetTop, bounds)
         });
     }
     handleScrollTo=(link)=>{
@@ -240,6 +239,14 @@ export default class Anchor extends Component {
         }
         return '';
     }
+    getCurrentAffix(target,offsetTop = 0,bounds=5){
+        const scrollTop=getScroll(target(),true);
+        if(scrollTop>offsetTop+bounds){
+            return true;
+        }else {
+            return false;
+        }
+    }
     updateInk=()=>{
         if (typeof document === 'undefined') {
             return;
@@ -255,16 +262,18 @@ export default class Anchor extends Component {
             classes,
             style,
             offsetTop,
-            affix,
+            fixTop,
+            affix=true,
             showInkInFixed,
             children,
         } = this.props;
-        const { activeLink } = this.state;
+        const { activeLink,affixOffest } = this.state;
         const inkClass = classNames(classes['yhAnchorInkBall'], {
             [classes['visible']]: activeLink,
         });
 
         const wrapperClass = classNames(className, classes['yhAnchorWrapper']);
+        const affixStyle=affixOffest&&affix?{position:'fixed',top:`${fixTop}px`}:''
         const anchorComponent=(
             <div className={wrapperClass} style={style}>
                 <div className={classes['yhAnchor']} ref="links">
@@ -278,7 +287,7 @@ export default class Anchor extends Component {
             </div>
         )
         return !affix?anchorComponent: (
-            <div offsetTop={offsetTop}>
+            <div style={{...affixStyle}}>
                 {anchorComponent}
             </div>
         )
