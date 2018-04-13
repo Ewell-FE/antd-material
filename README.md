@@ -59,7 +59,7 @@
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
 │   │   ├───Cascader          # ➜ 阿磊
-│   │   ├───Checkbox          # ➜ 何家佳 ✓ dev
+│   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
 │   │   ├───Form              # ➜ 阿磊 ✓ dev
 │   │   ├───Input             # ➜ 阿磊 ✓  complete!

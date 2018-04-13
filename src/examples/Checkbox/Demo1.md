@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Checkbox from '@/components/Checkbox'
+import Checkbox from '@/components/Checkbox';
 
 export class <%=component%> extends Component {
     onChange(e){
