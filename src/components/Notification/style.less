@@ -1,0 +1,94 @@
+@notification-width: 335px;
+@notification-padding: 16px;
+@notification-margin-bottom: 10px;
+.MuiAvatar-ant-notification{
+  position: fixed;
+  z-index: 1010;
+  width: @notification-width;
+  margin-right: 24px;
+  font-size:14px;
+  color:rgba(0,0,0,.65);
+  line-height:1.5;
+  font-family: "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  .MuiAvatar-ant-notification-notice {
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    line-height: 1.5;
+    position: relative;
+    margin-bottom: 10px;
+    overflow: hidden;
+    .MuiAvatar-ant-notification-notice-content{
+      .MuiAvatar-ant-notification-notice-message {
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.85);
+        margin-bottom: 4px;
+        line-height: 20px;
+        display: inline-block;
+        margin-left:48px;
+      }
+      .MuiAvatar-ant-notification-notice-description{
+        margin-left:48px;
+      }
+      i.fa{
+        font-size:32px;
+        line-height:32px;
+        position: absolute;
+      }
+    }
+    .MuiAvatar-ant-notification-notice-close {
+      position: absolute;
+      right: 16px;
+      top: 10px;
+      color: rgba(0, 0, 0, 0.43);
+      outline: none;
+      text-decoration: none;
+
+      .MuiAvatar-ant-notification-notice-close-x:after{
+        font-size: 12px;
+        content: "\f00d";
+        font: normal normal normal 14px/1 FontAwesome;
+        cursor: pointer;
+      }
+    }
+  }
+}
+@keyframes NotificationFadeIn {
+  0% {
+    opacity: 0;
+    left: @notification-width;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes NotificationLeftFadeIn {
+  0% {
+    opacity: 0;
+    right: @notification-width;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes NotificationFadeOut {
+  0% {
+    opacity: 1;
+    margin-bottom: @notification-margin-bottom;
+    padding-top: @notification-padding;
+    padding-bottom: @notification-padding;
+    max-height: 150px;
+  }
+  100% {
+    opacity: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-height: 0;
+  }
+}

@@ -7,7 +7,7 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{textAlign:"left"}}>
                 <Badge status="success" />
                 <Badge status="error" />
                 <Badge status="default" />
