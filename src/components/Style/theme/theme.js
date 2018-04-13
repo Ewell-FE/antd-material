@@ -48,6 +48,18 @@ export default {
         hovering:'#E6F7FF',
         tableHead:'#fafafa'
     },
+    alert:{
+        width:100,
+        success:'#b7eb8f',
+        successBg:'#f6ffed',
+        warn:'#ffe58f',
+        warnBg:'#fffbe6',
+        info:'#91d5ff',
+        infoBg:'#e6f7ff',
+        error:'#ffa39e',
+        errorBg:'#fff1f0',
+
+    },
     typography: {
         // Use the system font.
         fontFamily: 'Tahoma, Helvetica, Arial,"Hiragino Sans GB", "Microsoft Yahei"'
