@@ -9,9 +9,6 @@ import Icon from '@/components/Icon'
 const Search = Input.Search
 
 export class <%=component%> extends Component {
-    constructor(props) {
-            super(props)
-    }
 
     onPressEnter(){
         console.log(this.input.value)
