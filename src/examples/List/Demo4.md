@@ -7,7 +7,6 @@ import Avatar from 'material-ui/Avatar';
 import List from '@/components/List'
 import Button from '@/components/Button'
 import { CircularProgress } from 'material-ui/Progress';
-import ListItemMeta from '@/components/List/ListItemMeta'
 import reqwest from 'reqwest';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 
@@ -64,12 +63,12 @@ export class <%=component%> extends Component {
                   loading={loading}
                   loadMore={loadMore}
                   dataSource={data}
+                  itemLayout="horizontal"
                   renderItem={(item,index) => (
-                      <ListItemMeta
+                      <List.ItemMeta
                           key={index}
                           actions={[<a>edit</a>, <a>more</a>]}
                           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                          itemLayout="horizontal"
                           title={item.name.last}
                           description="yh Design, a design language for background applications"
                           content={<div>content</div>}

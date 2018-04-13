@@ -13,7 +13,13 @@ let data1 = [{
               key: '7',
               name: '胡彦祖7',
               age: 88,
-              address: '西湖区湖底公园2号'
+              address: '西湖区湖底公园2号',
+               children:[{
+                            key: 'ss',
+                            name: 'fff',
+                            age: 88,
+                            address: '混蛋混蛋'
+                            }]
               }]
 }, {
     key: '2',
@@ -50,7 +56,14 @@ let data1 = [{
 export class <%=component%> extends Component {
     constructor(props){
         super(props)
-
+        this.state = {
+            expandKey:[]
+        }
+    }
+    onExpand(expandKeys,record){
+        this.setState({
+            expandKey:expandKeys
+        })
     }
     render() {
         const columns = [{
@@ -74,7 +87,8 @@ export class <%=component%> extends Component {
         }];
         return (
             <div className='table-example' style={{background:'#fff',padding:20}}>
-                <Table columns={columns} rowKey={'key'}  dataSource={data1}/>
+                <Table columns={columns} expandKey={this.state.expandKey}
+                onExpand={(expandKeys,record)=>this.onExpand(expandKeys,record)} rowKey={'key'}  dataSource={data1}/>
             </div>
         )
     }

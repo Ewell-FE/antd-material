@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Radio from 'material-ui/Radio';
 import classnames from 'classnames'
+function getLineHeight(str) {
+    let num = str.split('px')[0]
+    return Number(num-2) + 'px'
+}
 
 const styles = theme => {
     let fontSize = theme.typography.fontSize,
@@ -14,8 +18,8 @@ const styles = theme => {
             fontSize: fontSize,
             cursor: 'pointer',
             color: fontColor,
-            height: 36,
-            lineHeight: '34px',
+            height: theme.size.default,
+            lineHeight: getLineHeight(theme.size.default),
             border: '1px solid ' + theme.colors.normal,
             borderTopWidth: '1.02px',
             background: '#fff',
@@ -33,13 +37,12 @@ const styles = theme => {
             }
         },
         large: {
-            height: 40,
-            lineHeight: '38px',
-            fontSize: '16px',
+            height: theme.size.large,
+            lineHeight: getLineHeight(theme.size.large),
         },
         small: {
-            height: 32,
-            lineHeight: '30px',
+            height: theme.size.small,
+            lineHeight: getLineHeight(theme.size.small),
             padding: '0 7px',
         },
         readOnly: {

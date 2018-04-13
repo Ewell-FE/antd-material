@@ -5,18 +5,21 @@ import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Tabl
 import Pagination from '@/components/Pagination';
 import Checkbox from 'material-ui/Checkbox';
 import _ from 'lodash'
+import classNames from 'classnames';
 
 const styles = theme => {
-    let activeColor =theme.radio.primary,
-        fontColor = theme.palette.text.primary
+    let activeColor = theme.radio.primary,
+        fontColor = theme.palette.text.primary,
+        fontSize = theme.typography.fontSize
     return ({
-        root:{
-            overflow:'hidden'
+        root: {
+            overflow: 'hidden'
         },
         table: {
-            minWidth: '100%',
+            minWidth: '80%',
             borderRadius: '4px 4px 0 0',
-            borderCollapse: 'inherit'
+            borderCollapse: 'inherit',
+            fontSize:fontSize,
         },
         head: {
             background: theme.table.tableHead
@@ -25,6 +28,7 @@ const styles = theme => {
             color: fontColor,
             borderBottom: '1px solid #e8e8e8',
             fontSize: 14,
+            padding:'0 10px 0 24px'
         },
         bodyTr: {
             height: 54,
@@ -40,6 +44,8 @@ const styles = theme => {
         bodyTd: {
             borderBottom: '1px solid #e8e8e8',
             color: fontColor,
+            fontSize:fontSize,
+            padding:'0 10px 0 24px',
         },
         noData: {
             textAlign: 'center',
@@ -53,16 +59,19 @@ const styles = theme => {
             float: 'right'
         },
         activeText: {
-            color: activeColor
-        },
-        checkedColor: {
-            color: activeColor
+            color: activeColor,
+            '& a':{
+                color:activeColor
+            }
         },
         hideExpand: {
             display: 'none'
         },
-        expandRow: {
-            background: '#fbfbfb'
+        showChildTr:{
+            backgroundColor:'#fbfbfb',
+            '&:hover':{
+                background: '#fbfbfb'
+            }
         },
         expandParentTd: {
             position: 'relative',
@@ -71,14 +80,15 @@ const styles = theme => {
                 cursor: 'pointer',
                 left: 2,
                 fontSize: 18,
-                top: 20
+                top: '50%',
+                marginTop:'-9px'
             }
         },
-        checkedSecondary:{
-            color:activeColor
+        checkedSecondary: {
+            color: activeColor
         },
-        default:{
-            color:'rgba(0, 0, 0, 0.54)'
+        default: {
+            color: 'rgba(0, 0, 0, 0.54)'
         }
     });
 }
@@ -86,38 +96,42 @@ const styles = theme => {
 export class SimpleTable extends Component {
     constructor(props) {
         super(props)
-        let pagination = props.pagination || {}
         let rowSelection = props.rowSelection || {}
-        let {showPagination, dataSource} = props
-        let pageSize = showPagination === false ? dataSource.length : (pagination.defaultPageSize || pagination.pageSize || 5)
+        let pagination = props.pagination || {}
+        let pageSize = pagination === false ? 0 : (pagination.pageSize || pagination.defaultPageSize || 5)
         this.state = {
-            page: pagination.defaultCurrent || pagination.current || 1,
+            page: pagination.current || pagination.defaultCurrent || 1,
             rowsPerPage: pageSize,
             selectedRowKeys: rowSelection.selectedRowKeys || [],
-            expandKey: []
+            expandKey: props.expandKey || props.defaultExpandKey
 
         }
+    }
+    static defaultProps={
+        defaultExpandKey:[],
+        dataSource:[],
+        columns:[]
     }
 
     //切换当前页
     handleChangePage = (page) => {
         let pagination = this.props.pagination || {}
         pagination.onChange && pagination.onChange(page)
-        this.setState({page});
+        !pagination.current && this.setState({page});
     };
 
     //切换每页的展示数据数目
     handleChangeRowsPerPage = (current, pageSize) => {
         let pagination = this.props.pagination || {}
         pagination.onShowSizeChange && pagination.onShowSizeChange(current, pageSize)
-        this.setState({rowsPerPage: pageSize, page: current});
+        !pagination.pageSize && this.setState({rowsPerPage: pageSize, page: current});
     };
 
     //选择全部
     onSelectAllClick(e, checked, arr) {
-        let selectedRowKeys = this.state.selectedRowKeys
         const {rowKey} = this.props;
         let rowSelection = this.props.rowSelection || {}
+        let selectedRowKeys = rowSelection.selectedRowKeys || this.state.selectedRowKeys
         if (checked) {
             //添加未选择的
             arr.forEach((item, i) => {
@@ -135,31 +149,32 @@ export class SimpleTable extends Component {
                 }
             })
         }
-        this.setState({selectedRowKeys: selectedRowKeys})
+        !rowSelection.selectedRowKeys&&this.setState({selectedRowKeys: selectedRowKeys})
         rowSelection.onChange && rowSelection.onChange(selectedRowKeys)
     }
 
 
     //选择一条
     onSelectOne(e, checked, key) {
-        let selectedRowKeys = this.state.selectedRowKeys
-        let rowSelection = this.props.rowSelection || {}
+        const {rowSelection} = this.props
+        let rowSelections = rowSelection || {}
+        let selectedRowKeys = rowSelections.selectedRowKeys || this.state.selectedRowKeys
         if (checked) {
             selectedRowKeys.push(key)
         } else {
-            selectedRowKeys = _.remove(selectedRowKeys, function (n) {
-                return key !== n;
+            selectedRowKeys = _.remove(selectedRowKeys, function (k) {
+                return key !== k;
             });
         }
-        this.setState({selectedRowKeys: selectedRowKeys})
-        rowSelection.onChange && rowSelection.onChange(selectedRowKeys)
+        !rowSelections.selectedRowKeys && this.setState({selectedRowKeys: selectedRowKeys})
+        rowSelections.onChange && rowSelections.onChange(selectedRowKeys)
     }
 
     //判断当前页有多少条数据
     dealCurrentData() {
-        let arr = []
-        const {page, rowsPerPage} = this.state
-        const {dataSource, showPagination} = this.props;
+        const {dataSource,pagination} = this.props;
+        let paginations =pagination || {}
+        let arr = [],page =  paginations.current || this.state.page, rowsPerPage = paginations.pageSize || this.state.rowsPerPage;
         let defaultPagation = {}
         Object.assign(defaultPagation, {
             total: dataSource.length,
@@ -167,14 +182,13 @@ export class SimpleTable extends Component {
             defaultPageSize: rowsPerPage,
             onChange: this.handleChangePage
         })
-        let pagination = this.props.pagination || defaultPagation
-        let sortPage = (pagination.total === dataSource.length) ? true : false
-        if (showPagination !== false && sortPage) {
+        defaultPagation = pagination || defaultPagation
+        if (pagination !== false && defaultPagation.total === dataSource.length) {
             arr = _.slice(dataSource, rowsPerPage * (page - 1), rowsPerPage * page)
         } else {
             arr = dataSource
         }
-        return {arr: arr, pagination: pagination}
+        return {arr: arr, pagination: defaultPagation}
     }
 
     //判断当前页头部的复选框是什么样的状态
@@ -196,8 +210,8 @@ export class SimpleTable extends Component {
     }
 
     //点击打开扩展项
-    onExpand(key) {
-        let list = this.state.expandKey
+    onExpand(key, record) {
+        let list = this.props.expandKey || this.state.expandKey
         if (_.indexOf(list, key) === -1) {
             list.push(key)
         } else {
@@ -205,23 +219,91 @@ export class SimpleTable extends Component {
                 return key !== n
             });
         }
-        this.setState({
-            expandKey: list
-        })
+        this.props.onExpand && this.props.onExpand(list, record)
+        if (this.props.expandKey === undefined) {
+            this.setState({
+                expandKey: list
+            })
+        }
+    }
 
+    //是否有孩子
+    loopChildren(arr, data, obj, level) {
+        const {classes, columns, rowKey,expandedRowRender} = this.props;
+        const expandKey = this.props.expandKey || this.state.expandKey
+        let rowSelection = this.props.rowSelection
+        data.forEach((n, j) => {
+            let showChild = classNames(classes.bodyTr, 'table-level-' + level)
+            let expandTableRow = expandedRowRender &&expandedRowRender(n)
+
+            //判断是否有孩子
+            if (_.indexOf(expandKey, obj.key) === -1&&level > 0) {
+                showChild = classNames(showChild,classes.hideExpand)
+            }
+            arr.push((<TableRow  key={n.key} className={showChild}>
+                {
+                    rowSelection ?
+                        <TableCell className={classes.selectBox}>
+                            <Checkbox
+                                classes={{checkedSecondary: classes.checkedSecondary}}
+                                disableRipple
+                                checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
+                                onChange={(e, checked) => this.onSelectOne(e, checked, n[`${rowKey}`])}/>
+                        </TableCell>
+                        : null
+                }
+                {
+                    columns.map((item, i) => {
+                        let ele = ''
+                        let expandClass = classes.bodyTd
+                        if (i === 0 && (n.children || expandTableRow)) {
+                            expandClass = classNames(expandClass, classes.expandParentTd)
+                            let str = "fa fa-plus-square-o"
+                            if (_.indexOf(expandKey, n[`${rowKey}`]) !== -1) {
+                                str = 'fa fa-minus-square-o'
+                            }
+                            ele = <i onClick={() => this.onExpand(n.key, n)} className={str} aria-hidden="true"> </i>
+                        }
+                            if (item.render) {
+                                return <TableCell  className={classNames(expandClass, classes.activeText)}
+                                                  key={item.key}>{ele} {item.render(n[item.dataIndex] || undefined, n, arr.length)}</TableCell>
+
+                            } else {
+                                return <TableCell className={expandClass}
+                                                  key={item.key}>{ele} {n[item.dataIndex] || ''}</TableCell>
+
+                            }
+
+                    })
+                }
+            </TableRow>))
+            if (n.children) {
+                //有孩子继续循环
+                this.loopChildren(arr, n.children, n, level + 1)
+            }
+            if(expandTableRow){
+                //是否有扩展项（自定义内容）
+                if (_.indexOf(expandKey, n.key) === -1) {
+                    showChild = classNames(showChild,classes.hideExpand)
+                }
+                arr.push(
+                    <TableRow  key={n.key + "expand"} className={classNames(classes.showChildTr,showChild)}>
+                        <td> </td>
+                        <td colSpan={columns.length-2 ? columns.length-2 : 1}>
+                            {expandTableRow}
+                        </td>
+                        <td> </td>
+                    </TableRow>
+                )
+            }
+        })
+        return arr
     }
 
     render() {
-        const {classes, columns, showPagination, rowKey} = this.props;
-        const {expandKey} = this.state
+        const {classes, columns,pagination,rowSelection} = this.props;
         let tableObj = this.dealCurrentData()
-        let rowSelection = this.props.rowSelection
-        let pagination = tableObj.pagination
         let type = rowSelection ? this.dealCheckBoxType(tableObj.arr, rowSelection.selectedRowKeys) : 0
-        let checkColor = {}
-        Object.assign(checkColor,{
-            checkedSecondary:classes.checkedSecondary,
-        })
         return (
             <div className={classes.root}>
                 <Table className={classes.table}>
@@ -232,7 +314,7 @@ export class SimpleTable extends Component {
                                     <TableCell className={classes.selectBox}>
                                         <Checkbox
                                             disableRipple
-                                            classes={checkColor}
+                                            classes={{checkedSecondary: classes.checkedSecondary}}
                                             indeterminate={type === 1 ? true : false}
                                             checked={type === 2 ? true : false}
                                             onChange={(e, checked) => this.onSelectAllClick(e, checked, tableObj.arr)}
@@ -250,108 +332,7 @@ export class SimpleTable extends Component {
                     </TableHead>
                     <TableBody>
                         {
-                            tableObj.arr.map((n, j) => {
-                                let list = []
-                                list.push(<TableRow key={n.key} className={classes.bodyTr}>
-                                    {
-                                        rowSelection ?
-                                            <TableCell className={classes.selectBox}>
-                                                <Checkbox
-                                                    classes={checkColor}
-                                                    disableRipple
-                                                    checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
-                                                    onChange={(e, checked) => this.onSelectOne(e, checked, n[`${rowKey}`])}/>
-                                            </TableCell>
-                                            : null
-                                    }
-                                    {
-                                        columns.map((item, i) => {
-                                            let ele = ''
-                                            let expandClass = classes.bodyTd
-                                            if (i === 0 && n.children) {
-                                                expandClass = expandClass + " " + classes.expandParentTd
-                                                let str = "fa fa-plus-square-o"
-                                                if (_.indexOf(expandKey, n[`${rowKey}`]) !== -1) {
-                                                    str = 'fa fa-minus-square-o'
-                                                }
-                                                ele = <i onClick={() => this.onExpand(n.key)} className={str}
-                                                         aria-hidden="true"></i>
-                                            }
-                                            if (item.dataIndex) {
-                                                if (item.render) {
-                                                    return <TableCell className={expandClass}
-                                                                      key={item.key}>{ele} {item.render(n[item.dataIndex], n, j)}</TableCell>
-
-                                                } else {
-                                                    return <TableCell className={expandClass}
-                                                                      key={item.key}>{ele}{n[item.dataIndex]}</TableCell>
-
-                                                }
-                                            } else {
-                                                if (item.render) {
-                                                    return <TableCell
-                                                        className={classes.bodyTd + ' ' + classes.activeText}
-                                                        key={item.key}>{item.render(null, n, j)}</TableCell>
-
-                                                } else {
-                                                    return <TableCell className={classes.bodyTd}
-                                                                      key={item.key}> </TableCell>
-                                                }
-                                            }
-
-                                        })
-                                    }
-                                </TableRow>)
-                                if (n.children) {
-                                    n.children.map((obj, k) => {
-                                        let showChild = classes.bodyTr + ' ' + classes.expandRow
-                                        if (_.indexOf(expandKey, n.key) === -1) {
-                                            showChild = showChild + " " + classes.hideExpand
-                                        }
-                                        list.push((<TableRow key={obj.key} className={showChild}>
-                                            {
-                                                rowSelection ?
-                                                    <TableCell className={classes.selectBox}>
-                                                        <Checkbox
-                                                            classes={checkColor}
-                                                            disableRipple
-                                                            checked={_.indexOf(rowSelection.selectedRowKeys, obj[`${rowKey}`]) > -1 ? true : false}
-                                                            onChange={(e, checked) => this.onSelectOne(e, checked, obj[`${rowKey}`])}/>
-                                                    </TableCell>
-                                                    : null
-                                            }
-                                            {
-                                                columns.map((item, i) => {
-                                                    if (item.dataIndex) {
-                                                        if (item.render) {
-                                                            return <TableCell className={classes.bodyTd}
-                                                                              key={item.key}>{item.render(obj[item.dataIndex], obj, k)}</TableCell>
-
-                                                        } else {
-                                                            return <TableCell className={classes.bodyTd}
-                                                                              key={item.key}>{obj[item.dataIndex]}</TableCell>
-
-                                                        }
-                                                    } else {
-                                                        if (item.render) {
-                                                            return <TableCell
-                                                                className={classes.bodyTd + ' ' + classes.activeText}
-                                                                key={item.key}>{item.render(null, obj, k)}</TableCell>
-
-                                                        } else {
-                                                            return <TableCell className={classes.bodyTd}
-                                                                              key={item.key}> </TableCell>
-                                                        }
-                                                    }
-
-                                                })
-                                            }
-                                        </TableRow>))
-                                        return list
-                                    })
-                                }
-                                return list
-                            })
+                            this.loopChildren([], tableObj.arr, {}, 0, 0)
                         }
                     </TableBody>
 
@@ -362,9 +343,9 @@ export class SimpleTable extends Component {
                         : null
                 }
                 {
-                    showPagination === false ? null :
+                    pagination === false ? null :
                         <div className={classes.tablePagination}>
-                            <Pagination {...pagination}
+                            <Pagination {...tableObj['pagination']}
                                         onShowSizeChange={(current, pageSize) => this.handleChangeRowsPerPage(current, pageSize)}
                                         onChange={(page) => this.handleChangePage(page)}/>
                         </div>
@@ -377,11 +358,14 @@ export class SimpleTable extends Component {
 SimpleTable.propTypes = {
     classes: PropTypes.object,
     rowKey: PropTypes.string.isRequired, //每一行的key值，唯一
-    pagination: PropTypes.object, //分页信息
+    pagination: PropTypes.any, //分页信息 为false时不显示分页
     rowSelection: PropTypes.object, //复选框信息
     columns: PropTypes.array, //定义的列
     dataSource: PropTypes.array, //数据
-    showPagination: PropTypes.bool, //是否显示分页
+    onExpand: PropTypes.func, //点击展开项
+    expandKey: PropTypes.array, //展开项
+    defaultExpandKey: PropTypes.array, //默认展开项
+    expandedRowRender:PropTypes.func, //展开项
 };
 
 export default withStyles(styles)(SimpleTable);

@@ -6,15 +6,14 @@ import Notification from '@/components/Notification'
 import Button from '@/components/Button'
 export class <%=component%> extends Component {
     openNotification(){
-        console.log('====')
         Notification.open({
-            message: '这是标题',
-            description: '这是提示框的文案这是提示框的文案这是提示框的文案这是提示框的文案这是提示框的文案这是提示框的文案这是提示框的文案',
+            message: 'Notification Title',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
           });
     }
     render() {
         return (
-            <Button onClinck={this.openNotification}>打开notification</Button>
+            <Button onClick={this.openNotification}>Open the notification box</Button>
         )
     }
 }

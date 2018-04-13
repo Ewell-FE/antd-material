@@ -17,7 +17,7 @@ const styles = theme => ({
         verticalAlign: 'middle'
     },
     badge:{
-        visibility:'hidden'
+        display:'none'
     },
     badgefake:{
         minWidth: '20px',
@@ -56,9 +56,6 @@ const styles = theme => ({
         height: '8px',
         display: 'inline-block',
         borderRadius:'50%'
-    },
-    dotBadge:{
-        display:'none'
     },
     'status-text':{
         color: 'rgba(0, 0, 0, 0.65)',
@@ -143,7 +140,7 @@ export class App extends Component {
                     <span className={classes.badgefake} style={style}>{`${overCount}+`}</span>
                 </Badge>:
                     dot?
-                <Badge className={classes.badgeWrap} badgeContent={badgeContent} color={"error"} classes={{badge:classes.dotBadge}}>
+                <Badge className={classes.badgeWrap} badgeContent={badgeContent} color={"error"} classes={{badge:classes.badge}}>
                     <span className={classes.badgeContent}>{children}</span>
                     <span className={classes.dot} style={style}></span>
                 </Badge>:

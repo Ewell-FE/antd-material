@@ -5,7 +5,6 @@
 
 ````jsx
 import List from '@/components/List'
-import ListItemMeta from '@/components/List/ListItemMeta'
 
 export class <%=component%> extends Component {
     dataText=[
@@ -13,7 +12,6 @@ export class <%=component%> extends Component {
             'Ewell Design TitleOnly 2',
             'Ewell Design TitleOnly 3',
             'Ewell Design TitleOnly 4'
-
         ];
     render() {
         return (
@@ -21,14 +19,15 @@ export class <%=component%> extends Component {
                 <h3 style={{marginBottom: '16px'}}>Small Size</h3>
                 <List
                       dataSource={this.dataText}
+                      size="small" 
                       bordered
                       header={<div>header</div>}
                       footer={<div>footer</div>}
                       renderItem={(item,index) => (
-                          <ListItemMeta
+                          <List.ItemMeta
                               key={index}
                               title={item}
-                              size="small" 
+
 
                           />
                       )}
@@ -41,7 +40,7 @@ export class <%=component%> extends Component {
                       header={<div>header</div>}
                       footer={<div>footer</div>}
                       renderItem={(item,index) => (
-                          <ListItemMeta
+                          <List.ItemMeta
                               key={index}
                               title={item}
                           />
@@ -51,14 +50,15 @@ export class <%=component%> extends Component {
                 <h3 style={{marginBottom: '16px'}}>Large Size</h3>
                 <List
                       dataSource={this.dataText}
+                      size="large" 
                       bordered
                       header={<div>header</div>}
                       footer={<div>footer</div>}
                       renderItem={(item,index) => (
-                          <ListItemMeta
+                          <List.ItemMeta
                               key={index} 
                               title={item}
-                              size="large" 
+
                           />
                       )}
                   >

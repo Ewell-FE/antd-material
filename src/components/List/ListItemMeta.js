@@ -8,16 +8,9 @@ import{
     ListItemAvatar,
     ListItemText,
 } from 'material-ui/List';
+import PropTypes from 'prop-types';
 import classnames from 'classnames'
 const styles = theme => ({
-    dense: {
-        background:'#fff',
-    },
-    root:{
-        fontSize: '14px',
-        lineHeight: '1.5',
-        color: 'rgba(0,0,0,.65)'
-    },
     denseLi:{
         '&:not(:last-child)':{
             borderBottom:'1px solid #e8e8e8'
@@ -34,10 +27,6 @@ const styles = theme => ({
     denseLarge:{
         paddingTop:'16px',
         paddingBottom:'16px'
-    },
-    bordered:{
-        borderRadius: '4px',
-        border:'1px solid #d9d9d9'
     },
     horizontal:{
         display:'flex',
@@ -99,9 +88,13 @@ export default class ListItemMeta extends Component {
     constructor(props) {
         super(props);
     }
-
+    static contextTypes = {
+        list: PropTypes.object,
+    };
     render() {
-        const {classes,itemLayout="horizontal",size="default", description,avatar,title,content,actions,extra} = this.props;
+        const {classes, description,avatar,title,content,actions,extra} = this.props;
+        const size=this.context.list.size;
+        const itemLayout=this.context.list.itemLayout;
         const dense=classnames(classes.denseLi, {
             [classes['denseSmall']]:size==='small',
             [classes['denseDefault']]:size==='default',
