@@ -81,7 +81,6 @@ const styles = theme => ({
         boxShadow: '0 0 0 1px #fff'
     }
 });
-
 @withStyles(styles)
 export class App extends Component {
     constructor(props) {
@@ -89,6 +88,10 @@ export class App extends Component {
         this.state = {
             scale: 1
         }
+    }
+    static defaultProps = {
+        type: 'circle',
+        size: 'default'
     }
 
     componentDidMount() {
@@ -123,16 +126,16 @@ export class App extends Component {
         const sizeCls = classnames({
             [classes[`lg`]]: size === 'large',
             [classes[`sm`]]: size === 'small',
-            [classes[`default`]]: size === undefined
+            [classes[`default`]]: size === 'default'
         });
         const shapeCls = classnames({
             [classes[`square`]]: shape === 'square',
-            [classes[`circle`]]: shape === undefined,
+            [classes[`circle`]]: shape === 'circle',
         })
         const iconCls = classnames({
             [`fa fa-2x fa-${icon} ${classes['iconlg']}`]: size === 'large',
             [`fa fa-${icon}`]: size === 'small',
-            [`fa fa-lg fa-${icon}`]: size === undefined
+            [`fa fa-lg fa-${icon}`]: size === 'default'
         })
         let childDom;
         if(this.avatarChild || this.state.scale !== 1){
@@ -170,8 +173,8 @@ export class App extends Component {
 }
 
 App.propTypes = {
-    shape: PropTypes.string,//形状
-    size: PropTypes.string,//大小
+    shape: PropTypes.oneOf(['square', 'circle']),//形状square,circle
+    size: PropTypes.oneOf(['small', 'default', 'large']),//大小
     src: PropTypes.string,//图片地址
     icon: PropTypes.string,//iconfont
     count: PropTypes.number,//

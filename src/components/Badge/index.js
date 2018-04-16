@@ -155,7 +155,7 @@ App.propTypes={
     badgeContent:PropTypes.number,//数据
     overflowCount:PropTypes.number,//封顶数据
     unshowZero:PropTypes.bool,//徽标数为领，true为不显示，false：显示
-    status:PropTypes.string,//设置 Badge 为状态点,Enum{ 'success', 'processing, 'default', 'error', 'warn' }
+    status:PropTypes.oneOf(['success', 'processing', 'default','error','warn']),//设置 Badge 为状态点
     text:PropTypes.string,//在设置了 status 的前提下有效，设置状态点的文本
 }
 export default withStyles(styles,{name:'MuiBadge-ant'})(App);

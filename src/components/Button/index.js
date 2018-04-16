@@ -28,7 +28,7 @@ const styles = theme => {
             }
         },
         Default: {
-            '&:hover,&.active': {
+            'Default:hover,&.active': {
                 background: '#FFFFFF',
                 color: theme.button.hover,
                 borderColor: theme.button.hover
