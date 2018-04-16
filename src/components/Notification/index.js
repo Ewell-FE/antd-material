@@ -27,7 +27,7 @@ let typeToIcon = {
 }
 
 const notificationInstance = {};
-let defaultDuration = 4500;
+let defaultDuration = 4.5;
 let defaultTop = 24;
 let defaultBottom = 24;
 let defaultPlacement = 'topRight';//'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'

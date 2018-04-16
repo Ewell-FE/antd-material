@@ -122,7 +122,7 @@ export class App extends Component {
     }
 
     render() {
-        const {classes, size, shape, src, icon, dot, count, style,children} = this.props
+        const {classes, size, shape, src, icon, dot, count, style,children,className} = this.props
         const sizeCls = classnames({
             [classes[`lg`]]: size === 'large',
             [classes[`sm`]]: size === 'small',
@@ -157,8 +157,8 @@ export class App extends Component {
             <div>
                 <div className={count||dot?classes.countBox:''}>
                     {src?
-                        <Avatar className={classnames(sizeCls, shapeCls)} src={src} style={style}></Avatar>:
-                        <Avatar className={classnames(sizeCls, shapeCls)} style={style}>
+                        <Avatar className={classnames(sizeCls, shapeCls,className)} src={src} style={style}></Avatar>:
+                        <Avatar className={classnames(sizeCls, shapeCls,className)} style={style}>
                         {icon?
                             <span><i className={iconCls} aria-hidden="true"></i></span>: childDom}
                         </Avatar>}

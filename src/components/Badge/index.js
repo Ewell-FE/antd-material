@@ -99,7 +99,7 @@ export class App extends Component {
     }
 
     render() {
-        const {classes,badgeContent,overflowCount,unshowZero,dot,status,text,style,children} = this.props
+        const {classes,badgeContent,overflowCount,unshowZero,dot,status,text,style,children,className} = this.props
         const isDot = dot || status;
         let overCount = overflowCount;
         if(overflowCount === undefined){
@@ -133,18 +133,18 @@ export class App extends Component {
         }
         return (
             badgeContent === 0 && unshowZero?
-            <span className={classes.badgeContent}>{children}</span>:
+            <span className={classnames(classes.badgeContent,className)}>{children}</span>:
                 overCount < badgeContent?
-                <Badge className={classnames(classes.badgeWrap)} badgeContent={`${overCount}+`} color={"error"} classes={{badge:classes.badge}}>
+                <Badge className={classnames(classes.badgeWrap,className)} badgeContent={`${overCount}+`} color={"error"} classes={{badge:classes.badge}}>
                     <span className={classes.badgeContent}>{children}</span>
                     <span className={classes.badgefake} style={style}>{`${overCount}+`}</span>
                 </Badge>:
                     dot?
-                <Badge className={classes.badgeWrap} badgeContent={badgeContent} color={"error"} classes={{badge:classes.badge}}>
+                <Badge className={classnames(classes.badgeWrap,className)} badgeContent={badgeContent} color={"error"} classes={{badge:classes.badge}}>
                     <span className={classes.badgeContent}>{children}</span>
                     <span className={classes.dot} style={style}></span>
                 </Badge>:
-                <Badge className={classes.badgeWrap} badgeContent={badgeContent} color={"error"} classes={{badge:classes.badge}} style={this.props.style}>
+                <Badge className={classnames(classes.badgeWrap,className)} badgeContent={badgeContent} color={"error"} classes={{badge:classes.badge}} style={this.props.style}>
                     <span className={classes.badgeContent}>{children}</span>
                     <span className={classes.badgefake} style={style}>{badgeContent}</span>
                 </Badge>
