@@ -81,14 +81,12 @@ const styles=(theme)=>{
         },
         checkedBoxInner:{
             backgroundColor:theme.colors.primary,
-            borderColor:theme.colors.primary,
             '&:after':{
                 transform:'rotate(45deg) scale(1)',
             }
         },
         indeterminateBoxInner:{
             backgroundColor:theme.colors.primary,
-            borderColor:theme.colors.primary,
             '&:after':{
                 transform:'scale(1)',
                 width:'10px',
