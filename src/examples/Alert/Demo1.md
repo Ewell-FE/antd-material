@@ -9,10 +9,10 @@ export class <%=component%> extends Component {
     render() {
         return (
              <div>
-                <Alert message="Success Text" type="success" />
-                <Alert message="warn Text" type="warn" />
-                <Alert message="info Text" type="info" />
-                <Alert message="error Text" type="error" />
+                <Alert message="Success Text" type="success" width={350} />
+                <Alert message="warn Text" type="warn" width={350} />
+                <Alert message="info Text" type="info" width={350} />
+                <Alert message="error Text" type="error" width={350} />
              </div>
         )
     }

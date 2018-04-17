@@ -101,7 +101,8 @@ const styles = theme => {
     yhAlertBanner: {
         position: 'fixed',
         top: '0',
-        left: `calc(50% - ${width/2}%)`,
+        left: '50%',
+        transform:'translateX(-50%)',
         zIndex: '99999'
     }
 }
@@ -158,7 +159,7 @@ export default class Alert extends Component {
         const wrapperClassName = classnames(classes['yhAlert'],classes[type + 'Bg'],{
             [classes['yhAlertBanner']]: bannerFlag
         });
-        // const wrapperStyle={width:`${width}px`}
+        const wrapperStyle=width?{width:`${width}px`}:{};
         const messageClassName=classnames(classes['yhAlertGroupP'], {
             [classes['yhAlertPlus']]:description
         });
@@ -166,7 +167,7 @@ export default class Alert extends Component {
             [classes['descriptionLeft']]:showIcon
         });
         const alert=(
-            <div className={wrapperClassName}>
+            <div className={wrapperClassName} style={wrapperStyle}>
                 {closable ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
                     <i className="fa fa-times"></i></div> : ''}
                 {closeText ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
