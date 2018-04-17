@@ -16,9 +16,9 @@ export class <%=component%> extends Component {
     render() {
         return (
               <div>
-                 <Switch disabled={this.state.disabled}/>
+                 <Switch disabled={this.state.disabled} defaultChecked />
                  <br/>
-                 <Button type="Primary" onClick={()=>this.onChangeType()}>点击我哟哟</Button>
+                 <Button type="Primary" onClick={()=>this.onChangeType()}>Toggle disbled</Button>
               </div>
         )
     }
