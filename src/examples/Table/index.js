@@ -209,7 +209,7 @@ export class Demo3md extends Component {
             key: 'operation',
             render: () => (
               <span className="table-operation">
-                <a href="#">Pause</a>
+                <a>Pause</a>
               </span>
             ),
           },
@@ -242,7 +242,7 @@ export class Demo3md extends Component {
            { title: 'Version', dataIndex: 'version', key: 'version' },
            { title: 'Upgraded', dataIndex: 'upgradeNum', key: 'upgradeNum' },
            { title: 'Creator', dataIndex: 'creator', key: 'creator' },
-           { title: 'Action', key: 'operation', render: () => <a href="#">Publish</a> },
+           { title: 'Action', key: 'operation', render: () => <a>Publish</a> },
          ];
 
          const data3 = [];
@@ -501,7 +501,7 @@ export class Demo3md extends Component {
             key: 'operation',
             render: () => (
               <span className="table-operation">
-                <a href="#">Pause</a>
+                <a>Pause</a>
               </span>
             ),
           },
@@ -534,7 +534,7 @@ export class Demo3md extends Component {
            { title: 'Version', dataIndex: 'version', key: 'version' },
            { title: 'Upgraded', dataIndex: 'upgradeNum', key: 'upgradeNum' },
            { title: 'Creator', dataIndex: 'creator', key: 'creator' },
-           { title: 'Action', key: 'operation', render: () => <a href="#">Publish</a> },
+           { title: 'Action', key: 'operation', render: () => <a>Publish</a> },
          ];
 
          const data3 = [];
