@@ -168,10 +168,10 @@ export default class Alert extends Component {
         });
         const alert=(
             <div className={wrapperClassName} style={wrapperStyle}>
-                {closable ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                    <i className="fa fa-times"></i></div> : ''}
-                {closeText ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                    <span className={classes["yhAlertCloseText"]}>{closeText}</span></div> : ''}
+                {closable && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <i className="fa fa-times"></i></div>}
+                {closeText && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <span className={classes["yhAlertCloseText"]}>{closeText}</span></div>}
                 {
                     showIcon ? this.getIcon(classes, description, type)
                         :
@@ -181,8 +181,7 @@ export default class Alert extends Component {
                     <p className={messageClassName}>{message}</p>
                 </div>
                 {
-                    description ?
-                        <p className={descriptionClassName}>{description}</p> : ''
+                    description &&<p className={descriptionClassName}>{description}</p>
                 }
             </div>
         )
