@@ -85,9 +85,6 @@ const styles = theme => ({
 });
 @withStyles(styles, {name: 'ListItemMeta'})
 export default class ListItemMeta extends Component {
-    constructor(props) {
-        super(props);
-    }
     static contextTypes = {
         list: PropTypes.object,
     };

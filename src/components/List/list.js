@@ -16,8 +16,7 @@ const styles = theme => ({
     root:{
         padding:0,
         fontSize: '14px',
-        lineHeight: '1.5',
-        color: 'rgba(0,0,0,.65)'
+        lineHeight: '1.5'
     },
     bordered:{
         borderRadius: '4px',
