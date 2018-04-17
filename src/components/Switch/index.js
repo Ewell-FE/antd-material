@@ -142,11 +142,11 @@ export class SimpleSwitch extends Component {
         const {classes, checked, loading,size} = this.props
         const props = {}, icons = {}, switchClass = {}
         Object.assign(switchClass, {
-            'root': classNames(classes.root,size === 'small' ? classes.root1 : ''),
-            'bar': classNames(classes.bar,size === 'small' ? classes.bar1 : ''),
-            'default':classNames(classes.default,size === 'small' ? classes.default1 : ''),
-            'icon': classNames(classes.icon,size === 'small' ? classes.icon1 : ''),
-            'checked':classNames(classes.checked,size === 'small' ? classes.checked1 : ''),
+            'root': classNames(classes.root,size === 'small'&&classes.root1),
+            'bar': classNames(classes.bar,size === 'small'&&classes.bar1),
+            'default':classNames(classes.default,size === 'small'&&classes.default1),
+            'icon': classNames(classes.icon,size === 'small'&&classes.icon1),
+            'checked':classNames(classes.checked,size === 'small'&&classes.checked1),
             'disabled': classes.disabled
         })
         if (loading) {
@@ -177,12 +177,12 @@ export class SimpleSwitch extends Component {
                     </Switch>
                     {
                         checkValue ?
-                            <span className={classNames(classes.yhChecked,size === 'small' ? classes.yhChecked1 : '')}
+                            <span className={classNames(classes.yhChecked,size === 'small'&&classes.yhChecked1)}
                                   onClick={() => this.handleChange(checkValue)}>
                         {this.props.checkedChildren}
                         </span>
                             :
-                            <span className={classNames(classes.yhUnChecked,size === 'small' ? classes.yhUnChecked1 : '')}
+                            <span className={classNames(classes.yhUnChecked,size === 'small'&&classes.yhUnChecked1)}
                                   onClick={() => this.handleChange(checkValue)}>
                         {this.props.unCheckedChildren}
                         </span>
@@ -191,7 +191,7 @@ export class SimpleSwitch extends Component {
             )
         } else {
             return (
-                <div className='yh-switch'>
+                <div className={classes.yhSwitch}>
                     <Switch
                         {...props}
                         {...icons}
@@ -217,5 +217,5 @@ SimpleSwitch.propTypes = {
     loading:PropTypes.bool, //加载中的开关
     defaultChecked:PropTypes.bool, //初始是否选中
 }
-export default withStyles(styles)(SimpleSwitch);
+export default withStyles(styles,{name:'Muiswitch-ant'})(SimpleSwitch);
 

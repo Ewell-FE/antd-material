@@ -2,11 +2,15 @@ import React, {Component} from 'react'
 import _ from 'lodash'
 import {withStyles} from 'material-ui/styles';
 import PropTypes from 'prop-types';
-
+import Icon from '../Icon'
+import classnames from 'classnames'
 let styles = (theme) => {
     let activeColor = theme.colors.warning,
         disabledColor = theme.palette.grey[200]
     return {
+        root:{
+
+        },
         yhRate: {
             boxSizing: 'border-box',
             lineHeight: 'unset',
@@ -140,10 +144,10 @@ class App extends Component {
     }
 
     render() {
-        const props = this.props
+        const {classes,value,count,style,className,disabled,character} = this.props
         const {stars, factStar} = this.state
-        let arr = _.fill(new Array(props.count || 5), 0);
-        let starsNum = props.value || stars
+        let arr = _.fill(new Array(count || 5), 0);
+        let starsNum = value || stars
         if (factStar > 0) {
             starsNum = factStar
         }
@@ -156,46 +160,39 @@ class App extends Component {
                 arr[i] = 0
             }
         })
-        let yhRate = props.classes.yhRate,
-            yhRateStar = props.classes.yhRateStar,
-            yhFirstRate = props.classes.yhFirstRate,
-            yhSecondRate = props.classes.yhSecondRate,
-            yhRateFull = props.classes.yhRateFull,
-            yhRateHalf = props.classes.yhRateHalf,
-            yhRateDisabled = props.classes.yhRateDisabled
         return (
-            <div className='MuiRate'>
-                <ul className={yhRate + ' ' + (props.className || '')} style={props.style || {}}>
+            <div className={classnames(classes.root,className)}>
+                <ul className={classnames(classes.yhRate)} style={style}>
                     {
                         arr.map((item, i) => {
-                            let yhStars = yhRateStar
+                            let yhStars = classes.yhRateStar
                             if (item === 0.5) {
-                                yhStars = yhStars + ' ' + yhRateHalf
+                                yhStars = classnames(yhStars,classes.yhRateHalf)
                             } else if (item === 1) {
-                                yhStars = yhStars + ' ' + yhRateFull
+                                yhStars = classnames(yhStars,classes.yhRateFull)
                             }
-                            if (props.disabled) {
+                            if (disabled) {
                                 return (
-                                    <li className={yhStars + ' ' + yhRateDisabled} key={i}>
-                                        <div className={yhFirstRate}>{props.character ||
-                                        <i className="fa fa-star" aria-hidden="true"></i>}</div>
-                                        <div className={yhSecondRate}>{props.character ||
-                                        <i className="fa fa-star" aria-hidden="true"></i>}</div>
+                                    <li className={classnames(yhStars,classes.yhRateDisabled)} key={i}>
+                                        <div className={classes.yhFirstRate}>{character ||
+                                        <Icon type="star" />}</div>
+                                        <div className={classes.yhSecondRate}>{character ||
+                                        <Icon type="star" />}</div>
                                     </li>
                                 )
                             } else {
                                 return (
                                     <li className={yhStars} key={i}>
-                                        <div className={yhFirstRate}
+                                        <div className={classes.yhFirstRate}
                                              onMouseOver={() => this.onHoverMouse(i, 0.5)}
                                              onMouseOut={() => this.onOutMouse()}
-                                             onClick={() => this.handleClick(i, 0.5)}>{props.character ||
-                                        <i className="fa fa-star" aria-hidden="true"></i>}</div>
-                                        <div className={yhSecondRate}
+                                             onClick={() => this.handleClick(i, 0.5)}>{character ||
+                                        <Icon type="star" />}</div>
+                                        <div className={classes.yhSecondRate}
                                              onMouseOver={() => this.onHoverMouse(i, 1)}
                                              onMouseOut={() => this.onOutMouse()}
-                                             onClick={() => this.handleClick(i, 1)}>{props.character ||
-                                        <i className="fa fa-star" aria-hidden="true"></i>}</div>
+                                             onClick={() => this.handleClick(i, 1)}>{character ||
+                                        <Icon type="star" />}</div>
                                     </li>
                                 )
                             }
@@ -219,4 +216,4 @@ App.propTypes = {
     style: PropTypes.object, //自定义样式
     className: PropTypes.string //自定义类名
 }
-export default withStyles(styles, {name: 'MuiRate'})(App);
+export default withStyles(styles, {name: 'MuiRate-ant'})(App);

@@ -48,6 +48,11 @@ export default {
         hovering:'#E6F7FF',
         tableHead:'#fafafa'
     },
+    select:{
+        selected:'#fafafa',
+        color:'rgba(0,0,0,.65)',
+        hover:'#E6F7FF'
+    },
     alert:{
         width:100,
         success:'#b7eb8f',

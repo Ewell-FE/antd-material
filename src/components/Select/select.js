@@ -7,12 +7,14 @@ import Icon from '../Icon'
 import _ from 'lodash'
 import {withStyles} from "material-ui/styles/index";
 import ReactDOM from "react-dom";
+
 function getComponent(type) {
     //计算高度
     function getLineHeight(str) {
         let num = str.split('px')[0]
         return Number(num - 2)
     }
+
 //公共样式
     const styles = theme => {
         let fontSize = theme.typography.fontSize,
@@ -71,6 +73,14 @@ function getComponent(type) {
                         borderRadius: 4,
                         fontSize: 'inherit',
                         boxShadow: '0 2px 8px rgba(0,0,0,.15)',
+                        '& .Select-option.is-selected': {
+                            backgroundColor: theme.select.selected,
+                            color: theme.select.color,
+                        },
+                        '& .Select-option.is-focused': {
+                            backgroundColor: theme.select.hover,
+                            color: theme.select.color,
+                        }
                     },
                 },
                 '&>.Select.is-focused:not(.is-open) > .Select-control': {
@@ -83,7 +93,7 @@ function getComponent(type) {
                         border: '1px solid #e8e8e8',
                         height: childrenHeight,
                         lineHeight: childrenHeight + 'px',
-                        marginTop:childTop
+                        marginTop: childTop
                     }
                 },
             },
@@ -101,7 +111,7 @@ function getComponent(type) {
                     '& .Select-control .Select-value': {
                         height: childrenLarge,
                         lineHeight: childrenLarge + 'px',
-                        marginTop:childrenLargeTop
+                        marginTop: childrenLargeTop
 
                     }
 
@@ -118,15 +128,16 @@ function getComponent(type) {
                 },
                 '& .Select.Select--multi': {
                     '& .Select-control .Select-value': {
-                        height: childrenSmall,
+                        height: childrenSmall + 1,
                         lineHeight: childrenSmall + 'px',
-                        marginTop:childrenSmallTop
+                        marginTop: childrenSmallTop
                     }
 
                 },
             },
         }
     }
+
     @withStyles(styles, {name: 'MuiSelect-ant'})
     class App extends Component {
         constructor(props) {
@@ -140,11 +151,11 @@ function getComponent(type) {
             arrowRenderer: (onMouseDown) => {
                 if (onMouseDown.isOpen) {
                     return (
-                        <Icon type="angle-up" />
+                        <Icon type="angle-up"/>
                     );
                 } else {
                     return (
-                        <Icon type="angle-down" />
+                        <Icon type="angle-down"/>
                     );
                 }
 
@@ -161,7 +172,7 @@ function getComponent(type) {
                 if (selectOptions) {
                     if (_.isArray(selectOptions)) {
                         let arr = []
-                        selectOptions.map((item) => {
+                        selectOptions.forEach((item) => {
                             arr.push(item[`${valueKey}`] || item.value)
                         })
                         this.setState({
@@ -184,7 +195,7 @@ function getComponent(type) {
 
         domApp = (type) => {
             const props = this.props
-            switch (type){
+            switch (type) {
                 case 'Select':
                     return <Select {...props}/>
 
@@ -211,7 +222,7 @@ function getComponent(type) {
                 {
                     React.cloneElement(this.domApp(type), {
                         arrowRenderer: arrowRenderer,
-                        ref:ref=>this.select =ref,
+                        ref: ref => this.select = ref,
                         value: props.value || this.state.value,
                         onChange: this.onHandleChange
                     })
@@ -221,6 +232,7 @@ function getComponent(type) {
 
         }
     }
+
 //更多请参考react-select
     App.propTypes = {
         style: PropTypes.object, //行内样式
@@ -231,4 +243,5 @@ function getComponent(type) {
     }
     return App
 }
+
 export default getComponent

@@ -69,7 +69,7 @@
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Select            # ➜ 曾辉艳 ✓ dev
 │   │   ├───Slider            # ➜ 阿磊
-│   │   ├───Switch            # ➜ 曾辉艳 ✓
+│   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓
 │   │   ├───Transfer          # ➜ 杨林林 ✓
