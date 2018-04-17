@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash')
 const paths = require('../../config/paths')
+const chalk = require('chalk');
 
 const menuList = [
     //General
@@ -233,24 +234,26 @@ function createStaticMenu() {
         JSON.stringify(menuClass, null, 4),
         function (err) {
             if (err) throw err;
-            console.log('create data success!');
+            console.log(chalk.blue('Create Data Success!'))
         });
 }
+
 //根据路由生成静态页面
 function createRouterPage() {
     let menuClass = createComponents()
     let indexPage = fs.readFileSync(path.join(process.cwd(), 'build/index.html'))
-    fs.mkdirSync(path.join(process.cwd(), 'build/material'))
-    fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
+    try {
+        fs.accessSync(path.join(process.cwd(), 'build/material'), fs.constants.R_OK | fs.constants.W_OK);
+        fs.mkdirSync(path.join(process.cwd(), 'build/material'))
+        fs.accessSync(path.join(process.cwd(), 'build/material/docs'), fs.constants.R_OK | fs.constants.W_OK);
+        fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
+    } catch (err) {
+        console.log(chalk.red('no access or you have created'))
+    }
     Object.values(menuClass).forEach((item)=> {
         item.forEach((file)=> {
-            fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + file.name + '.html'),
-                indexPage,
-                function (err) {
-                    if (err) throw err;
-                    console.log('create data success!');
-                });
-            console.log(file.name + "创建成功！")
+            fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + file.name + '.html'), indexPage)
+            console.log(chalk.green(file.name + "创建成功！"))
         })
     })
 }
@@ -289,13 +292,10 @@ function createDemoApi() {
         var compiled = _.template(demoTmpl.toString());
         let html = compiled({examples: renderData, imports: ignoreImports(imports), consts: constsArr})
         fs.writeFileSync(path.resolve(paths.appSrc, `examples/${file}/index.js`),
-            html,
-            function (err) {
-                if (err) throw err;
-                console.log('Examples create success!');
-            }
+            html
         )
     })
+    console.log(chalk.blue('Examples Create Success!'))
 }
 
 
@@ -310,7 +310,7 @@ function createExampleRouter() {
         text.join(';\n'),
         function (err) {
             if (err) throw err;
-            console.log('create route success!');
+            console.log(chalk.green('Create Route Success!'))
         });
 }
 module.exports = {

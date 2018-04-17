@@ -1,7 +1,8 @@
 @notification-width: 335px;
 @notification-padding: 16px;
 @notification-margin-bottom: 10px;
-.MuiAvatar-ant-notification{
+@notification-prefix-cls: ~"MuiAvatar-ant-notification";
+.@{notification-prefix-cls}{
   position: fixed;
   z-index: 1010;
   width: @notification-width;
@@ -10,7 +11,17 @@
   color:rgba(0,0,0,.65);
   line-height:1.5;
   font-family: "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  .MuiAvatar-ant-notification-notice {
+
+  &-topLeft,
+  &-bottomLeft {
+    margin-left: 24px;
+    margin-right: 0;
+    .@{notification-prefix-cls}-fade-enter.@{notification-prefix-cls}-fade-enter-active,
+    .@{notification-prefix-cls}-fade-appear.@{notification-prefix-cls}-fade-appear-active {
+      animation-name: NotificationLeftFadeIn;
+    }
+  }
+  .@{notification-prefix-cls}-notice {
     padding: 16px;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -19,17 +30,40 @@
     position: relative;
     margin-bottom: 10px;
     overflow: hidden;
-    .MuiAvatar-ant-notification-notice-content{
-      .MuiAvatar-ant-notification-notice-message {
+    .@{notification-prefix-cls}-notice-content{
+      .@{notification-prefix-cls}-notice-icon {
+        position: absolute;
+        font-size: 32px;
+        line-height: 32px;
+        display:block;
+      }
+      .@{notification-prefix-cls}-notice-message {
         font-size: 16px;
         color: rgba(0, 0, 0, 0.85);
         margin-bottom: 4px;
         line-height: 20px;
         display: inline-block;
+        .@{notification-prefix-cls}--single-line-auto-margin {
+          width: ~"calc(@{notification-width} - @{notification-padding} * 2 - 24px - 48px - 100%)";
+          background-color: transparent;
+          pointer-events: none;
+          display: block;
+          max-width: 4px;
+          &:before {
+            content: '';
+            display: block;
+            padding-bottom: 100%;
+          }
+        }
+      }
+      .@{notification-prefix-cls}-notice-with-icon .@{notification-prefix-cls}-notice-message{
         margin-left:48px;
       }
-      .MuiAvatar-ant-notification-notice-description{
+      .@{notification-prefix-cls}-notice-with-icon .@{notification-prefix-cls}-notice-description{
         margin-left:48px;
+      }
+      .@{notification-prefix-cls}-notice-description{
+        word-break: break-all;
       }
       i.fa{
         font-size:32px;
@@ -37,21 +71,71 @@
         position: absolute;
       }
     }
-    .MuiAvatar-ant-notification-notice-close {
+    .@{notification-prefix-cls}-notice-close {
       position: absolute;
       right: 16px;
       top: 10px;
       color: rgba(0, 0, 0, 0.43);
       outline: none;
       text-decoration: none;
-
-      .MuiAvatar-ant-notification-notice-close-x:after{
+      &:hover{
+        color: #404040;
+      }
+      .@{notification-prefix-cls}-notice-close-x:after{
         font-size: 12px;
         content: "\f00d";
         font: normal normal normal 14px/1 FontAwesome;
         cursor: pointer;
       }
     }
+  }
+
+  &-notice-btn {
+    float: right;
+    margin-top: 16px;
+    button,button:hover,button:active,button:focus{
+      color: rgba(0, 0, 0, 0.87);
+      padding: 0 16px;
+      font-size:14px;
+      box-sizing: border-box;
+      height: 36px;
+      line-height: 36px;
+      font-weight: 500;
+      margin-left: 10px;
+      border-radius: 2px;
+      border-style: initial;
+      outline:none;
+    }
+  }
+
+  .notification-fade-effect {
+    animation-duration: 0.24s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  &-fade-enter,
+  &-fade-appear {
+    opacity: 0;
+    .notification-fade-effect();
+    animation-play-state: paused;
+  }
+
+  &-fade-leave {
+    .notification-fade-effect();
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+  }
+
+  &-fade-enter&-fade-enter-active,
+  &-fade-appear&-fade-appear-active {
+    animation-name: NotificationFadeIn;
+    animation-play-state: running;
+  }
+
+  &-fade-leave&-fade-leave-active {
+    animation-name: NotificationFadeOut;
+    animation-play-state: running;
   }
 }
 @keyframes NotificationFadeIn {

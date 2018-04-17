@@ -14,24 +14,29 @@ export class <%=component%> extends Component {
                     description="Success Description Success Description Success Description Success Description Success Description Success Description"
                     type="success"
                     closeText="Close Now"
+                    affix={false}
+
                 />
                 <Alert
                     message="warn Text"
                     description="warn Description warn Description warn Description warn Description warn Description warn Description"
                     type="warn"
                     closeText="Close Now"
+                    affix={false}
                 />
                 <Alert
                     message="info Text"
                     description="info Description info Description info Description info Description info Description info Description"
                     type="info"
                     closeText="Close Now"
+                    affix={false}
                 />
                 <Alert
                     message="Error Text"
                     description="Error Description Error Description Error Description Error Description Error Description Error Description"
                     type="error"
                     closeText="Close Now"
+                    affix={false}
                 />
              </div>
         )

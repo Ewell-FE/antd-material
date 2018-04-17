@@ -28,6 +28,7 @@ export class <%=component%> extends Component {
                          closable
                          onClose={onClose}
                          banner
+                         affix={false}
                      />:''
                   }
                  <Button type="Primary" onClick={()=>{this.setState({alert2:true})}}>自定义Type为error</Button>
@@ -39,6 +40,7 @@ export class <%=component%> extends Component {
                          closable
                          onClose={onClose}
                          banner
+                         affix={false}
                      />:''
                  }
                  <Button type="Primary" onClick={()=>{this.setState({alert3:true})}}>自定义Type为error且Icon隐藏</Button>
@@ -51,6 +53,7 @@ export class <%=component%> extends Component {
                          onClose={onClose}
                          showIcon={false}
                          banner
+                         affix={false}
                      />
                     :''
                     }

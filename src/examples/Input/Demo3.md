@@ -18,9 +18,6 @@ const styles = theme => ({
 
 @withStyles(styles, {name: 'MuiInput-ant-demo'})
 export class <%=component%> extends Component {
-    constructor(props) {
-            super(props)
-    }
 
     onPressEnter(){
         console.log(this.input.value)

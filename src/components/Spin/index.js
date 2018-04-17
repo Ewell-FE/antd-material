@@ -21,12 +21,13 @@ const styles = theme => ({
         zIndex: 10000
     },
     tip: {
-        color: blue[400],
+        color: theme.colors.primary,
         position: 'absolute',
         top: '50%',
+        left: 0,
         textAlign: 'center',
         width: '100%',
-        marginTop: 5,
+        marginTop: 15,
         zIndex: 10000
     },
 });

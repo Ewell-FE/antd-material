@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import style from '../Style'
 import './style.less'
-import classnames from 'classnames'
+import Icon from '@/components/Icon'
 import Notification from 'rc-notification';
 
 const styles = theme => ({
@@ -17,12 +17,6 @@ const styles = theme => ({
     },
     error: {
         color: style.theme.colors.error
-    },
-    'ant-notification':{
-        position: 'fixed',
-        zIndex: '1010',
-        width: '335px',
-        marginRight: '24px',
     }
 });
 let typeToIcon = {
@@ -33,7 +27,7 @@ let typeToIcon = {
 }
 
 const notificationInstance = {};
-let defaultDuration = 4500;
+let defaultDuration = 4.5;
 let defaultTop = 24;
 let defaultBottom = 24;
 let defaultPlacement = 'topRight';//'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
@@ -106,6 +100,7 @@ function getNotificationInstance(prefixCls, placement) {
     }
     return notificationInstance[cacheKey];
 }
+
 function notice(args) {
     const outerPrefixCls = args.prefixCls || 'MuiAvatar-ant-notification';
     const prefixCls = `${outerPrefixCls}-notice`;
@@ -114,18 +109,18 @@ function notice(args) {
     let iconNode= null;
     if (args.icon) {
         iconNode = (
-            <span className={`${prefixCls}-icon`}><i className={classnames(`fa fa-${args.icon}`)} /></span>
+            <span className={`${prefixCls}-icon`}>{args.icon}</span>
         );
     } else if (args.type) {
         const iconType = typeToIcon[args.type]
         iconNode = (
-            <span style={{color:style.theme.colors[args.type],marginBottom:'32px'}}><i className={classnames(`fa fa-${iconType}`)} /></span>
+            <span style={{color:style.theme.colors[args.type],marginBottom:'32px'}}><Icon type={iconType} /></span>
         );
     }
 
     const autoMarginTag = (!args.description && iconNode)
-        ? <span className={`${prefixCls}-message-single-line-auto-margin`} />
-        : null;
+        ? <span className={`${prefixCls}-message-single-line-auto-margin`} /> : null;
+
     getNotificationInstance(outerPrefixCls, args.placement || defaultPlacement).notice({
         content: (
             <div className={iconNode ? `${prefixCls}-with-icon` : ''}>
@@ -135,7 +130,7 @@ function notice(args) {
                     {args.message}
                 </div>
                 <div className={`${prefixCls}-description`}>{args.description}</div>
-                {args.btn ? <span className={`${prefixCls}-btn`}>{args.btn}</span> : null}
+                {args.cancelText ? <span className={`${prefixCls}-btn`}><button style={args.cancelBtnStyle?args.cancelBtnStyle:null} onClick={()=>onCloseNotification(args)}>{args.cancelText}</button></span> : null}
             </div>
         ),
         duration,
@@ -145,6 +140,10 @@ function notice(args) {
         style: args.style || {},
         className: args.className,
     });
+}
+function onCloseNotification(args){
+    getNotificationInstance(args.prefixCls || 'MuiAvatar-ant-notification', args.placement || defaultPlacement).removeNotice(args.key);
+    args.onCancel && args.onCancel()
 }
 @withStyles(styles)
 export class App extends Component {}
@@ -171,6 +170,4 @@ const api = {
 });
 
 api.warn = api.warning
-
-export default api;
-
+export default withStyles(styles, {name: 'MuiNotification-ant'})(api);
