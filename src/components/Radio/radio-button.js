@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Radio from 'material-ui/Radio';
 import classnames from 'classnames'
+import ReactDOM from "react-dom";
 function getLineHeight(str) {
     let num = str.split('px')[0]
     return Number(num-2) + 'px'
@@ -86,6 +87,11 @@ const styles = theme => {
 };
 @withStyles(styles, {name: 'MuiRadioButton-ant'})
 export default class app extends Component {
+
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
+    }
+
     render() {
         const {children, classes, disabled, defaultChecked, checked, value, style, name, size} = this.props
         let root = classnames(classes.root, disabled && classes.readOnly,
@@ -96,6 +102,7 @@ export default class app extends Component {
                 <Radio disabled={disabled}
                        disableRipple
                        name={name}
+                       inputRef={ref=>this.input = ref}
                        checked={checked}
                        onChange={this.props.onChange}
                        value={value}

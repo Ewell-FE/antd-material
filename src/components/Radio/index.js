@@ -5,7 +5,8 @@ import {withStyles} from 'material-ui/styles';
 import classnames from 'classnames'
 import RadioGroup from './radio-group'
 import RadioButton from './radio-button'
-
+import ReactDOM from "react-dom";
+import Icon from '../Icon'
 const styles = theme => {
     let fontSize = theme.typography.fontSize,
         activeColor = theme.radio.primary,
@@ -49,6 +50,10 @@ const styles = theme => {
 
 @withStyles(styles, {name: 'MuiRadio-ant'})
 export default class app extends Component {
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
+    }
+
     render() {
         const {children, classes,disabled,defaultChecked,checked,value,style,name} = this.props
         let root = classnames(classes.root,disabled&&classes.readOnly)
@@ -61,6 +66,7 @@ export default class app extends Component {
         return (
                 <label className={root} style={style}>
                     <Radio disabled={disabled}
+                           inputRef={ref=>this.input = ref}
                            disableRipple
                            checked={checked}
                            name={name}
@@ -68,8 +74,8 @@ export default class app extends Component {
                            value={value}
                            defaultChecked={defaultChecked}
                            classes={radioClass}
-                           icon={<i className={classnames(classes.sizeIcon,"fa fa-circle-o")} aria-hidden="true"> </i>}
-                           checkedIcon={<i className={classnames(classes.sizeIcon,'fa fa-dot-circle-o')} aria-hidden="true"> </i>}
+                           icon={<Icon className={classnames(classes.sizeIcon)} type='circle-o'/> }
+                           checkedIcon={<Icon className={classnames(classes.sizeIcon)} type='dot-circle-o'/> }
                         />
                     <span className={classes.label}>
                       {children}

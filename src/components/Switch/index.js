@@ -4,6 +4,7 @@ import Switch from 'material-ui/Switch';
 import {CircularProgress} from 'material-ui/Progress';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import ReactDOM from "react-dom";
 const styles = theme => ({
     yhSwitch: {
         display: 'inline-block',
@@ -114,6 +115,10 @@ export class SimpleSwitch extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
+    }
+
     handleChange(checked) {
         if (this.props.checked !== undefined) {
             this.props.onChange&&this.props.onChange(!checked)
@@ -164,6 +169,7 @@ export class SimpleSwitch extends Component {
                     <Switch
                         checked={checkValue}
                         disableRipple
+                        inputRef={ref=>this.input = ref}
                         {...icons}
                         onChange={this.onChangeCheck}
                         classes={{...switchClass}}
@@ -189,6 +195,7 @@ export class SimpleSwitch extends Component {
                     <Switch
                         {...props}
                         {...icons}
+                        inputRef={ref=>this.input = ref}
                         checked={checkValue}
                         onChange={this.onChangeCheck}
                         disableRipple

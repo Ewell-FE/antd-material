@@ -38,9 +38,18 @@ const styles = theme => {
             }
         },
         selectBox: {
-            width: '40px',
-            padding: '4px',
-            paddingLeft:'15px'
+            width: '60px',
+            padding: 0,
+            paddingLeft:'15px',
+            '& label':{
+                marginTop:'-4px',
+                cursor: 'pointer',
+                '& span':{
+                    width:'18px',
+                    height:'18px'
+                }
+            },
+
         },
         bodyTd: {
             borderBottom: '1px solid #e8e8e8',
@@ -244,7 +253,7 @@ export class SimpleTable extends Component {
             arr.push((<TableRow  key={n.key} className={showChild}>
                 {
                     rowSelection ?
-                        <TableCell className={classes.selectBox}>
+                        <TableCell className={classes.selectBox} padding='checkbox'>
                             <Checkbox
                                 disableRipple
                                 checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
@@ -311,7 +320,7 @@ export class SimpleTable extends Component {
                         <TableRow>
                             {
                                 rowSelection ?
-                                    <TableCell className={classes.selectBox}>
+                                    <TableCell className={classes.selectBox} padding='checkbox'>
                                         <Checkbox
                                             disableRipple
                                             indeterminate={type === 1 ? true : false}
