@@ -21,4 +21,5 @@ export {default as Rate} from '@/examples/Rate';
 export {default as Spin} from '@/examples/Spin';
 export {default as Switch} from '@/examples/Switch';
 export {default as Table} from '@/examples/Table';
-export {default as Template} from '@/examples/Template'
+export {default as Template} from '@/examples/Template';
+export {default as Timeline} from '@/examples/Timeline'
