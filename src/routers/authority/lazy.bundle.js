@@ -1,12 +1,12 @@
-import LoginReducers from '../login/reducers';
-import LoginSagas from '../login/sagas';
+import LoginReducers from '../main/reducers';
+import LoginSagas from '../main/sagas';
 import reducers from './reducers';
 import sagas from './sagas';
 import view from './view';
 
 export default {
-    reducers: {home: reducers, login: LoginReducers},
-    sagas: { home: sagas, login: LoginSagas},
+    reducers: {home: reducers, main: LoginReducers},
+    sagas: { home: sagas, main: LoginSagas},
     view: view
 }
 
