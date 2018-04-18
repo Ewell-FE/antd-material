@@ -6,11 +6,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 const styles = theme => ({
-    yhSwitch: {
+    root: {
         display: 'inline-block',
         position: 'relative',
     },
-    yhUnChecked: {
+    unCheckedIcon: {
         position: 'absolute',
         right: 2,
         top: 14,
@@ -18,7 +18,7 @@ const styles = theme => ({
         zIndex: 1,
         cursor: 'pointer'
     },
-    yhChecked: {
+    checkedIcon: {
         position: 'absolute',
         left: 10,
         top: 14,
@@ -26,7 +26,7 @@ const styles = theme => ({
         zIndex: 1,
         cursor: 'pointer'
     },
-    yhLoading: {
+    loading: {
         display: 'inline-block',
         borderRadius: '50%',
         backgroundColor: '#fff',
@@ -39,7 +39,7 @@ const styles = theme => ({
             top: 0,
         }
     },
-    root: {
+    defaultRoot: {
         width: 44,
         height: 44,
     },
@@ -51,7 +51,7 @@ const styles = theme => ({
             opacity: 1
         }
     },
-    checked: {
+    defaultChecked: {
         color: '#fff',
         transform: 'translateX(14px)',
         '& + $bar': {
@@ -74,40 +74,40 @@ const styles = theme => ({
         borderRadius: 100,
         marginTop: -9,
     },
-    root1:{
+    smallRoot:{
         width: 32,
         height: 18,
     },
-    bar1:{
+    smallBar:{
         width: 32,
         height: 18,
     },
-    icon1:{
+    smallIcon:{
         width: 14,
         height: 14
     },
-    default1:{
+    smallDefault:{
         width: '32px',
         height: '18px',
         top: '0',
         transform: 'translateX(-8px)',
     },
-    checked1: {
+    smallChecked: {
         transform: 'translateX(6px)',
     },
-    yhChecked1:{
+    checkedIcons:{
       fontSize:'12px',
         left: 2,
         top: 3,
     },
-    yhUnChecked1:{
+    unCheckedIcons:{
         fontSize:'12px',
         right: 2,
         top: 3,
     }
 })
 
-export class SimpleSwitch extends Component {
+export class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -142,17 +142,17 @@ export class SimpleSwitch extends Component {
         const {classes, checked, loading,size} = this.props
         const props = {}, icons = {}, switchClass = {}
         Object.assign(switchClass, {
-            'root': classNames(classes.root,size === 'small'&&classes.root1),
-            'bar': classNames(classes.bar,size === 'small'&&classes.bar1),
-            'default':classNames(classes.default,size === 'small'&&classes.default1),
-            'icon': classNames(classes.icon,size === 'small'&&classes.icon1),
-            'checked':classNames(classes.checked,size === 'small'&&classes.checked1),
+            'root': classNames(classes.defaultRoot,size === 'small'&&classes.smallRoot),
+            'bar': classNames(classes.bar,size === 'small'&&classes.smallBar),
+            'default':classNames(classes.default,size === 'small'&&classes.smallDefault),
+            'icon': classNames(classes.icon,size === 'small'&&classes.smallIcon),
+            'checked':classNames(classes.defaultChecked,size === 'small'&&classes.smallChecked),
             'disabled': classes.disabled
         })
         if (loading) {
             Object.assign(icons, {
-                'icon': <span className={classNames(classes.yhLoading,size==='small' ? classes.icon1:'')}><CircularProgress size={14}/></span>,
-                'checkedIcon': <span className={classNames(classes.yhLoading,size==='small' ? classes.icon1:'')}><CircularProgress size={14}/></span>
+                'icon': <span className={classNames(classes.loading,size==='small' && classes.smallIcon)}><CircularProgress size={14}/></span>,
+                'checkedIcon': <span className={classNames(classes.loading,size==='small' && classes.smallIcon)}><CircularProgress size={14}/></span>
             })
         }
         for (let key  in this.props) {
@@ -165,7 +165,7 @@ export class SimpleSwitch extends Component {
         let checkValue = checked !== undefined ? checked : this.state.checked
         if (this.props.checkedChildren || this.props.unCheckedChildren) {
             return (
-                <div className={classes.yhSwitch}>
+                <div className={classes.root}>
                     <Switch
                         checked={checkValue}
                         disableRipple
@@ -177,12 +177,12 @@ export class SimpleSwitch extends Component {
                     </Switch>
                     {
                         checkValue ?
-                            <span className={classNames(classes.yhChecked,size === 'small'&&classes.yhChecked1)}
+                            <span className={classNames(classes.checkedIcon,size === 'small'&&classes.checkedIcons)}
                                   onClick={() => this.handleChange(checkValue)}>
                         {this.props.checkedChildren}
                         </span>
                             :
-                            <span className={classNames(classes.yhUnChecked,size === 'small'&&classes.yhUnChecked1)}
+                            <span className={classNames(classes.unCheckedIcon,size === 'small'&&classes.unCheckedIcons)}
                                   onClick={() => this.handleChange(checkValue)}>
                         {this.props.unCheckedChildren}
                         </span>
@@ -191,7 +191,7 @@ export class SimpleSwitch extends Component {
             )
         } else {
             return (
-                <div className={classes.yhSwitch}>
+                <div className={classes.root}>
                     <Switch
                         {...props}
                         {...icons}
@@ -207,7 +207,7 @@ export class SimpleSwitch extends Component {
         }
     }
 }
-SimpleSwitch.propTypes = {
+App.propTypes = {
     size: PropTypes.oneOf(['small', 'default']), //大小
     checked:PropTypes.bool, //是否打开
     onChange:PropTypes.func, //改变函数，返回当前状态
@@ -217,5 +217,5 @@ SimpleSwitch.propTypes = {
     loading:PropTypes.bool, //加载中的开关
     defaultChecked:PropTypes.bool, //初始是否选中
 }
-export default withStyles(styles,{name:'Muiswitch-ant'})(SimpleSwitch);
+export default withStyles(styles,{name:'MuiSwitchAnt'})(App);
 

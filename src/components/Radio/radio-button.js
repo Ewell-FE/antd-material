@@ -85,7 +85,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiRadioButton-ant'})
+@withStyles(styles, {name: 'MuiRadioButtonAnt'})
 export default class app extends Component {
 
     componentDidMount() {

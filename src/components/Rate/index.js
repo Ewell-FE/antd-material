@@ -5,24 +5,22 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon'
 import classnames from 'classnames'
 let styles = (theme) => {
-    let activeColor = theme.colors.warning,
-        disabledColor = theme.palette.grey[200]
+    let activeColor = theme.rate.activeColor,
+        disabledColor = theme.palette.grey[200],
+        fontSize = theme.rate.fontSize
     return {
-        root:{
-
-        },
-        yhRate: {
+        root: {
             boxSizing: 'border-box',
             lineHeight: 'unset',
             margin: 0,
             padding: 0,
             listStyle: 'none',
-            fontSize: 24,
+            fontSize: fontSize,
             display: 'inline-block',
             color: activeColor,
             outline: 'none',
         },
-        yhRateStar: {
+        rateStar: {
             margin: 0,
             padding: 0,
             display: 'inline-block',
@@ -35,10 +33,10 @@ let styles = (theme) => {
                 transform: 'scale(1.1)'
             }
         },
-        yhRateDisabled: {
+        rateDisabled: {
             cursor: 'default'
         },
-        yhFirstRate: {
+        firstRate: {
             position: 'absolute',
             left: '0',
             top: '0',
@@ -47,21 +45,21 @@ let styles = (theme) => {
             overflow: 'hidden',
             opacity: 0
         },
-        yhSecondRate: {
+        secondRate: {
             transition: 'all .3s',
             color: disabledColor
         },
-        yhRateHalf: {
-            '&>$yhFirstRate': {
+        rateHalf: {
+            '&>$firstRate': {
                 opacity: 1,
                 color: 'inherit'
             },
-            '&>$yhSecondRate': {
+            '&>$secondRate': {
                 opacity: 1
             }
         },
-        yhRateFull: {
-            '&>$yhSecondRate': {
+        rateFull: {
+            '&>$secondRate': {
                 opacity: 1,
                 color: 'inherit'
             }
@@ -101,6 +99,7 @@ class App extends Component {
         }
     }
 
+    //点击选中
     handleClick(index, num) {
         let stars = index + 1
         //判断是否可以半选
@@ -161,34 +160,33 @@ class App extends Component {
             }
         })
         return (
-            <div className={classnames(classes.root,className)}>
-                <ul className={classnames(classes.yhRate)} style={style}>
+                <ul className={classnames(classes.root,className)} style={style}>
                     {
                         arr.map((item, i) => {
-                            let yhStars = classes.yhRateStar
+                            let yhStars = classes.rateStar
                             if (item === 0.5) {
-                                yhStars = classnames(yhStars,classes.yhRateHalf)
+                                yhStars = classnames(yhStars,classes.rateHalf)
                             } else if (item === 1) {
-                                yhStars = classnames(yhStars,classes.yhRateFull)
+                                yhStars = classnames(yhStars,classes.rateFull)
                             }
                             if (disabled) {
                                 return (
-                                    <li className={classnames(yhStars,classes.yhRateDisabled)} key={i}>
-                                        <div className={classes.yhFirstRate}>{character ||
+                                    <li className={classnames(yhStars,classes.rateDisabled)} key={i}>
+                                        <div className={classes.firstRate}>{character ||
                                         <Icon type="star" />}</div>
-                                        <div className={classes.yhSecondRate}>{character ||
+                                        <div className={classes.secondRate}>{character ||
                                         <Icon type="star" />}</div>
                                     </li>
                                 )
                             } else {
                                 return (
                                     <li className={yhStars} key={i}>
-                                        <div className={classes.yhFirstRate}
+                                        <div className={classes.firstRate}
                                              onMouseOver={() => this.onHoverMouse(i, 0.5)}
                                              onMouseOut={() => this.onOutMouse()}
                                              onClick={() => this.handleClick(i, 0.5)}>{character ||
                                         <Icon type="star" />}</div>
-                                        <div className={classes.yhSecondRate}
+                                        <div className={classes.secondRate}
                                              onMouseOver={() => this.onHoverMouse(i, 1)}
                                              onMouseOut={() => this.onOutMouse()}
                                              onClick={() => this.handleClick(i, 1)}>{character ||
@@ -200,7 +198,6 @@ class App extends Component {
                         })
                     }
                 </ul>
-            </div>
         )
     }
 }
@@ -216,4 +213,4 @@ App.propTypes = {
     style: PropTypes.object, //自定义样式
     className: PropTypes.string //自定义类名
 }
-export default withStyles(styles, {name: 'MuiRate-ant'})(App);
+export default withStyles(styles, {name: 'MuiRateAnt'})(App);
