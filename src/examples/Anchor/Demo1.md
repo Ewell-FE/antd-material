@@ -21,7 +21,7 @@ export class <%=component%> extends Component {
                     </Anchor>
                 </div>
                 <div style={{position:'absolute',right:15}}>
-                    <Anchor target={()=>document.getElementsByTagName('main')[0]} affix={false} offsetTop={400}>
+                    <Anchor target={()=>document.getElementsByTagName('main')[0]} affix={false} offsetTop={400} showInk={false}>
                         <Link href="#components-anchor-demo-basic" title="Basic demo" />
                         <Link href="#components-anchor-demo-fixed" title="Fixed demo" />
                         <Link href="#API" title="API">

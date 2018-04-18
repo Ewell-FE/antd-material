@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
 import {withStyles} from 'material-ui/styles';
 import Popover from 'material-ui/Popover';
 import classnames from 'classnames'
@@ -135,7 +134,7 @@ export default class Popver extends Component {
     }
     dom=null;
     render() {
-        const {visible:visi,trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400}} = this.props;
+        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400}} = this.props;
         const {visible}=this.state
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
@@ -156,7 +155,7 @@ export default class Popver extends Component {
             [classes['marginBottom']]:placement.includes('bottom'),
         });
         const popoverClassName=classnames('', {
-            [classes['popover']]:trigger=='hover'
+            [classes['popover']]:trigger==='hover'
         });
         const defaultChildren={
             onClick:  trigger==='click'?this.handleOpen:()=>{},

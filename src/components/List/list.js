@@ -16,8 +16,7 @@ const styles = theme => ({
     root:{
         padding:0,
         fontSize: '14px',
-        lineHeight: '1.5',
-        color: 'rgba(0,0,0,.65)'
+        lineHeight: '1.5'
     },
     bordered:{
         borderRadius: '4px',
@@ -108,26 +107,20 @@ export default class MuiList extends Component {
             <div style={{width: '100%'}}>
                 <List classes={{dense:classes.dense,root:classes.root}} dense={true} className={bordered?classnames(classes['bordered']):''}>
                     {
-                        header?
-                            <ListItem  classes={{dense}}>
-                                {header}
-                            </ListItem>:''
+                        header&&<ListItem  classes={{dense}}>{header}</ListItem>
                     }
                     {
                         data.map((item,index)=>renderItem(item,index))
                     }
                     {
-                        footer?
-                            <ListItem  classes={{dense}}>
-                                {footer}
-                            </ListItem>:''
+                        footer&&<ListItem  classes={{dense}}>{footer}</ListItem>
                     }
                 </List>
                 {loadMore}
-                {pagination?<div style={{textAlign:'right'}}><Pagination
+                {pagination&&<div style={{textAlign:'right'}}><Pagination
                     {...this.dealCurrentData().pagination}
                     onChange={(page) => this.handleChangePage(page)}
-                /></div>:''}
+                /></div>}
             </div>
         )
 

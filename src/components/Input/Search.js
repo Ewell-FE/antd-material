@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom';
 import {withStyles} from 'material-ui/styles';
 import PropTypes from 'prop-types';
 import omit from 'omit.js';

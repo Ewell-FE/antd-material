@@ -8,9 +8,6 @@ import Popover from '@/components/Popover'
 import Button from '@/components/Button'
 
 export class <%=component%> extends Component {
-    constructor(props) {
-        super(props);
-    }
       positions=['topLeft','top','topRight','leftTop','rightTop','left','right',
                  'leftBottom','rightBottom','bottomLeft','bottom','bottomRight']
       styles={
@@ -28,8 +25,6 @@ export class <%=component%> extends Component {
           leftTop:{marginBottom:'15px',width:'50%',textAlign:'left'}
         }
     render() {
-        console.log(this.state)
-        let self=this;
         return (
             <div style={{minHeight:'200px',display:'flex',flexFlow:'wrap',padding:'0 120px'}}>
             {

@@ -5,7 +5,11 @@ import Switch from '@/components/Switch'
 export class <%=component%> extends Component {
         render() {
             return (
-                    <Switch  loading={true}/>
+                   <div>
+                       <Switch loading defaultChecked />
+                       <br />
+                       <Switch size="small" loading />
+                     </div>
             )
         }
 }

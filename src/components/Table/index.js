@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
 import Pagination from '@/components/Pagination';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from '@/components/Checkbox';
 import _ from 'lodash'
 import classNames from 'classnames';
 
@@ -38,8 +38,18 @@ const styles = theme => {
             }
         },
         selectBox: {
-            width: '40px',
-            padding: '4px'
+            width: '60px',
+            padding: 0,
+            paddingLeft:'15px',
+            '& label':{
+                marginTop:'-4px',
+                cursor: 'pointer',
+                '& span':{
+                    width:'18px',
+                    height:'18px'
+                }
+            },
+
         },
         bodyTd: {
             borderBottom: '1px solid #e8e8e8',
@@ -128,11 +138,11 @@ export class SimpleTable extends Component {
     };
 
     //选择全部
-    onSelectAllClick(e, checked, arr) {
+    onSelectAllClick(e, arr) {
         const {rowKey} = this.props;
         let rowSelection = this.props.rowSelection || {}
         let selectedRowKeys = rowSelection.selectedRowKeys || this.state.selectedRowKeys
-        if (checked) {
+        if (e.target.checked) {
             //添加未选择的
             arr.forEach((item, i) => {
                 if (_.indexOf(selectedRowKeys, item[`${rowKey}`]) === -1) {
@@ -155,11 +165,11 @@ export class SimpleTable extends Component {
 
 
     //选择一条
-    onSelectOne(e, checked, key) {
+    onSelectOne(e, key) {
         const {rowSelection} = this.props
         let rowSelections = rowSelection || {}
         let selectedRowKeys = rowSelections.selectedRowKeys || this.state.selectedRowKeys
-        if (checked) {
+        if (e.target.checked) {
             selectedRowKeys.push(key)
         } else {
             selectedRowKeys = _.remove(selectedRowKeys, function (k) {
@@ -243,12 +253,11 @@ export class SimpleTable extends Component {
             arr.push((<TableRow  key={n.key} className={showChild}>
                 {
                     rowSelection ?
-                        <TableCell className={classes.selectBox}>
+                        <TableCell className={classes.selectBox} padding='checkbox'>
                             <Checkbox
-                                classes={{checkedSecondary: classes.checkedSecondary}}
                                 disableRipple
                                 checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
-                                onChange={(e, checked) => this.onSelectOne(e, checked, n[`${rowKey}`])}/>
+                                onChange={(e) => this.onSelectOne(e, n[`${rowKey}`])}/>
                         </TableCell>
                         : null
                 }
@@ -311,13 +320,12 @@ export class SimpleTable extends Component {
                         <TableRow>
                             {
                                 rowSelection ?
-                                    <TableCell className={classes.selectBox}>
+                                    <TableCell className={classes.selectBox} padding='checkbox'>
                                         <Checkbox
                                             disableRipple
-                                            classes={{checkedSecondary: classes.checkedSecondary}}
                                             indeterminate={type === 1 ? true : false}
                                             checked={type === 2 ? true : false}
-                                            onChange={(e, checked) => this.onSelectAllClick(e, checked, tableObj.arr)}
+                                            onChange={(e) => this.onSelectAllClick(e, tableObj.arr)}
                                         />
                                     </TableCell>
                                     : null

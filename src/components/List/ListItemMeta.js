@@ -85,9 +85,6 @@ const styles = theme => ({
 });
 @withStyles(styles, {name: 'ListItemMeta'})
 export default class ListItemMeta extends Component {
-    constructor(props) {
-        super(props);
-    }
     static contextTypes = {
         list: PropTypes.object,
     };
@@ -129,12 +126,8 @@ export default class ListItemMeta extends Component {
                 <div style={{display:'flex',flexFlow:'wrap',alignItems: 'center',width: '100%'}}>
                     <div className={titleLayout}>
                         {
-                            avatar?
-                                <ListItemAvatar>
-                                    {avatar}
-                                </ListItemAvatar>:''
+                            avatar&&<ListItemAvatar>{avatar}</ListItemAvatar>
                         }
-
                         <ListItemText
                             primary={title}
                             secondary={description?description:''}
@@ -142,11 +135,7 @@ export default class ListItemMeta extends Component {
                         />
                     </div>
                     {
-                        content?<div className={contentLayout}>
-                            {
-                                content
-                            }
-                        </div>:''
+                        content&&<div className={contentLayout}>{content}</div>
                     }
 
                     {Array.isArray(actions)?(
@@ -157,9 +146,7 @@ export default class ListItemMeta extends Component {
                                         return (
                                             <li key={index} style={{position:'relative',padding:'0 8px'}}>
                                                 {item}
-                                                {
-                                                    index!==arr.length-1?<em className={classes.em}></em>:''
-                                                }
+                                                {index!==(arr.length-1)&&<em className={classes.em}></em>}
 
                                             </li>
                                         )
@@ -169,7 +156,7 @@ export default class ListItemMeta extends Component {
                     ):''}
                 </div>
                 {
-                    extra?<div style={{marginLeft:'58px'}}>{extra}</div>:''
+                    extra&&<div style={{marginLeft:'58px'}}>{extra}</div>
                 }
             </ListItem>
         )

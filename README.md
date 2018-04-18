@@ -59,7 +59,7 @@
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
 │   │   ├───Cascader          # ➜ 阿磊
-│   │   ├───Checkbox          # ➜ 何家佳 ✓ dev
+│   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
 │   │   ├───Form              # ➜ 阿磊 ✓ dev
 │   │   ├───Input             # ➜ 阿磊 ✓  complete!
@@ -69,7 +69,7 @@
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Select            # ➜ 曾辉艳 ✓ dev
 │   │   ├───Slider            # ➜ 阿磊
-│   │   ├───Switch            # ➜ 曾辉艳 ✓
+│   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓
 │   │   ├───Transfer          # ➜ 杨林林 ✓
@@ -86,8 +86,8 @@
 │   │   ├───Tooltip           # ➜ 何家佳 ✓
 │   │   ├───Table             # ➜ 曾辉艳 ✓ dev
 │   │   ├───Tabs              # ➜ 杨单丹 ✓
-│   │   ├───Tag               # ➜ 杨单丹 ✓
-│   │   ├───Timeline          # ➜ 杨林林 ✓
+│   │   ├───Tag               # ➜ 杨单丹 ✓ dev
+│   │   ├───Timeline          # ➜ 杨林林 ✓ dev
 │   │   ├───Tree              # ➜ 阿磊
 │   ├─── Feedback
 │   │   ├───Alert             # ➜ 林铭偲 ✓ complete!
@@ -96,7 +96,7 @@
 │   │   ├───Notification      # ➜ 郭丽丽 ✓ dev
 │   │   ├───Progress          # ➜ 胡昌哲 ✓
 │   │   ├───Popconfirm        # ➜ 何家佳 ✓
-│   │   ├───Spin              # ➜ 阿磊 ✓
+│   │   ├───Spin              # ➜ 阿磊 ✓ dev
 │   ├──── Other
 │   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
 │   │   ├───BackTop           # ➜ 杨林林 ✓

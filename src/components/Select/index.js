@@ -1,16 +1,10 @@
-import React, {Component} from 'react'
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-import './style.less'
-import classnames from 'classnames'
-export default class Select extends Component {
+import getComponent from './select'
 
-    static defaultProps = {
 
-    }
+let Select = getComponent('Select')
 
-    render() {
-        const props = this.props
-        return <input type="text" {...props} className={className}/>
-    }
-}
+Select.Async = getComponent('Async')
+Select.Creatable = getComponent('Creatable')
+Select.AsyncCreatable = getComponent('AsyncCreatable')
+
+export default Select

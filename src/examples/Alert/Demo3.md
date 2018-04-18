@@ -26,6 +26,7 @@ export class <%=component%> extends Component {
                     closable
                     onClose={onClose}
                     showIcon
+
                 />
                 <Alert
                     message="info Text"
@@ -34,6 +35,7 @@ export class <%=component%> extends Component {
                     closable
                     onClose={onClose}
                     showIcon
+                    affix={false}
                 />
                 <Alert
                     message="Error Text"
@@ -42,6 +44,8 @@ export class <%=component%> extends Component {
                     closable
                     onClose={onClose}
                     showIcon
+                    affix={false}
+
                 />
              </div>
         )

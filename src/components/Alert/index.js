@@ -2,35 +2,36 @@ import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import Slide from 'material-ui/transitions/Slide';
 import classnames from 'classnames'
-const test=175;
-const styles = theme => ({
+const styles = theme => {
+    let {width,success,successBg,warn,warnBg,info,infoBg,error,errorBg}=theme.alert;
+    return{
     success: {
-        color: theme.colors.success
+        color:theme.colors.success
     },
     successBg: {
-        border: '1px solid #b7eb8f',
-        backgroundColor: '#f6ffed'
+        border: `1px solid ${success}`,
+        backgroundColor: successBg
     },
     warn: {
         color: theme.colors.warning
     },
     warnBg: {
-        border: '1px solid #ffe58f',
-        backgroundColor: '#fffbe6'
+        border: `1px solid ${warn}`,
+        backgroundColor: warnBg
     },
     info: {
         color: theme.colors.info
     },
     infoBg: {
-        border: '1px solid #91d5ff',
-        backgroundColor: '#e6f7ff'
+        border: `1px solid ${info}`,
+        backgroundColor: infoBg
     },
     error: {
         color: theme.colors.error
     },
     errorBg: {
-        border: '1px solid #ffa39e',
-        backgroundColor: '#fff1f0'
+        border: `1px solid ${error}`,
+        backgroundColor: errorBg
     },
     yhAlertBox: {
         position: 'fixed',
@@ -42,7 +43,7 @@ const styles = theme => ({
     },
     yhAlert: {
         position: 'relative',
-        width: '350px',
+        width: `${width}%`,
         margin: '0 auto',
         marginBottom: '10px',
         borderRadius: '4px;',
@@ -100,10 +101,12 @@ const styles = theme => ({
     yhAlertBanner: {
         position: 'fixed',
         top: '0',
-        left: `calc(50% - ${test}px)`,
+        left: '50%',
+        transform:'translateX(-50%)',
         zIndex: '99999'
     }
-});
+}
+};
 let Icon = {
     'success': 'fa-check-circle',
     'warn': 'fa-exclamation-circle',
@@ -126,15 +129,18 @@ export default class Alert extends Component {
             initFlag: true
         }
     }
-
+    static defaultProps={
+        affix:true
+    }
     onClose() {
+        let time=this.props.affix?0:1000;
         this.setState({inFlag: false}, ()=> {
             this.props.onClose && this.props.onClose()
             setTimeout(()=> {
                 this.setState({initFlag: false}, ()=> {
                     this.props.afterClose && this.props.afterClose()
                 });
-            }, 1000)
+            }, time)
         })
     }
 
@@ -148,38 +154,41 @@ export default class Alert extends Component {
 
     render() {
         const {inFlag, initFlag}=this.state;
-        const {classes, type = 'warn', message, showIcon, description, closable, closeText, banner} = this.props;
+        const {classes, type = 'warn', message, showIcon, description, closable, closeText, banner,affix,width} = this.props;
         let bannerFlag = banner ? true : false;
         const wrapperClassName = classnames(classes['yhAlert'],classes[type + 'Bg'],{
             [classes['yhAlertBanner']]: bannerFlag
         });
+        const wrapperStyle=width?{width:`${width}px`}:{};
         const messageClassName=classnames(classes['yhAlertGroupP'], {
             [classes['yhAlertPlus']]:description
         });
         const descriptionClassName=classnames(classes['yhAlertDescription'],{
             [classes['descriptionLeft']]:showIcon
         });
+        const alert=(
+            <div className={wrapperClassName} style={wrapperStyle}>
+                {closable && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <i className="fa fa-times"></i></div>}
+                {closeText && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <span className={classes["yhAlertCloseText"]}>{closeText}</span></div>}
+                {
+                    showIcon ? this.getIcon(classes, description, type)
+                        :
+                        bannerFlag && (showIcon !== false) ? this.getIcon(classes, description, type) : ''
+                }
+                <div className={classes["yhAlertGroup"]}>
+                    <p className={messageClassName}>{message}</p>
+                </div>
+                {
+                    description &&<p className={descriptionClassName}>{description}</p>
+                }
+            </div>
+        )
         if (initFlag) {
-            return (
+           return affix?alert:(
                 <Slide direction="down" in={inFlag} timeout={1000}>
-                    <div className={wrapperClassName}>
-                        {closable ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                            <i className="fa fa-times"></i></div> : ''}
-                        {closeText ? <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                            <span className={classes["yhAlertCloseText"]}>{closeText}</span></div> : ''}
-                        {
-                            showIcon ? this.getIcon(classes, description, type)
-                                :
-                                bannerFlag && (showIcon !== false) ? this.getIcon(classes, description, type) : ''
-                        }
-                        <div className={classes["yhAlertGroup"]}>
-                            <p className={messageClassName}>{message}</p>
-                        </div>
-                        {
-                            description ?
-                                <p className={descriptionClassName}>{description}</p> : ''
-                        }
-                    </div>
+                    {alert}
                 </Slide>
             )
         } else {

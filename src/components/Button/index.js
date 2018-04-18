@@ -28,7 +28,7 @@ const styles = theme => {
             }
         },
         Default: {
-            '&:hover,&.active': {
+            'Default:hover,&.active': {
                 background: '#FFFFFF',
                 color: theme.button.hover,
                 borderColor: theme.button.hover
@@ -98,10 +98,6 @@ const styles = theme => {
 
 @withStyles(styles, {name: 'MuiButtonAnt'})
 export default class app extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     static defaultProps = {
         type: 'Default',
         size: 'default'

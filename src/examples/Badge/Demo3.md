@@ -7,7 +7,7 @@ export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                <a href="#">
+                <a>
                     <Badge badgeContent={10}>
                         <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
                     </Badge>

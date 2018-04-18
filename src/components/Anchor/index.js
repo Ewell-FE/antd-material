@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import {withStyles} from 'material-ui/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames'
@@ -64,10 +63,6 @@ function getOffsetTop(elm) {
     if(!elm){
         return 0;
     }
-    //getClientRects 返回一个TextRectangle集合，就是TextRectangleList对象。
-    //getBoundingClientRect 返回 一个TextRectangle对象。
-    //TextRectangle数组的长度可知道文字是否换行，甚至是换了几行，
-    //TextRectangle的几个属性和鼠标位置比较可以知道鼠标在哪一行上
     if(!elm.getClientRects().length){
         return 0;
     }
@@ -111,8 +106,9 @@ function getScroll(target, top) {
 }
 
 //滚动到链接位置而不是直接跳转
-function scrollTo(href,offsetTop= 0,target,callback = () => { }) {
-    const scrollTop=getScroll(target(),true);
+function scrollTo(href,offsetTop= 0,target,callback = () => { },changePos=()=>{}) {
+    const Target=target();
+    const scrollTop=getScroll(Target,true);
     const targetElement=document.getElementById(href.substring(1));
     if(!targetElement){
         return;
@@ -126,10 +122,11 @@ function scrollTo(href,offsetTop= 0,target,callback = () => { }) {
         const timestamp=Date.now();
         const time=timestamp-startTime;
         //加特效的滚动
-        window.scrollTo(window.pageXOffset,easeInOutCubic(time,scrollTop,targetScrollTop,450));
+        Target.scrollTo(window.pageXOffset,easeInOutCubic(time,scrollTop,targetScrollTop,450));
         //超过持续时间进行回调
         if(time<450){
             reqAnimFrame(frameFunc)
+            changePos()
         }else {
             callback()
         }
@@ -141,7 +138,7 @@ function getDomByAttr(List,attr,value) {
     const list=Array.isArray(List)?[...List]:Array.from(List);
     let dom='';
     list.forEach((item)=>{
-        if(item.getElementsByTagName('a').length&&(item.getElementsByTagName('a')[0].getAttribute(attr)==value)){
+        if(item.getElementsByTagName('a').length&&(item.getElementsByTagName('a')[0].getAttribute(attr)===value)){
             dom= item.getElementsByTagName('a')[0]
         }
     })
@@ -191,7 +188,7 @@ export default class Anchor extends Component {
             targetElement.removeEventListener('scroll',this.handleScroll,false);
         }else if( target.attachEvent ){
             //IE8以下版本
-            targetElement.detachEvent('on'+ 'scroll',this.handleScroll,false);
+            targetElement.detachEvent('onscroll',this.handleScroll,false);
         }
     }
 
@@ -209,12 +206,12 @@ export default class Anchor extends Component {
         });
     }
     handleScrollTo=(link)=>{
-        const { offsetTop, target = getDefaultTarget } = this.props;
+        const { offsetTop, target = getDefaultTarget,bounds } = this.props;
         this.animating = true;
         this.setState({ activeLink: link });
         scrollTo(link,offsetTop,target, () => {
             this.animating = false;
-        })
+        },()=>{this.setState({ affixOffest:this.getCurrentAffix(target,offsetTop, bounds)})})
     }
     getCurrentAnchor(offsetTop = 0,bounds=5){
         let activeLink = '';
@@ -261,15 +258,14 @@ export default class Anchor extends Component {
             className = '',
             classes,
             style,
-            offsetTop,
             fixTop,
             affix=true,
-            showInkInFixed,
+            showInk=true,
             children,
         } = this.props;
         const { activeLink,affixOffest } = this.state;
         const inkClass = classNames(classes['yhAnchorInkBall'], {
-            [classes['visible']]: activeLink,
+            [classes['visible']]: activeLink&&showInk,
         });
 
         const wrapperClass = classNames(className, classes['yhAnchorWrapper']);

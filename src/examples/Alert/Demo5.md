@@ -16,6 +16,7 @@ export class <%=component%> extends Component {
             type="success"
             closable
             afterClose={onAfterClose}
+            affix={false}
         />
         )
     }
