@@ -7,12 +7,11 @@ export default class App extends Component {
                 <Typography variant="display2" gutterBottom>
                     AutoComplete 自动完成
                 </Typography>
-                <p style={{margin:'12px 0 30px 0'}}>采用分页的形式分隔长列表，每次只加载一个页面。</p>
+                <p style={{margin:'12px 0 30px 0'}}>输入框自动完成功能。</p>
                 <Typography variant="display1" gutterBottom>
                     何时使用
                 </Typography>
-                <p style={{margin:'12px 0 10px 0'}}>当加载/渲染所有数据将花费很多时间时；</p>
-                <p style={{margin:'0 0 30px 0'}}>可切换页码浏览数据。</p>
+                <p style={{margin:'12px 0 40px 0'}}>需要自动完成时。</p>
             </div>
         )
     }

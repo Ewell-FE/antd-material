@@ -7,6 +7,7 @@ export class <%=component%> extends Component {
         return (
             <div className='rate' style={{background:'#fff',padding:20}}>
                <Rate  defaultValue={2} character="好"/>
+               <br />
                <Rate  defaultValue={1} character="A"/>
             </div>
         )

@@ -48,7 +48,7 @@ const styles = theme => {
 };
 
 
-@withStyles(styles, {name: 'MuiRadio-ant'})
+@withStyles(styles, {name: 'MuiRadioAnt'})
 export default class app extends Component {
     componentDidMount() {
         this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))

@@ -32,6 +32,10 @@ export default {
             backgroundColor: '#f5f5f5'
         }
     },
+    rate:{
+        activeColor:yellow[600],
+        fontSize:24
+    },
     size:{
         small:"24px",
         default:"32px",

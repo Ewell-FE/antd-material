@@ -290,7 +290,14 @@ export default class Anchor extends Component {
 
     }
 }
-
+Anchor.propTypes = {
+    affix:PropTypes.bool,//固定模式
+    target:PropTypes.func,//指定滚动的容器
+    offsetTop:PropTypes.number, //距离窗口顶部达到指定偏移量后触发
+    bounds:PropTypes.number,//锚点区域边界
+    showInk:PropTypes.bool,//是否显示小圆点
+    fixTop:PropTypes.number,//固定模式固定位置
+}
 
 
 

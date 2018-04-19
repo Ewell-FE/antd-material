@@ -244,11 +244,13 @@ function createRouterPage() {
     let indexPage = fs.readFileSync(path.join(process.cwd(), 'build/index.html'))
     try {
         fs.accessSync(path.join(process.cwd(), 'build/material'), fs.constants.R_OK | fs.constants.W_OK);
-        fs.mkdirSync(path.join(process.cwd(), 'build/material'))
-        fs.accessSync(path.join(process.cwd(), 'build/material/docs'), fs.constants.R_OK | fs.constants.W_OK);
-        fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
     } catch (err) {
-        console.log(chalk.red('no access or you have created'))
+        fs.mkdirSync(path.join(process.cwd(), 'build/material'))
+    }
+    try {
+        fs.accessSync(path.join(process.cwd(), 'build/material/docs'), fs.constants.R_OK | fs.constants.W_OK);
+    } catch (err) {
+        fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
     }
     Object.values(menuClass).forEach((item)=> {
         item.forEach((file)=> {
@@ -256,7 +258,25 @@ function createRouterPage() {
             console.log(chalk.green(file.name + "创建成功！"))
         })
     })
+
+    //把打包后的文件移动指定位置
+    let sourceFile = path.join(process.cwd(),'build/');
+    let destPath = path.join(process.cwd(),'build/material/');
+    fs.readdir(sourceFile,function(err,files){
+        if(err){
+            return console.error(err);
+        }
+        files.forEach(function(file){
+            if(file !== 'material' && file !== 'index.html'){
+                fs.rename(path.join(sourceFile,file), path.join(destPath,file), function (err) {
+                    if (err) throw err;
+                    console.log(chalk.green(file + "移动成功！"))
+                });
+            }
+        });
+    });
 }
+
 //根据demo组装成文档
 function createDemoApi() {
     let files = fs.readdirSync(path.resolve(paths.appSrc, 'examples'));

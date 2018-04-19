@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
+import PropTypes from 'prop-types';
+import Icon from '../Icon'
 import Slide from 'material-ui/transitions/Slide';
 import classnames from 'classnames'
 const styles = theme => {
@@ -33,7 +35,7 @@ const styles = theme => {
         border: `1px solid ${error}`,
         backgroundColor: errorBg
     },
-    yhAlertBox: {
+    alertBox: {
         position: 'fixed',
         top: '20px',
         width: '100%',
@@ -41,7 +43,7 @@ const styles = theme => {
         zIndex: '100',
         pointerEvents: 'none'
     },
-    yhAlert: {
+    alert: {
         position: 'relative',
         width: `${width}%`,
         margin: '0 auto',
@@ -54,51 +56,50 @@ const styles = theme => {
         minHeight: '40px',
         textAlign: 'left'
     },
-    yhAlertIcon: {
+    alertIcon: {
         display: 'inline-block',
         lineHeight: '20px',
         marginRight: '8px;'
     },
-    yhAlertIconPlus: {
+    alertIconPlus: {
         fontSize: '24px'
     },
-    yhAlertCloseIcon: {
+    alertCloseIcon: {
         position: 'absolute',
         right: '16px',
         color: 'rgba(0, 0, 0, 0.45)',
         cursor: 'pointer',
         zIndex: '9'
     },
-    yhAlertCloseText: {
+    alertCloseText: {
         color: '#1890ff',
         fontSize: '12px'
     },
-    yhAlertGroup: {
+    alertGroup: {
         position: 'relative',
         height: '24px',
         lineHeight: '24px',
         verticalAlign: 'top',
-        display: 'inline-block'
+        display: 'inline-block',
+        '& p':{
+            fontSize: '14px',
+            margin: '0',
+            color: 'rgba(0, 0, 0, 0.85)',
+            textAlign: 'justify'
+        }
     },
-
-    yhAlertGroupP: {
+    alertPlus: {
+        fontSize: '16px !important'
+    },
+    alertDescription: {
         fontSize: '14px',
-        margin: '0',
-        color: 'rgba(0, 0, 0, 0.85)',
-        textAlign: 'justify'
-    },
-    yhAlertPlus: {
-        fontSize: '16px'
-
-    },
-    yhAlertDescription: {
         margin: '0',
         color: 'rgba(0, 0, 0, 0.65)'
     },
     descriptionLeft: {
         marginLeft: '28px',
     },
-    yhAlertBanner: {
+    alertBanner: {
         position: 'fixed',
         top: '0',
         left: '50%',
@@ -107,17 +108,17 @@ const styles = theme => {
     }
 }
 };
-let Icon = {
-    'success': 'fa-check-circle',
-    'warn': 'fa-exclamation-circle',
-    'info': 'fa-info-circle',
-    'error': 'fa-times-circle'
+let Icons = {
+    'success': 'check-circle',
+    'warn': 'exclamation-circle',
+    'info': 'info-circle',
+    'error': 'times-circle'
 }
 let IconLarge = {
-    'success': 'fa-check-circle-o',
-    'warn': 'fa-exclamation-circle',
-    'info': 'fa-info-circle',
-    'error': 'fa-times-circle-o'
+    'success': 'check-circle-o',
+    'warn': 'exclamation-circle',
+    'info': 'info-circle',
+    'error': 'times-circle-o'
 }
 @withStyles(styles, {name: 'MuiAlertAnt'})
 export default class Alert extends Component {
@@ -145,10 +146,8 @@ export default class Alert extends Component {
     }
 
     getIcon(classes, description, type) {
-        return <div className={classnames(classes['yhAlertIcon'], description ? classes['yhAlertIconPlus'] : '')}>
-            <i className={classnames('fa', description ? IconLarge[type] : Icon[type], classes[type])}
-               aria-hidden="true">
-            </i>
+        return <div className={classnames(classes['alertIcon'], description ? classes['alertIconPlus'] : '')}>
+            <Icon type={description ? IconLarge[type] : Icons[type]} className={classnames(classes[type])}/>
         </div>
     }
 
@@ -156,28 +155,28 @@ export default class Alert extends Component {
         const {inFlag, initFlag}=this.state;
         const {classes, type = 'warn', message, showIcon, description, closable, closeText, banner,affix,width} = this.props;
         let bannerFlag = banner ? true : false;
-        const wrapperClassName = classnames(classes['yhAlert'],classes[type + 'Bg'],{
-            [classes['yhAlertBanner']]: bannerFlag
+        const wrapperClassName = classnames(classes['alert'],classes[type + 'Bg'],{
+            [classes['alertBanner']]: bannerFlag
         });
         const wrapperStyle=width?{width:`${width}px`}:{};
-        const messageClassName=classnames(classes['yhAlertGroupP'], {
-            [classes['yhAlertPlus']]:description
+        const messageClassName=classnames('', {
+            [classes['alertPlus']]:description
         });
-        const descriptionClassName=classnames(classes['yhAlertDescription'],{
+        const descriptionClassName=classnames(classes['alertDescription'],{
             [classes['descriptionLeft']]:showIcon
         });
         const alert=(
             <div className={wrapperClassName} style={wrapperStyle}>
-                {closable && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                    <i className="fa fa-times"></i></div>}
-                {closeText && <div className={classes["yhAlertCloseIcon"]} onClick={()=>this.onClose()}>
-                    <span className={classes["yhAlertCloseText"]}>{closeText}</span></div>}
+                {closable && <div className={classes["alertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <Icon type="times" /></div>}
+                {closeText && <div className={classes["alertCloseIcon"]} onClick={()=>this.onClose()}>
+                    <span className={classes["alertCloseText"]}>{closeText}</span></div>}
                 {
                     showIcon ? this.getIcon(classes, description, type)
                         :
                         bannerFlag && (showIcon !== false) ? this.getIcon(classes, description, type) : ''
                 }
-                <div className={classes["yhAlertGroup"]}>
+                <div className={classes["alertGroup"]}>
                     <p className={messageClassName}>{message}</p>
                 </div>
                 {
@@ -197,6 +196,18 @@ export default class Alert extends Component {
 
     }
 }
-
+Alert.propTypes = {
+    type: PropTypes.oneOf(['success', 'warn','info','error']), //提示类型
+    message:PropTypes.string, //提示信息
+    description:PropTypes.string, //提示辅助信息
+    showIcon:PropTypes.bool, //是否显示类型ICON
+    closable:PropTypes.bool, //是否显示关闭按钮
+    onClose:PropTypes.func,//关闭的回调
+    affix:PropTypes.bool, //是否一开始固定提示信息
+    closeText:PropTypes.string,//关闭按钮自定义文本
+    afterClose:PropTypes.func,//关闭后的回调
+    banner:PropTypes.bool, //是否顶部显示提示
+    width:PropTypes.number,//提示框大小
+}
 
 

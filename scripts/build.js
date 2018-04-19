@@ -70,9 +70,11 @@ measureFileSizesBeforeBuild(paths.appBuild)
                     ' to the line before.\n'
                 );
             } else {
+                console.log(chalk.green('Compiled successfully.\n'));
+
                 //根据伪路由生成静态页面
                 util.createRouterPage()
-                console.log(chalk.green('Compiled successfully.\n'));
+
             }
 
             console.log('File sizes after gzip:\n');
