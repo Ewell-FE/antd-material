@@ -64,7 +64,10 @@ export default class Link extends Component {
         )
     }
 }
-
+Link.propTypes = {
+    href:PropTypes.string,//锚点链接
+    title:PropTypes.any,//文字内容
+}
 
 
 
