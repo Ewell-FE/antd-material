@@ -37,8 +37,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/material/main" component={main}/>
                         <Route exact path="/material/pageError" component={pageError}/>
-                        <Route path="/material/docs" render={()=>checkLogin(HOME)}/>
-                        <Route exact path="/material" component={()=><Redirect to="/material/docs"/>}/>
+                        <Route path="/material/docs" component={HOME}/>
+                        <Route exact path="/material" component={()=><Redirect to="/material/main"/>}/>
                         <Route exact path="/" component={()=><Redirect to="/material"/>}/>
                     </Switch>
                 </MuiThemeProvider>
