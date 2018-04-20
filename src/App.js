@@ -10,7 +10,7 @@ import {MuiThemeProvider} from 'material-ui/styles';
 import style from '@/components/Style'
 import theme from './theme'
 import HOME from './routers/authority'
-import login from './routers/login'
+import main from './routers/main'
 import pageError from './routers/PageError'
 import './style.less'
 var cookieStore = require('store')
@@ -24,7 +24,7 @@ const checkLogin = (PageComp)=> {
         isLogin ? (
             <PageComp />
         ) : (
-            <Redirect to="/material/login"/>
+            <Redirect to="/material/home"/>
         )
     )
 }
@@ -35,10 +35,10 @@ class App extends Component {
                 <MuiThemeProvider theme={style.use('theme',theme)}>
                     <CssBaseline />
                     <Switch>
-                        <Route exact path="/material/login" component={login}/>
+                        <Route exact path="/material/main" component={main}/>
                         <Route exact path="/material/pageError" component={pageError}/>
-                        <Route path="/material/docs" render={()=>checkLogin(HOME)}/>
-                        <Route exact path="/material" component={()=><Redirect to="/material/docs"/>}/>
+                        <Route path="/material/docs" component={HOME}/>
+                        <Route exact path="/material" component={()=><Redirect to="/material/main"/>}/>
                         <Route exact path="/" component={()=><Redirect to="/material"/>}/>
                     </Switch>
                 </MuiThemeProvider>

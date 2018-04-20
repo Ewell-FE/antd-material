@@ -252,14 +252,12 @@ export class SimpleTable extends Component {
             }
             arr.push((<TableRow  key={n.key} className={showChild}>
                 {
-                    rowSelection ?
-                        <TableCell className={classes.selectBox} padding='checkbox'>
+                    rowSelection && <TableCell className={classes.selectBox} padding='checkbox'>
                             <Checkbox
                                 disableRipple
                                 checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
                                 onChange={(e) => this.onSelectOne(e, n[`${rowKey}`])}/>
                         </TableCell>
-                        : null
                 }
                 {
                     columns.map((item, i) => {
@@ -319,8 +317,7 @@ export class SimpleTable extends Component {
                     <TableHead className={classes.head}>
                         <TableRow>
                             {
-                                rowSelection ?
-                                    <TableCell className={classes.selectBox} padding='checkbox'>
+                                rowSelection && <TableCell className={classes.selectBox} padding='checkbox'>
                                         <Checkbox
                                             disableRipple
                                             indeterminate={type === 1 ? true : false}
@@ -328,7 +325,6 @@ export class SimpleTable extends Component {
                                             onChange={(e) => this.onSelectAllClick(e, tableObj.arr)}
                                         />
                                     </TableCell>
-                                    : null
                             }
                             {
                                 columns.map((item, i) => {
@@ -346,12 +342,10 @@ export class SimpleTable extends Component {
 
                 </Table>
                 {
-                    !tableObj.arr.length ?
-                        <p className={classes.noData}>暂无数据!!!</p>
-                        : null
+                    !tableObj.arr.length &&<p className={classes.noData}>暂无数据!!!</p>
                 }
                 {
-                    pagination === false ? null :
+                    pagination !== false &&
                         <div className={classes.tablePagination}>
                             <Pagination {...tableObj['pagination']}
                                         onShowSizeChange={(current, pageSize) => this.handleChangeRowsPerPage(current, pageSize)}

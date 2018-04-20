@@ -22,7 +22,9 @@ function getComponent(type) {
             small = getLineHeight(theme.size.small),
             large = getLineHeight(theme.size.large),
             fontColor = theme.palette.text.primary;
-        let childrenHeight = height - 6, childrenSmall = small - 6, childrenLarge = large - 6;
+        let childrenHeight = height - 6,
+            childrenSmall = small - 6,
+            childrenLarge = large - 6;
         let childTop = (height - childrenHeight) / 2,
             childrenSmallTop = (small - childrenSmall) / 2,
             childrenLargeTop = (large - childrenLarge) / 2;
@@ -138,7 +140,7 @@ function getComponent(type) {
         }
     }
 
-    @withStyles(styles, {name: 'MuiSelect-ant'})
+    @withStyles(styles, {name: 'MuiSelectAnt'})
     class App extends Component {
         constructor(props) {
             super(props)

@@ -1,27 +1,21 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import './style.less'
-import classzz from '@/classes'
 import classnames from 'classnames'
 import Typography from 'material-ui/Typography';
 import Input from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
-import ArrowDropDownIcon from 'material-ui-icons/ArrowDropDown';
-import CancelIcon from 'material-ui-icons/Cancel';
-import ArrowDropUpIcon from 'material-ui-icons/ArrowDropUp';
-import ClearIcon from 'material-ui-icons/Clear';
 import Chip from 'material-ui/Chip';
-import Select from 'react-select';
+import Select from '../Select';
+import Icon from '../Icon'
 import 'react-select/dist/react-select.css';
+let Creatable = Select.Creatable
 class Option extends React.Component {
     handleClick = event => {
         this.props.onSelect(this.props.option, event);
     };
-
     render() {
         const { children, isFocused, isSelected, onFocus } = this.props;
-
         return (
             <MenuItem
                 onFocus={onFocus}
@@ -30,6 +24,7 @@ class Option extends React.Component {
                 component="div"
                 style={{
                     fontWeight: isSelected ? 500 : 400,
+                    color:isSelected?"#fff":'#333'
                 }}
             >
                 {children}
@@ -39,37 +34,29 @@ class Option extends React.Component {
 }
 
 function SelectWrapped(props) {
-    const { classes, ...other } = props;
-
+    const { classes,...other } = props;
     return (
-        <Select
+        <Creatable
             optionComponent={Option}
             noResultsText={<Typography>{'No results found'}</Typography>}
-            arrowRenderer={arrowProps => {
-                return arrowProps.isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
-            }}
-            clearRenderer={() => <ClearIcon />}
             valueComponent={valueProps => {
                 const { value, children, onRemove } = valueProps;
-
                 const onDelete = event => {
                     event.preventDefault();
                     event.stopPropagation();
                     onRemove(value);
                 };
-
                 if (onRemove) {
                     return (
                         <Chip
                             tabIndex={-1}
                             label={children}
-                            className={classes.chip}
-                            deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
+                            className={classnames(classes.chip,"chippp")}
+                            deleteIcon={<Icon type="times-circle" onClick={onDelete} />}
                             onDelete={onDelete}
                         />
                     );
                 }
-
                 return <div className="Select-value">{children}</div>;
             }}
             {...other}
@@ -78,15 +65,17 @@ function SelectWrapped(props) {
 }
 
 const ITEM_HEIGHT = 48;
-const styles = theme => ({
-    // primary: classzz.Button.primary,
-    // modalCancel: classzz.Button.modalCancel,
+const styles = theme => {
+   return  {
     root: {
-        flexGrow: 1,
-        height: 250,
+        flexGrow: 1
     },
     chip: {
         margin: theme.spacing.unit / 4,
+        border: "1px solid #e8e8e8",
+        height: "24px",
+        lineHeight: "24px",
+        backgroundColor: "#fafafa"
     },
     '@global': {
         '.Select-control': {
@@ -108,7 +97,7 @@ const styles = theme => ({
             margin: 0,
         },
         '.Select.has-value.is-clearable.Select--single > .Select-control .Select-value': {
-            padding: 0,
+            padding: "0 0 0 10px",
             color:'#333',
         },
         '.Select-noresults': {
@@ -165,6 +154,10 @@ const styles = theme => ({
         },
         '.Select-menu div': {
             boxSizing: 'content-box',
+            "&:hover":{
+                backgroundColor: theme.select.hover,
+                color: theme.select.color,
+            }
         },
         '.Select-arrow-zone, .Select-clear-zone': {
             color: theme.palette.action.active,
@@ -183,51 +176,9 @@ const styles = theme => ({
             margin: -1,
         },
     },
-});
-
-const suggestions = [
-    { label: 'Afghanistan' },
-    { label: 'Aland Islands' },
-    { label: 'Albania' },
-    { label: 'Algeria' },
-    { label: 'American Samoa' },
-    { label: 'Andorra' },
-    { label: 'Angola' },
-    { label: 'Anguilla' },
-    { label: 'Antarctica' },
-    { label: 'Antigua and Barbuda' },
-    { label: 'Argentina' },
-    { label: 'Armenia' },
-    { label: 'Aruba' },
-    { label: 'Australia' },
-    { label: 'Austria' },
-    { label: 'Azerbaijan' },
-    { label: 'Bahamas' },
-    { label: 'Bahrain' },
-    { label: 'Bangladesh' },
-    { label: 'Barbados' },
-    { label: 'Belarus' },
-    { label: 'Belgium' },
-    { label: 'Belize' },
-    { label: 'Benin' },
-    { label: 'Bermuda' },
-    { label: 'Bhutan' },
-    { label: 'Bolivia, Plurinational State of' },
-    { label: 'Bonaire, Sint Eustatius and Saba' },
-    { label: 'Bosnia and Herzegovina' },
-    { label: 'Botswana' },
-    { label: 'Bouvet Island' },
-    { label: 'Brazil' },
-    { label: 'British Indian Ocean Territory' },
-    { label: 'Brunei Darussalam' },
-].map(suggestion => ({
-    value: suggestion.label,
-    label: suggestion.label,
-}));
-
+}};
 @withStyles(styles)
 export class AutoComplete extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -237,73 +188,41 @@ export class AutoComplete extends Component {
         }
     }
 
-    handleChange = name => value => {
+    handleChange = (name)=> value => {
         this.setState({
             [name]: value,
         });
     };
-
-    componentDidMount() {
-
+    onPromptTextCreator(result){
+       let that = this
+        setTimeout(function(){
+            that.props.onSearch && that.props.onSearch(result)
+        },0)
     }
-
     render() {
-        const { classes } = this.props;
+        const { classes,children,dataSource,multi,fullWidth,onSearch,placeholder,...other} = this.props;
         return (
-            <div className={classnames(classes.root,'qqqq')}>
+            <div className={classnames(classes.root)}>
                 <Input
-                    fullWidth
+                    disableUnderline={true}
+                    fullWidth={fullWidth?true:false}
                     inputComponent={SelectWrapped}
-                    value={this.state.single}
-                    onChange={this.handleChange('single')}
-                    placeholder="Search a country (start with a)"
+                    placeholder={placeholder?placeholder:''}
+                    value={multi?this.state.multi:this.state.single}
+                    onChange={this.handleChange(multi?'multi':'single')}
                     id="react-select-single"
                     inputProps={{
                         classes,
                         name: 'react-select-single',
                         instanceId: 'react-select-single',
                         simpleValue: true,
-                        options: suggestions,
+                        multi: multi?true:false,
+                        options: dataSource,
+                        // children:childrens,
+                        promptTextCreator:(result)=>this.onPromptTextCreator(result),
                     }}
+                    {...other}
                 />
-                {/*<Input*/}
-                    {/*fullWidth*/}
-                    {/*inputComponent={SelectWrapped}*/}
-                    {/*value={this.state.multi}*/}
-                    {/*onChange={this.handleChange('multi')}*/}
-                    {/*placeholder="Select multiple countries"*/}
-                    {/*name="react-select-chip"*/}
-                    {/*inputProps={{*/}
-                        {/*classes,*/}
-                        {/*multi: true,*/}
-                        {/*instanceId: 'react-select-chip',*/}
-                        {/*id: 'react-select-chip',*/}
-                        {/*simpleValue: true,*/}
-                        {/*options: suggestions,*/}
-                    {/*}}*/}
-                {/*/>*/}
-                {/*<TextField*/}
-                    {/*fullWidth*/}
-                    {/*value={this.state.multiLabel}*/}
-                    {/*onChange={this.handleChange('multiLabel')}*/}
-                    {/*placeholder="Select multiple countries"*/}
-                    {/*name="react-select-chip-label"*/}
-                    {/*label="With label"*/}
-                    {/*InputLabelProps={{*/}
-                        {/*shrink: true,*/}
-                    {/*}}*/}
-                    {/*InputProps={{*/}
-                        {/*inputComponent: SelectWrapped,*/}
-                        {/*inputProps: {*/}
-                            {/*classes,*/}
-                            {/*multi: true,*/}
-                            {/*instanceId: 'react-select-chip-label',*/}
-                            {/*id: 'react-select-chip-label',*/}
-                            {/*simpleValue: true,*/}
-                            {/*options: suggestions,*/}
-                        {/*},*/}
-                    {/*}}*/}
-                {/*/>*/}
             </div>
         )
     }

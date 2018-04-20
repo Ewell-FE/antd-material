@@ -126,3 +126,13 @@ export default class MuiList extends Component {
 
     }
 }
+MuiList.propTypes = {
+    dataSource:PropTypes.array,//数据源
+    size: PropTypes.oneOf(['small', 'default','large']), //List大小类型
+    bordered:PropTypes.bool, //是否有边框
+    header:PropTypes.any, //头部信息
+    footer:PropTypes.any,//底部信息
+    renderItem:PropTypes.func,//渲染列表函数
+    itemLayout:PropTypes.oneOf(['vertical','horizontal']),//列表内容布局
+    loadMore:PropTypes.any,//加载更多
+}

@@ -83,7 +83,7 @@ const styles = theme => ({
     }
 
 });
-@withStyles(styles, {name: 'ListItemMeta'})
+@withStyles(styles, {name: 'MuiListItemAnt'})
 export default class ListItemMeta extends Component {
     static contextTypes = {
         list: PropTypes.object,
@@ -162,4 +162,13 @@ export default class ListItemMeta extends Component {
         )
 
     }
+}
+ListItemMeta.propTypes = {
+    size: PropTypes.oneOf(['small', 'default','large']), //List大小类型
+    actions:PropTypes.array, //action数组
+    avatar:PropTypes.any, //头像信息
+    title:PropTypes.string,//主要信息
+    description:PropTypes.string,//辅助信息
+    content:PropTypes.any,//主要内容
+    extra:PropTypes.any,//额外内容
 }

@@ -14,7 +14,7 @@ const styles = theme => {
         }
     }
 };
-@withStyles(styles, {name: 'MuiRadioGroup-ant'})
+@withStyles(styles, {name: 'MuiRadioGroupAnt'})
 export default class app extends Component {
     constructor(props) {
         super(props)
