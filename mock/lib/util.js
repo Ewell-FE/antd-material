@@ -260,15 +260,15 @@ function createRouterPage() {
     })
 
     //把打包后的文件移动指定位置
-    let sourceFile = path.join(process.cwd(),'build/');
-    let destPath = path.join(process.cwd(),'build/material/');
-    fs.readdir(sourceFile,function(err,files){
-        if(err){
+    let sourceFile = path.join(process.cwd(), 'build/');
+    let destPath = path.join(process.cwd(), 'build/material/');
+    fs.readdir(sourceFile, function (err, files) {
+        if (err) {
             return console.error(err);
         }
-        files.forEach(function(file){
-            if(file !== 'material' && file !== 'index.html'){
-                fs.rename(path.join(sourceFile,file), path.join(destPath,file), function (err) {
+        files.forEach(function (file) {
+            if (file !== 'material' && file !== 'index.html') {
+                fs.rename(path.join(sourceFile, file), path.join(destPath, file), function (err) {
                     if (err) throw err;
                     console.log(chalk.green(file + "移动成功！"))
                 });
@@ -299,6 +299,7 @@ function createDemoApi() {
                 imports = renderObj.imports
                 constsArr = renderObj.consts
                 return {
+                    fileName: file + "/" + item,
                     name: _.capitalize(_.camelCase(item)),
                     component: renderObj.component.join('\n'),
                     type: cutStrByStart(DomeJsx, "#"),

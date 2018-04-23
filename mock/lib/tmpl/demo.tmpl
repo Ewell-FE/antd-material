@@ -19,7 +19,7 @@ export default class App extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                     <%= item.desc %>
                                 </p>
-                    <Templete code={`<%= item.code %>`}>
+                    <Templete code={`<%= item.code %>`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/${item.fileName}`}>
                         <<%=item.name%> />
                     </Templete>
                 <% }); %>
