@@ -108,24 +108,21 @@ export default class app extends Component {
         }
     }
 
-    checkItem = (props) => {
-        if ('checked' in props) {
-            if (props.checked) {
-                return props.classes.checked
-            } else {
-                return props.classes.unchecked
-            }
-        }
-    }
 
     getCont = () => {
-        const {classes, closable, disabled, color} = this.props
-        let checkItem = this.checkItem(this.props)
+        const {classes, closable, disabled, color, checked} = this.props
+        const disabledCls = classnames({
+            [classes[`disabled`]]: disabled === true,
+        });
+        const checkedCls = classnames({
+            [classes[`checked`]]: checked && checked === true,
+            [classes[`unchecked`]]: checked && checked === false,
+        });
         if (closable) {
             if (this.state.isShow) {
                 return (
                     <div
-                        className={classnames(classes.root, classes[color], disabled && classes.disabled, checkItem)}
+                        className={classnames(classes.root, classes[color], disabledCls, checkedCls)}
                         onClick={(e) => this.onClick(e)}
                     >
                         <span className={classnames(classes.span)}>{this.props.children} &nbsp;
@@ -138,7 +135,7 @@ export default class app extends Component {
         } else {
             return (
                 <div
-                    className={classnames(classes.root, classes[color], disabled && classes.disabled, checkItem)}
+                    className={classnames(classes.root, classes[color], disabledCls, checkedCls)}
                     onClick={(e) => this.onClick(e)}
                 >
                 <span className={classnames(classes.span)}>{this.props.children}
