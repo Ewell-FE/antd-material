@@ -5,6 +5,8 @@ import {withStyles} from 'material-ui/styles';
 import classnames from 'classnames'
 import TimelineItem from './timeline-item'
 import Icon from 'material-ui/Icon';
+import {CircularProgress} from 'material-ui/Progress';
+
 
 const styles = theme => {
     return {
@@ -37,7 +39,7 @@ export default class app extends Component {
         //生成幽灵节点
         var pendingItem = !!props.pending ? React.createElement(
             TimelineItem,
-            { pending: !!props.pending, dot: props.pendingDot || React.createElement(Icon, { type: 'loading' }), pendingNode:true },
+            { pending: !!props.pending, dot: props.pendingDot , pendingNode:true },
             pendingNode
         ) : null;
 
@@ -63,7 +65,8 @@ export default class app extends Component {
 }
 app.defaultProps = {
     pending:false,
-    pendingDot: <Icon type={'loading'}/>
+    // pendingDot: <Icon type={'loading'}/>,
+    pendingDot: <CircularProgress style={{top:-4}}  />
 },
 app.propTypes = {
     className:PropTypes.string,

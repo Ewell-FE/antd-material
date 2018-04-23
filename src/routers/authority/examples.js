@@ -24,5 +24,7 @@ export {default as Select} from '@/examples/Select';
 export {default as Spin} from '@/examples/Spin';
 export {default as Switch} from '@/examples/Switch';
 export {default as Table} from '@/examples/Table';
+export {default as Tag} from '@/examples/Tag';
 export {default as Template} from '@/examples/Template';
-export {default as Timeline} from '@/examples/Timeline'
+export {default as Timeline} from '@/examples/Timeline';
+export {default as Transfer} from '@/examples/Transfer'

@@ -55,6 +55,9 @@ const styles = theme => {
                 height: '100%',
                 borderLeft: '2px solid #e8e8e8',
             },
+            '& .dot':{
+                position:'absolute',width:'18px',height:'1.5em'
+            }
             /************** 普通样式************************/
 
         },
@@ -70,22 +73,27 @@ export default class app extends Component {
     render() {
         const {classes} = this.props
         var prop = this.props
+
         var dot = this.props.dot || <div/>
         var normal = !this.props.dot
+        var dotClass = dot.props.className || ''
+        var dotStyle = dot.props.style || {}
+
         return (
             <div className={classnames(classes.root, classes[prop.type],prop.className,
                 //对普通节点设置类
+                //此处将幽灵节点除外,计算是否是最后一个节点,
                 prop.last ?  prop.pending ? 'lastItemWithPending lastItem' : 'lastItem' :'',
                 //对幽灵节点设置类
                 prop.pendingNode ? 'lastItem' : ''
                 )} type={prop.type}
                  style={{...this.props.style,}}>
                 <div className="TimelineItemLine"/>
-                <div style={{position:'absolute',width:'18px',height:'1.5em'}}>
+                <div className={'dot'}>
                     {
                         React.cloneElement(
                             dot,
-                            {className: classnames('dotPoint', normal ?  'dotPoint-normal' : ''), style: {borderColor: normal ?  prop.color :''}},
+                            {className: classnames('dotPoint', normal ?  'dotPoint-normal' : '',dotClass),  style: normal ? {borderColor:prop.color,...dotStyle,} :{width:'18px',...dotStyle,}},
                         )
                     }
                 </div>
