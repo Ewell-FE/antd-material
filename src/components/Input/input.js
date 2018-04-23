@@ -28,7 +28,7 @@ const styles = theme => {
             transition: "all .3s",
             "&:focus": {
                 borderColor: theme.colors.primary,
-                boxShadow: "0 0 0 2px rgba(24,144,255,.2)"
+                boxShadow: `0 0 0 2px ${theme.primary[100]}`
             },
             "&:disabled": {
                 cursor: "not-allowed",

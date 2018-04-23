@@ -50,12 +50,12 @@
 │   │   ├───Grid              # ➜ 阿磊 ✓ complete!
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
-│   │   ├───Affix             # ➜ 朱宇 ✓
-│   │   ├───Breadcrumb        # ➜ 朱宇 ✓
-│   │   ├───Dropdown          # ➜ 朱宇 ✓
-│   │   ├───Menu              # ➜ 何家佳 ✓ complete!
+│   │   ├───Affix             # ➜ 阿磊 ✓
+│   │   ├───Breadcrumb        # ➜ 阿磊 ✓
+│   │   ├───Dropdown          # ➜ 阿磊 ✓
+│   │   ├───Menu              # ➜ 何家佳 ✓ dev!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
-│   │   ├───Steps             # ➜ 朱宇 ✓
+│   │   ├───Steps             # ➜ 阿磊 ✓
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
 │   │   ├───Cascader          # ➜ 阿磊

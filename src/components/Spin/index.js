@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import {CircularProgress} from 'material-ui/Progress';
-import {blue} from 'material-ui/colors';
 const styles = theme => ({
     root: {
         position: "absolute",
