@@ -18,6 +18,8 @@ export class <%=component%> extends Component {
             <div>
                 <Form layout="horizontal" form='roleForm3'
                   initialValues={{}}
+                  labelWidth="20%"
+                  wrapperWidth="220px"
                   Submit={(values) => this.Submit(values)} ref="form3"
                   fields={[{
                       name: "roleName",
@@ -26,8 +28,8 @@ export class <%=component%> extends Component {
                       validate:roleLength3
                   }, {
                       name: "remark",
-                      label: "角色描述",
-                      type: 'textarea',
+                      label: "描述",
+                      type: 'text',
                       rows: '5',
                       validate:roleLength3
                   }]}/>

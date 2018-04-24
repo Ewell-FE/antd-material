@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
+import style from '@/components/Style'
+import Icon from '@/components/Icon'
+import myTheme from '@/theme'
+import * as colors from 'material-ui/colors';
+import _ from 'lodash'
 import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -62,6 +67,14 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
         width: drawerWidth,
+        "&::-webkit-scrollbar": {
+            width: '4px',
+            height: '4px',
+            background: 'rgba(0, 0, 0, 0.26)'
+        },
+        "&::-webkit-scrollbar-thumb": {
+            background: theme.primary[200]
+        }
     },
     drawerHeader: {
         display: 'flex',
@@ -99,12 +112,22 @@ const styles = theme => ({
     'contentShift-right': {
         marginRight: 0,
     },
+    'github': {
+        fontSize: '26px',
+        color: '#FFFFFF',
+        margin: '0 20px'
+    },
+    'eyedropper': {
+        fontSize: '22px',
+        cursor: 'pointer'
+    }
 });
 
 class PersistentDrawer extends React.Component {
     state = {
         open: true,
         anchor: 'left',
+        primary: style.theme.colors.primary
     };
 
     handleDrawerOpen = () => {
@@ -114,6 +137,15 @@ class PersistentDrawer extends React.Component {
     handleDrawerClose = () => {
         this.setState({open: false});
     };
+
+    changeTheme(color) {
+        this.setState({
+            primary: colors[color][600]
+        })
+        this.props.changeTheme(style.use('theme', _.merge(myTheme, {
+            overrides: {MuiAppBar: {colorPrimary: {backgroundColor: colors[color][600]}}}
+        }), {primaryColor: colors[color]}))
+    }
 
     render() {
         const {classes, theme, components} = this.props;
@@ -159,7 +191,7 @@ class PersistentDrawer extends React.Component {
                                             <li><NavLink
                                                 to={"/material/docs/"+item.name+".html"}
                                                 activeStyle={{
-                                                            color: 'red'
+                                                            color: this.state.primary
                                                         }}
                                             >{item.name + "  " + item.desc}</NavLink></li>
                                         </List>
@@ -203,6 +235,12 @@ class PersistentDrawer extends React.Component {
                             <Typography variant="title" color="inherit" noWrap>
                                 Ant Design of Material
                             </Typography>
+                            <span style={{ flex:1,textAlign:'right'}}>
+                                <Icon className={classes.eyedropper} onClick={()=>{this.changeTheme('red')}}
+                                      type="paint-brush"/>
+                                <a href="https://github.com/Ewell-FE/antd-material" className={classes.github}><Icon
+                                    type="github"/></a>
+                            </span>
                         </Toolbar>
                     </AppBar>
                     {before}

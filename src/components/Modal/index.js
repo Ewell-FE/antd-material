@@ -1,30 +1,52 @@
-import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import {Modal } from 'material-ui';
-import './style.less'
-import classzz from '@/classes'
-const styles = theme => ({
-    primary: classzz.Button.primary,
-    modalCancel:classzz.Button.modalCancel
-});
-@withStyles(styles)
-export default class Spin extends Component {
+import Modal from './Modal';
+import confirm from './confirm';
+Modal.info = function (props) {
+    const config = {
+        type: 'info',
+        iconType: 'info-circle',
+        okCancel: false,
+        ...props,
+    };
+    return confirm(config);
+};
 
-    render() {
-        const {classes} = this.props
-        return (
-            <Modal open={this.props.open} onClose={()=>this.props.onModalClose()}>
-                <div id="modal">
-                    <div className="modalHeader">提示<span className="close" onClick={()=>this.props.onClose()}>×</span></div>
-                    <div className="modalContent">
-                        {this.props.modalMsg}
-                    </div>
-                    <div className="modalFooter">
-                        <Button className={classes.primary} onClick={()=>this.props.onClose()}>确定</Button>
-                    </div>
-                </div>
-            </Modal>
-        )
-    }
-}
+Modal.success = function (props) {
+    const config = {
+        type: 'success',
+        iconType: 'check-circle',
+        okCancel: false,
+        ...props,
+    };
+    return confirm(config);
+};
+
+Modal.error = function (props) {
+    const config = {
+        type: 'error',
+        iconType: 'times-circle',
+        okCancel: false,
+        ...props,
+    };
+    return confirm(config);
+};
+
+Modal.warning = Modal.warn = function (props) {
+    const config = {
+        type: 'warn',
+        iconType: 'exclamation-circle',
+        okCancel: false,
+        ...props,
+    };
+    return confirm(config);
+};
+
+Modal.confirm = function (props) {
+    const config = {
+        type: 'confirm',
+        okCancel: true,
+        ...props,
+    };
+    return confirm(config);
+};
+
+export default Modal;

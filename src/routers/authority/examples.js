@@ -6,6 +6,7 @@ export {default as Avatar} from '@/examples/Avatar';
 export {default as Badge} from '@/examples/Badge';
 export {default as Button} from '@/examples/Button';
 export {default as Card} from '@/examples/Card';
+export {default as Carousel} from '@/examples/Carousel';
 export {default as Checkbox} from '@/examples/Checkbox';
 export {default as Form} from '@/examples/Form';
 export {default as Grid} from '@/examples/Grid';

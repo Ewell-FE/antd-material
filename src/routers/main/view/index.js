@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { enquireScreen } from 'enquire-js';
-import ScrollAnim from 'rc-scroll-anim';
 
 import Nav from './Nav';
 import Content0 from './Content0';
@@ -12,12 +10,6 @@ import Footer from './Footer';
 
 import './less/antMotion_style.less';
 
-const scrollScreen = ScrollAnim.scrollScreen;
-
-let isMobile;
-enquireScreen((b) => {
-    isMobile = b;
-});
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
