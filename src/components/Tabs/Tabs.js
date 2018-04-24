@@ -12,39 +12,54 @@ import TabIndicator from 'material-ui/Tabs/TabIndicator';
 import TabScrollButton from 'material-ui/Tabs/TabScrollButton';
 import SwipeableViews from 'react-swipeable-views';
 
-export const styles = theme => ({
-    root: {
-        overflow: 'hidden',
-        minHeight: 48,
-        WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    },
-    flexContainer: {
-        display: 'flex',
-    },
-    scroller: {
-        position: 'relative',
-        display: 'inline-block',
-        flex: '1 1 auto',
-        whiteSpace: 'nowrap',
-    },
-    fixed: {
-        overflowX: 'hidden',
-        width: '100%',
-    },
-    scrollable: {
-        overflowX: 'scroll',
-    },
-    centered: {
-        justifyContent: 'center',
-    },
-    scrollButtons: {},
-    scrollButtonsAuto: {
-        [theme.breakpoints.down('xs')]: {
-            display: 'none',
-        },
-    },
-    indicator: {},
-});
+export const styles = theme => {
+    return (
+        {
+            root: {
+                overflow: 'hidden',
+                minHeight: 48,
+                WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+            },
+            flexHead: {
+                display: 'flex',
+                borderBottom: '1px solid #ebedf0',
+            },
+            flexContainer: {
+                padding: '20px',
+                textAlign: 'left'
+            },
+
+            scroller: {
+                position: 'relative',
+                display: 'inline-block',
+                flex: '1 1 auto',
+                whiteSpace: 'nowrap',
+            },
+            fixed: {
+                overflowX: 'hidden',
+                width: '100%',
+            },
+            scrollable: {
+                overflowX: 'scroll',
+            },
+            centered: {
+                justifyContent: 'center',
+            },
+            scrollButtons: {},
+            scrollButtonsAuto: {
+                [theme.breakpoints.down('xs')]: {
+                    display: 'none',
+                },
+            },
+            indicator: {
+                background: '#1890ff',
+            },
+            indicatorStyle:{
+
+            }
+        }
+    )
+};
 
 class Tabs extends React.Component {
     state = {
@@ -307,9 +322,10 @@ class Tabs extends React.Component {
             [classes.fixed]: !scrollable,
             [classes.scrollable]: scrollable,
         });
-        const flexContainerClassName = classNames(classes.flexContainer, {
+        const flexHeadClassName = classNames(classes.flexHead, {
             [classes.centered]: centered && !scrollable,
         });
+        const flexContainerClassName = classNames(classes.flexContainer);
 
         const indicator = (
             <TabIndicator
@@ -341,12 +357,11 @@ class Tabs extends React.Component {
         });
 
         const conditionalElements = this.getConditionalElements();
-        console.log(this.props.selectNum)
         return (
             <div className={className} {...other}>
                 <EventListener target="window" onResize={this.handleResize}/>
                 {conditionalElements.scrollbarSizeListener}
-                <div className={classes.flexContainer}>
+                <div className={classes.flexHead}>
                     {conditionalElements.scrollButtonLeft}
                     <div
                         className={scrollerClassName}
@@ -357,24 +372,25 @@ class Tabs extends React.Component {
                         role="tablist"
                         onScroll={this.handleTabsScroll}
                     >
-                        <div className={flexContainerClassName}>{children}</div>
+                        <div className={flexHeadClassName}>{children}</div>
                         {this.state.mounted && indicator}
                     </div>
                     {conditionalElements.scrollButtonRight}
                 </div>
                 <SwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                                index={this.props.selectNum}
+                                index={this.props.selectnum}
                                 onChangeIndex={this.props.handleChange}>
                     {
-                        children.map((item,i)=>{
+                        children.map((item, i) => {
                             return (
-                                <div dir={theme.direction} key={i}>{item.props.children}</div>
+                                <div dir={theme.direction} key={i}
+                                     className={flexContainerClassName}>{item.props.children}</div>
                             )
                         })
                     }
 
                 </SwipeableViews>
-                {/*<div>{children[this.props.selectNum].props.children}</div>*/}
+                {/*<div className={flexContainerClassName}>{children[this.props.selectnum].props.children}</div>*/}
             </div>
         );
     }
@@ -412,4 +428,4 @@ Tabs.defaultProps = {
     textColor: 'inherit',
 };
 
-export default withStyles(styles, {name: 'MuiTabs', withTheme: true})(Tabs);
+export default withStyles(styles, {name: 'yHTabs', withTheme: true})(Tabs);
