@@ -11,6 +11,7 @@ export {default as Form} from '@/examples/Form';
 export {default as Grid} from '@/examples/Grid';
 export {default as Icon} from '@/examples/Icon';
 export {default as Input} from '@/examples/Input';
+export {default as InputNumber} from '@/examples/InputNumber';
 export {default as List} from '@/examples/List';
 export {default as Menu} from '@/examples/Menu';
 export {default as Message} from '@/examples/Message';
@@ -24,4 +25,6 @@ export {default as Select} from '@/examples/Select';
 export {default as Spin} from '@/examples/Spin';
 export {default as Switch} from '@/examples/Switch';
 export {default as Table} from '@/examples/Table';
+export {default as Tabs} from '@/examples/Tabs';
+export {default as Tag} from '@/examples/Tag';
 export {default as Template} from '@/examples/Template'
