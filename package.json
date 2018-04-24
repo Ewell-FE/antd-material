@@ -68,6 +68,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.8",
     "react-select": "^1.2.1",
+    "react-swipeable-views": "^0.12.13",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-form-material-ui": "^5.0.0-beta.2",

@@ -159,7 +159,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo1.md`}>
                         <Demo1md />
                     </Templete>
                 
@@ -232,7 +232,7 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo2.md`}>
                         <Demo2md />
                     </Templete>
                 
@@ -254,7 +254,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo3.md`}>
                         <Demo3md />
                     </Templete>
                 
@@ -298,7 +298,7 @@ export class Demo4md extends Component {
             </div>
         )
     }
-}`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo4.md`}>
                         <Demo4md />
                     </Templete>
                 
