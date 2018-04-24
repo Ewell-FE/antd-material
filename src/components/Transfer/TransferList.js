@@ -23,6 +23,7 @@ const styles = theme => {
             },
             '& .material-transfer-list-header': {
                 padding: '6px 12px',
+                zIndex:1,
                 borderRadius: '4px 4px 0 0',
                 background: '#fff',
                 color: 'rgba(0,0,0,.65)',
@@ -84,8 +85,14 @@ const styles = theme => {
                         minHeight: '32px',
                         '-webkit-transition': 'all .3s',
                         transition: 'all .3s',
+                        '&:hover':{
+                            cursor: 'pointer',
+                            backgroundColor: '#e6f7ff',
+
+                        }
                     },
                     '& > .LazyLoad':{
+                        // height:35,
                     '-webkit-animation': 'transferHighlightIn 1s',
                     animation: 'transferHighlightIn 1s',
                     },
@@ -136,12 +143,31 @@ export default class app extends Component {
 
     changeSearch = (e)=>{
         this.setState({searchValue:e.target.value},()=>{
-            this.props.onSearchChange && this.props.onSearchChange(this.props.type,e)
+            this.props.onSearchChange && this.props.onSearchChange(this.props.type === 1 ? 'left' : 'right',e)
         })
     }
 
-    render() {
+    scroll = (type,e)=>{
+        this.props.onScroll && this.props.onScroll(type === 1 ? 'left' : 'right',e)
+    }
 
+    transferRender = (item)=>{
+        var render  = this.props.render
+        function isRenderResultPlainObject(result) {
+            return result && !React.isValidElement(result) && Object.prototype.toString.call(result) === '[object Object]';
+        }
+        var renderResult = render(item),
+            checkResult = isRenderResultPlainObject(renderResult)
+        return {
+            renderLabel:checkResult ? renderResult.label : renderResult,
+            renderFilter:checkResult ? renderResult.value : renderResult
+        }
+
+    }    
+
+    
+
+    render() {
         const props = this.props
         const {classes} = this.props
         var prefixCls = 'material-transfer-list',
@@ -159,6 +185,7 @@ export default class app extends Component {
             changeSelect =props.changeSelect,
             keys = props.keys,
             selectedKeys = props.selectedKeys
+        
 
         //因为组件可以搜索,所以先对数据进行过滤,过滤的时候,根据用户写的  filterOption  函数来判断,如果没有写,则根据 render函数来判断
         //在全选/全不选的时候
@@ -168,11 +195,11 @@ export default class app extends Component {
             if(filterOption){
                 data = data.filter((option)=>filterOption(searchValue,option))
             }else{
-                data = data.filter((option)=>render(option).indexOf(searchValue) > -1)
+                data = data.filter((option)=>{
+                    var renderFilter = this.transferRender(option).renderFilter
+                    return renderFilter.indexOf(searchValue) > -1})
             }
         }
-
-            
 
         //数据中可能存在禁用,因此要先获得非禁用的数据,然后判断非禁用的数据是否全选/全不选,
         //因为 即使有禁用的被选中(一开始默认被选中),如果可选的都没有选中,那么头部的全选也是空的
@@ -195,6 +222,7 @@ export default class app extends Component {
                 hasSelectedKeys +=1
             }
         })
+
 
 
         return React.createElement(
@@ -220,19 +248,26 @@ export default class app extends Component {
                             <Input placeholder={searchPlaceholder} onChange={(e)=>this.changeSearch(e)}/>
                         </div>:null
                 }
-                <ul className={prefixCls+'-body-content'}>
+                <ul className={prefixCls+'-body-content'} onScroll={(e)=>this.scroll(type,e)}>
                     {
                         data.map((item,i)=>{
+                            var renderLabel = this.transferRender(item).renderLabel
+                            var renderFilter = this.transferRender(item).renderFilter
                             var children = null
                             var listItem =  (
                                 <li className={prefixCls+'-body-content-item'} key={keys(item)}>
-                                    <Checkbox disabled={item.disabled} checked={selectedKeys.indexOf(keys(item)) > -1} onChange={(e)=>changeSelect(type,2,e,item)}>{render(item)}</Checkbox>
+                                    <Checkbox disabled={item.disabled}
+                                              title={renderFilter}
+                                              checked={selectedKeys.indexOf(keys(item)) > -1}
+                                              onChange={(e)=>changeSelect(type,2,e,item)}>
+                                        {renderLabel}
+                                        </Checkbox>
                                 </li>
                             )
                             if(lazy){
                                 children = React.createElement(
                                     _reactLazyLoad['default'],
-                                    {key:keys(item),lazy},
+                                    {key:keys(item),...lazy},
                                     listItem
                                 )
                             }else{

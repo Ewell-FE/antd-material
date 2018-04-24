@@ -5,7 +5,7 @@ export default class App extends Component {
         return (
             <div>
                 <Typography variant="display2" gutterBottom>
-                    Transfer 时间轴
+                    Transfer 穿梭框
                 </Typography>
                 <p style={{margin:'12px 0 30px 0'}}>双栏穿梭选择框。</p>
                 <Typography variant="display1" gutterBottom>

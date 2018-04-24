@@ -1,48 +1,74 @@
-#  基本
-## 基本的时间轴。
+#  基本用法
+## 最基本的用法,展示了dataSource,targetKeys,每行的渲染函数 render 以及回调函数 onChange onSelectChange onScroll 的用法。
 
 
 ````jsx
 import Transfer from '@/components/Transfer'
 
+
 export class <%=component%> extends Component {
     constructor(props){
         super(props)
         this.state = {
-        value:'value',
-           
+        targetKeys:[],
+        selectedKeys:[],
+        mockData:[],
         }
     }
-    logs = ()=>{
-    console.log(this.state.value)
-    }    
+    
+    
+
+  handleChange = (nextTargetKeys, direction, moveKeys) => {
+    this.setState({ targetKeys: nextTargetKeys });
+
+    console.log('targetKeys: ', nextTargetKeys);
+    console.log('direction: ', direction);
+    console.log('moveKeys: ', moveKeys);
+  }
+
+  handleSelectChange = (type,part,e,data,sourceSelectedKeys, targetSelectedKeys) => {
+    this.setState({ selectedKeys: [...sourceSelectedKeys, ...targetSelectedKeys] });
+
+    console.log('sourceSelectedKeys: ', sourceSelectedKeys);
+    console.log('targetSelectedKeys: ', targetSelectedKeys);
+  }
+
+  handleScroll = (direction, e) => {
+    console.log('direction:', direction);
+    console.log('target:', e.target);
+  }
+
+
+
+
+componentDidMount(){
+     const mockData = []
+        for(let i = 0; i < 20;i++){
+            mockData.push({
+                key:i.toString(),
+                title:'contnet' + (i+1),
+                description: 'description of content' + (i+1),
+                disabled: i % 3 < 1,
+            })
+        }   
+        const targetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key);
+     this.setState({mockData:mockData,targetKeys:targetKeys})
+}
+
 
 
     render() {
-     var mockData = [];
-     mockData.push({key:1,age:2,name:3,title:'content1111',disabled:true})
-     mockData.push({key:2,age:3,name:1,title:'content22222',disabled:false})
-     mockData.push({key:3,age:4,name:2,title:'content33333',disabled:true})
-     mockData.push({key:4,age:1,name:4,title:'content4444',disabled:false})
-     mockData.push({key:5,age:6,name:7,title:'content5555',disabled:true})
-     mockData.push({key:6,age:7,name:8,title:'content666',disabled:true})
-     mockData.push({key:7,age:8,name:9,title:'content777',disabled:false})
-     mockData.push({key:8,age:9,name:10,title:'content888',disabled:false})
- 
-            const targetKeys = []
+    const state = this.state
+   
         return (
-        <Transfer dataSource={mockData}
-                  className='asadf'
-                  targetKeys={[1,3]}
-                  listStyle={{height:"400px"}}
-                  rowKey={(a)=>a.name}
+        <Transfer dataSource={state.mockData}
+        targetKeys={state.targetKeys}
                   titles={['Source', 'Target']}
-                  render={(item,allData) => item.title + '-' + item.name}
-                  notFoundContent={[123,'456',]}
-                  footer={[<span>sssss</span>,]}
-                  operations={[<span>sssss</span>,'aaa']}
-                  showSearch
-                  selectedKeys={[1,2]}
+                  selectedKeys={state.selectedKeys}
+                  onChange={this.handleChange}
+                  onSelectChange={this.handleSelectChange}
+                  onScroll={this.handleScroll}
+                  render={item => item.title}
         />
         )
     }

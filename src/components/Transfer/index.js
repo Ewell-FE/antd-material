@@ -6,7 +6,6 @@ import TransferList from './TransferList'
 import Button from '../Button'
 
 
-
 const styles = theme => {
     return {
         root: {
@@ -19,7 +18,7 @@ const styles = theme => {
                 overflow: 'hidden',
                 margin: '0 8px',
                 verticalAlign: 'middle',
-                '& .material-transfer-operation-button':{
+                '& > button':{
                     display:'block',
                     '&:first-child':{
                         marginBottom:'4px'
@@ -39,8 +38,8 @@ export default class app extends Component {
         super(props)
         this.state = {
             dataSource: props.dataSource || [],
-            selectedKeys: props.selectedKeys || [],
-            targetKeys: props.targetKeys || [],
+            selectedKeys: props.selectedKeys ? Object.assign([],props.selectedKeys) : [],
+            targetKeys: props.targetKeys  ? Object.assign(props.targetKeys) : [],
             sourceSelectedKeys:[],    //左侧选中项
             targetSelectedKeys:[],    //右侧选中项
         }
@@ -49,10 +48,8 @@ export default class app extends Component {
     componentDidMount() {
 
         var props = this.props
-        var selectedKeys = props.selectedKeys || [],
-            // keys =props.rowKey ? typeof (props.rowKey) === 'function' ? props.rowKey :  (item) => item[props.rowKey] : (item) => item.key,
-            targetKeys = props.targetKeys,
-            // dataSource = props.dataSource,
+        var selectedKeys = props.selectedKeys ? Object.assign([],props.selectedKeys) : [],
+            targetKeys = props.targetKeys ? [].concat(props.targetKeys) : [],
             sourceSelectedKeys = [],
             targetSelectedKeys = []
 
@@ -60,26 +57,90 @@ export default class app extends Component {
         var result = this.getSelfSelectKeys(selectedKeys,targetKeys)
         sourceSelectedKeys = result.sourceSelectedKeys
         targetSelectedKeys = result.targetSelectedKeys
-        
         this.setState({sourceSelectedKeys:sourceSelectedKeys,targetSelectedKeys:targetSelectedKeys,})
     }
 
+    componentWillReceiveProps(nextProps){
+        //只有通过外面改变值时,用这种方式
+        if(nextProps.targetKeys !== this.props.targetKeys){
+            this.setState({targetKeys:nextProps.targetKeys ? [].concat(nextProps.targetKeys) : []})
+        }
+        if(nextProps.dataSource !== this.props.dataSource){
+            this.setState({dataSource:nextProps.dataSource})
+        }
+        //当内部和外部都能控制,并且以外部为准时,用这种方式
+        if('selectedKeys' in nextProps){
+            var selectedKeys = Object.assign([],nextProps.selectedKeys),
+                targetKeys = this.state.targetKeys,
+                result = this.getSelfSelectKeys(selectedKeys,targetKeys),
+                sourceSelectedKeys = result.sourceSelectedKeys,
+                targetSelectedKeys = result.targetSelectedKeys
+            this.setState({selectedKeys:selectedKeys,sourceSelectedKeys:sourceSelectedKeys,targetSelectedKeys:targetSelectedKeys})
+        }
+    }
+
+
+    //左右移动,type:1-向左 2-向右
     changeOperation = (type) => {
         //给出 targetKey,direction,moveKey
-        this.props.onChange && this.props.onChange(this.state.targetKeys, type === 1 ? 'left' : 'right',)
+        var selectedKeys = this.state.selectedKeys,
+            targetKeys = this.state.targetKeys,
+            sourceSelectedKeys = this.state.sourceSelectedKeys,
+            targetSelectedKeys = this.state.targetSelectedKeys
+        
+
+        var moveKey = [],
+            nextTargetKey = []
+        targetKeys.map((item)=>{
+            nextTargetKey.push(item)
+        })
+        if(type === 1){
+            targetSelectedKeys.map((item,i)=>{
+                //更改selectkey,
+                const index = selectedKeys.indexOf(item)
+                if (index > -1) {selectedKeys.splice(index, 1)}
+                //更改targetkey
+                const index2 = nextTargetKey.indexOf(item)
+                if(index2 > -1){nextTargetKey.splice(index2,1)}
+                //移动的key
+                moveKey.push(item)
+            })
+            //置空
+            targetSelectedKeys = []
+        }else{
+            sourceSelectedKeys.map((item,i)=>{
+                //更改selectkey,
+                const index = selectedKeys.indexOf(item)
+                if (index > -1) {selectedKeys.splice(index, 1)}
+                //更改targetkey
+                nextTargetKey.push(item)
+                //移动的key
+                moveKey.push(item)
+            })
+            sourceSelectedKeys = []
+        }
+        
+
+        this.setState({selectedKeys:selectedKeys,targetSelectedKeys:targetSelectedKeys,sourceSelectedKeys:sourceSelectedKeys},()=>{
+            this.props.onChange && this.props.onChange(nextTargetKey, type === 1 ? 'left' : 'right',moveKey)
+        })
+
     }
     
     //选择 part:1-左侧,2-右侧 type:1-全选,2-普通 e:当前项 ,data:选中项的数据,如果是全选/全不选,则给出全部数据,如果是下面选择项,则给出此项数据
     changeSelect = (part,type,e,data)=>{
+
+
         var props = this.props,
-            keys =props.rowKey ? typeof (props.rowKey) === 'function' ? props.rowKey :  (item) => item[props.rowKey] : (item) => item.key,
-            targetKeys = props.targetKeys
+            keys =props.rowKey ? typeof (props.rowKey) === 'function' ? props.rowKey :  (item) => item[props.rowKey] : (item) => item.key
+
+
         
         //更改  selectedKeys  ,sourceSelectedKeys,targetSelectedKeys
         var selectedKeys = this.state.selectedKeys,
-            sourceSelectedKeys = this.state.sourceSelectedKeys,
-            targetSelectedKeys = this.state.targetSelectedKeys
-
+            targetKeys = this.state.targetKeys,
+            sourceSelectedKeys = [],
+            targetSelectedKeys = []
         //全选/全不选
         if(type === 1){
             //全选或全不选只针对未禁用的数据,因此先将传进来的所有数据过滤一遍
@@ -113,8 +174,6 @@ export default class app extends Component {
         targetSelectedKeys = result.targetSelectedKeys
 
 
-
-
         this.setState({selectedKeys:selectedKeys,sourceSelectedKeys:sourceSelectedKeys,targetSelectedKeys:targetSelectedKeys},()=>{
             this.props.onSelectChange && this.props.onSelectChange(type,part,e,data,sourceSelectedKeys,targetSelectedKeys)
         })
@@ -124,6 +183,8 @@ export default class app extends Component {
     //selectedKeys: 所有选中的keys  targetKeys:右侧的keys
     //return targetSelectedKeys:右侧选中的keys  sourceSelectedKeys:左侧选中的keys
     getSelfSelectKeys = (selectedKeys,targetKeys) =>{
+        console.log(selectedKeys,)
+        console.log(targetKeys,)
         var arr1 = [],arr2 = []
         selectedKeys.map((item,i)=>{
             if(targetKeys.indexOf(item) > -1){
@@ -138,12 +199,10 @@ export default class app extends Component {
         }
     }
 
-
-
     render() {
-        // console.log(this.state.selectedKeys,)
-        // console.log(this.state.sourceSelectedKeys,)
-        // console.log(this.state.targetSelectedKeys,)
+
+
+        
         const props = this.props
         const {classes} = this.props
         var prefixCls = 'material-transfer'
@@ -158,6 +217,7 @@ export default class app extends Component {
             hiddenArrow = props.hiddenArrow,
             lazy = props.lazy,
             searchPlaceholder = props.searchPlaceholder,
+            onScroll = props.onScroll,
             onSearchChange = props.onSearchChange,
             onSelectChange = props.onSelectChange,
             showSearch = props.showSearch,
@@ -175,6 +235,8 @@ export default class app extends Component {
                 footer.length > 1 ? footer[1] : footer[0]
             ): null
 
+
+
         var leftData = dataSource.filter((item) => targetKeys.indexOf(keys && keys(item)) === -1),
             rightData = dataSource.filter((item) => targetKeys.indexOf(keys && keys(item)) !== -1),
             leftList = <TransferList data={leftData}
@@ -186,6 +248,7 @@ export default class app extends Component {
                                      onSelectChange={onSelectChange}
                                      render={render}
                                      lazy={lazy}
+                                     onScroll={onScroll}
                                      showSearch={showSearch}
                                      searchPlaceholder={searchPlaceholder[0]}
                                      notFoundContent={notFoundContent[0]}
@@ -202,6 +265,7 @@ export default class app extends Component {
                                       onSelectChange={onSelectChange}
                                       render={render}
                                       lazy={lazy}
+                                      onScroll={onScroll}
                                       showSearch={showSearch}
                                       searchPlaceholder={searchPlaceholder.length && searchPlaceholder.length >1 ? searchPlaceholder[1] : searchPlaceholder[0]}
                                       notFoundContent={notFoundContent.length && notFoundContent.length > 1 ? notFoundContent[1]:notFoundContent[0]}
@@ -238,9 +302,9 @@ app.defaultProps = {
     showSearch: false,
     hiddenArrow: false,
     titles: ['', ''],
-    targetKeys:[],
     searchPlaceholder:['请输入搜索内容'],
-    lazy:{ height: 32, offset: 32 }
+    lazy:{ height: 35, offset: 35 },
+    render:()=> void 0
 }
     app.propTypes = {
         className: PropTypes.string,     //类名
@@ -261,7 +325,7 @@ app.defaultProps = {
         targetKeys: PropTypes.array,      //ok
         titles: PropTypes.array,          //ok
         onChange: PropTypes.func,
-      //  onScroll:
+       onScroll:PropTypes.func,            //ok
         onSearchChange: PropTypes.func,   //ok   补充说明,此函数不能阻止默认的删选,可以作为监听使用,
         onSelectChange: PropTypes.func,    //ok
         rowKey: PropTypes.oneOfType([
