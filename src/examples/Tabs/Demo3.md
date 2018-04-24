@@ -1,11 +1,11 @@
-#  基本
-## 默认选中第一项。
+#  图标
+## 有图标的标签。
 
 ````jsx
 import Tab from '@/components/Tabs'
+import Icon from '@/components/Icon'
 const Tabs = Tab.Tabs
- 
-export class Demo1md extends Component {
+export class Demo3md extends Component {
         constructor(props) {
             super(props);
             this.state = {
@@ -27,19 +27,14 @@ export class Demo1md extends Component {
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
                               indicatorColor="primary"
                               textColor="primary">
-                            <Tab label="Tab1">
+                            <Tab label="Tab1" icon={<i className="fa fa-apple" />}>
                                 <div>
                                     我是Tab1的内容
                                 </div>
                             </Tab>
-                            <Tab label="Tab2">
+                            <Tab label="disabled" icon={<i className="fa fa-android"/>}>
                                 <div>
                                     我是Tab2的内容
-                                </div>
-                            </Tab>
-                            <Tab label="Tab3">
-                                <div>
-                                    我是Tab3的内容
                                 </div>
                             </Tab>
                         </Tabs>

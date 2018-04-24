@@ -1,83 +1,244 @@
-import React, {Component} from 'react'
+// @inheritedComponent ButtonBase
+
+import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import {withStyles} from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-// import Tabs from 'material-ui/Tabs';
-import Tab from './Tab';
-import Tabs from './Tabs';
+import ButtonBase from 'material-ui/ButtonBase';
+import {capitalize} from 'material-ui/utils/helpers';
+import Tabs from './Tabs'
 
-import Typography from 'material-ui/Typography';
-
-function TabContainer(props) {
-    return (
-        <Typography component="div" style={{padding: 8 * 3}}>
-            {props.children}
-        </Typography>
-    );
-}
-
-TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-const styles = theme => {
-    return {
-        root: {
-            flexGrow: 1,
-            backgroundColor: theme.palette.background.paper,
+export const styles = theme => ({
+    root: {
+        ...theme.typography.button,
+        maxWidth: 264,
+        position: 'relative',
+        minWidth: 72,
+        padding: 0,
+        height: 48,
+        flex: 'none',
+        overflow: 'hidden',
+        [theme.breakpoints.up('md')]: {
+            minWidth: 72,
         },
-    }
-};
+    },
+    labelIcon: {
+        height: 'auto',
+    },
+    textColorInherit: {
+        color: 'inherit',
+        opacity: 0.7,
+    },
+    textColorPrimary: {
+        color: theme.palette.text.secondary,
+    },
+    textColorPrimarySelected: {
+        color: '#1890ff',
+    },
+    textColorPrimaryDisabled: {
+        color: theme.palette.text.disabled,
+    },
+    textColorSecondary: {
+        color: theme.palette.text.secondary,
+    },
+    colorSecondary: {
+        backgroundColor: 'red'
+    },
+    textColorSecondarySelected: {
+        color: theme.palette.secondary.main,
+    },
+    textColorSecondaryDisabled: {
+        color: theme.palette.text.disabled,
+    },
+    textColorInheritSelected: {
+        opacity: 1,
+    },
+    textColorInheritDisabled: {
+        opacity: 0.4,
+    },
+    fullWidth: {
+        flexGrow: 1,
+    },
+    wrapper: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        // flexDirection: 'column',
 
-@withStyles(styles, {name: 'MuiTabsAnt'})
-export default class MyTabs extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 0,
-            selectNum: 0
-        };
-    }
+        '& .fa': {
+            marginRight: 6
+        }
+    },
+    labelContainer: {
+        paddingTop: 6,
+        paddingBottom: 6,
 
-    static defaultProps = {}
+    },
+    label: {
+        fontSize: theme.typography.pxToRem(14),
+        whiteSpace: 'normal',
+        [theme.breakpoints.up('md')]: {
+            fontSize: theme.typography.pxToRem(13),
+        },
+    },
+    labelWrapped: {
+        [theme.breakpoints.down('sm')]: {
+            fontSize: theme.typography.pxToRem(12),
+        },
+    },
+});
 
-    componentDidMount() {
-        // this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.button))
-    }
-
-    handleChange = (event, value) => {
-        this.setState({value, selectNum: value});
-        this.props.onChange()
+class Tab extends React.Component {
+    state = {
+        wrappedText: false,
     };
 
+    componentDidMount() {
+        this.checkTextWrap();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.wrappedText === prevState.wrappedText) {
+            /**
+             * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
+             * font size still only requires one line.  This check will prevent an infinite render loop
+             * fron occurring in that scenario.
+             */
+            this.checkTextWrap();
+        }
+    }
+
+    handleChange = (event: SyntheticEvent<>) => {
+        const {onChange, value, onClick} = this.props;
+
+        if (onChange) {
+            onChange(event, value);
+        }
+
+        if (onClick) {
+            onClick(event);
+        }
+    };
+
+    label = undefined;
+
+    checkTextWrap = () => {
+        if (this.label) {
+            const wrappedText = this.label.getClientRects().length > 1;
+            if (this.state.wrappedText !== wrappedText) {
+                this.setState({wrappedText});
+            }
+        }
+    };
 
     render() {
-        const {classes, theme} = this.props;
-        const {value} = this.state;
+        const {
+            classes,
+            className: classNameProp,
+            disabled,
+            fullWidth,
+            icon,
+            indicator,
+            label: labelProp,
+            onChange,
+            selected,
+            style: styleProp,
+            textColor,
+            value,
+            ...other
+        } = this.props;
+
+        let label;
+        console.log(classes)
+        if (labelProp !== undefined) {
+            label = (
+                <span className={classes.labelContainer}>
+          <span
+              className={classNames(classes.label, {
+                  [classes.labelWrapped]: this.state.wrappedText,
+              })}
+              ref={node => {
+                  this.label = node;
+              }}
+          >
+            {labelProp}
+          </span>
+        </span>
+            );
+        }
+
+        const className = classNames(
+            classes.root,
+            classes[`textColor${capitalize(textColor)}`],
+            {
+                [classes[`textColor${capitalize(textColor)}Disabled`]]: disabled,
+                [classes[`textColor${capitalize(textColor)}Selected`]]: selected,
+                [classes.labelIcon]: icon && label,
+                [classes.fullWidth]: fullWidth,
+            },
+            classNameProp,
+        );
+
+        let style = {};
+
+        if (textColor !== 'secondary' && textColor !== 'inherit') {
+            style.color = textColor;
+        }
+
+        style =
+            Object.keys(style).length > 0
+                ? {
+                    ...style,
+                    ...styleProp,
+                }
+                : styleProp;
+
         return (
-            <div className={classes.root}>
-                <Tabs value={value} onChange={this.handleChange} selectNum={this.state.selectNum}>
-                    <Tab label="Item One">
-                        <div>
-                            <h2>111</h2>
-                        </div>
-                    </Tab>
-                    <Tab label="Item Two">
-                        <div>
-                            <h2>222</h2>
-                        </div>
-                    </Tab>
-                    <Tab label="Item Three">
-                        <div>
-                            <h2>333</h2>
-                        </div>
-                    </Tab>
-                </Tabs>
-            </div>
-        )
+            <ButtonBase
+                focusRipple
+                className={className}
+                style={style}
+                role="tab"
+                aria-selected={selected}
+                disabled={disabled}
+                {...other}
+                onClick={this.handleChange}
+            >
+        <span className={classes.wrapper}>
+          {icon}
+            {label}
+        </span>
+                {indicator}
+            </ButtonBase>
+        );
     }
 }
 
-MyTabs.propTypes = {
-    onChange: PropTypes.func,//点击切换事件
+Tab.propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    fullWidth: PropTypes.bool,
+    icon: PropTypes.node,
+    indicator: PropTypes.node,
+    label: PropTypes.node,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    selected: PropTypes.bool,
+    style: PropTypes.object,
+    textColor: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+    ]),
+    value: PropTypes.any,
 };
-// app.Group = ButtonGroup
+
+Tab.defaultProps = {
+    disabled: false,
+    textColor: 'inherit',
+};
+
+Tab.Tabs = Tabs
+
+export default withStyles(styles, {name: 'yHTab'})(Tab);

@@ -375,7 +375,7 @@ class Tabs extends React.Component {
                         <div className={flexHeadClassName}>{children}</div>
                         {this.state.mounted && indicator}
                     </div>
-                    {conditionalElements.scrollButtonRight}
+                    {/*{conditionalElements.scrollButtonRight}*/}
                 </div>
                 <SwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                                 index={this.props.selectnum}
