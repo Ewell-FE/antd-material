@@ -50,24 +50,24 @@
 │   │   ├───Grid              # ➜ 阿磊 ✓ complete!
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
-│   │   ├───Affix             # ➜ 朱宇 ✓
-│   │   ├───Breadcrumb        # ➜ 朱宇 ✓
-│   │   ├───Dropdown          # ➜ 朱宇 ✓
-│   │   ├───Menu              # ➜ 何家佳 ✓ complete!
+│   │   ├───Affix             # ➜ 阿磊 ✓
+│   │   ├───Breadcrumb        # ➜ 阿磊 ✓
+│   │   ├───Dropdown          # ➜ 阿磊 ✓
+│   │   ├───Menu              # ➜ 何家佳 ✓ dev!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
-│   │   ├───Steps             # ➜ 朱宇 ✓
+│   │   ├───Steps             # ➜ 阿磊 ✓
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
 │   │   ├───Cascader          # ➜ 阿磊
 │   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
-│   │   ├───Form              # ➜ 阿磊 ✓ dev
+│   │   ├───Form              # ➜ 阿磊 ✓ complete
 │   │   ├───Input             # ➜ 阿磊 ✓  complete!
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Select            # ➜ 曾辉艳 ✓ dev
+│   │   ├───Select            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Slider            # ➜ 阿磊
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
@@ -79,7 +79,7 @@
 │   │   ├───Badge             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Calendar          # ➜ 阿磊
 │   │   ├───Card              # ➜ 胡昌哲 ✓
-│   │   ├───Carousel          # ➜ 曾辉艳 ✓
+│   │   ├───Carousel          # ➜ 曾辉艳 ✓ dev
 │   │   ├───Collapse          # ➜ 何家佳 ✓
 │   │   ├───List              # ➜ 林铭偲 ✓ complete!
 │   │   ├───Popover           # ➜ 林铭偲 ✓ complete!

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import Layout from '../component/layout'
 import "./style.less"
@@ -18,11 +19,11 @@ class App extends Component {
     }
 
     render() {
-        const {components,fetching} = this.props.home
+        const {components, fetching} = this.props.home
         if (!fetching) {
             return (
                 <div id="home">
-                    <Layout components={components}></Layout>
+                    <Layout changeTheme={this.context.changeTheme} components={components}></Layout>
                 </div>
             )
         }
@@ -44,7 +45,9 @@ class App extends Component {
         );
     }
 }
-
+App.contextTypes = {
+    changeTheme: PropTypes.func
+};
 function mapStateToProps(state) {
     return {
         router: state.router,

@@ -1,34 +1,65 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {withStyles} from 'material-ui/styles';
+import {MuiThemeProvider, withStyles} from 'material-ui/styles';
+import Icon from '../Icon';
 import Slide from 'material-ui/transitions/Slide';
-import './style.less'
 import style from '../Style'
-import classnames from 'classnames'
 import _ from 'lodash'
-const styles = theme => ({
-    success: {
-        color: style.theme.colors.success
-    },
-    warn: {
-        color: style.theme.colors.warning
-    },
-    info: {
-        color: style.theme.colors.info
-    },
-    error: {
-        color: style.theme.colors.error
+const styles = theme => {
+    return {
+        message: {
+            "position": "relative",
+            "display": "inline-block",
+            "borderRadius": "4px",
+            "box-shadow": "0 2px 8px rgba(0, 0, 0, 0.2)",
+            "padding": "10px 12px",
+            "box-sizing": "border-box",
+            "backgroundColor": "#fff",
+            "overflow": "hidden",
+            "height": "40px"
+        },
+        messageIcon: {
+            "position": "absolute",
+            "left": "0",
+            "top": "0",
+            "text-align": "center",
+            "line-height": "40px",
+            "margin-left": "10px",
+        },
+        messageGroup: {
+            "margin-left": "15px",
+            "position": "relative",
+            "height": "20px",
+            "line-height": "20px",
+            "display": "flex",
+            "flexAlign": "center",
+            "align-items": "center"
+        },
+        success: {
+            color: theme.colors.success
+        },
+        warn: {
+            color: theme.colors.warning
+        },
+        info: {
+            color: theme.colors.info
+        },
+        error: {
+            color: theme.colors.error
+        }
     }
-});
-let Icon = {
-    'success': 'fa-check-circle',
-    'warn': 'fa-exclamation-circle',
-    'info': 'fa-info-circle',
-    'error': 'fa-times-circle'
+}
+let Icons = {
+    'success': 'check-circle',
+    'warn': 'exclamation-circle',
+    'info': 'info-circle',
+    'error': 'times-circle'
 }
 let box = null;
+let emptyBox = null;
 let index = 0;
 let div = {};
+
 @withStyles(styles, {name: 'MuiMessageAnt'})
 export class Message extends Component {
     constructor(props) {
@@ -51,7 +82,7 @@ export class Message extends Component {
             box.removeChild(div[key])
             delete div[key]
             if (_.isEqual(div, {})) {
-                document.body.removeChild(box);
+                document.body.removeChild(emptyBox);
                 box = null;
             }
             callback && callback()
@@ -61,15 +92,38 @@ export class Message extends Component {
     render() {
         const {classes} = this.props
         return (
-            <Slide direction="down" in={true}>
-                <div className="yh-message">
-                    <div className={classnames('yh-message-icon',)}>
-                        <i className={classnames('fa',Icon[this.props.type],classes[this.props.type])}
-                           aria-hidden="true"></i>
-                    </div>
-                    <div className="yh-message-group"><p>{this.props.msg}</p></div>
+            <div className={classes.message}>
+                <div className={classes.messageIcon}>
+                    <Icon type={Icons[this.props.type]} className={classes[this.props.type]}/>
                 </div>
-            </Slide>
+                <div className={classes.messageGroup}><p>{this.props.msg}</p></div>
+            </div>
+        )
+    }
+}
+
+const styles2 = theme => {
+    return {
+        root: {
+            "position": "fixed",
+            "top": "20px",
+            "width": "100%",
+            "textAlign": "center",
+            "zIndex": "100",
+            "pointerEvents": "none"
+        }
+    }
+}
+@withStyles(styles2, {name: 'MuiMessageBoxAnt'})
+export class BoxMsg extends Component {
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.message))
+    }
+    render() {
+        return (
+            <div ref={ref=>this.message =ref} className={this.props.classes.root}>
+
+            </div>
         )
     }
 }
@@ -80,14 +134,23 @@ let show = function (options) {
     }
     Object.assign(defaultOptions, options || {})
     if (!box) {
-        box = document.createElement('div')
-        box.className = 'yh-message-box'
-        document.body.appendChild(box);
+        emptyBox = document.createElement('div')
+        document.body.appendChild(emptyBox);
+        ReactDOM.render(<MuiThemeProvider theme={style.theme}>
+            <BoxMsg withRef={(dom)=>{box=dom}}/>
+        </MuiThemeProvider>, emptyBox);
     }
     let messageBox = document.createElement('div')
     box.appendChild(messageBox);
     div[index] = messageBox
-    ReactDOM.render(<Message {...defaultOptions}/>, messageBox);
+    ReactDOM.render(
+        <Slide direction="down" in={true}>
+            <div>
+                <MuiThemeProvider theme={style.theme}>
+                    <Message {...defaultOptions}/>
+                </MuiThemeProvider>
+            </div>
+        </Slide>, messageBox);
 }
 export default {
     success: function (str, timer, callback) {

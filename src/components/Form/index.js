@@ -4,65 +4,19 @@
 import React, {Component} from 'react'
 import {reduxForm, Field, Form} from 'redux-form'
 import PropTypes from 'prop-types';
-import Input from '@/components/Input'
-import classnames from 'classnames'
 import Grid from 'material-ui/Grid';
-import './style.less'
+import {withStyles} from 'material-ui/styles';
+import Input from './input'
 
 //渲染field组件
 let FieldHtml = (field)=> {
     var isError = field.meta.touched && field.meta.error
     var isWarn = field.meta.touched && field.meta.warning
-    if (field.readOnly === true) {
-        return (
-            <div className={field.layout}>
-                {field.label &&
-                <label style={{width:field.labelcol}} htmlFor={`__${field.input.name}__`}>{field.label}:</label>}
-                <div className="yh-input" style={{lineHeight:"32px"}}>
-                    {field.val[field.input.name] ? field.val[field.input.name] : ''}
-                    {/*<span style={{verticalAlign: 'baseline-middle'}}></span>*/}
-                </div>
-            </div>
-        )
-    } else if (field.type === 'select') {
-        return (
-            <div className={field.layout}>
-                {field.label &&
-                <label style={{width:field.labelcol}} htmlFor={`__${field.input.name}__`}>{field.required &&
-                <span className="required">* </span>}{field.label}:</label>}
-                <div className="yh-input" style={{width:field.wrappercol}}><select
-                    id={`__${field.input.name}__`} {...field} {...field.input}
-                    style={{width:field.wrappercol,height:"32px"}}
-                    clazz={classnames(field.className, {error: isError}, {warn: isWarn})}>
-                    <option value="请选择">请选择</option>
-                    {field.options.map(item=> {
-                        return (
-                            <option value={item} key={item}>{item}</option>
-                        )
-                    })}
-                </select>
-                    {isError && <div className="errorRequired">{field.meta.error}</div>}
-                    {isWarn && <div className="warnRequired">{field.meta.warning}</div>}
-                </div>
-            </div>
-        )
-    } else {
-        return (
-            <div className={field.layout}>
-                {field.label &&
-                <label style={{width:field.labelcol}} htmlFor={`__${field.input.name}__`}>{field.required &&
-                <span className="required">* </span>}{field.label}:</label>}
-                <div className="yh-input" style={{width:field.wrappercol}}><Input
-                    id={`__${field.input.name}__`} {...field} {...field.input}
-                    clazz={classnames(field.className, {error: isError}, {warn: isWarn})}/>
-                    {isError && <div className="errorRequired">{field.meta.error}</div>}
-                    {isWarn && <div className="warnRequired">{field.meta.warning}</div>}
-                </div>
-            </div>
-        )
-    }
+    return (
+        <Input field={field} isError={isError} isWarn={isWarn}/>
+    )
 }
-//field.layout 可选值：[ field , inline , horizontal ,grid] 默认为field
+//field.layout 可选值：[ vertical , inline , horizontal ,grid] 默认为inline
 const renderField = (field) => {
     if (field.layout === 'grid') {
         return (
@@ -105,6 +59,16 @@ let GridBox = (props)=> {
 
 }
 
+const styles = theme => {
+    return {
+        root: {
+            "& button": {
+                "verticalAlign": "top"
+            }
+        }
+    }
+};
+@withStyles(styles, {name: 'MuiFormAnt'})
 export class FormComponent extends Component {
 
     constructor(props) {
@@ -121,15 +85,16 @@ export class FormComponent extends Component {
     }
 
     render() {
+        const {classes} =this.props
         return (
-            <Form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+            <Form className={classes.root} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                 <GridBox {...this.props}>
                     {this.props.fields && this.props.fields.map((item, i)=> {
                         return (
                             <RenderFields key={i} {...item}
                                           layout={this.props.layout}
-                                          labelcol={this.props.labelCol}
-                                          wrappercol={this.props.wrapperCol}
+                                          labelWidth={item.labelWidth ||　this.props.labelWidth}
+                                          wrapperWidth={item.wrapperWidth || this.props.wrapperWidth}
                             />
                         )
                     })}

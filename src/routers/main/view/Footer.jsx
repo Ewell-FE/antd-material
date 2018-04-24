@@ -22,7 +22,7 @@ class Footer extends React.Component {
         const isImg = cItem.match(/\.(jpg|png|svg|bmp|jpeg)$/i);
         return (<li className={isImg ? 'icon' : ''} key={ii}>
           <a href={links[ii]} target="_blank">
-            {isImg ? <img src={cItem} width="100%" /> : cItem}
+            {isImg ? <img alt="" src={cItem} width="100%" /> : cItem}
           </a>
         </li>);
       });
@@ -53,7 +53,7 @@ class Footer extends React.Component {
       <QueueAnim type="bottom" component="ul" key="ul" leaveReverse id={`${props.id}-ul`}>
         <li key="logo" id={`${props.id}-logo`}>
           <p className="logo">
-            <img src={logoContent.img} width="100%" />
+            <img alt="" src={logoContent.img} width="100%" />
           </p>
           <p>{logoContent.content}</p>
         </li>
@@ -66,7 +66,7 @@ class Footer extends React.Component {
         id={`${props.id}-content`}
       >
         <span>
-          Copyright © 2016 The Project by <a href="#">Ant Motion</a>. All Rights Reserved
+          Copyright © 2018 The Project by <a href="https://github.com/Ewell-FE/antd-material">Ant Material</a>. All Rights Reserved
         </span>
       </TweenOne>
     </OverPack>);

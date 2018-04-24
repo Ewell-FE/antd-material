@@ -37,12 +37,16 @@ export class <%=component%> extends Component {
                   <br />
                   <Form layout="grid" form='roleForm2'
                     initialValues={{}}
+                    labelWidth="20%"
+                    wrapperWidth="80%"
                     Submit={(values) => this.Submit(values)} ref="form5"
                     fields={[{
                         span:4,
                         name: "roleName",
                         label: "用户性",
                         required: true,
+                        labelWidth:"30%",
+                        wrapperWidth:"70%",
                         validate:roleLength4
                     }, {
                          span:4,

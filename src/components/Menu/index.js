@@ -3,19 +3,53 @@ import PropTypes from 'prop-types';
 import MenuItem from './item'
 import SubMenu from './subMenu'
 import {withStyles} from 'material-ui/styles';
-import ClassNames from 'classnames';
+import classnames from 'classnames';
 import './index.css';
 
 const styles=theme=>{
     return {
-        menuUl:{
-            fontFamily:'"Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        root:{
             background:'#fff',
             width:'100%',
             padding:0,
-            lineHeight:'46px',
+            lineHeight:'40px',
             color:theme.palette.text.primary,
             textAlign:'left'
+        },
+        horizontalRoot:{
+            borderBottomWidth:'1px',
+            borderBottomStyle:'solid',
+            borderBottomColor:theme.palette.grey[300],
+            lineHeight:'48px',
+            '&>.menuli':{
+                position:'relative',
+                top:'1px',
+                float:'left',
+                borderBottomWidth:'2px',
+                borderBottomStyle:'solid',
+                borderBottomColor:'transparent',
+                '&:hover':{
+                    borderBottomColor:theme.colors.primary
+                },
+                '&.active':{
+                    borderBottomColor:theme.colors.primary,
+                    color:theme.colors.primary,
+                    '&>a':{
+                        color:theme.colors.primary
+                    }
+                }
+            }
+        },
+        inlineRoot:{
+            '& .active':{
+                background:theme.colors.light,
+                color:theme.colors.primary,
+                borderRight:`2px solid ${theme.colors.primary}`,
+                '&>a':{
+                    color:'currentColor',
+                    textDecoration:'none'
+                }
+            }
         },
         clearFix:theme.clearfix
     }
@@ -70,7 +104,9 @@ class Menu extends Component{
         let selectedKey=this.state.selectedKey;
         return (
             <div>
-                <ul className={mode==='horizontal'?ClassNames(classes.menuUl,classes.clearFix):ClassNames(classes.menuUl)}
+                <ul className={classnames(classes.root,
+                                          {[`${classes.clearFix} ${classes.horizontalRoot}`]:mode==='horizontal'},
+                                          {[`${classes.inlineRoot}`]:mode==='inline'})}
                     style={style}>
                     {
                         React.Children.map(children, child=>{
