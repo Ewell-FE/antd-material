@@ -27,4 +27,6 @@ export {default as Switch} from '@/examples/Switch';
 export {default as Table} from '@/examples/Table';
 export {default as Tabs} from '@/examples/Tabs';
 export {default as Tag} from '@/examples/Tag';
-export {default as Template} from '@/examples/Template'
+export {default as Template} from '@/examples/Template';
+export {default as Timeline} from '@/examples/Timeline';
+export {default as Transfer} from '@/examples/Transfer'

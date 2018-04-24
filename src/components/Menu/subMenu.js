@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import ReactDom from 'react-dom';
 import {withStyles} from 'material-ui/styles';
-import ClassNames from 'classnames';
+import classnames from 'classnames';
 import './index.css';
 import Collapse from 'material-ui/transitions/Collapse';
 import { MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
@@ -33,7 +33,7 @@ let curTheme={};
 const styles=theme=>{
     curTheme=createMuiTheme(theme);
     return {
-        subUl:{
+        root:{
             position:'absolute',
             padding:'0',
             margin:'0',
@@ -45,15 +45,52 @@ const styles=theme=>{
             borderRadius:'2px',
             '&>li':{
                 border:'none'
+            },
+            '& .active':{
+                borderBottomColor:theme.colors.primary,
+                color:theme.colors.primary,
+                '&>a':{
+                    color:theme.colors.primary
+                }
             }
         },
-        inlineSubUl:{
+        horizontalRoot:{
+            '&.in':{
+                animation:'slideUpIn .5s ease'
+            },
+            '&.out':{
+                animation:'slideUpOut .5s ease',
+                display:'none' 
+            },
+            '& .menuli':{
+                paddingLeft:'40px'
+            }
+        },
+        verticalRoot:{
+            '&.in':{
+                animation:'slideLeftIn .5s ease'
+            },
+            '&.out':{
+                animation:'slideLeftOut .5s ease',
+                display:'none' 
+            },
+        },
+        inlineRoot:{
             listStyle:'none',
             background:'#fff',
             padding:'0',
             margin:'0',
-            '&>li':{
-                borderBottom:'none'
+            '& .active':{
+                background:theme.colors.light,
+                color:theme.colors.primary,
+                borderRight:`2px solid ${theme.colors.primary}`,
+                '&>a':{
+                    color:'currentColor',
+                    textDecoration:'none'
+                }
+            },
+            '& .menuli':{
+                paddingLeft:'40px'
             }
         },
         menuLi:{
@@ -65,43 +102,15 @@ const styles=theme=>{
                 color:'currentColor'
             }
         },
-        floatLi:{
-            float:'left',
-            borderBottomWidth:'2px',
-            borderBottomStyle:'solid',
-            borderBottomColor:theme.palette.grey[300]
-        },
         subDiv:{
             position:'relative',
-            padding:'0 16px',
+            padding:'0 20px',
             '&:hover':{
                 color:theme.colors.primary
             }
         },
         activeSubDiv:{
             color:theme.colors.primary
-        },
-        activeLi:{
-            borderBottomColor:theme.colors.primary,
-            color:theme.colors.primary,
-            '&:hover>a':{
-                color:theme.colors.primary
-            }
-        },
-        hidden:{
-            display:'none'
-        },
-        animationUpIn:{
-            animation:'slideUpIn .5s ease'
-        },
-        animationUpOut:{
-            animation:'slideUpOut .5s ease'
-        },
-        animationLeftIn:{
-            animation:'slideLeftIn .5s ease'
-        },
-        animationLeftOut:{
-            animation:'slideLeftOut .5s ease'
         },
         menuIcon:{
             position:'absolute',
@@ -229,7 +238,7 @@ class SubMenu extends Component{
         this.isEnter=false;
         setTimeout(()=>{
             !this.isEnter && this.leaveFun();
-        },300);
+        },200);
 
     }
 
@@ -273,28 +282,41 @@ class SubMenu extends Component{
 
     render(){
         const {classes,mode,children,onClick,selectedKey,keyValue,keyPath,selectedPath}=this.props;
-        let liClass=mode==='horizontal'?((this.state.isShow || (selectedPath && selectedPath.includes(keyValue)))?ClassNames(classes.menuLi,classes.activeLi,classes.floatLi):ClassNames(classes.menuLi,classes.floatLi)):(classes.menuLi);
         let newArr=!keyPath ? [] : keyPath;
         newArr.push(keyValue);
         return (
-            <li className={liClass}
+            <li className={classnames(classes.menuLi,
+                                      {menuli:mode==='horizontal'},
+                                      {active:(mode==='horizontal' && (this.state.isShow || (selectedPath && selectedPath.includes(keyValue))))})}
                 ref={(el)=>this._subParent=el}
                 onMouseEnter={this.hoverIn}
                 onMouseLeave={this.hoverOut}
                 onClick={this.handleClick}>
-                <div className={((this.state.isShow || (selectedPath && selectedPath.includes(keyValue))) && mode!=='inline' )?ClassNames(classes.subDiv,classes.activeSubDiv):classes.subDiv}>
+                <div className={classnames(classes.subDiv,
+                                           {[`${classes.activeSubDiv}`]:mode!=='inline' && (this.state.isShow || (selectedPath && selectedPath.includes(keyValue)))})}>
                     {this.props.title}
                     {   mode==='inline' &&
-                        <i className={ClassNames('fa','fa-angle-down',this.state.isShow?ClassNames(classes.menuIcon,classes.showMenuIcon):classes.menuIcon)} aria-hidden="true"></i>
+                        <i className={classnames('fa',
+                                      'fa-angle-down',
+                                      classes.menuIcon,
+                                      {[`${classes.showMenuIcon}`]:this.state.isShow})} 
+                            aria-hidden="true"></i>
                     }
                     {   mode==='vertical' &&
-                        <i className={ClassNames('fa','fa-angle-right',classes.menuIcon)} aria-hidden="true"></i>
+                        <i className={classnames('fa',
+                                                 'fa-angle-right',
+                                                 classes.menuIcon)} 
+                            aria-hidden="true"></i>
                     }
                 </div>
                 { (mode==='horizontal' || (mode==='vertical' && !this.props.isSubMenu)) &&
                     <RenderInBody>
                         <MuiThemeProvider theme={curTheme}>
-                        <ul className={this.state.isShow?ClassNames(classes.subUl,mode==='horizontal'?classes.animationUpIn:classes.animationLeftIn):ClassNames(mode==='horizontal'?classes.animationUpOut:classes.animationLeftOut,classes.hidden)}
+                        <ul className={classnames(classes.root,
+                                                  {[`${classes.horizontalRoot}`]:mode==='horizontal'},
+                                                  {[`${classes.verticalRoot}`]:mode==='vertical'},
+                                                  {in:this.state.isShow},
+                                                  {out:!this.state.isShow})}
                             style={this.state.location}
                             onMouseEnter={this.enterFun}
                             onMouseLeave={this.hoverOut}>
@@ -320,7 +342,10 @@ class SubMenu extends Component{
                 }
                 {   mode==='vertical' && this.props.isSubMenu &&
                     <MuiThemeProvider theme={curTheme}>
-                        <ul className={this.state.isShow?ClassNames(classes.subUl,classes.animationLeftIn):ClassNames(classes.animationLeftOut,classes.hidden)}
+                        <ul className={classnames(classes.root,
+                                                  classes.verticalRoot,
+                                                  {in:this.state.isShow},
+                                                  {out:!this.state.isShow})}
                             style={this.state.location}>
                             {
                                 React.Children.map(children,child=>{
@@ -344,7 +369,7 @@ class SubMenu extends Component{
                 {   mode==='inline' &&
                     <Collapse in={this.state.isShow}>
                         <MuiThemeProvider theme={curTheme}>
-                        <ul className={classes.inlineSubUl}>
+                        <ul className={classes.inlineRoot}>
                             {
                                 React.Children.map(children,child=>{
                                     return React.cloneElement(child,{
