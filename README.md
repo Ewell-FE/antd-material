@@ -61,7 +61,7 @@
 │   │   ├───Cascader          # ➜ 阿磊
 │   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
 │   │   ├───DatePicker        # ➜ 阿磊 ✓
-│   │   ├───Form              # ➜ 阿磊 ✓ dev
+│   │   ├───Form              # ➜ 阿磊 ✓ complete
 │   │   ├───Input             # ➜ 阿磊 ✓  complete!
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓
 │   │   ├───Mention           # ➜ 阿磊

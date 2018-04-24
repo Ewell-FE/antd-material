@@ -124,14 +124,14 @@ export default class Input extends Component {
     render() {
         const props = {...this.props}
         const {classes} = this.props
-        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style', 'classes'])
+        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style', 'classes','className'])
         if ('value' in props) {
             otherProps.value = fixControlledValue(props.value);
         }
         let className = classnames(
             classes.root,
             props.className,
-            classes[props.size],
+            {[classes[props.size]]:props.type!=='textarea'},
             {[classes.leftIcon]: props.prefix},
             {[classes.rightIcon]: props.suffix}
         )
