@@ -23,7 +23,7 @@ const styles = theme => {
         },
         readOnly:{
             color: theme.disabled.color,
-            backgroundColor: theme.disabled.backgroundColor,
+            // backgroundColor: theme.disabled.backgroundColor,
             cursor: "not-allowed"
         },
         radioRoot: {

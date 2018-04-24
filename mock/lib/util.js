@@ -72,11 +72,12 @@ const menuList = [
 
 //数组排除选项
 function ignore(arr, removes) {
-    removes.forEach((item)=> {
+    removes.forEach((item) => {
         let index = arr.indexOf(item)
         arr.splice(index, 1)
     })
 }
+
 //按行截取文本片段
 function cutText(str, start, end) {
     var lines = str.toString().split('\n')
@@ -98,6 +99,7 @@ function cutText(str, start, end) {
     }
     return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`').replace(/\$/g, '\\$')
 }
+
 //根据前缀获取行前缀后的值
 function cutStrByStart(str, start) {
     var lines = str.toString().split('\n')
@@ -110,6 +112,7 @@ function cutStrByStart(str, start) {
     }
     return value
 }
+
 //切割react代码，区分开来import和render
 
 function cutJsx(render, imports, consts) {
@@ -168,6 +171,7 @@ function cutJsx(render, imports, consts) {
         component: component
     }
 }
+
 //imports 相同引用不同参数的引用问题
 function ignoreImports(imps) {
     let temp = {}
@@ -209,7 +213,7 @@ function createComponents() {
         "Feedback": [],
         "Other": []
     }
-    files.forEach((name)=> {
+    files.forEach((name) => {
         let obj = _.find(menuList, function (n) {
             return n.name === name
         })
@@ -226,6 +230,7 @@ function createComponents() {
     }
     return menuClass
 }
+
 //生成静态菜单数据
 function createStaticMenu() {
     let menuClass = createComponents()
@@ -240,7 +245,7 @@ function createStaticMenu() {
 
 //根据路由生成静态页面
 function createRouterPage() {
-    let menuClass = createComponents()
+    let menuClass = fs.readdirSync(path.resolve(paths.appSrc, 'components'));
     let indexPage = fs.readFileSync(path.join(process.cwd(), 'build/index.html'))
     try {
         fs.accessSync(path.join(process.cwd(), 'build/material'), fs.constants.R_OK | fs.constants.W_OK);
@@ -252,11 +257,10 @@ function createRouterPage() {
     } catch (err) {
         fs.mkdirSync(path.join(process.cwd(), 'build/material/docs'))
     }
-    Object.values(menuClass).forEach((item)=> {
-        item.forEach((file)=> {
-            fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + file.name + '.html'), indexPage)
-            console.log(chalk.green(file.name + "创建成功！"))
-        })
+    menuClass.push('start')
+    menuClass.forEach((item) => {
+        fs.writeFileSync(path.join(process.cwd(), 'build/material/docs/' + item + '.html'), indexPage)
+        console.log(chalk.green(item + "创建成功！"))
     })
 
     //把打包后的文件移动指定位置
@@ -281,7 +285,7 @@ function createRouterPage() {
 function createDemoApi() {
     let files = fs.readdirSync(path.resolve(paths.appSrc, 'examples'));
     ignore(files, ['Template'])
-    files.forEach((file)=> {
+    files.forEach((file) => {
         let Buttons = fs.readdirSync(path.resolve(paths.appSrc, 'examples/' + file));
         ignore(Buttons, ['Title.js', 'Api.js', 'index.js'])
         let imports = [
@@ -290,7 +294,7 @@ function createDemoApi() {
             `import Title from './Title'`,
             `import Templete from '../Template'`]
         let constsArr = []
-        let renderData = Buttons.map((item)=> {
+        let renderData = Buttons.map((item) => {
                 let demo = fs.readFileSync(path.resolve(paths.appSrc, `examples/${file}/${item}`))
                 var reacter = _.template(demo);
                 let DomeJsx = reacter({component: _.capitalize(_.camelCase(item))})
@@ -334,6 +338,7 @@ function createExampleRouter() {
             console.log(chalk.green('Create Route Success!'))
         });
 }
+
 module.exports = {
     ignore,
     createComponents,
