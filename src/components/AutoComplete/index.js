@@ -1,44 +1,22 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
+import createClass from 'create-react-class';
 import {withStyles} from 'material-ui/styles';
 import './style.less'
 import classnames from 'classnames'
 import Typography from 'material-ui/Typography';
 import Input from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
 import Chip from 'material-ui/Chip';
 import Select from '../Select';
 import Icon from '../Icon'
 import 'react-select/dist/react-select.css';
-let Creatable = Select.Creatable
-class Option extends React.Component {
-    handleClick = event => {
-        this.props.onSelect(this.props.option, event);
-    };
-    render() {
-        const { children, isFocused, isSelected, onFocus } = this.props;
-        return (
-            <MenuItem
-                onFocus={onFocus}
-                selected={isFocused}
-                onClick={this.handleClick}
-                component="div"
-                style={{
-                    fontWeight: isSelected ? 500 : 400,
-                    color:isSelected?"#fff":'#333'
-                }}
-            >
-                {children}
-            </MenuItem>
-        );
-    }
-}
-
 function SelectWrapped(props) {
-    const { classes,...other } = props;
+    const { classes,optionRenderer,...other } = props;
     return (
-        <Creatable
-            optionComponent={Option}
+        <Select
+            optionRenderer={optionRenderer}
             noResultsText={<Typography>{'No results found'}</Typography>}
+            arrowRenderer={null}
             valueComponent={valueProps => {
                 const { value, children, onRemove } = valueProps;
                 const onDelete = event => {
@@ -50,14 +28,14 @@ function SelectWrapped(props) {
                     return (
                         <Chip
                             tabIndex={-1}
-                            label={children}
-                            className={classnames(classes.chip,"chippp")}
+                            label={value.value}
+                            className={classnames(classes.chip)}
                             deleteIcon={<Icon type="times-circle" onClick={onDelete} />}
                             onDelete={onDelete}
                         />
                     );
                 }
-                return <div className="Select-value">{children}</div>;
+                return <div className="Select-value">{value.value}</div>;
             }}
             {...other}
         />
@@ -76,6 +54,7 @@ const styles = theme => {
         height: "24px",
         lineHeight: "24px",
         backgroundColor: "#fafafa"
+
     },
     '@global': {
         '.Select-control': {
@@ -140,7 +119,7 @@ const styles = theme => {
             boxShadow: theme.shadows[2],
             position: 'absolute',
             left: 0,
-            top: `calc(100% + ${theme.spacing.unit}px)`,
+            top: "initial",
             width: '100%',
             zIndex: 2,
             maxHeight: ITEM_HEIGHT * 4.5,
@@ -175,32 +154,56 @@ const styles = theme => {
             width: 1,
             margin: -1,
         },
-    },
+    }
 }};
 @withStyles(styles)
-export class AutoComplete extends Component {
+export class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            single: null,
-            multi: null,
-            multiLabel: null,
+            single: "",
+            multi: "",
+            multiLabel: null
         }
     }
 
-    handleChange = (name)=> value => {
-        this.setState({
-            [name]: value,
-        });
-    };
     onPromptTextCreator(result){
        let that = this
         setTimeout(function(){
             that.props.onSearch && that.props.onSearch(result)
         },0)
     }
+
+    onInputChange(result){
+        this.props.onSearch && this.props.onSearch(result)
+    }
+
+    onSelectChange(result){
+        if(this.props.multi){
+            this.setState({
+                multi: result,
+            });
+        }else{
+            this.setState({
+                single: result,
+            });
+        }
+        this.props.onChange && this.props.onChange(result)
+    }
+
+    onInputFocus(e){
+        if(this.props.multi){
+            this.setState({
+                multi: e.target.value,
+            });
+        }else{
+            this.setState({
+                single: e.target.value,
+            });
+        }
+    }
     render() {
-        const { classes,children,dataSource,multi,fullWidth,onSearch,placeholder,...other} = this.props;
+        const { classes,children,dataSource,multi,labelKey,fullWidth,onSearch,filterOption,optionRenderer,placeholder,ignoreCase,...other} = this.props;
         return (
             <div className={classnames(classes.root)}>
                 <Input
@@ -209,17 +212,24 @@ export class AutoComplete extends Component {
                     inputComponent={SelectWrapped}
                     placeholder={placeholder?placeholder:''}
                     value={multi?this.state.multi:this.state.single}
-                    onChange={this.handleChange(multi?'multi':'single')}
                     id="react-select-single"
                     inputProps={{
                         classes,
                         name: 'react-select-single',
                         instanceId: 'react-select-single',
+                        value:multi?this.state.multi:this.state.single,
                         simpleValue: true,
-                        multi: multi?true:false,
+                        onBlurResetsInput:false,
+                        onSelectResetsInput:false,
+                        multi: multi?multi:false,
                         options: dataSource,
-                        // children:childrens,
-                        promptTextCreator:(result)=>this.onPromptTextCreator(result),
+                        valueKey:'value',
+                        labelKey:labelKey?labelKey:'label',
+                        optionRenderer:optionRenderer?optionRenderer:null,
+                        autosize:true,
+                        ignoreCase:ignoreCase?ignoreCase:false,
+                        onChange:(result)=>this.onSelectChange(result),
+                        onInputChange:(result)=>this.onInputChange(result),
                     }}
                     {...other}
                 />
@@ -227,5 +237,15 @@ export class AutoComplete extends Component {
         )
     }
 }
-export default AutoComplete
+App.propTypes = {
+    options:PropTypes.array,
+    labelKey: PropTypes.string,
+    ignoreCase: PropTypes.bool,//大小写
+    multi: PropTypes.bool,//多选
+    removeSelected:PropTypes.bool,//是否从options中去除选中项
+    // labelKey: PropTypes.oneOf(['square', 'circle']),//形状square,circle
+    // count: PropTypes.number,//
+
+}
+export default App
 

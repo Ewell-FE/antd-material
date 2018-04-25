@@ -9,10 +9,10 @@ export class <%=component%> extends Component {
         return (
             <div>
                 <Badge badgeContent={10} overflowCount={99}>
-                    <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                    <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                 </Badge>
                 <Badge badgeContent={100} overflowCount={99}>
-                    <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                    <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                 </Badge>
             </div>
         )

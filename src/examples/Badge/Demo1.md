@@ -9,13 +9,13 @@ export class <%=component%> extends Component {
         return (
             <div>
                 <Badge badgeContent={10}>
-                    <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                    <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                 </Badge>
                 <Badge badgeContent={0}>
-                    <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                    <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                 </Badge>
                 <Badge badgeContent={0} unshowZero>
-                    <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                    <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                 </Badge>
             </div>
         )
