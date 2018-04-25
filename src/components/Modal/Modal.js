@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
+import PropTypes from 'prop-types';
 import Button from '@/components/Button';
 import {Modal} from 'material-ui';
 import Icon from '../Icon'
@@ -76,6 +77,7 @@ const styles = theme => ({
 @withStyles(styles, {name: 'MuiModalAnt'})
 export default class modal extends Component {
     static defaultProps={
+        visible:false,
         title:'title',
         okText:'ok',
         okType:'Primary',
@@ -90,7 +92,9 @@ export default class modal extends Component {
         wrapClassName:'',
         getContainer:() => document.body,
         bodyStyle:{},
-        destroyOnClose:false
+        destroyOnClose:false,
+        onCancel:()=>{},
+        onOk:()=>{}
     }
     componentWillReceiveProps(nextProps) {
         if('visible' in nextProps){
@@ -154,4 +158,27 @@ export default class modal extends Component {
             </Modal>
         )
     }
+}
+modal.propTypes = {
+    title:PropTypes.any,//标题
+    okText:PropTypes.string,//确认按钮文字
+    okType:PropTypes.string,//确认按钮类型
+    cancelText:PropTypes.string,//取消按钮文字
+    width:PropTypes.number,//宽度
+    mask:PropTypes.bool,//是否展示遮罩
+    maskClosable:PropTypes.bool,//点击蒙层是否允许关闭
+    closable:PropTypes.bool,//是否显示右上角的关闭按钮
+    confirmLoading:PropTypes.bool,//确定按钮 loading
+    style:PropTypes.object,//可用于设置浮层的样式，调整浮层位置等
+    verticalAlign:PropTypes.bool,//是否垂直居中
+    wrapClassName:PropTypes.string,//对话框外层容器的类名
+    getContainer:PropTypes.func,//指定 Modal 挂载的 HTML 节点
+    bodyStyle:PropTypes.object,//Modal body 样式
+    destroyOnClose:PropTypes.bool,//关闭时销毁 Modal 里的子元素
+    afterClose:PropTypes.func,//Modal 完全关闭后的回调
+    header:PropTypes.any,//头部内容，当不需要头部标题，可以设为 header={null}
+    footer:PropTypes.any,//底部内容，当不需要默认底部按钮时，可以设为 footer={null}
+    visible:PropTypes.bool,//对话框是否可见
+    onCancel:PropTypes.func,//点击遮罩层或右上角叉或取消按钮的回调
+    onOk:PropTypes.func//点击确定回调
 }
