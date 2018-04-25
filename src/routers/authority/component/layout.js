@@ -27,7 +27,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
+        flexGrow: 1
     },
     appFrame: {
         minHeight: '100vh',
@@ -170,9 +170,10 @@ class PersistentDrawer extends React.Component {
                     <List style={{paddingLeft:'20px'}}>
                         <li><NavLink
                             to="/material/docs/start.html"
+                            style={{color:'#314659'}}
                             activeStyle={{
-                                color: 'red'
-                               }}
+                                color: this.state.primary
+                            }}
                         >Ant Design of Material</NavLink></li>
                     </List>
                 </div>
@@ -190,6 +191,7 @@ class PersistentDrawer extends React.Component {
                                         <List style={{paddingLeft:'40px'}}>
                                             <li><NavLink
                                                 to={"/material/docs/"+item.name+".html"}
+                                                style={{color:'#314659'}}
                                                 activeStyle={{
                                                             color: this.state.primary
                                                         }}
@@ -277,4 +279,4 @@ PersistentDrawer.propTypes = {
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(PersistentDrawer);
+export default withStyles(styles, {withTheme: true,name:'MuimenuAnt'})(PersistentDrawer);

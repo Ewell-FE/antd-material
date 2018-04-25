@@ -5,6 +5,8 @@ import {withStyles} from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import classnames from 'classnames'
 import ButtonGroup from './button-group'
+import omit from 'omit.js';
+
 const styles = theme => {
     return {
         spacingr: {marginRight: `${theme.spacing.unit / 2}px`},
@@ -110,16 +112,12 @@ export default class app extends Component {
     render() {
         const props = this.props
         const {classes} = this.props
+        let otherProps = omit(props, ['size', 'type', 'group', 'withRef', 'children', 'classes','activeValue'])
         return (
             <Button
                 ref={ref=>this.button =ref}
-                style={this.props.style}
                 className={classnames(classes.root,classes[props.size],classes[props.type],{'active':(props.group && props.activeValue===props.value)})}
-                onClick={this.props.onClick}
-                onMouseEnter={this.props.onMouseEnter}
-                onMouseLeave={this.props.onMouseLeave}
-                disabled={this.props.disabled}
-                value={this.props.value}
+                {...otherProps}
             >
                 {[].concat(this.props.children).map((item, i)=> {
                     if (typeof item === 'object') {
@@ -140,9 +138,6 @@ export default class app extends Component {
 app.propTypes = {
     type: PropTypes.oneOf(['Default', 'Primary', 'Dashed', 'Danger']),
     size: PropTypes.oneOf(['small', 'default', 'large']),
-    onClick: PropTypes.func,
-    disabled: PropTypes.bool,
-    value: PropTypes.string,
     activeValue: PropTypes.string,
 };
 app.Group = ButtonGroup

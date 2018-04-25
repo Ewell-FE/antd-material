@@ -30,9 +30,6 @@ const styles = theme => {
             "margin-left": "15px",
             "position": "relative",
             "height": "20px",
-            "line-height": "20px",
-            "display": "flex",
-            "flexAlign": "center",
             "align-items": "center"
         },
         success: {
