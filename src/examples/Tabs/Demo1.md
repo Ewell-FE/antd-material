@@ -2,8 +2,8 @@
 ## 默认选中第一项。
 
 ````jsx
-import Tab from '@/components/Tabs'
-const Tabs = Tab.Tabs
+import Tabs from '@/components/Tabs'
+const Tab = Tabs.Tab
  
 export class Demo1md extends Component {
         constructor(props) {
@@ -26,6 +26,7 @@ export class Demo1md extends Component {
                     <div>
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
                               indicatorColor="primary"
+                              size='small'
                               textColor="primary">
                             <Tab label="Tab1">
                                 <div>

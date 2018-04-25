@@ -2,9 +2,9 @@
 ## 有图标的标签。
 
 ````jsx
-import Tab from '@/components/Tabs'
+import Tabs from '@/components/Tabs'
 import Icon from '@/components/Icon'
-const Tabs = Tab.Tabs
+const Tab = Tabs.Tab
 export class Demo3md extends Component {
         constructor(props) {
             super(props);
