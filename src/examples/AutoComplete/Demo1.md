@@ -10,7 +10,7 @@ export class <%=component%> extends Component {
       }
 
      handleSearch = (value) => {
-         this.setState({
+        this.setState({
               dataSource: !value ? [] : [
                 { value: value, label: value },
                 { value: value + value, label: value + value },
@@ -18,12 +18,12 @@ export class <%=component%> extends Component {
               ],
             });
       }
-
     render() {
         return (
             <AutoComplete style={{width:"200px"}} placeholder="input here"
                           dataSource={this.state.dataSource}
-                          onSearch={this.handleSearch}/>
+                          onSearch={this.handleSearch}>
+                          </AutoComplete>
         )
     }
 }

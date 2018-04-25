@@ -66,7 +66,8 @@ const styles = theme => {
             borderBottom: '1px solid #e8e8e8'
         },
         tablePagination: {
-            float: 'right'
+            float: 'right',
+            marginTop:10
         },
         activeText: {
             color: activeColor,

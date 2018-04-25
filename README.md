@@ -83,7 +83,7 @@
 │   │   ├───Collapse          # ➜ 何家佳 ✓
 │   │   ├───List              # ➜ 林铭偲 ✓ complete!
 │   │   ├───Popover           # ➜ 林铭偲 ✓ complete!
-│   │   ├───Tooltip           # ➜ 何家佳 ✓
+│   │   ├───Tooltip           # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Table             # ➜ 曾辉艳 ✓ dev
 │   │   ├───Tabs              # ➜ 杨单丹 ✓
 │   │   ├───Tag               # ➜ 杨单丹 ✓ dev

@@ -9,7 +9,7 @@ export class <%=component%> extends Component {
             <div>
                 <a>
                     <Badge badgeContent={10}>
-                        <span style={{width:'40px',height:'40px',background:'#fff'}}></span>
+                        <span style={{width:'40px',height:'40px',background:'#eee'}}></span>
                     </Badge>
                </a>
             </div>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Button from '@/components/Button';
 import Icon from '@/components/Icon'
@@ -62,13 +63,14 @@ export class ConfirmModal extends Component {
         width:416,
         mask:true,
         maskClosable:false,
+        className:''
     }
     render(){
-        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width} = this.props;
+        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width,className} = this.props;
         const okCancel = ('okCancel' in this.props) ? this.props.okCancel : true;
 
         const cancelButton = okCancel && (
-                <Button onClick={close}>
+                <Button onClick={close} style={{marginRight:'10px'}}>
                     {cancelText}
                 </Button>
             );
@@ -86,6 +88,7 @@ export class ConfirmModal extends Component {
                     mask={mask}
                     maskClosable={maskClosable}
                     closable={false}
+                    wrapClassName={className}
                 >
                     <div>
                         <span className={classnames(classes.confirmIcon,classes[type])}><Icon type={iconType} /></span>
@@ -131,4 +134,15 @@ export default function confirm(config) {
     return {
         destroy: close,
     };
+}
+ConfirmModal.propTypes = {
+    cancelText:PropTypes.string,//取消按钮文字
+    title:PropTypes.any,//标题
+    content:PropTypes.any,//内容
+    className:PropTypes.string,//容器类名
+    iconType:PropTypes.string,//图标 Icon 类型
+    maskClosable:PropTypes.bool,//点击蒙层是否允许关闭
+    okText:PropTypes.string,//确认按钮文字
+    okType:PropTypes.string,//确认按钮类型
+    width:PropTypes.number,//宽度
 }

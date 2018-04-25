@@ -4,7 +4,10 @@
 
 2.包装后的组件具有4种排版，并成为redux-form的组件
 
-### 例如：1. [input](https://github.com/Ewell-FE/antd-material/blob/master/src/components/Form/input.js)的包装
+例如：[input](https://github.com/Ewell-FE/antd-material/blob/master/src/components/Form/input.js)的包装
+
+### 说明
+
 1.最外层className依赖form定义的4种排版类型，然后实现当前排版内部元素的布局
 
 2.包装后的组件一定是支持redux-form的，所以一些redux-form需要注意的问题需要规避。

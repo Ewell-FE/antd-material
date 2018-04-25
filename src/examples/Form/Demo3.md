@@ -18,7 +18,7 @@ export class <%=component%> extends Component {
             <div>
                 <Form layout="horizontal" form='roleForm3'
                   initialValues={{}}
-                  labelWidth="20%"
+                  labelWidth="15%"
                   wrapperWidth="220px"
                   Submit={(values) => this.Submit(values)} ref="form3"
                   fields={[{
