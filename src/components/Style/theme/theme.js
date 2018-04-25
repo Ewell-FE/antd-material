@@ -71,6 +71,11 @@ export default function (config = {primaryColor: blue}) {
             errorBg: '#fff1f0',
 
         },
+        tooltip:{
+          color:'#fff',
+          fontSize:'14px',
+          background:'rgba(0,0,0,.75)'
+        },
         typography: {
             // Use the system font.
             fontFamily: 'Tahoma, Helvetica, Arial,"Hiragino Sans GB", "Microsoft Yahei"'
