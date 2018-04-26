@@ -2,7 +2,6 @@
   "root": "/material",
   "name": "seed",
   "version": "0.1.0",
-  "private": true,
   "authFlag": false,
   "dependencies": {
     "@devexpress/dx-react-core": "^1.0.3",
