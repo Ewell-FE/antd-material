@@ -22,7 +22,7 @@ const styles = theme => {
                 position: 'absolute',
                 borderColor: 'transparent',
                 borderStyle: 'solid',
-                opacity:0.9
+                opacity:1
             }
         },
         tooltipPlacementLeft:{
@@ -53,7 +53,7 @@ const styles = theme => {
         tooltipPlacementRightStart: {
             "&:after": {
                 top: '25%',
-                left: -5,
+                left: -6,
                 borderWidth: '6px 6px 6px 0',
                 borderRightColor:bgc,
             }
@@ -62,7 +62,7 @@ const styles = theme => {
             "&:after": {
                 top: '50%',
                 marginTop: '-3px',
-                left: -5,
+                left: -6,
                 borderWidth: '6px 6px 6px 0',
                 borderRightColor:bgc,
             }
@@ -70,14 +70,14 @@ const styles = theme => {
         tooltipPlacementRightEnd: {
             "&:after": {
                 bottom: '25%',
-                left: -5,
+                left: -6,
                 borderWidth: '6px 6px 6px 0',
                 borderRightColor:bgc,
             }
         },
         tooltipPlacementTopStart: {
             "&:after": {
-                bottom:-5,
+                bottom:-6,
                 left:'25%',
                 borderTopColor:bgc,
                 borderWidth: '6px 6px 0 6px',
@@ -85,7 +85,7 @@ const styles = theme => {
         },
         tooltipPlacementTop: {
             '&:after': {
-                bottom: -5,
+                bottom: -6,
                 marginLeft: '-3px',
                 left: '50%',
                 borderTopColor: bgc,
@@ -94,7 +94,7 @@ const styles = theme => {
         },
         tooltipPlacementTopEnd: {
             "&:after": {
-                bottom:-5,
+                bottom:-6,
                 right:'25%',
                 borderTopColor:bgc,
                 borderWidth: '6px 6px 0 6px',
@@ -102,7 +102,7 @@ const styles = theme => {
         },
         tooltipPlacementBottomStart: {
             "&:after": {
-                top: -5,
+                top: -6,
                 left:'25%',
                 borderWidth: '0 6px 6px',
                 borderBottomColor: bgc,
@@ -110,7 +110,7 @@ const styles = theme => {
         },
         tooltipPlacementBottom: {
             "&:after": {
-                top: -5,
+                top: -6,
                 marginLeft: '-3px',
                 left: '50%',
                 borderWidth: '0 6px 6px',
@@ -119,7 +119,7 @@ const styles = theme => {
         },
         tooltipPlacementBottomEnd: {
             "&:after": {
-                top: -5,
+                top: -6,
                 right:'25%',
                 borderWidth: '0 6px 6px',
                 borderBottomColor:bgc,

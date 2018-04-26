@@ -71,24 +71,20 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            stars: 0,
+            stars: props.defaultValue || 0,
             factStar: 0 //控制悬浮样式
         }
 
     }
 
-    static defaultProps = {}
+    static defaultProps = {
+        allowClear:true
+    }
 
     //是否允许再次点击后清除
     allowClear(num, value) {
         let stars = num
         if (this.props.allowClear) {
-            if (num === value) {
-                return 0
-            } else {
-                return stars
-            }
-        } else if (this.props.allowClear === undefined) {
             if (num === value) {
                 return 0
             } else {
@@ -106,13 +102,13 @@ class App extends Component {
         if (this.props.allowHalf) {
             stars = index + num
         }
-        if (this.props.onChange) {
-            this.props.onChange(this.allowClear(stars, this.props.value))
-        } else {
+        if (!_.has(this.props,'value')) {
             this.setState({
                 stars: this.allowClear(stars, this.state.stars)
             })
         }
+        this.props.onChange(this.allowClear(stars, this.props.value||this.state.stars))
+
         this.setState({
             factStar: 0
         })
@@ -134,12 +130,6 @@ class App extends Component {
         this.setState({
             factStar: 0
         })
-    }
-
-    componentDidMount() {
-        if (this.props.defaultValue) {
-            this.setState({stars: this.props.defaultValue})
-        }
     }
 
     render() {

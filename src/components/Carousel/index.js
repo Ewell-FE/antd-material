@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {withStyles} from 'material-ui/styles';
 import debounce from 'lodash/debounce';
 import classnames from 'classnames'
-
+import _ from 'lodash'
 const styles = theme => {
     return {
         root: {
@@ -107,9 +107,10 @@ export default class App extends Component {
         if (props.vertical) {
             className = `${className} ${className}-vertical`;
         }
+        let otherProps = _.omit(props,['classes','style'])
         return (
             <div className={classnames(props.classes.root, className)} style={props.style}>
-                <Slider ref={this.saveSlick} {...props}/>
+                <Slider ref={this.saveSlick} {...otherProps}/>
             </div>
         );
     }

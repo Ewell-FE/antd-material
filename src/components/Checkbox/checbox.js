@@ -75,12 +75,13 @@ class app extends Component {
 
 
     render() {
-        const {classes,children,checked,disabled,indeterminate}=this.props;
-        let otherProps = _.omit(this.props, ['classes','children'])
+        const {classes,children,checked,disabled,indeterminate,className,style}=this.props;
+        let otherProps = _.omit(this.props, ['classes','children','className','style'])
         let checkClass ={checkedSecondary:classes.checkedSecondary,default:classes.default,disabled:disabled&&classes.disabled}
         let checkedValue = !_.has(this.props,'checked') ? this.state.checked : checked
         return (
-            <label className={classnames(classes.root,disabled&&classes.readOnly,indeterminate&&classes.indeterminate)}>
+            <label className={classnames(classes.root,disabled&&classes.readOnly,
+                indeterminate&&classes.indeterminate,className)} style={style}>
                 <Checkbox
                     inputRef={ref=>this.input = ref}
                     {...otherProps}
@@ -103,7 +104,9 @@ app.propsTypes = {
     indeterminateIcon: PropTypes.node,
     icon: PropTypes.node,
     checkedIcon: PropTypes.node,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    className:PropTypes.string, //类名
+    style:PropTypes.object, //行内样式
 }
 
 export default app

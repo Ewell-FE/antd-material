@@ -87,7 +87,7 @@ function getComponent(type) {
                 },
                 '&>.Select.is-focused:not(.is-open) > .Select-control': {
                     borderColor: theme.colors.primary,
-                    boxShadow: "0 0 0 2px rgba(24,144,255,.2)"
+                    boxShadow: `0 0 0 2px ${theme.primary[100]}`
                 },
                 '& .Select.Select--multi': {
                     '& .Select-control .Select-value': {
@@ -169,8 +169,8 @@ function getComponent(type) {
         }
 
         onHandleChange = (selectOptions) => {
-            const {value, valueKey, onChange} = this.props
-            if (value === undefined) {
+            const { valueKey, onChange} = this.props
+            if (!_.has(this.props,'value')) {
                 if (selectOptions) {
                     if (_.isArray(selectOptions)) {
                         let arr = []
@@ -218,6 +218,7 @@ function getComponent(type) {
         render() {
             const props = this.props
             const {classes, style, width, arrowRenderer, size} = props
+            let value = _.has(props,'value') ? props.value : this.state.value
             return (
                 <span style={{...style, width: width}}
                       className={classnames(classes.root, classes.control, classes[size])}>
@@ -225,7 +226,7 @@ function getComponent(type) {
                     React.cloneElement(this.domApp(type), {
                         arrowRenderer: arrowRenderer,
                         ref: ref => this.select = ref,
-                        value: props.value || this.state.value,
+                        value: value,
                         onChange: this.onHandleChange
                     })
                 }

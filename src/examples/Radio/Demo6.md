@@ -7,15 +7,7 @@ import Radio from '@/components/Radio'
 const RadioGroup = Radio.Group
 const RadioButton = Radio.Button
 export class <%=component%> extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
 
-          }
-    }
-     onChange = (e) => {
-
-      }
     render() {
         return (
             <div>

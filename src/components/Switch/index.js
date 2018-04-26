@@ -5,6 +5,7 @@ import {CircularProgress} from 'material-ui/Progress';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
+import _ from 'lodash'
 const styles = theme => ({
     root: {
         display: 'inline-block',
@@ -120,27 +121,27 @@ export class App extends Component {
     }
 
     handleChange(checked) {
-        if (this.props.checked !== undefined) {
-            this.props.onChange&&this.props.onChange(!checked)
-        } else {
+        if (!_.has(this.props,'checked')) {
             this.setState({
                 checked: !checked
             })
         }
+        this.props.onChange&&this.props.onChange(!checked)
 
     }
 
     onChangeCheck = event => {
-        if (this.props.checked !== undefined) {
-            this.props.onChange&&this.props.onChange(event.target.checked)
-        } else {
+        if (!_.has(this.props,'checked')) {
             this.setState({checked: event.target.checked});
         }
+        this.props.onChange&&this.props.onChange(event.target.checked)
+
     }
 
     render() {
         const {classes, checked, loading,size} = this.props
-        const props = {}, icons = {}, switchClass = {}
+        const icons = {}, switchClass = {}
+        const otherProps = _.omit(this.props, ['loading','checkedChildren','unCheckedChildren','classes'])
         Object.assign(switchClass, {
             'root': classNames(classes.defaultRoot,size === 'small'&&classes.smallRoot),
             'bar': classNames(classes.bar,size === 'small'&&classes.smallBar),
@@ -155,14 +156,7 @@ export class App extends Component {
                 'checkedIcon': <span className={classNames(classes.loading,size==='small' && classes.smallIcon)}><CircularProgress size={14}/></span>
             })
         }
-        for (let key  in this.props) {
-            if (key !== 'loading' && key !== 'checkedChildren' && key !== 'unCheckedChildren' && key !== 'classes') {
-                Object.assign(props, {
-                    [`${key}`]: this.props[key]
-                })
-            }
-        }
-        let checkValue = checked !== undefined ? checked : this.state.checked
+        let checkValue = _.has(this.props,'checked') ? checked : this.state.checked
         if (this.props.checkedChildren || this.props.unCheckedChildren) {
             return (
                 <div className={classes.root}>
@@ -193,7 +187,7 @@ export class App extends Component {
             return (
                 <div className={classes.root}>
                     <Switch
-                        {...props}
+                        {...otherProps}
                         {...icons}
                         inputRef={ref=>this.input = ref}
                         checked={checkValue}

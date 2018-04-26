@@ -28,10 +28,10 @@ export class <%=component%> extends Component {
                     <Button >LS</Button>
                   </Tooltip>
                   <Tooltip placement="left" title={text}>
-                    <Button >Left</Button>
+                    <Button  style={{ marginTop: 15}}>Left</Button>
                   </Tooltip>
                   <Tooltip placement="left-end" title={text}>
-                    <Button >LE</Button>
+                    <Button  style={{ marginTop: 15}}>LE</Button>
                   </Tooltip>
                 </div>
                 <div style={{ width: buttonWidth, float: 'right', marginRight: buttonWidth * 2}}>
@@ -39,10 +39,10 @@ export class <%=component%> extends Component {
                     <Button>RS</Button>
                   </Tooltip>
                   <Tooltip placement="right" title={text}>
-                    <Button >Right</Button>
+                    <Button  style={{ marginTop: 15}}>Right</Button>
                   </Tooltip>
                   <Tooltip placement="right-end" title={text}>
-                    <Button >RE</Button>
+                    <Button  style={{ marginTop: 15}}>RE</Button>
                   </Tooltip>
                 </div>
                 <div style={{ clear: 'both', whiteSpace: 'nowrap' }}>

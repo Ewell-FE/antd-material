@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Radio from 'material-ui/Radio';
 import {withStyles} from 'material-ui/styles';
 import classnames from 'classnames'
-import RadioGroup from './radio-group'
-import RadioButton from './radio-button'
 import ReactDOM from "react-dom";
 import Icon from '../Icon'
 const styles = theme => {
