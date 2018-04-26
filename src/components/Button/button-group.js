@@ -11,6 +11,9 @@ function nearButton(target) {
 const styles = theme => {
     return {
         root: {
+            "& > button": {
+                margin: 0
+            },
             "& > button:first-child:not(:last-child)": {
                 "borderBottomRightRadius": 0,
                 "borderTopRightRadius": 0

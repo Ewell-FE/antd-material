@@ -156,6 +156,9 @@ export default {
     warn: function (str, timer, callback) {
         show({msg: str, type: 'warn', timer, callback})
     },
+    warning: function (str, timer, callback) {
+        show({msg: str, type: 'warn', timer, callback})
+    },
     info: function (str, timer, callback) {
         show({msg: str, type: 'info', timer, callback})
     },

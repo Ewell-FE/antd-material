@@ -118,7 +118,7 @@ export default class Input extends Component {
     }
 
     componentDidMount() {
-        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
+        this.props.withRef && this.props.withRef(this.input)
     }
 
     render() {

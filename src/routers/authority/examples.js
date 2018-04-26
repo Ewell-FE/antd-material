@@ -31,4 +31,5 @@ export {default as Tabs} from '@/examples/Tabs';
 export {default as Tag} from '@/examples/Tag';
 export {default as Template} from '@/examples/Template';
 export {default as Timeline} from '@/examples/Timeline';
+export {default as Tooltip} from '@/examples/Tooltip';
 export {default as Transfer} from '@/examples/Transfer'
