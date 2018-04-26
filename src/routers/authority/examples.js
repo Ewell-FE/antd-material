@@ -16,6 +16,7 @@ export {default as InputNumber} from '@/examples/InputNumber';
 export {default as List} from '@/examples/List';
 export {default as Menu} from '@/examples/Menu';
 export {default as Message} from '@/examples/Message';
+export {default as Modal} from '@/examples/Modal';
 export {default as Notification} from '@/examples/Notification';
 export {default as Pagination} from '@/examples/Pagination';
 export {default as Popover} from '@/examples/Popover';

@@ -5,7 +5,7 @@ export default {
     overrides: {
         MuiButton:{
             root:{
-                marginLeft:'10px'
+                margin:'0 5px'
             }
         }
     }

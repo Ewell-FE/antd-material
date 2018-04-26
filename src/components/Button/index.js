@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
+import {CircularProgress} from 'material-ui/Progress';
 import Button from 'material-ui/Button';
 import classnames from 'classnames'
 import ButtonGroup from './button-group'
@@ -18,7 +19,14 @@ const styles = theme => {
             color: 'rgba(0, 0, 0, 0.65)',
             padding: '0 15px',
             transition: `all 0.3s ${theme.transitions.easing.easeInOut}`,
-            textTransform: 'capitalize'
+            textTransform: 'capitalize',
+            "& .Progress": {
+                color: "rgba(0,0,0,.65)",
+                position: 'absolute',
+                top: '50%',
+                left: 10,
+                marginTop: -9
+            }
         },
         disabled: {
             color: "rgba(0,0,0,.25)",
@@ -54,6 +62,9 @@ const styles = theme => {
                 backgroundColor: "#f5f5f5",
                 borderColor: "#d9d9d9",
                 cursor: "not-allowed"
+            },
+            "& .Progress": {
+                color: "#FFFFFF",
             }
         },
         Dashed: {
@@ -94,6 +105,27 @@ const styles = theme => {
         },
         large: {
             minHeight: theme.size.large
+        },
+        wrapper: {
+            position: 'relative',
+            display: 'inline-block',
+            background: 'rgba(255,255,255,0.35)',
+            "& .mask": {
+                display: 'block',
+                position: 'absolute',
+                top: '-1px',
+                left: '-1px',
+                bottom: '-1px',
+                right: '-1px',
+                background: 'rgba(255,255,255,0.35)',
+                content: '""',
+                borderRadius: 'inherit',
+                zIndex: '1',
+                transition: 'opacity .2s'
+            }
+        },
+        loading: {
+            "paddingLeft": '36px'
         }
     }
 };
@@ -112,26 +144,39 @@ export default class app extends Component {
     render() {
         const props = this.props
         const {classes} = this.props
-        let otherProps = omit(props, ['size', 'type', 'group', 'withRef', 'children', 'classes','activeValue'])
-        return (
-            <Button
-                ref={ref=>this.button =ref}
-                className={classnames(classes.root,classes[props.size],classes[props.type],{'active':(props.group && props.activeValue===props.value)})}
-                {...otherProps}
-            >
-                {[].concat(this.props.children).map((item, i)=> {
-                    if (typeof item === 'object') {
-                        return (
-                            <span
-                                className={classnames({[classes.spacingr]:typeof this.props.children[i+1]==='string'},
+        let otherProps = omit(props, ['size', 'type', 'group', 'withRef', 'children', 'classes', 'activeValue', 'loading'])
+        let ButtonComponent = ()=> {
+            return (
+                <Button
+                    ref={ref=>this.button =ref}
+                    className={classnames(classes.root,classes[props.size],classes[props.type],
+                {'active':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
+                    {...otherProps}
+                >
+                    {props.loading && <CircularProgress size={18} className="Progress"/>}
+                    {[].concat(this.props.children).map((item, i)=> {
+                        if (typeof item === 'object') {
+                            return (
+                                <span
+                                    className={classnames({[classes.spacingr]:typeof this.props.children[i+1]==='string'},
                                 {[classes.spacingl]:typeof this.props.children[i-1]==='string'})}
-                                key={i}>{item}</span>
-                        )
-                    }
-                    return item
-                })}
-            </Button>
-        )
+                                    key={i}>{item}</span>
+                            )
+                        }
+                        return item
+                    })}
+                </Button>
+            )
+        }
+        if (props.loading) {
+            return (
+                <div className={classnames(classes.wrapper,[props.type])}>
+                    <div className="mask"></div>
+                    <ButtonComponent />
+                </div>
+            )
+        }
+        return <ButtonComponent />
     }
 }
 
