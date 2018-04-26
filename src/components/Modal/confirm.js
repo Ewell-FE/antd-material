@@ -52,7 +52,6 @@ const styles = theme => {
         float: 'right'
     }
 }};
-const IS_REACT_16 = !!ReactDOM.createPortal;
 @withStyles(styles, {name: 'MuiConfirmModalAnt'})
 export class ConfirmModal extends Component {
     static defaultProps={
@@ -108,11 +107,7 @@ export default function confirm(config) {
     document.body.appendChild(div);
 
     function close(...args) {
-        if (IS_REACT_16) {
-            render({ ...config, close, visible: false, afterClose: destroy.bind(this, ...args) });
-        } else {
-            destroy(...args);
-        }
+        render({ ...config, close, visible: false, afterClose: destroy.bind(this, ...args) });
     }
 
     function destroy(...args) {
