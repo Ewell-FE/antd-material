@@ -46,7 +46,7 @@ export const styles = theme => ({
         color: theme.palette.text.secondary,
     },
     textColorPrimarySelected: {
-        color: '#1890ff',
+        color: theme.colors.primary,
     },
     textColorPrimaryDisabled: {
         color: theme.palette.text.disabled,
@@ -77,7 +77,6 @@ export const styles = theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        // flexDirection: 'column',
 
         '& .fa': {
             marginRight: 6
@@ -93,6 +92,27 @@ export const styles = theme => ({
         whiteSpace: 'normal',
         [theme.breakpoints.up('md')]: {
             fontSize: theme.typography.pxToRem(13),
+        },
+    },
+    labeldefault: {
+        fontSize: theme.typography.pxToRem(14),
+        whiteSpace: 'normal',
+        [theme.breakpoints.up('md')]: {
+            fontSize: theme.typography.pxToRem(13),
+        },
+    },
+    labelsmall: {
+        fontSize: theme.typography.pxToRem(14),
+        whiteSpace: 'normal',
+        [theme.breakpoints.up('md')]: {
+            fontSize: theme.typography.pxToRem(13),
+        },
+    },
+    labellarge: {
+        fontSize: theme.typography.pxToRem(16),
+        whiteSpace: 'normal',
+        [theme.breakpoints.up('md')]: {
+            fontSize: theme.typography.pxToRem(15),
         },
     },
     labelWrapped: {
@@ -113,16 +133,11 @@ class Tab extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.wrappedText === prevState.wrappedText) {
-            /**
-             * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
-             * font size still only requires one line.  This check will prevent an infinite render loop
-             * fron occurring in that scenario.
-             */
             this.checkTextWrap();
         }
     }
 
-    handleChange = (event: SyntheticEvent<>) => {
+    handleChange = (event) => {
         const {onChange, value, onClick} = this.props;
 
         if (onChange) {
@@ -147,28 +162,16 @@ class Tab extends React.Component {
 
     render() {
         const {
-            classes,
-            className: classNameProp,
-            disabled,
-            fullWidth,
-            icon,
-            indicator,
-            label: labelProp,
-            onChange,
-            selected,
-            style: styleProp,
-            textColor,
-            value,
-            size,
-            ...other
+            classes, className: classNameProp, disabled, fullWidth, icon, indicator, label: labelProp, onChange, selected,
+            style: styleProp, textColor, value, size, ...other
         } = this.props;
-        console.log(size)
         let label;
+        const labelClass=classes[`label${size}`]
         if (labelProp !== undefined) {
             label = (
                 <span className={classes.labelContainer}>
           <span
-              className={classNames(classes.label, {
+              className={classNames(labelClass, {
                   [classes.labelWrapped]: this.state.wrappedText,
               })}
               ref={node => {
@@ -201,11 +204,9 @@ class Tab extends React.Component {
 
 
         let style = {};
-
         if (textColor !== 'secondary' && textColor !== 'inherit') {
             style.color = textColor;
         }
-
         style =
             Object.keys(style).length > 0
                 ? {

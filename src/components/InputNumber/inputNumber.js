@@ -11,7 +11,7 @@ const styles = theme => {
             margin: '0 10px 0 0',
             padding: 0,
             fontSize: '12px',
-            height: '28px',
+            height: theme.size.default,
             display: 'inline-block',
             border: '1px solid #d9d9d9',
             borderRadius: '2px',
@@ -19,15 +19,15 @@ const styles = theme => {
             position: 'relative',
 
             '&:hover': {
-                borderColor: '#1890ff',
+                borderColor: theme.colors.primary,
                 '& .yhInputNumber-handler-wrap': {
                     opacity: '1',
                 }
             },
             '&.yhInputNumber-focused': {
-                borderColor: '#1890ff',
                 outline: '0',
-                boxShadow: "0 0 0 2px rgba(24,144,255,.2)"
+                borderColor: theme.colors.primary,
+                boxShadow: `0 0 0 2px ${theme.primary[100]}`
             },
             '&.yhInputNumber-disabled': {
                 backgroundColor: '#f7f7f7',
@@ -145,8 +145,7 @@ const styles = theme => {
                 width: '100%',
                 textAlign: 'left',
                 outline: '0',
-                '-moz-appearance': 'textfield',
-                height: '26px',
+                height: `${parseInt(theme.size.default)-2}px`,
                 transition: 'all 0.3s linear',
                 color: 'fade(#000, 65%)',
                 backgroundColor: '#fff',
@@ -158,26 +157,26 @@ const styles = theme => {
 
             '&.yhInputNumber-sm': {
                 padding: '0',
-                height: '22px',
+                height: theme.size.small,
                 '& input': {
-                    height: '20px',
+                    height:  theme.size.small ,
                     width: '100%',
                 }
             }
         },
         lg: {
             padding: '0',
-            height: '40px!important',
+            height: theme.size.large,
             '& input': {
-                height: '38px!important',
+                height: `${parseInt(theme.size.large)-2}px!important`,
                 width: '100%',
             }
         },
         sm: {
             padding: '0',
-            height: '22px!important',
+            height: theme.size.small,
             '& input': {
-                height: '20px!important',
+                height: `${parseInt(theme.size.small)-2}px!important`,
                 width: '100%',
             }
         },

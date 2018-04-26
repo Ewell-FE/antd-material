@@ -11,7 +11,7 @@ import {withStyles} from 'material-ui/styles';
 import TabIndicator from 'material-ui/Tabs/TabIndicator';
 import TabScrollButton from 'material-ui/Tabs/TabScrollButton';
 import SwipeableViews from 'react-swipeable-views';
-import Button from '@/components/Button'
+// import Button from '@/components/Button'
 import Tab from './Tab'
 
 export const styles = theme => {
@@ -60,7 +60,7 @@ export const styles = theme => {
                 },
             },
             indicator: {
-                background: '#1890ff',
+                background: theme.colors.primary,
             },
             indicatorStyle: {},
             extra: {
@@ -85,7 +85,6 @@ class Tabs extends React.Component {
     };
 
     componentDidMount() {
-        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({mounted: true});
         this.updateIndicatorState(this.props);
         this.updateScrollButtonState();
@@ -99,9 +98,6 @@ class Tabs extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         this.updateScrollButtonState();
-
-        // The index might have changed at the same time.
-        // We need to check again the right indicator position.
         this.updateIndicatorState(this.props);
 
         if (this.state.indicatorStyle !== prevState.indicatorStyle) {
@@ -186,7 +182,7 @@ class Tabs extends React.Component {
     };
 
     tabs = undefined;
-    valueToIndex: { [key: any]: any } = {};
+    // valueToIndex: { [key: any]: any } = {};
 
     handleResize = debounce(() => {
         this.updateIndicatorState(this.props);
