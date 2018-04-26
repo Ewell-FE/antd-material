@@ -1,5 +1,5 @@
-#  受控的Checkbox
-## 联动 checkbox。
+#  不可用
+## checkbox 不可用。
 
 
 ````jsx
@@ -8,44 +8,53 @@ import Button from '@/components/Button';
 
 export class <%=component%> extends Component {
     constructor(props){
-        super(props);
-        this.toggleCheck=this.toggleCheck.bind(this);
-        this.toggleDisable=this.toggleDisable.bind(this);
-        this.state={
-            checked:false,
-            disabled:false
+        super(props)
+        this.state = {
+            checked: true,
+            disabled: false,
         }
     }
-
-    toggleCheck(){
-        this.setState({
-            checked:!this.state.checked
-        })
+    toggleChecked = () => {
+        this.setState({ checked: !this.state.checked });
     }
-
-    toggleDisable(){
-        this.setState({
-            disabled:!this.state.disabled
-        })
+    toggleDisable = () => {
+        this.setState({ disabled: !this.state.disabled });
     }
-
+    onChange = (e) => {
+        this.setState({
+          checked: e.target.checked,
+        });
+    }
     render() {
-        const label=(this.state.checked ? 'Checked' : 'Unchecked')+'-'+(this.state.disabled ? 'Disabled' : 'Enabled');
         return (
-            <div>
-                <Checkbox
-                    checked={this.state.checked}
-                    disabled={this.state.disabled}
-                    onChange={this.onChange}
-                >
-                    {label}
-                </Checkbox>
-                <br />
-                <br />
-                <Button type="Primary" onClick={this.toggleCheck}>{this.state.checked?'Checked':'Unchecked'}</Button>
-                <Button type="Primary" onClick={this.toggleDisable}>{this.state.disabled?'Disabled':'Enabled'}</Button>
-            </div>
-            
+                  <div>
+                    <p style={{ marginBottom: '20px' }}>
+                      <Checkbox
+                        checked={this.state.checked}
+                        disabled={this.state.disabled}
+                        onChange={this.onChange}
+                      >
+                        {(this.state.checked ? 'Checked' : 'Unchecked') + " - " + (this.state.disabled ? 'Disabled' : 'Enabled')  }
+                      </Checkbox>
+                    </p>
+                    <p>
+                      <Button
+                        type="Primary"
+                        size="small"
+                        onClick={()=>this.toggleChecked()}
+                      >
+                        {!this.state.checked ? 'Check' : 'Uncheck'}
+                      </Button>
+                      <Button
+                        style={{ marginLeft: '10px' }}
+                        type="Primary"
+                        size="small"
+                        onClick={()=>this.toggleDisable()}
+                      >
+                        {!this.state.disabled ? 'Disable' : 'Enable'}
+                      </Button>
+                    </p>
+                  </div>
         )
     }
 }
