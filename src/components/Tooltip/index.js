@@ -147,5 +147,20 @@ export default class app extends Component {
     }
 }
 app.propTypes = {
-    title: PropTypes.node.isRequired,
+    title: PropTypes.node.isRequired, //	工具提示标题。零长度标题字符串从不显示。
+    children : PropTypes.element.isRequired, //孩子
+    classes:PropTypes.object, //组件样式覆盖类
+    disableFocusListener:PropTypes.bool, //不要回应焦点事件。
+    disableHoverListener:PropTypes.bool, //不要回应悬停事件。
+    disableTouchListener:PropTypes.bool, //不要回应长按触摸事件。
+    enterDelay:PropTypes.number, //显示工具提示之前等待的毫秒数。
+    enterTouchDelay:PropTypes.number, //显示工具提示前，用户必须触摸该元素的毫秒数。
+    leaveDelay:PropTypes.number, //隐藏工具提示之前要等待的毫秒数。
+    leaveTouchDelay:PropTypes.number, //在隐藏工具提示之前用户停止触摸元素之后的毫秒数。
+    id:PropTypes.string, //id
+    onClose:PropTypes.func, //工具提示请求关闭时触发回调。
+    onOpen:PropTypes.func, //工具提示请求打开时触发回调。
+    placement:PropTypes.oneOf(['bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),//提示位置
+    open:PropTypes.bool, // 如果true，显示提示。
+    PopperProps:PropTypes.object, //应用于Popper元素的属性。
 };

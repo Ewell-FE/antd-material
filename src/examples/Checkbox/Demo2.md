@@ -1,19 +1,19 @@
 #  不可用
-## 不可用的checkbox。
+## checkbox 不可用。
 
 
 ````jsx
 import Checkbox from '@/components/Checkbox';
 
 export class <%=component%> extends Component {
+
     render() {
         return (
             <div>
-                <Checkbox disabled>Checkbox</Checkbox>
-                <br />
-                <Checkbox disabled defaultChecked>Checkbox</Checkbox>
-            </div>
-            
+               <Checkbox defaultChecked={false} disabled >Checkbox</Checkbox>
+               <br />
+               <Checkbox defaultChecked disabled >Checkbox</Checkbox>
+             </div>
         )
     }
 }

@@ -2,168 +2,108 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import {withStyles} from 'material-ui/styles';
-
+import Checkbox from 'material-ui/Checkbox';
+import _ from 'lodash';
+import ReactDOM from "react-dom";
 const styles = (theme)=> {
+    let fontSize = theme.typography.fontSize,
+        activeColor = theme.radio.primary,
+        fontColorPar=theme.palette.text.primary
     return {
-        wrap: {
-            fontSize: '14px',
-            boxSizing: 'border-box',
+        root:{
             display: 'inline-block',
-            cursor: 'pointer',
-            '&:hover>span>span': {
-                borderColor: theme.colors.primary
-            },
-            marginRight: '10px'
+            fontSize: fontSize,
+            cursor:'pointer',
+            marginRight:8,
+            color:fontColorPar
         },
-        checkbox: {
-            boxSizing: 'border-box',
-            position: 'relative',
-            display: 'inline-block',
-            verticalAlign: 'middle',
-            '& + span': {
-                padding: '0 8px',
-                verticalAlign: 'middle'
+        indeterminate:{
+            '&>$default':{
+                color:activeColor
             }
         },
-        checkedBox: {
-            '&:after': {
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                borderRadius: '2px'
+        readOnly:{
+            cursor:'not-allowed',
+            color:theme.disabled.color,
+            '&>$default':{
+                color:theme.disabled.color,
             }
         },
-        checkboxInput: {
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            width: '100%',
-            height: '100%',
-            padding: 0,
-            margin: 0,
-            zIndex: 1,
-            opacity: 0
+        label:{
+            padding:'0 8px',
+            color:'inherit',
         },
-        checkboxInner: {
-            position: 'relative',
-            width: '16px',
-            height: '16px',
-            display: 'block',
-            border: `1px solid #d9d9d9`,
-            backgroundColor: '#fff',
-            transition: `all .3s `,
-            borderRadius: '2px',
-            boxSizing: 'border-box',
-            '&:after': {
-                content: '""',
-                position: 'absolute',
-                width: '6px',
-                height: '10px',
-                border: '2px solid #fff',
-                top: '50%',
-                left: '50%',
-                marginLeft: '-3px',
-                marginTop: '-7px',
-                transform: 'rotate(45deg) scale(0)',
-                borderTop: 0,
-                borderLeft: 0,
-                boxSizing: 'border-box',
-                transition: 'all .2s cubic-bezier(.12,.4,.29,1.46) .1s'
+        default:{
+            width:18,
+            height:16,
+            '& svg':{
+                fontSize:'22px'
             }
         },
-        checkedBoxInner: {
-            backgroundColor: theme.colors.primary,
-            '&:after': {
-                transform: 'rotate(45deg) scale(1)',
-            }
+        checkedSecondary:{
+            color:activeColor
         },
-        indeterminateBoxInner: {
-            backgroundColor: theme.colors.primary,
-            '&:after': {
-                transform: 'scale(1)',
-                width: '10px',
-                height: '2px',
-                marginTop: '-1px',
-                marginLeft: '-5px'
-            }
-        },
-        disabledWrap: {
-            cursor: 'not-allowed',
-            color: theme.disabled.color,
-            '&:hover>span>span': {
-                borderColor: '#d9d9d9'
-            },
-            '&>span>span': {
-                backgroundColor: theme.disabled.backgroundColor,
-                borderColor: '#d9d9d9',
-                color: theme.disabled.color
-            },
-            '&>span>span:after': {
-                borderColor: theme.disabled.color
-            },
-            '& input': {
-                cursor: 'not-allowed'
-            }
-        }
     }
 }
 @withStyles(styles, {name: 'MuiCheckboxAnt'})
-class Checkbox extends Component {
+class app extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            checked: this.props.checked || this.props.defaultChecked,
-            disabled: this.props.disabled,
-            indeterminate: this.props.indeterminate
+        this.state={
+            checked:props.defaultChecked || props.checked || false
         }
     }
 
     static defaultProps = {
         defaultChecked: false,
-        checked: false,
         name: '',
         disabled: false,
         indeterminate: false
     }
-
-    handleClick(e) {
-        this.setState({
-            checked: !this.state.checked
-        })
-        this.props.onChange && this.props.onChange(e)
+    onChange = event =>{
+        if(!_.has(this.props,'checked')){
+            this.setState({
+                checked:event.target.checked
+            })
+        }
+        this.props.onChange&&this.props.onChange(event)
     }
 
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
+    }
+
+
     render() {
-        const {classes}=this.props;
+        const {classes,children,checked,disabled,indeterminate}=this.props;
+        let otherProps = _.omit(this.props, ['classes','children'])
+        let checkClass ={checkedSecondary:classes.checkedSecondary,default:classes.default,disabled:disabled&&classes.disabled}
+        let checkedValue = !_.has(this.props,'checked') ? this.state.checked : checked
         return (
-            <label className={classnames(classes.wrap,{[classes.disabledWrap]:this.state.disabled})}>
-                <span className={classnames(classes.checkbox,{[classes.checkedBox]:this.state.checked})}>
-                    <input
-                        checked={this.state.checked}
-                        disabled={this.state.disabled}
-                        type="checkbox" name={this.props.name && this.props.name}
-                        className={classes.checkboxInput} onChange={this.handleClick.bind(this)}
-                        value={this.props.value && this.props.value}
-                    />
-                    <span
-                        className={classnames(classes.checkboxInner,{[classes.indeterminateBoxInner]:this.state.indeterminate,[classes.checkedBoxInner]:this.state.checked})}></span>
-                </span>
-                <span>{this.props.children}</span>
+            <label className={classnames(classes.root,disabled&&classes.readOnly,indeterminate&&classes.indeterminate)}>
+                <Checkbox
+                    inputRef={ref=>this.input = ref}
+                    {...otherProps}
+                    onChange={this.onChange}
+                    checked={checkedValue}
+                    classes={checkClass}
+                    disableRipple/>
+                <span className={classes.label}>{children}</span>
             </label>
         )
     }
 }
 
-Checkbox.propsTypes = {
+app.propsTypes = {
     onChange: PropTypes.func,
     defaultChecked: PropTypes.bool,
     checked: PropTypes.bool,
     name: PropTypes.string,
     indeterminate: PropTypes.bool,
+    indeterminateIcon: PropTypes.node,
+    icon: PropTypes.node,
+    checkedIcon: PropTypes.node,
     disabled: PropTypes.bool
 }
 
-export default Checkbox
+export default app

@@ -1,5 +1,5 @@
 import Checkbox from './checbox'
-import Group from './Group'
+import Group from './group'
 
 Checkbox.Group = Group;
 export default Checkbox;
