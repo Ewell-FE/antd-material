@@ -74,9 +74,7 @@ export class ConfirmModal extends Component {
                     {cancelText}
                 </Button>
             );
-
         return (
-            <MuiThemeProvider theme={style.use('theme')}>
                 <Modal
                     title=""
                     header={null}
@@ -102,7 +100,6 @@ export class ConfirmModal extends Component {
                         </Button>
                     </div>
                 </Modal>
-            </MuiThemeProvider>
         );
     }
 }
@@ -126,7 +123,7 @@ export default function confirm(config) {
     }
 
     function render(props) {
-        ReactDOM.render(<ConfirmModal {...props} />, div);
+        ReactDOM.render(<MuiThemeProvider theme={style.theme}><ConfirmModal {...props} /></MuiThemeProvider>, div);
     }
 
     render({ ...config, visible: true, close });
