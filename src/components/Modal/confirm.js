@@ -52,7 +52,6 @@ const styles = theme => {
         float: 'right'
     }
 }};
-const IS_REACT_16 = !!ReactDOM.createPortal;
 @withStyles(styles, {name: 'MuiConfirmModalAnt'})
 export class ConfirmModal extends Component {
     static defaultProps={
@@ -74,9 +73,7 @@ export class ConfirmModal extends Component {
                     {cancelText}
                 </Button>
             );
-
         return (
-            <MuiThemeProvider theme={style.use('theme')}>
                 <Modal
                     title=""
                     header={null}
@@ -102,7 +99,6 @@ export class ConfirmModal extends Component {
                         </Button>
                     </div>
                 </Modal>
-            </MuiThemeProvider>
         );
     }
 }
@@ -111,11 +107,7 @@ export default function confirm(config) {
     document.body.appendChild(div);
 
     function close(...args) {
-        if (IS_REACT_16) {
-            render({ ...config, close, visible: false, afterClose: destroy.bind(this, ...args) });
-        } else {
-            destroy(...args);
-        }
+        render({ ...config, close, visible: false, afterClose: destroy.bind(this, ...args) });
     }
 
     function destroy(...args) {
@@ -126,7 +118,7 @@ export default function confirm(config) {
     }
 
     function render(props) {
-        ReactDOM.render(<ConfirmModal {...props} />, div);
+        ReactDOM.render(<MuiThemeProvider theme={style.theme}><ConfirmModal {...props} /></MuiThemeProvider>, div);
     }
 
     render({ ...config, visible: true, close });

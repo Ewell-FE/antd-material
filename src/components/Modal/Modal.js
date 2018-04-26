@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '@/components/Button';
 import {Modal} from 'material-ui';
 import Icon from '../Icon'
-import grey from 'material-ui/colors/grey';
 import classnames from 'classnames';
-import { CircularProgress } from 'material-ui/Progress';
 const styles = theme => ({
     modal:{
         color: 'rgba(0,0,0,.65)',
@@ -108,7 +106,7 @@ export default class modal extends Component {
         const defaultFooter=(
             <div>
                 <Button onClick={onCancel}>{cancelText}</Button>
-                <Button type={okType} onClick={onOk}>{confirmLoading&&<CircularProgress className={classes.progress} size={16} style={{ color: grey[50] }}/>}{okText}</Button>
+                <Button type={okType} onClick={onOk} loading={confirmLoading}>{okText}</Button>
             </div>);
         let modalFooter;
         if(!footer){

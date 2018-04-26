@@ -17,6 +17,7 @@ const styles = theme => {
                 borderBottomLeftRadius: 0,
                 borderTopLeftRadius: 0,
                 minWidth: 'initial',
+                margin: 0
             }
         }
     }

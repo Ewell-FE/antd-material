@@ -1,5 +1,5 @@
-//name：按钮类型
-//desc：按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+# 提示框类型
+## 提示框包括成功、警告、提示、错误 4中类型
 
 
 ````jsx
@@ -9,7 +9,7 @@ export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                <Button type="Primary" onClick={()=>{Message.success("success!")}} disabled>success</Button>
+                <Button type="Primary" onClick={()=>{Message.success("success!")}}>success</Button>
                 <Button type="Default" onClick={()=>{Message.warn('warn~')}}>warn</Button>
                 <Button type="Dashed"  onClick={()=>{Message.info('info~')}}>info</Button>
                 <Button type="Danger"  onClick={()=>{Message.error('error~')}}>error</Button>

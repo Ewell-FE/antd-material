@@ -137,6 +137,22 @@ export default class app extends Component {
         size: 'default'
     }
 
+    render() {
+        const props = this.props
+        const {classes} = this.props
+        if (props.loading) {
+            return (
+                <div className={classnames(classes.wrapper,[props.type])}>
+                    <div className="mask"></div>
+                    <BaseButton {...props}/>
+                </div>
+            )
+        }
+        return <BaseButton {...props}/>
+    }
+}
+export class BaseButton extends Component{
+
     componentDidMount() {
         this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.button))
     }
@@ -145,41 +161,29 @@ export default class app extends Component {
         const props = this.props
         const {classes} = this.props
         let otherProps = omit(props, ['size', 'type', 'group', 'withRef', 'children', 'classes', 'activeValue', 'loading'])
-        let ButtonComponent = ()=> {
-            return (
-                <Button
-                    ref={ref=>this.button =ref}
-                    className={classnames(classes.root,classes[props.size],classes[props.type],
+        return (
+            <Button
+                ref={ref=>this.button =ref}
+                className={classnames(classes.root,classes[props.size],classes[props.type],
                 {'active':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
-                    {...otherProps}
-                >
-                    {props.loading && <CircularProgress size={18} className="Progress"/>}
-                    {[].concat(this.props.children).map((item, i)=> {
-                        if (typeof item === 'object') {
-                            return (
-                                <span
-                                    className={classnames({[classes.spacingr]:typeof this.props.children[i+1]==='string'},
+                {...otherProps}
+            >
+                {props.loading && <CircularProgress size={18} className="Progress"/>}
+                {[].concat(this.props.children).map((item, i)=> {
+                    if (typeof item === 'object') {
+                        return (
+                            <span
+                                className={classnames({[classes.spacingr]:typeof this.props.children[i+1]==='string'},
                                 {[classes.spacingl]:typeof this.props.children[i-1]==='string'})}
-                                    key={i}>{item}</span>
-                            )
-                        }
-                        return item
-                    })}
-                </Button>
-            )
-        }
-        if (props.loading) {
-            return (
-                <div className={classnames(classes.wrapper,[props.type])}>
-                    <div className="mask"></div>
-                    <ButtonComponent />
-                </div>
-            )
-        }
-        return <ButtonComponent />
+                                key={i}>{item}</span>
+                        )
+                    }
+                    return item
+                })}
+            </Button>
+        )
     }
 }
-
 app.propTypes = {
     type: PropTypes.oneOf(['Default', 'Primary', 'Dashed', 'Danger']),
     size: PropTypes.oneOf(['small', 'default', 'large']),
