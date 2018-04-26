@@ -352,7 +352,6 @@ class Tabs extends React.Component {
         });
 
         const extra = React.Children.map(tabBarExtraContentProp, child => {
-            console.log(child)
             if (!React.isValidElement(child)) {
                 return null;
             }

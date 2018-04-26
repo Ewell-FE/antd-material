@@ -12,7 +12,7 @@ const styles = theme => ({
         display: 'inline-block',
         "& > input,& > span": {
             width: 100,
-            marginTop: 5,
+            verticalAlign: 'middle',
         }
     }
 })
@@ -52,7 +52,9 @@ export class Demo2md extends Component {
 
     onChange = (e) => {
         const {tags} = this.state
-        tags.push(e.target.value)
+        if(e.target.value){
+               tags.push(e.target.value)
+        }
         this.setState({tags,inputVisible: false})
     }
 
@@ -72,7 +74,7 @@ export class Demo2md extends Component {
                     })
                 }
                 {
-                    !inputVisible && <button onClick={() => this.onAdd()}>添加</button>
+                    !inputVisible && <Tag onClick={() => this.onAdd()}>添加</Tag>
                 }
                 {
                     inputVisible && <div className={this.props.classes.root}>
@@ -177,7 +179,7 @@ const styles = theme => ({
         display: 'inline-block',
         "& > input,& > span": {
             width: 100,
-            marginTop: 5,
+            verticalAlign: 'middle',
         }
     }
 })
@@ -200,7 +202,9 @@ export class Demo2md extends Component {
 
     onChange = (e) => {
         const {tags} = this.state
-        tags.push(e.target.value)
+        if(e.target.value){
+               tags.push(e.target.value)
+        }
         this.setState({tags,inputVisible: false})
     }
 
@@ -220,7 +224,7 @@ export class Demo2md extends Component {
                     })
                 }
                 {
-                    !inputVisible && <button onClick={() => this.onAdd()}>添加</button>
+                    !inputVisible && <Tag onClick={() => this.onAdd()}>添加</Tag>
                 }
                 {
                     inputVisible && <div className={this.props.classes.root}>

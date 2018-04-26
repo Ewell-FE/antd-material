@@ -23,8 +23,10 @@ const styles = theme => {
             cursor: 'pointer',
             verticalAlign: 'middle',
             marginRight: '10px',
-            boxSizing: 'border-box'
-
+            boxSizing: 'border-box',
+            '&:hover': {
+                opacity: '0.85'
+            }
         },
         red: {
             color: '#f5222d',
@@ -56,7 +58,7 @@ const styles = theme => {
             cursor: 'not-allowed'
         },
         checked: {
-            background: '#1890ff',
+            background: theme.colors.primary,
             color: '#fff',
             marginRight: '10px',
             border: 'none',
