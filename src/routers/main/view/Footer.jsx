@@ -42,7 +42,7 @@ class Footer extends React.Component {
     const dataSource = [
       { title: '产品', content: '产品更新记录\nAPI文档\n快速入门\n参考指南', contentLink: '#\n#\n#\n#' },
       { title: '关于', content: 'FAQ\n联系我们', contentLink: '#\n#' },
-      { title: '资源', content: 'Ant Design\nAnt Design Mobile\nAnt Cool\nAntD Library', contentLink: '#\n#\n#\n#' },
+      { title: '资源', content: 'AntMaterial Design\nAntMaterial Design Mobile\nAntMaterial Cool\nAntMaterial Library', contentLink: '#\n#\n#\n#' },
       { title: '关注', content: 'https://zos.alipayobjects.com/rmsportal/IiCDSwhqYwQHLeU.svg\n https://zos.alipayobjects.com/rmsportal/AXtqVjTullNabao.svg\n https://zos.alipayobjects.com/rmsportal/fhJykUTtceAhYFz.svg\n https://zos.alipayobjects.com/rmsportal/IDZTVybHbaKmoEA.svg', contentLink: '#\n#\n#\n#' },
     ];
     const liChildrenToRender = dataSource.map(this.getLiChildren);
@@ -53,9 +53,10 @@ class Footer extends React.Component {
       <QueueAnim type="bottom" component="ul" key="ul" leaveReverse id={`${props.id}-ul`}>
         <li key="logo" id={`${props.id}-logo`}>
           <p className="logo">
-            <img alt="" src={logoContent.img} width="100%" />
+            {/*<img alt="" src={logoContent.img} width="100%" />*/}
+            logo
           </p>
-          <p>{logoContent.content}</p>
+          <p>简介</p>
         </li>
         {liChildrenToRender}
       </QueueAnim>

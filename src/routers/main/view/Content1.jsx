@@ -46,10 +46,10 @@ class Content extends React.Component {
             id={`${props.id}-textWrapper`}
           >
             <h1 key="h1" id={`${props.id}-title`}>
-              企业资源管理
+              antd-material 简介
             </h1>
             <p key="p" id={`${props.id}-content`}>
-              云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。
+              一款基于 material-ui v1.0 的ui基础组件工程,这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程
             </p>
           </QueueAnim>
         </OverPack>

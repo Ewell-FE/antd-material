@@ -29,7 +29,8 @@ class Content extends Component {
               key="title"
               id={`${props.id}-title`}
           >
-            <img alt="" width="100%" src="https://zos.alipayobjects.com/rmsportal/HqnZZjBjWRbjyMr.png"/>
+            {/*<img alt="" width="100%" src="https://zos.alipayobjects.com/rmsportal/HqnZZjBjWRbjyMr.png"/>*/}
+            <h1>logo</h1>
           </span>
                         <p
                             key="content"
