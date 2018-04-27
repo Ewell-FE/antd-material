@@ -37,7 +37,7 @@ class Header extends React.Component {
         id={`${this.props.id}-logo`}
       >
         {/*<img  alt="" width="100%" src="https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg" />*/}
-        <h2>logo</h2>
+        <h2 style={{color: '#fff',opacity: '.6'}}>logo</h2>
       </TweenOne>
       {isMode ? (<div
         className={`${this.props.className}-phone-nav${this.state.phoneOpen ? ' open' : ''}`}

@@ -56,7 +56,8 @@ class Footer extends React.Component {
             {/*<img alt="" src={logoContent.img} width="100%" />*/}
             logo
           </p>
-          <p>简介</p>
+          <p>一款基于 material-ui v1.0 的ui基础组件工程
+          </p>
         </li>
         {liChildrenToRender}
       </QueueAnim>

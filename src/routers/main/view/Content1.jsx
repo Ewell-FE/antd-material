@@ -49,7 +49,8 @@ class Content extends React.Component {
               antd-material 简介
             </h1>
             <p key="p" id={`${props.id}-content`}>
-              一款基于 material-ui v1.0 的ui基础组件工程,这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程
+              1、一款基于 material-ui v1.0 的ui基础组件工程；<br/>
+              2、这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程。
             </p>
           </QueueAnim>
         </OverPack>

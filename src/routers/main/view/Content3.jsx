@@ -72,31 +72,49 @@ class Content extends React.Component {
                 tag: {tag: 'PHONE', icon: 'https://zos.alipayobjects.com/rmsportal/XnzcslQvRoBHMHd.svg'},
                 img: <img alt="" width="100%" src="https://zos.alipayobjects.com/rmsportal/xBrUaDROgtFBRRL.png"/>,
                 text: `<h3>技术</h3>
-丰富的技术组件，简单组装即可快速搭建金融级应用，丰富的技术组件，简单组装即可快速搭建金融级应用。
-<h3>融合</h3>
-解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。
-<h3>开放</h3>
-符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。`,
+丰富的技术组件，简单组装即可快速搭建金融级应用，包含的前端技术有：<br>
+1、create-react-app；<br>
+2、material-ui v1.x；<br>
+3、react-router v4.x；<br>
+4、react-router-redux v5.0.0-alpha；<br>
+5、redux；<br>
+6、redux-saga；<br>
+<!--<h3>融合</h3>-->
+<!--解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。-->
+<!--<h3>开放</h3>-->
+<!--符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。-->`,
             },
             {
                 tag: {tag: 'TABLET', icon: 'https://zos.alipayobjects.com/rmsportal/XnzcslQvRoBHMHd.svg'},
                 img: <img alt="" width="100%" src="https://zos.alipayobjects.com/rmsportal/xBrUaDROgtFBRRL.png"/>,
                 text: `<h3>技术</h3>
-丰富的技术组件，简单组装即可快速搭建金融级应用，丰富的技术组件，简单组装即可快速搭建金融级应用。
-<h3>融合</h3>
-解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。
-<h3>开放</h3>
-符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。`,
+丰富的技术组件，简单组装即可快速搭建金融级应用，包含的前端技术有：<br>
+1、create-react-app；<br>
+2、material-ui v1.x；<br>
+3、react-router v4.x；<br>
+4、react-router-redux v5.0.0-alpha；<br>
+5、redux；<br>
+6、redux-saga；<br>
+<!--<h3>融合</h3>-->
+<!--解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。-->
+<!--<h3>开放</h3>-->
+<!--符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。-->`,
             },
             {
                 tag: {tag: 'DESKTOP', icon: 'https://zos.alipayobjects.com/rmsportal/XnzcslQvRoBHMHd.svg'},
                 img: <img alt="" width="100%" src="https://zos.alipayobjects.com/rmsportal/xBrUaDROgtFBRRL.png"/>,
                 text: `<h3>技术</h3>
-丰富的技术组件，简单组装即可快速搭建金融级应用，丰富的技术组件，简单组装即可快速搭建金融级应用。
-<h3>融合</h3>
-解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。
-<h3>开放</h3>
-符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。`,
+丰富的技术组件，简单组装即可快速搭建金融级应用，包含的前端技术有：<br>
+1、create-react-app；<br>
+2、material-ui v1.x；<br>
+3、react-router v4.x；<br>
+4、react-router-redux v5.0.0-alpha；<br>
+5、redux；<br>
+6、redux-saga；<br>
+<!--<h3>融合</h3>-->
+<!--解放业务及技术生产力，推动金融服务底层创新，推动金融服务底层创新。解放业务及技术生产力，推动金融服务底层创新。-->
+<!--<h3>开放</h3>-->
+<!--符合金融及要求的安全可靠、高可用、高性能的服务能力，符合金融及要求的安全可靠、高可用、高性能的服务能力。-->`,
             },
         ];
         const tabsChildren = childrenData.map(this.getBlockChildren);
@@ -116,7 +134,8 @@ class Content extends React.Component {
                         reverseDelay={200}
                         id={`${props.id}-title`}
                     >
-                        蚂蚁金融云提供专业的服务
+                        {/*蚂蚁金融云提供专业的服务*/}
+                        antd-material所用到的技术
                     </TweenOne>
                     <TweenOne
                         animation={{ y: '+=30', opacity: 0, type: 'from', delay: 100 }}
