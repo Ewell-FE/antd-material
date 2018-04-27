@@ -26,7 +26,7 @@ export class <%=component%> extends Component {
                         style={{ float: 'right' }}
                         href="https://www.google.com/search?q=antd"
                         target="_blank"
-
+                        rel="noopener noreferrer"
                       >更多
                       </a>
                     </span>
@@ -36,7 +36,7 @@ export class <%=component%> extends Component {
      }
     render() {
         return (
-            <AutoComplete style={{width:"200px"}} placeholder="input here" multi
+            <AutoComplete style={{width:"200px"}} placeholder="input here"
                           dataSource={data}  optionRenderer={this.options}/>
         )
     }

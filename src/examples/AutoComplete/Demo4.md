@@ -26,8 +26,10 @@ export class <%=component%> extends Component {
           {item.num} 在
           <a
             href="https://www.baidu.com"
-            target="_blank">
+            target="_blank"
+            rel="noopener noreferrer">
             {item.category}
+
           </a>
           区块中
           <span className="global-search-item-count">约 {item.count} 个结果</span>

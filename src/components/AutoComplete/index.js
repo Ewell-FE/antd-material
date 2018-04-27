@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import createClass from 'create-react-class';
 import {withStyles} from 'material-ui/styles';
-import './style.less'
 import classnames from 'classnames'
 import Typography from 'material-ui/Typography';
 import Input from 'material-ui/Input';
 import Chip from 'material-ui/Chip';
 import Select from '../Select';
 import Icon from '../Icon'
-import 'react-select/dist/react-select.css';
 function SelectWrapped(props) {
     const { classes,optionRenderer,...other } = props;
     return (
@@ -28,21 +25,20 @@ function SelectWrapped(props) {
                     return (
                         <Chip
                             tabIndex={-1}
-                            label={value.value}
+                            label={optionRenderer?value.value:children}
                             className={classnames(classes.chip)}
                             deleteIcon={<Icon type="times-circle" onClick={onDelete} />}
                             onDelete={onDelete}
                         />
                     );
                 }
-                return <div className="Select-value">{value.value}</div>;
+                return <div className="Select-value">{optionRenderer?value.value:children}</div>;
             }}
             {...other}
         />
     );
 }
 
-const ITEM_HEIGHT = 48;
 const styles = theme => {
    return  {
     root: {
@@ -56,105 +52,26 @@ const styles = theme => {
         backgroundColor: "#fafafa"
 
     },
-    '@global': {
-        '.Select-control': {
-            display: 'flex',
-            alignItems: 'center',
-            border: 0,
-            height: 'auto',
-            background: 'transparent',
-            '&:hover': {
-                boxShadow: 'none',
-            },
-        },
-        '.Select-multi-value-wrapper': {
-            flexGrow: 1,
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        '.Select--multi .Select-input': {
-            margin: 0,
-        },
-        '.Select.has-value.is-clearable.Select--single > .Select-control .Select-value': {
-            padding: "0 0 0 10px",
-            color:'#333',
-        },
-        '.Select-noresults': {
-            padding: theme.spacing.unit * 2,
-        },
-        '.Select-input': {
-            display: 'inline-flex !important',
-            padding: 0,
-            height: 'auto',
-        },
-        '.Select-input input': {
-            background: 'transparent',
-            border: 0,
-            padding: 0,
-            cursor: 'default',
-            display: 'inline-block',
-            fontFamily: 'inherit',
-            fontSize: 'inherit',
-            margin: 0,
-            outline: 0,
-        },
-        '.Select-placeholder, .Select--single .Select-value': {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            fontFamily: theme.typography.fontFamily,
-            fontSize: theme.typography.pxToRem(16),
-            padding: 0,
-        },
-        '.Select-placeholder': {
-            opacity: 0.42,
-            color: theme.palette.common.black,
-        },
-        '.Select-menu-outer': {
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: theme.shadows[2],
-            position: 'absolute',
-            left: 0,
-            top: "initial",
-            width: '100%',
-            zIndex: 2,
-            maxHeight: ITEM_HEIGHT * 4.5,
-        },
-        '.Select.is-focused:not(.is-open) > .Select-control': {
-            boxShadow: 'none',
-        },
-        '.Select-menu': {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            overflowY: 'auto',
-        },
-        '.Select-menu div': {
-            boxSizing: 'content-box',
-            "&:hover":{
-                backgroundColor: theme.select.hover,
-                color: theme.select.color,
-            }
-        },
-        '.Select-arrow-zone, .Select-clear-zone': {
-            color: theme.palette.action.active,
-            cursor: 'pointer',
-            height: 21,
-            width: 21,
-            zIndex: 1,
-        },
-        // Only for screen readers. We can't use display none.
-        '.Select-aria-only': {
-            position: 'absolute',
-            overflow: 'hidden',
-            clip: 'rect(0 0 0 0)',
-            height: 1,
-            width: 1,
-            margin: -1,
-        },
-    }
+   input:{
+       padding:0,
+       appearance: "none",
+       boxSizing: "border-box",
+       width: "100%",
+       backgroundColor: "#fff",
+       border: "1px solid #d9d9d9",
+       boxShadow: "inset 0 1px 3px rgba(0, 0, 0, .05)",
+       borderRadius: "4px",
+       outline: "0",
+       resize: "vertical",
+       transition: "all .3s",
+       "&:focus": {
+           borderColor: theme.colors.primary,
+           boxShadow: `0 0 0 2px ${theme.primary[100]}`
+       },
+       "&:disabled": {
+           cursor: "not-allowed",
+       }
+   }
 }};
 @withStyles(styles)
 export class App extends Component {
@@ -165,13 +82,6 @@ export class App extends Component {
             multi: "",
             multiLabel: null
         }
-    }
-
-    onPromptTextCreator(result){
-       let that = this
-        setTimeout(function(){
-            that.props.onSearch && that.props.onSearch(result)
-        },0)
     }
 
     onInputChange(result){
@@ -191,22 +101,11 @@ export class App extends Component {
         this.props.onChange && this.props.onChange(result)
     }
 
-    onInputFocus(e){
-        if(this.props.multi){
-            this.setState({
-                multi: e.target.value,
-            });
-        }else{
-            this.setState({
-                single: e.target.value,
-            });
-        }
-    }
     render() {
         const { classes,children,dataSource,multi,labelKey,fullWidth,onSearch,filterOption,optionRenderer,placeholder,ignoreCase,...other} = this.props;
         return (
             <div className={classnames(classes.root)}>
-                <Input
+                <Input  classes={{input:classes.input}}
                     disableUnderline={true}
                     fullWidth={fullWidth?true:false}
                     inputComponent={SelectWrapped}
@@ -243,9 +142,6 @@ App.propTypes = {
     ignoreCase: PropTypes.bool,//大小写
     multi: PropTypes.bool,//多选
     removeSelected:PropTypes.bool,//是否从options中去除选中项
-    // labelKey: PropTypes.oneOf(['square', 'circle']),//形状square,circle
-    // count: PropTypes.number,//
-
 }
 export default App
 
