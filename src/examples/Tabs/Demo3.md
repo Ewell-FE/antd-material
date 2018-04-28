@@ -3,7 +3,6 @@
 
 ````jsx
 import Tabs from '@/components/Tabs'
-import Icon from '@/components/Icon'
 const Tab = Tabs.Tab
 export class Demo3md extends Component {
         constructor(props) {
@@ -20,7 +19,6 @@ export class Demo3md extends Component {
         };
 
     render() {
-        const {classes, theme} = this.props;
                 const {value} = this.state;
                 return (
                     <div>

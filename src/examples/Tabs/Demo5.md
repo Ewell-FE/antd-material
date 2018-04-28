@@ -26,7 +26,6 @@ export class Demo5md extends Component {
         }
 
     render() {
-        const {classes, theme} = this.props;
                 const {value,size} = this.state;
                 return (
                     <div style={{textAlign: 'left'}}>

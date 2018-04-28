@@ -22,7 +22,6 @@ export class Demo4md extends Component {
         };
 
     render() {
-        const {classes, theme} = this.props;
                 const {value} = this.state;
                 return (
                     <div>

@@ -145,7 +145,7 @@ const styles = theme => {
                 width: '100%',
                 textAlign: 'left',
                 outline: '0',
-                height: `${parseInt(theme.size.default)-2}px`,
+                height: `${parseInt(theme.size.default,10)-2}px`,
                 transition: 'all 0.3s linear',
                 color: 'fade(#000, 65%)',
                 backgroundColor: '#fff',
@@ -168,7 +168,7 @@ const styles = theme => {
             padding: '0',
             height: theme.size.large,
             '& input': {
-                height: `${parseInt(theme.size.large)-2}px!important`,
+                height: `${parseInt(theme.size.large,10)-2}px!important`,
                 width: '100%',
             }
         },
@@ -176,7 +176,7 @@ const styles = theme => {
             padding: '0',
             height: theme.size.small,
             '& input': {
-                height: `${parseInt(theme.size.small)-2}px!important`,
+                height: `${parseInt(theme.size.small,10)-2}px!important`,
                 width: '100%',
             }
         },

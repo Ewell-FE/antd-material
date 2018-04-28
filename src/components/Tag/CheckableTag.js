@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import classnames from 'classnames'
+// import classnames from 'classnames'
 import Tag from './index'
 
 const styles = theme => {
@@ -17,7 +17,7 @@ export default class app extends Component {
         this.state = {}
     }
     render() {
-        const {classes,checked} = this.props
+        const {checked} = this.props
         return (
             <Tag checked={checked} onChange={this.props.onChange}>{this.props.children}</Tag>
         )

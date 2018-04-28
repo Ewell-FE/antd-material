@@ -29,7 +29,8 @@ export const styles = theme => {
             flexBorder: {
                 display: 'flex',
                 borderBottom: '1px solid #ebedf0',
-                position: 'relative'
+                position: 'relative',
+                overflow: 'hidden'
             },
             flexContainer: {
                 padding: '20px',
@@ -53,7 +54,9 @@ export const styles = theme => {
             centered: {
                 justifyContent: 'center',
             },
-            scrollButtons: {},
+            scrollButtons: {
+                color: theme.colors.normal
+            },
             scrollButtonsAuto: {
                 [theme.breakpoints.down('xs')]: {
                     display: 'none',
@@ -302,7 +305,7 @@ class Tabs extends React.Component {
 
     render() {
         const {
-            action, size,centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
+            action, size, centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
             scrollable, scrollButtons, TabScrollButton: TabScrollButtonProp, textColor, theme, value, tabBarExtraContent: tabBarExtraContentProp, ...other
         } = this.props;
         warning(
@@ -357,11 +360,6 @@ class Tabs extends React.Component {
             }
             const childValue = child.props.childred;
             return React.cloneElement(child, {
-                // fullWidth,
-                // indicator: selected && !this.state.mounted && indicator,
-                // selected,
-                // onChange,
-                // textColor,
                 value: childValue,
             });
         });

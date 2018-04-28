@@ -46,7 +46,7 @@ export class Demo2md extends Component {
                 {
                     tags.map((tag, key) => {
                         return (
-                            <Tag closable={key != 0 && true}
+                            <Tag closable={key !== 0 && true}
                                  afterClose={(e) => {
                                      console.log(e)
                                  }}

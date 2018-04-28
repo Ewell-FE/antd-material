@@ -7,120 +7,122 @@ import {withStyles} from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
 import {capitalize} from 'material-ui/utils/helpers';
 
-export const styles = theme => ({
-    root: {
-        ...theme.typography.button,
-        maxWidth: 264,
-        position: 'relative',
-        minWidth: 72,
-        height: 'auto',
-        flex: 'none',
-        overflow: 'hidden',
-        [theme.breakpoints.up('md')]: {
+export const styles = theme => {
+    return {
+        root: {
+            ...theme.typography.button,
+            maxWidth: 264,
+            position: 'relative',
             minWidth: 72,
+            height: 'auto',
+            flex: 'none',
+            overflow: 'hidden',
+            [theme.breakpoints.up('md')]: {
+                minWidth: 72,
+            },
         },
-    },
-    default: {
-        padding: '13px 16px',
-    },
-    small: {
-        padding: '9px 16px',
-    },
-    large: {
-        padding: '17px 16px',
-    },
-    rootIcon: {
-        minWidth: 88,
-        [theme.breakpoints.up('md')]: {
+        default: {
+            padding: '13px 16px',
+        },
+        small: {
+            padding: '9px 16px',
+        },
+        large: {
+            padding: '17px 16px',
+        },
+        rootIcon: {
             minWidth: 88,
+            [theme.breakpoints.up('md')]: {
+                minWidth: 88,
+            },
         },
-    },
-    labelIcon: {
-        height: 'auto',
-    },
-    textColorInherit: {
-        color: 'inherit',
-        opacity: 0.7,
-    },
-    textColorPrimary: {
-        color: theme.palette.text.secondary,
-    },
-    textColorPrimarySelected: {
-        color: theme.colors.primary,
-    },
-    textColorPrimaryDisabled: {
-        color: theme.palette.text.disabled,
-    },
-    textColorSecondary: {
-        color: theme.palette.text.secondary,
-    },
-    colorSecondary: {
-        backgroundColor: 'red'
-    },
-    textColorSecondarySelected: {
-        color: theme.palette.secondary.main,
-    },
-    textColorSecondaryDisabled: {
-        color: theme.palette.text.disabled,
-    },
-    textColorInheritSelected: {
-        opacity: 1,
-    },
-    textColorInheritDisabled: {
-        opacity: 0.4,
-    },
-    fullWidth: {
-        flexGrow: 1,
-    },
-    wrapper: {
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
+        labelIcon: {
+            height: 'auto',
+        },
+        textColorInherit: {
+            color: 'inherit',
+            opacity: 0.7,
+        },
+        textColorPrimary: {
+            color: theme.palette.text.secondary,
+        },
+        textColorPrimarySelected: {
+            color: theme.colors.primary,
+        },
+        textColorPrimaryDisabled: {
+            color: theme.palette.text.disabled,
+        },
+        textColorSecondary: {
+            color: theme.palette.text.secondary,
+        },
+        colorSecondary: {
+            backgroundColor: 'red'
+        },
+        textColorSecondarySelected: {
+            color: theme.palette.secondary.main,
+        },
+        textColorSecondaryDisabled: {
+            color: theme.palette.text.disabled,
+        },
+        textColorInheritSelected: {
+            opacity: 1,
+        },
+        textColorInheritDisabled: {
+            opacity: 0.4,
+        },
+        fullWidth: {
+            flexGrow: 1,
+        },
+        wrapper: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
 
-        '& .fa': {
-            marginRight: 6
-        }
-    },
-    labelContainer: {
-        // paddingTop: 12,
-        // paddingBottom: 12,
+            '& .fa': {
+                marginRight: 6
+            }
+        },
+        labelContainer: {
+            // paddingTop: 12,
+            // paddingBottom: 12,
 
-    },
-    label: {
-        fontSize: theme.typography.pxToRem(14),
-        whiteSpace: 'normal',
-        [theme.breakpoints.up('md')]: {
-            fontSize: theme.typography.pxToRem(13),
         },
-    },
-    labeldefault: {
-        fontSize: theme.typography.pxToRem(14),
-        whiteSpace: 'normal',
-        [theme.breakpoints.up('md')]: {
-            fontSize: theme.typography.pxToRem(13),
+        label: {
+            fontSize: theme.typography.pxToRem(14),
+            whiteSpace: 'normal',
+            [theme.breakpoints.up('md')]: {
+                fontSize: theme.typography.pxToRem(13),
+            },
         },
-    },
-    labelsmall: {
-        fontSize: theme.typography.pxToRem(14),
-        whiteSpace: 'normal',
-        [theme.breakpoints.up('md')]: {
-            fontSize: theme.typography.pxToRem(13),
+        labeldefault: {
+            fontSize: theme.typography.pxToRem(14),
+            whiteSpace: 'normal',
+            [theme.breakpoints.up('md')]: {
+                fontSize: theme.typography.pxToRem(13),
+            },
         },
-    },
-    labellarge: {
-        fontSize: theme.typography.pxToRem(16),
-        whiteSpace: 'normal',
-        [theme.breakpoints.up('md')]: {
-            fontSize: theme.typography.pxToRem(15),
+        labelsmall: {
+            fontSize: theme.typography.pxToRem(14),
+            whiteSpace: 'normal',
+            [theme.breakpoints.up('md')]: {
+                fontSize: theme.typography.pxToRem(13),
+            },
         },
-    },
-    labelWrapped: {
-        [theme.breakpoints.down('sm')]: {
-            fontSize: theme.typography.pxToRem(12),
+        labellarge: {
+            fontSize: theme.typography.pxToRem(16),
+            whiteSpace: 'normal',
+            [theme.breakpoints.up('md')]: {
+                fontSize: theme.typography.pxToRem(15),
+            },
         },
-    },
-});
+        labelWrapped: {
+            [theme.breakpoints.down('sm')]: {
+                fontSize: theme.typography.pxToRem(12),
+            },
+        },
+    }
+}
 
 class Tab extends React.Component {
     state = {
@@ -166,7 +168,7 @@ class Tab extends React.Component {
             style: styleProp, textColor, value, size, ...other
         } = this.props;
         let label;
-        const labelClass=classes[`label${size}`]
+        const labelClass = classes[`label${size}`]
         if (labelProp !== undefined) {
             label = (
                 <span className={classes.labelContainer}>

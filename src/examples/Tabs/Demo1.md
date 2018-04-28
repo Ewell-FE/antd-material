@@ -20,7 +20,6 @@ export class Demo1md extends Component {
         };
 
     render() {
-        const {classes, theme} = this.props;
                 const {value} = this.state;
                 return (
                     <div>

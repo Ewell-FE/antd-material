@@ -19,7 +19,6 @@ export class Demo2md extends Component {
         };
 
     render() {
-        const {classes, theme} = this.props;
                 const {value} = this.state;
                 return (
                     <div>
