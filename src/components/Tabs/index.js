@@ -24,11 +24,12 @@ export const styles = theme => {
             flexHead: {
                 display: 'flex',
                 // minHeight: 50,
-                // borderBottom: '1px solid #ebedf0'
+                borderBottom: '1px solid #ebedf0',
+                position: 'relative'
             },
             flexBorder: {
                 display: 'flex',
-                borderBottom: '1px solid #ebedf0',
+                // borderBottom: '1px solid #ebedf0',
                 position: 'relative',
                 overflow: 'hidden'
             },
@@ -68,9 +69,13 @@ export const styles = theme => {
             indicatorStyle: {},
             extra: {
                 position: 'absolute',
-                right: 0,
+                right: 10,
                 top: '50%',
-                transform: 'translateY(-50%)'
+                transform: 'translateY(-50%)',
+                 '& .fa':{
+                    fontSize: '16px',
+                     cursor: 'pointer'
+                 }
             }
         }
     )
@@ -305,7 +310,7 @@ class Tabs extends React.Component {
 
     render() {
         const {
-            action, size, centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
+            action, size, type, centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
             scrollable, scrollButtons, TabScrollButton: TabScrollButtonProp, textColor, theme, value, tabBarExtraContent: tabBarExtraContentProp, ...other
         } = this.props;
         warning(
@@ -350,7 +355,8 @@ class Tabs extends React.Component {
                 onChange,
                 textColor,
                 value: childValue,
-                size
+                size,
+                type
             });
         });
 
@@ -380,7 +386,7 @@ class Tabs extends React.Component {
                         onScroll={this.handleTabsScroll}
                     >
                         <div className={flexHeadClassName}>{children}</div>
-                        {this.state.mounted && indicator}
+                        {this.state.mounted && type === 'line' && indicator}
                     </div>
                     {conditionalElements.scrollButtonRight}
                     {/*附加内容按钮*/}
@@ -428,6 +434,7 @@ Tabs.propTypes = {
     selectNum: PropTypes.number,
     dir: PropTypes.string,
     tabBarExtraContent: PropTypes.node,//是否有附加内容
+    type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
 };
 
 Tabs.defaultProps = {
@@ -438,6 +445,7 @@ Tabs.defaultProps = {
     scrollButtons: 'auto',
     TabScrollButton,
     textColor: 'inherit',
+    type: 'line'
 };
 Tabs.Tab = Tab
 

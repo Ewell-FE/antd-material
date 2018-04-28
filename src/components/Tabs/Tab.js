@@ -21,6 +21,15 @@ export const styles = theme => {
                 minWidth: 72,
             },
         },
+        rootCard: {
+            border: '1px solid #e8e8e8',
+            marginRight: '2px',
+            background: '#fafafa',
+            borderRadius: '2px 2px 0 0',
+            position: 'relative',
+            top: '1px',
+            minWidth: 88,
+        },
         default: {
             padding: '13px 16px',
         },
@@ -48,6 +57,10 @@ export const styles = theme => {
         },
         textColorPrimarySelected: {
             color: theme.colors.primary,
+        },
+        cardSelect: {
+            background: '#fff',
+            borderBottom: 'none'
         },
         textColorPrimaryDisabled: {
             color: theme.palette.text.disabled,
@@ -81,7 +94,12 @@ export const styles = theme => {
 
             '& .fa': {
                 marginRight: 6
+            },
+
+            '& .close': {
+                margin: '3px 0 0 6px'
             }
+
         },
         labelContainer: {
             // paddingTop: 12,
@@ -165,7 +183,7 @@ class Tab extends React.Component {
     render() {
         const {
             classes, className: classNameProp, disabled, fullWidth, icon, indicator, label: labelProp, onChange, selected,
-            style: styleProp, textColor, value, size, ...other
+            style: styleProp, textColor, value, size, type,closable, ...other
         } = this.props;
         let label;
         const labelClass = classes[`label${size}`]
@@ -185,10 +203,19 @@ class Tab extends React.Component {
         </span>
             );
         }
-
+        let close;
+        if (type === 'card' && closable) {
+            close = (
+                <i className="fa fa-close close" aria-hidden="true"
+                ></i>
+            )
+        }
         const className = classNames(
             classes.root,
             classes[size],
+            {
+                [classes.rootCard]: type === 'card'
+            },
 
             {
                 [classes.rootIcon]: icon && label
@@ -196,7 +223,8 @@ class Tab extends React.Component {
             classes[`textColor${capitalize(textColor)}`],
             {
                 [classes[`textColor${capitalize(textColor)}Disabled`]]: disabled,
-                [classes[`textColor${capitalize(textColor)}Selected`]]: selected,
+                [classes[`textColor${capitalize(textColor)}Selected`]]: selected && type === 'line',
+                [classes.cardSelect]: selected && type === 'card',
                 [classes.labelIcon]: icon && label,
                 [classes.fullWidth]: fullWidth,
             },
@@ -231,8 +259,11 @@ class Tab extends React.Component {
         <span className={classes.wrapper}>
           {icon}
             {label}
+            {close}
+
         </span>
                 {indicator}
+
             </ButtonBase>
         );
     }
@@ -256,12 +287,16 @@ Tab.propTypes = {
     ]),
     value: PropTypes.any,
     size: PropTypes.oneOf(['small', 'default', 'large']),
+    type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
+    closable: PropTypes.bool,//卡片式页签是否可以关闭
 };
 
 Tab.defaultProps = {
     disabled: false,
     textColor: 'inherit',
-    size: 'default'
+    size: 'default',
+    type: 'line',
+    closable: false
 };
 
 
