@@ -7,7 +7,7 @@ import CheckableTag from './CheckableTag'
 const styles = theme => {
     return {
         outer: {
-            display: 'inline-block'
+            display: 'inline-block',
         },
         root: {
             background: theme.palette.grey[50],
@@ -68,7 +68,8 @@ const styles = theme => {
             background: 'none',
             border: 'none',
             lineHeight: '22px'
-        }
+        },
+
     }
 };
 
@@ -112,7 +113,7 @@ export default class app extends Component {
 
 
     getCont = () => {
-        const {classes, closable, disabled, color, checked} = this.props
+        const {classes, closable, disabled, color, checked, className} = this.props
         const disabledCls = classnames({
             [classes[`disabled`]]: disabled === true,
         });
@@ -124,7 +125,7 @@ export default class app extends Component {
             if (this.state.isShow) {
                 return (
                     <div
-                        className={classnames(classes.root, classes[color], disabledCls, checkedCls)}
+                        className={classnames(classes.root, className, classes[color], disabledCls, checkedCls)}
                         onClick={(e) => this.onClick(e)}
                     >
                         <span className={classnames(classes.span)}>{this.props.children} &nbsp;
@@ -137,7 +138,7 @@ export default class app extends Component {
         } else {
             return (
                 <div
-                    className={classnames(classes.root, classes[color], disabledCls, checkedCls)}
+                    className={classnames(classes.root, className, classes[color], disabledCls, checkedCls)}
                     onClick={(e) => this.onClick(e)}
                 >
                 <span className={classnames(classes.span)}>{this.props.children}
@@ -167,6 +168,7 @@ app.propTypes = {
     onClick: PropTypes.func,//点击
     onChange: PropTypes.func,//操作选中状态
     checked: PropTypes.bool,//选中状态
+    className: PropTypes.string //自定义类名
 };
 
 app.CheckableTag = CheckableTag
