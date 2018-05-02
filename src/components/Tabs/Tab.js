@@ -182,7 +182,7 @@ class Tab extends React.Component {
 
     render() {
         const {
-            classes, className: classNameProp, disabled, fullWidth, icon, indicator, label: labelProp, onChange, selected,
+            classes, onClose,className: classNameProp, disabled, fullWidth, icon, indicator, label: labelProp, onChange, selected,
             style: styleProp, textColor, value, size, type,closable, ...other
         } = this.props;
         let label;
@@ -206,7 +206,7 @@ class Tab extends React.Component {
         let close;
         if (type === 'card' && closable) {
             close = (
-                <i className="fa fa-close close" aria-hidden="true"
+                <i className="fa fa-close close" aria-hidden="true" onClick={this.props.onClose}
                 ></i>
             )
         }
@@ -289,6 +289,7 @@ Tab.propTypes = {
     size: PropTypes.oneOf(['small', 'default', 'large']),
     type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
     closable: PropTypes.bool,//卡片式页签是否可以关闭
+    onClose:PropTypes.func,//关闭函数
 };
 
 Tab.defaultProps = {

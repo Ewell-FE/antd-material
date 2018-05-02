@@ -72,10 +72,10 @@ export const styles = theme => {
                 right: 10,
                 top: '50%',
                 transform: 'translateY(-50%)',
-                 '& .fa':{
+                '& .fa': {
                     fontSize: '16px',
-                     cursor: 'pointer'
-                 }
+                    cursor: 'pointer'
+                }
             }
         }
     )
@@ -356,10 +356,9 @@ class Tabs extends React.Component {
                 textColor,
                 value: childValue,
                 size,
-                type
+                type,
             });
         });
-
         const extra = React.Children.map(tabBarExtraContentProp, child => {
             if (!React.isValidElement(child)) {
                 return null;
@@ -435,6 +434,7 @@ Tabs.propTypes = {
     dir: PropTypes.string,
     tabBarExtraContent: PropTypes.node,//是否有附加内容
     type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
+    // onClose:PropTypes.func,//关闭函数
 };
 
 Tabs.defaultProps = {
