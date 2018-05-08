@@ -32,9 +32,9 @@ export default class Group extends Component {
         if(e.target.checked){
             arr.push(value)
         }else{
-           _.remove(arr,function (key) {
-               return key === value
-           })
+            _.remove(arr,function (key) {
+                return key === value
+            })
         }
         if(!_.has(this.props,'value')){
             this.setState({
@@ -51,14 +51,14 @@ export default class Group extends Component {
                 {children}
                 {
                     options.map((item, index)=> {
-                            return <Checkbox
-                                        key={index}
-                                        value={item.value || item}
-                                        onChange={(event)=>this.onChange(event,item.value || item)}
-                                        checked={_.indexOf(arr,item.value || item) !== -1 ? true : false}
-                                        disabled={disabled || item.disabled}>
-                                        {item.label || item}
-                                </Checkbox>
+                        return <Checkbox
+                            key={index}
+                            value={item.value || item}
+                            onChange={(event)=>this.onChange(event,item.value || item)}
+                            checked={_.indexOf(arr,item.value || item) !== -1 ? true : false}
+                            disabled={disabled || item.disabled}>
+                            {item.label || item}
+                        </Checkbox>
                     })
                 }
             </div>
