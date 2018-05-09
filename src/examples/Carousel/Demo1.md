@@ -17,9 +17,6 @@ const style = theme =>{
 }
 @withStyles(style,{name:'MuiCarouselAnt'})
 export class <%=component%> extends Component {
-    constructor(props){
-        super(props)
-    }
     render() {
     const {classes} = this.props
         return (

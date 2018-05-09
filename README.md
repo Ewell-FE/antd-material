@@ -67,7 +67,7 @@
 │   │   ├───Mention           # ➜ 阿磊
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Select            # ➜ 曾辉艳 ✓ complete!
+│   │   ├───Select            # ➜ 曾辉艳 ✓ dev!
 │   │   ├───Slider            # ➜ 阿磊
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
@@ -79,8 +79,8 @@
 │   │   ├───Badge             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Calendar          # ➜ 阿磊
 │   │   ├───Card              # ➜ 胡昌哲 ✓
-│   │   ├───Carousel          # ➜ 曾辉艳 ✓ dev
-│   │   ├───Collapse          # ➜ 何家佳 ✓
+│   │   ├───Carousel          # ➜ 曾辉艳 ✓ complete!
+│   │   ├───Collapse          # ➜ 曾辉艳 ✓ complete!
 │   │   ├───List              # ➜ 林铭偲 ✓ complete!
 │   │   ├───Popover           # ➜ 林铭偲 ✓ complete!
 │   │   ├───Tooltip           # ➜ 曾辉艳 ✓ complete!
