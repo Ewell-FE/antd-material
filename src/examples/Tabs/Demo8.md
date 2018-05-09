@@ -47,10 +47,9 @@ export class Demo8md extends Component {
                 return (
                     <div style={{background: '#fff'}}>
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
-                              indicatorColor="primary"
                               type='card'
                               tabBarExtraContent={add}
-                              textColor="primary">
+                                >
                             {this.state.panes.map(pane => <Tab label={pane.title} key={pane.key}
                                                             onClose={(e) => this.onClose(e,pane)}
                                                             closable={pane.closable}>

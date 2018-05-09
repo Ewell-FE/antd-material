@@ -24,11 +24,10 @@ export class Demo6md extends Component {
                 return (
                     <div>
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
-                              indicatorColor="primary"
                               size='small'
                               scrollable
                               scrollButtons="on"
-                              textColor="primary">
+                              >
                             <Tab label="Tab1">
                                                     <div>
                                                         我是Tab1的内容

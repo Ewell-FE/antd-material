@@ -26,9 +26,8 @@ export class Demo4md extends Component {
                 return (
                     <div>
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
-                              indicatorColor="primary"
                               tabBarExtraContent={operations}
-                              textColor="primary">
+                             >
                             <Tab label="Tab1">
                                 <div>
                                     我是Tab1的内容

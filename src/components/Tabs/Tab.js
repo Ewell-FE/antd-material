@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {withStyles} from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
-import {capitalize} from 'material-ui/utils/helpers';
+// import {capitalize} from 'material-ui/utils/helpers';
 
 export const styles = theme => {
     return {
@@ -48,40 +48,19 @@ export const styles = theme => {
         labelIcon: {
             height: 'auto',
         },
-        textColorInherit: {
-            color: 'inherit',
-            opacity: 0.7,
-        },
-        textColorPrimary: {
+        textColor: {
             color: theme.palette.text.secondary,
         },
-        textColorPrimarySelected: {
+        textColorSelected: {
             color: theme.colors.primary,
         },
         cardSelect: {
             background: '#fff',
-            borderBottom: 'none'
+            borderBottom: 'none',
+            color: theme.colors.primary
         },
-        textColorPrimaryDisabled: {
+        textColorDisabled: {
             color: theme.palette.text.disabled,
-        },
-        textColorSecondary: {
-            color: theme.palette.text.secondary,
-        },
-        colorSecondary: {
-            backgroundColor: 'red'
-        },
-        textColorSecondarySelected: {
-            color: theme.palette.secondary.main,
-        },
-        textColorSecondaryDisabled: {
-            color: theme.palette.text.disabled,
-        },
-        textColorInheritSelected: {
-            opacity: 1,
-        },
-        textColorInheritDisabled: {
-            opacity: 0.4,
         },
         fullWidth: {
             flexGrow: 1,
@@ -183,7 +162,7 @@ class Tab extends React.Component {
     render() {
         const {
             classes, onClose,className: classNameProp, disabled, fullWidth, icon, indicator, label: labelProp, onChange, selected,
-            style: styleProp, textColor, value, size, type,closable, ...other
+            style: styleProp, value, size, type,closable, ...other
         } = this.props;
         let label;
         const labelClass = classes[`label${size}`]
@@ -220,10 +199,10 @@ class Tab extends React.Component {
             {
                 [classes.rootIcon]: icon && label
             },
-            classes[`textColor${capitalize(textColor)}`],
+            classes['textColor'],
             {
-                [classes[`textColor${capitalize(textColor)}Disabled`]]: disabled,
-                [classes[`textColor${capitalize(textColor)}Selected`]]: selected && type === 'line',
+                [classes[`textColorDisabled`]]: disabled,
+                [classes[`textColorSelected`]]: selected && type === 'line',
                 [classes.cardSelect]: selected && type === 'card',
                 [classes.labelIcon]: icon && label,
                 [classes.fullWidth]: fullWidth,
@@ -234,9 +213,6 @@ class Tab extends React.Component {
 
 
         let style = {};
-        if (textColor !== 'secondary' && textColor !== 'inherit') {
-            style.color = textColor;
-        }
         style =
             Object.keys(style).length > 0
                 ? {
@@ -281,10 +257,6 @@ Tab.propTypes = {
     onClick: PropTypes.func,
     selected: PropTypes.bool,
     style: PropTypes.object,
-    textColor: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.oneOf(['secondary', 'primary', 'inherit']),
-    ]),
     value: PropTypes.any,
     size: PropTypes.oneOf(['small', 'default', 'large']),
     type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
@@ -294,7 +266,6 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
     disabled: false,
-    textColor: 'inherit',
     size: 'default',
     type: 'line',
     closable: false

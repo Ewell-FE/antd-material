@@ -304,10 +304,6 @@ class Tabs extends React.Component {
         }
     };
 
-    handleChangeIndex = () => {
-
-    }
-
     render() {
         const {
             action, size, type, centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
@@ -353,7 +349,6 @@ class Tabs extends React.Component {
                 indicator: selected && !this.state.mounted && indicator,
                 selected,
                 onChange,
-                textColor,
                 value: childValue,
                 size,
                 type,
@@ -427,24 +422,21 @@ Tabs.propTypes = {
     scrollable: PropTypes.bool,
     scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
     TabScrollButton: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
     theme: PropTypes.object.isRequired,
     value: PropTypes.any,
     selectNum: PropTypes.number,
     dir: PropTypes.string,
     tabBarExtraContent: PropTypes.node,//是否有附加内容
     type: PropTypes.oneOf(['line', 'card', 'editable-card']),//tab切换类型
-    // onClose:PropTypes.func,//关闭函数
 };
 
 Tabs.defaultProps = {
     centered: false,
     fullWidth: false,
-    indicatorColor: 'secondary',
+    indicatorColor: 'primary',
     scrollable: false,
     scrollButtons: 'auto',
     TabScrollButton,
-    textColor: 'inherit',
     type: 'line'
 };
 Tabs.Tab = Tab

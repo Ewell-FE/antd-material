@@ -35,9 +35,8 @@ export class Demo5md extends Component {
                              <Button value="large">large</Button>
                         </ButtonGroup>
                         <Tabs value={value} onChange={this.handleChange} selectnum={this.state.selectnum}
-                              indicatorColor="primary"
                               size={size}
-                              textColor="primary">
+                              >
                             <Tab label="Tab1">
                                 <div>
                                     我是Tab1的内容
