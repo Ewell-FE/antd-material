@@ -158,7 +158,7 @@ export default class app extends Component {
                 })
             }
 
-        }else{
+        }else{  //单项选择
             if(e.target.checked){
                 selectedKeys.push(keys(data))
             }else{
@@ -183,8 +183,6 @@ export default class app extends Component {
     //selectedKeys: 所有选中的keys  targetKeys:右侧的keys
     //return targetSelectedKeys:右侧选中的keys  sourceSelectedKeys:左侧选中的keys
     getSelfSelectKeys = (selectedKeys,targetKeys) =>{
-        console.log(selectedKeys,)
-        console.log(targetKeys,)
         var arr1 = [],arr2 = []
         selectedKeys.map((item,i)=>{
             if(targetKeys.indexOf(item) > -1){
@@ -202,7 +200,7 @@ export default class app extends Component {
     render() {
 
 
-        
+
         const props = this.props
         const {classes} = this.props
         var prefixCls = 'material-transfer'
@@ -326,7 +324,7 @@ app.defaultProps = {
         titles: PropTypes.array,          //ok
         onChange: PropTypes.func,
        onScroll:PropTypes.func,            //ok
-        onSearchChange: PropTypes.func,   //ok   补充说明,此函数不能阻止默认的删选,可以作为监听使用,
+        onSearchChange: PropTypes.func,   //ok   补充说明,此函数不能阻止默认的筛选(蚂蚁也不行),可以作为监听使用,
         onSelectChange: PropTypes.func,    //ok
         rowKey: PropTypes.oneOfType([
             PropTypes.string,

@@ -151,6 +151,7 @@ export default class app extends Component {
         this.props.onScroll && this.props.onScroll(type === 1 ? 'left' : 'right',e)
     }
 
+    //render函数处理,   render函数,可能返回普通字符串,也可能返回规定类型的对象,因此需要提前处理
     transferRender = (item)=>{
         var render  = this.props.render
         function isRenderResultPlainObject(result) {
@@ -233,7 +234,7 @@ export default class app extends Component {
             },
             <div className={classnames(prefixCls + '-header')}>
                 <div className={classnames(prefixCls + '-header-count')}>
-                    <Checkbox checked={selectableData.length > 0 && allSelected === 0} indeterminate={hasSelectedKeys > 0} onChange={(e)=>changeSelect(type,1,e,data)} >
+                    <Checkbox checked={selectableData.length > 0 && allSelected === 0} indeterminate={hasSelectedKeys > 0 && allSelected > 0} onChange={(e)=>changeSelect(type,1,e,data)} >
                         {selectedKeys.length + '/' + data.length}
                         </Checkbox>
                 </div>

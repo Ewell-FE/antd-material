@@ -72,7 +72,7 @@
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓
-│   │   ├───Transfer          # ➜ 杨林林 ✓
+│   │   ├───Transfer          # ➜ 杨林林 ✓ complete!
 │   │   ├───Upload            # ➜ 阿磊
 │   ├─── Data Display
 │   │   ├───Avatar            # ➜ 郭丽丽 ✓ complete!
