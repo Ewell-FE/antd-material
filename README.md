@@ -91,9 +91,9 @@
 │   │   ├───Tree              # ➜ 阿磊
 │   ├─── Feedback
 │   │   ├───Alert             # ➜ 林铭偲 ✓ complete!
-│   │   ├───Modal             # ➜ 何家佳 ✓
+│   │   ├───Modal             # ➜ 林铭偲 ✓ complete!
 │   │   ├───Message           # ➜ 阿磊 ✓ complete！
-│   │   ├───Notification      # ➜ 郭丽丽 ✓ dev
+│   │   ├───Notification      # ➜ 郭丽丽 ✓  complete！
 │   │   ├───Progress          # ➜ 胡昌哲 ✓
 │   │   ├───Popconfirm        # ➜ 何家佳 ✓
 │   │   ├───Spin              # ➜ 阿磊 ✓ dev

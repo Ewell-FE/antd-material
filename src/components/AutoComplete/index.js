@@ -7,8 +7,6 @@ import Input from 'material-ui/Input';
 import Chip from 'material-ui/Chip';
 import Select from '../Select';
 import Icon from '../Icon'
-import { MenuItem } from 'material-ui/Menu';
-let flag = true;
 const styles = theme => {
     return  {
         root: {
