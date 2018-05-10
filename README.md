@@ -99,7 +99,7 @@
 │   │   ├───Spin              # ➜ 阿磊 ✓ dev
 │   ├──── Other
 │   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
-│   │   ├───BackTop           # ➜ 杨林林 ✓
+│   │   ├───BackTop           # ➜ 林铭偲 ✓ complete！
 │   │   ├───Divider           # ➜ 曾辉艳 ✓ complete！
 │   │   ├───LocaleProvider    # ➜ 阿磊
 │   ├── examples              # 对应组件库的demo
