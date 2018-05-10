@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 import _ from 'lodash'
+
 const styles = theme => ({
     root: {
         display: 'inline-block',
@@ -53,16 +54,31 @@ const styles = theme => ({
         }
     },
     defaultChecked: {
-        color: '#fff',
         transform: 'translateX(14px)',
-        '& + $bar': {
-            backgroundColor: theme.colors.primary,
-            opacity: 1
+        '&$default':{
+            color: '#fff',
+            '& + $bar': {
+                backgroundColor: theme.colors.primary,
+                opacity: 1
+            }
         }
     },
     disabled: {
-        '& + $bar': {
-            opacity: 0.5
+        '&$default': {
+            color:'#fff',
+            '& + $bar': {
+                backgroundColor: 'rgba(0, 0, 0, 0.25)',
+                opacity: 0.5
+            }
+        }
+    },
+    disabledChecked:{
+        '&$default': {
+            color:'#fff',
+            '& + $bar': {
+                backgroundColor: theme.colors.primary,
+                opacity: 0.5
+            }
         }
     },
     icon: {
@@ -75,19 +91,19 @@ const styles = theme => ({
         borderRadius: 100,
         marginTop: -9,
     },
-    smallRoot:{
+    smallRoot: {
         width: 32,
         height: 18,
     },
-    smallBar:{
+    smallBar: {
         width: 32,
         height: 18,
     },
-    smallIcon:{
+    smallIcon: {
         width: 14,
         height: 14
     },
-    smallDefault:{
+    smallDefault: {
         width: '32px',
         height: '18px',
         top: '0',
@@ -96,13 +112,13 @@ const styles = theme => ({
     smallChecked: {
         transform: 'translateX(6px)',
     },
-    checkedIcons:{
-      fontSize:'12px',
+    checkedIcons: {
+        fontSize: '12px',
         left: 2,
         top: 3,
     },
-    unCheckedIcons:{
-        fontSize:'12px',
+    unCheckedIcons: {
+        fontSize: '12px',
         right: 2,
         top: 3,
     }
@@ -121,49 +137,54 @@ export class App extends Component {
     }
 
     handleChange(checked) {
-        if (!_.has(this.props,'checked')) {
+        if (!_.has(this.props, 'checked')) {
             this.setState({
                 checked: !checked
             })
         }
-        this.props.onChange&&this.props.onChange(!checked)
+        this.props.onChange && this.props.onChange(!checked)
 
     }
 
     onChangeCheck = event => {
-        if (!_.has(this.props,'checked')) {
+        if (!_.has(this.props, 'checked')) {
             this.setState({checked: event.target.checked});
         }
-        this.props.onChange&&this.props.onChange(event.target.checked)
+        this.props.onChange && this.props.onChange(event.target.checked)
 
     }
 
     render() {
-        const {classes, checked, loading,size} = this.props
+        const {classes, checked, loading, size} = this.props
         const icons = {}, switchClass = {}
-        const otherProps = _.omit(this.props, ['loading','checkedChildren','unCheckedChildren','classes'])
+        const otherProps = _.omit(this.props, ['loading', 'checkedChildren', 'unCheckedChildren', 'classes'])
+        let checkValue = _.has(this.props, 'checked') ? checked : this.state.checked
+
         Object.assign(switchClass, {
-            'root': classNames(classes.defaultRoot,size === 'small'&&classes.smallRoot),
-            'bar': classNames(classes.bar,size === 'small'&&classes.smallBar),
-            'default':classNames(classes.default,size === 'small'&&classes.smallDefault),
-            'icon': classNames(classes.icon,size === 'small'&&classes.smallIcon),
-            'checked':classNames(classes.defaultChecked,size === 'small'&&classes.smallChecked),
-            'disabled': classes.disabled
+            'root': classNames(classes.defaultRoot, size === 'small' && classes.smallRoot),
+            'bar': classNames(classes.bar, size === 'small' && classes.smallBar),
+            'switchBase': classNames(classes.default, size === 'small' && classes.smallDefault),
+            'icon': classNames(classes.icon, size === 'small' && classes.smallIcon),
+            'disabled': checkValue ? classes.disabledChecked : classes.disabled,
+            'checked': classNames(classes.defaultChecked, size === 'small' && classes.smallChecked),
         })
         if (loading) {
             Object.assign(icons, {
-                'icon': <span className={classNames(classes.loading,size==='small' && classes.smallIcon)}><CircularProgress size={14}/></span>,
-                'checkedIcon': <span className={classNames(classes.loading,size==='small' && classes.smallIcon)}><CircularProgress size={14}/></span>
+                'icon': <span
+                    className={classNames(classes.loading, size === 'small' && classes.smallIcon)}><CircularProgress
+                    size={14}/></span>,
+                'checkedIcon': <span
+                    className={classNames(classes.loading, size === 'small' && classes.smallIcon)}><CircularProgress
+                    size={14}/></span>
             })
         }
-        let checkValue = _.has(this.props,'checked') ? checked : this.state.checked
         if (this.props.checkedChildren || this.props.unCheckedChildren) {
             return (
                 <div className={classes.root}>
                     <Switch
                         checked={checkValue}
                         disableRipple
-                        inputRef={ref=>this.input = ref}
+                        inputRef={ref => this.input = ref}
                         {...icons}
                         onChange={this.onChangeCheck}
                         classes={{...switchClass}}
@@ -171,13 +192,14 @@ export class App extends Component {
                     </Switch>
                     {
                         checkValue ?
-                            <span className={classNames(classes.checkedIcon,size === 'small'&&classes.checkedIcons)}
+                            <span className={classNames(classes.checkedIcon, size === 'small' && classes.checkedIcons)}
                                   onClick={() => this.handleChange(checkValue)}>
                         {this.props.checkedChildren}
                         </span>
                             :
-                            <span className={classNames(classes.unCheckedIcon,size === 'small'&&classes.unCheckedIcons)}
-                                  onClick={() => this.handleChange(checkValue)}>
+                            <span
+                                className={classNames(classes.unCheckedIcon, size === 'small' && classes.unCheckedIcons)}
+                                onClick={() => this.handleChange(checkValue)}>
                         {this.props.unCheckedChildren}
                         </span>
                     }
@@ -189,7 +211,7 @@ export class App extends Component {
                     <Switch
                         {...otherProps}
                         {...icons}
-                        inputRef={ref=>this.input = ref}
+                        inputRef={ref => this.input = ref}
                         checked={checkValue}
                         onChange={this.onChangeCheck}
                         disableRipple
@@ -201,15 +223,16 @@ export class App extends Component {
         }
     }
 }
+
 App.propTypes = {
     size: PropTypes.oneOf(['small', 'default']), //大小
-    checked:PropTypes.bool, //是否打开
-    onChange:PropTypes.func, //改变函数，返回当前状态
-    checkedChildren:PropTypes.any, //选中时的内容
-    unCheckedChildren:PropTypes.any, //非选中时的内容
-    disabled:PropTypes.bool, //是否禁用
-    loading:PropTypes.bool, //加载中的开关
-    defaultChecked:PropTypes.bool, //初始是否选中
+    checked: PropTypes.bool, //是否打开
+    onChange: PropTypes.func, //改变函数，返回当前状态
+    checkedChildren: PropTypes.any, //选中时的内容
+    unCheckedChildren: PropTypes.any, //非选中时的内容
+    disabled: PropTypes.bool, //是否禁用
+    loading: PropTypes.bool, //加载中的开关
+    defaultChecked: PropTypes.bool, //初始是否选中
 }
-export default withStyles(styles,{name:'MuiSwitchAnt'})(App);
+export default withStyles(styles, {name: 'MuiSwitchAnt'})(App);
 

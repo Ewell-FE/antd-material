@@ -11,7 +11,7 @@ const styles = theme => {
         fontColor=theme.palette.text.secondary,
         fontColorPar=theme.palette.text.primary
     return {
-        root: {
+        rootRadio: {
             display: 'inline-block',
             fontSize: fontSize,
             cursor:'pointer',
@@ -20,17 +20,16 @@ const styles = theme => {
         },
         readOnly:{
             color: theme.disabled.color,
-            // backgroundColor: theme.disabled.backgroundColor,
             cursor: "not-allowed"
         },
-        radioRoot: {
+        root: {
             height: 16,
             width: 16,
             fontSize: fontSize,
-            color:fontColor
-        },
-        checkedSecondary: {
-            color: activeColor
+            color:fontColor,
+            '&$checked': {
+                color: activeColor
+            },
         },
         disabled:{
             color:theme.disabled.color
@@ -41,6 +40,9 @@ const styles = theme => {
         sizeIcon: {
             fontSize: 20,
         },
+        checked:{
+
+        }
     }
 };
 
@@ -53,11 +55,11 @@ export default class app extends Component {
 
     render() {
         const {children, classes,disabled,defaultChecked,checked,value,style,name} = this.props
-        let root = classnames(classes.root,disabled&&classes.readOnly)
+        let root = classnames(classes.rootRadio,disabled&&classes.readOnly)
         let radioClass = {}
         Object.assign(radioClass,{
-            default: classes.radioRoot,
-            checkedSecondary: classes.checkedSecondary,
+            root: classes.root,
+            checked: classes.checked,
             disabled:classes.disabled
         })
         return (

@@ -107,7 +107,7 @@ export default class app extends Component {
                        onChange={this.props.onChange}
                        value={value}
                        defaultChecked={defaultChecked}
-                       classes={{default: classes.input}}/>
+                       classes={{root: classes.input}}/>
                 {children}
             </label>
         )

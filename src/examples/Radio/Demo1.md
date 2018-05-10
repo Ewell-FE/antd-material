@@ -9,7 +9,7 @@ export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                <Radio>哈哈哈</Radio>
+                <Radio>Radio-choose</Radio>
             </div>
         )
     }

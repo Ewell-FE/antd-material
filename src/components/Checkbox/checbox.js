@@ -38,10 +38,13 @@ const styles = (theme)=> {
             height:16,
             '& svg':{
                 fontSize:'22px'
+            },
+            '&$checked':{
+                color:activeColor
             }
-        },
-        checkedSecondary:{
-            color:activeColor
+        }, //不可删除
+        checked:{
+
         },
     }
 }
@@ -77,7 +80,7 @@ class app extends Component {
     render() {
         const {classes,children,checked,disabled,indeterminate,className,style}=this.props;
         let otherProps = _.omit(this.props, ['classes','children','className','style'])
-        let checkClass ={checkedSecondary:classes.checkedSecondary,default:classes.default,disabled:disabled&&classes.disabled}
+        let checkClass ={checked:classes.checked,root:classes.default,disabled:disabled&&classes.disabled}
         let checkedValue = !_.has(this.props,'checked') ? this.state.checked : checked
         return (
             <label className={classnames(classes.root,disabled&&classes.readOnly,
