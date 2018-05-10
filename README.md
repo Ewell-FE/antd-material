@@ -51,7 +51,7 @@
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 阿磊 ✓
-│   │   ├───Breadcrumb        # ➜ 杨单丹 ✓ dev
+│   │   ├───Breadcrumb        # ➜ 杨单丹 ✓ complete!
 │   │   ├───Dropdown          # ➜ 阿磊 ✓
 │   │   ├───Menu              # ➜ 何家佳 ✓ dev!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
@@ -67,7 +67,7 @@
 │   │   ├───Mention           # ➜ 阿磊
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Select            # ➜ 曾辉艳 ✓ dev!
+│   │   ├───Select            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Slider            # ➜ 阿磊
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
@@ -100,7 +100,7 @@
 │   ├──── Other
 │   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
 │   │   ├───BackTop           # ➜ 杨林林 ✓
-│   │   ├───Divider           # ➜ 杨林林 ✓
+│   │   ├───Divider           # ➜ 曾辉艳 ✓ complete！
 │   │   ├───LocaleProvider    # ➜ 阿磊
 │   ├── examples              # 对应组件库的demo
 │   ├── lib                   # 第三方工具类/库
