@@ -1,5 +1,5 @@
-#  竖直方向的步骤条
-## 简单的竖直方向的步骤条。
+#  迷你版
+## 迷你版的步骤条，通过设置 "small" 启用.
 
 
 ````jsx
@@ -11,7 +11,7 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-          <Steps current={1}  direction="vertical">
+          <Steps current={1} size="small">
                   <Step title="Finished" description="This is a description." />
                   <Step title="In Progress" description="This is a description." />
                   <Step title="Waiting" description="This is a description." />

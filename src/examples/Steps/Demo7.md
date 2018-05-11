@@ -1,5 +1,5 @@
-#  竖直方向的步骤条
-## 简单的竖直方向的步骤条。
+#  步骤运行错误
+## 使用 Steps 的 status 属性来指定当前步骤的状态。
 
 
 ````jsx
@@ -11,7 +11,7 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-          <Steps current={1}  direction="vertical">
+          <Steps current={1} status="error">
                   <Step title="Finished" description="This is a description." />
                   <Step title="In Progress" description="This is a description." />
                   <Step title="Waiting" description="This is a description." />

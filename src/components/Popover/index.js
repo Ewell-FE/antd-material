@@ -173,7 +173,7 @@ export default class Popver extends Component {
             })
         }
         return(
-            <div style={{display:'inline-block'}}>
+            <div>
                 {
                     React.cloneElement(children, {
                         ...defaultChildren,

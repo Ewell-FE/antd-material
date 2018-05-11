@@ -1,5 +1,5 @@
-#  竖直方向的步骤条
-## 简单的竖直方向的步骤条。
+#  点状步骤条
+## 包含步骤点的进度条。
 
 
 ````jsx
@@ -11,7 +11,7 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-          <Steps current={1}  direction="vertical">
+          <Steps current={1} progressDot>
                   <Step title="Finished" description="This is a description." />
                   <Step title="In Progress" description="This is a description." />
                   <Step title="Waiting" description="This is a description." />
