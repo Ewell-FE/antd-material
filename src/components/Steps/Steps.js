@@ -28,6 +28,9 @@ export default class Steps extends React.Component {
         return {
             step:{
                 progressDot:this.props.progressDot||null,
+                size:this.props.size||'large',
+                current:this.props.current,
+                status:this.props.status
             }
         }
     }
@@ -37,9 +40,18 @@ export default class Steps extends React.Component {
 
     render() {
         const { classes,children,current=0,direction='horizontal'} = this.props;
-
+        let progressDot;
+        if(this.props.progressDot){
+            progressDot=true;
+        }else{
+            progressDot=false;
+        }
         return (
-            <Stepper activeStep={current} orientation={direction} classes={{root:classes.root}} connector={<StepConnector classes={{line:classes.line}}/>}>
+            <Stepper activeStep={current}
+                     orientation={direction}
+                     classes={{root:classes.root}}
+                     alternativeLabel={progressDot}
+                     connector={<StepConnector classes={{line:classes.line}}/>}>
                 {children}
             </Stepper>
         );
