@@ -68,7 +68,7 @@
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Select            # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Slider            # ➜ 阿磊
+│   │   ├───Slider            # ➜ 杨单丹 dev
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓

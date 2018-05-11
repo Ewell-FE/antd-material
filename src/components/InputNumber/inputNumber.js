@@ -6,6 +6,7 @@ import RcInputNumber from 'rc-input-number';
 
 
 const styles = theme => {
+
     return {
         yhInputNumber: {
             margin: '0 10px 0 0',
