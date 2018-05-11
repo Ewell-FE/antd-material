@@ -78,7 +78,7 @@
 │   │   ├───Avatar            # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Badge             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Calendar          # ➜ 阿磊
-│   │   ├───Card              # ➜ 胡昌哲 ✓
+│   │   ├───Card              # ➜ 胡昌哲 ✓ complete!
 │   │   ├───Carousel          # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Collapse          # ➜ 曾辉艳 ✓ complete!
 │   │   ├───List              # ➜ 林铭偲 ✓ complete!
@@ -94,8 +94,8 @@
 │   │   ├───Modal             # ➜ 林铭偲 ✓ complete!
 │   │   ├───Message           # ➜ 阿磊 ✓ complete！
 │   │   ├───Notification      # ➜ 郭丽丽 ✓  complete！
-│   │   ├───Progress          # ➜ 胡昌哲 ✓
-│   │   ├───Popconfirm        # ➜ 何家佳 ✓
+│   │   ├───Progress          # ➜ 胡昌哲 ✓ complete!
+│   │   ├───Popconfirm        # ➜ 曾辉艳 ✓ complete
 │   │   ├───Spin              # ➜ 阿磊 ✓ dev
 │   ├──── Other
 │   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
