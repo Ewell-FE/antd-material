@@ -36,21 +36,11 @@ class App extends Component {
         return (
             <div id="home" style={{background:"#EAEBED"}}>
                 <div className="wrapp">
-                    {/*<div className="sk-cube sk-cube1"></div>*/}
-                    {/*<div className="sk-cube sk-cube2"></div>*/}
-                    {/*<div className="sk-cube sk-cube3"></div>*/}
-                    {/*<div className="sk-cube sk-cube4"></div>*/}
-                    {/*<div className="sk-cube sk-cube5"></div>*/}
-                    {/*<div className="sk-cube sk-cube6"></div>*/}
-                    {/*<div className="sk-cube sk-cube7"></div>*/}
-                    {/*<div className="sk-cube sk-cube8"></div>*/}
-                    {/*<div className="sk-cube sk-cube9"></div>*/}
                     <div className="k-line k-line11-1"></div>
                     <div className="k-line k-line11-2"></div>
                     <div className="k-line k-line11-3"></div>
                     <div className="k-line k-line11-4"></div>
                     <div className="k-line k-line11-5"></div>
-
                 </div>
                 <div className="homeLoad">正在启动</div>
             </div>
