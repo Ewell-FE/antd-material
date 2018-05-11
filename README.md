@@ -50,14 +50,14 @@
 │   │   ├───Grid              # ➜ 阿磊 ✓ complete!
 │   │   ├───Layout            # ➜ 胡昌哲 ✓
 │   ├─── Navigation
-│   │   ├───Affix             # ➜ 阿磊 ✓
+│   │   ├───Affix             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Breadcrumb        # ➜ 杨单丹 ✓ complete!
 │   │   ├───Dropdown          # ➜ 阿磊 ✓
 │   │   ├───Menu              # ➜ 何家佳 ✓ dev!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
 │   │   ├───Steps             # ➜ 阿磊 ✓
 │   ├─── Data Entry
-│   │   ├───AutoComplete      # ➜ 郭丽丽 ✓
+│   │   ├───AutoComplete      # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Cascader          # ➜ 阿磊
 │   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
 │   │   ├───DatePicker        # ➜ 阿磊 ✓

@@ -51,7 +51,7 @@ export class <%=component%> extends Component {
                     okText="Yes"
                     cancelText="No"
                 >
-                    <a href="#">Delete a task</a>
+                    <a href='avascript:void(0);'>Delete a task</a>
                 </Popconfirm>
                 <br />
                 <br />
