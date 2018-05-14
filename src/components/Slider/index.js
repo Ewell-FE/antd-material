@@ -10,7 +10,7 @@ import Tooltip from '@/components/Tooltip';
 export let SliderValue = 0
 const styles = theme => {
     return {
-        yhSlider: {
+        root: {
             position: 'relative',
             margin: '10px 6px',
             padding: '4px 0',
@@ -234,8 +234,9 @@ export default class Slider extends Component {
 
     render() {
         const {className, classes, range, ...restProps} = this.props;
+        console.log(classes)
         const sliderClass = classnames(
-            classes.yhSlider,
+            classes.root,
             className);
         if (range) {
             return <RcRange {...restProps} handle={this.handleWithTooltip} className={sliderClass}/>;
@@ -260,7 +261,7 @@ Slider.propTypes = {
     vertical: PropTypes.bool,//slider垂直方向
     onChange: PropTypes.func,
     onAfterChange: PropTypes.func,
-    tipFormatter: PropTypes.node,
+    tipFormatter: PropTypes.func,
     className: PropTypes.string,
     id: PropTypes.string
 };
