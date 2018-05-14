@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Stepper from 'material-ui/Stepper';
 import StepConnector from 'material-ui/Stepper/StepConnector';
+import classnames from 'classnames'
 
 
 const styles = theme => ({
@@ -10,8 +11,17 @@ const styles = theme => ({
         background:'transparent'
     },
     line:{
-        borderColor: theme.palette.type === 'light' ? '#1890ff' :'#1890ff'
-    }
+        borderColor: '#1890ff'
+    },
+    lineDot:{
+        marginLeft:'4px'
+    },
+    lineSmall:{
+        marginLeft:'11px'
+    },
+    lineLarge:{
+        marginLeft:'15px'
+    },
 });
 @withStyles(styles, {name: 'MuiStepsAnt'})
 export default class Steps extends React.Component {
@@ -30,7 +40,8 @@ export default class Steps extends React.Component {
                 progressDot:this.props.progressDot||null,
                 size:this.props.size||'large',
                 current:this.props.current,
-                status:this.props.status
+                status:this.props.status,
+                direction:this.props.direction||'horizontal'
             }
         }
     }
@@ -39,19 +50,25 @@ export default class Steps extends React.Component {
     };
 
     render() {
-        const { classes,children,current=0,direction='horizontal'} = this.props;
+        const { classes,children,current=0,direction='horizontal',size='large'} = this.props;
         let progressDot;
-        if(this.props.progressDot){
+        if(this.props.progressDot&&direction==='horizontal'){
             progressDot=true;
         }else{
             progressDot=false;
         }
+        const root=classnames({
+            [classes['lineDot']]:this.props.progressDot,
+            [classes['lineLarge']]:size==='large'&&!this.props.progressDot,
+            [classes['lineSmall']]:size==='small'&&!this.props.progressDot,
+
+        });
         return (
             <Stepper activeStep={current}
                      orientation={direction}
                      classes={{root:classes.root}}
                      alternativeLabel={progressDot}
-                     connector={<StepConnector classes={{line:classes.line}}/>}>
+                     connector={<StepConnector classes={{root}}/>}>
                 {children}
             </Stepper>
         );

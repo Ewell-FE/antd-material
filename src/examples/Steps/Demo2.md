@@ -52,7 +52,7 @@ export class <%=component%> extends Component {
           {steps.map(item => <Step key={item.title} title={item.title} />)}
         </Steps>
         <div className="steps-content" style={content}>{steps[this.state.current].content}</div>
-        <div className="steps-action">
+        <div className="steps-action" style={{marginTop:'10px'}}>
           {
             this.state.current < steps.length - 1
             &&

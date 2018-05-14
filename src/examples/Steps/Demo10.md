@@ -1,6 +1,5 @@
-#  竖直方向点状步骤条
-## 简单的竖直方向的点状步骤条。
-
+#  自定义点状步骤条
+## 为点状步骤条增加自定义展示。
 
 ````jsx
 import Steps from '@/components/Steps'
@@ -19,7 +18,7 @@ export class <%=component%> extends Component {
         );
 
         return (
-          <Steps current={1}  progressDot={customDot} direction="vertical">
+          <Steps current={1}  progressDot={customDot}>
                   <Step title="Finished" description="This is a description." />
                   <Step title="In Progress" description="This is a description." />
                   <Step title="Waiting" description="This is a description." />

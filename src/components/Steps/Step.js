@@ -16,7 +16,7 @@ const styles = theme => ({
         textAlign:'left'
     },
     large:{
-        fontSize:'32px',
+        fontSize:'38px',
         '&$iconContainer':{
             '& svg':{
                 fontSize:'32px',
@@ -24,7 +24,7 @@ const styles = theme => ({
         }
     },
     small:{
-        fontSize:'22px',
+        fontSize:'26px',
         '&$iconContainer':{
             '& svg':{
                 fontSize:'22px',
@@ -87,6 +87,13 @@ const styles = theme => ({
         position: 'relative',
         top: '8px',
         transition: 'all .3s',
+    },
+    dotActive:{
+        width: '10px',
+        height: '10px',
+    },
+    dotPos:{
+        marginTop:'-10px'
     }
 
 });
@@ -106,9 +113,8 @@ export default class step extends React.Component {
             'classes'
         ]);
         const { classes,title,description,icon=false,status,index} = this.props;
-        const {size,current,status:inheritStatus,progressDot}=this.context.step;
+        const {size,current,status:inheritStatus,progressDot,direction}=this.context.step;
         let Status;
-        console.log(stepProps)
         if(!status){
             if(stepProps.completed===true){
                 Status='finish'
@@ -128,7 +134,7 @@ export default class step extends React.Component {
             }
         }
         const root=classnames({
-            [classes['root']]:!progressDot,
+            [classes['root']]:!(progressDot&&direction==='horizontal'),
             [classes['large']]:size==='large',
             [classes['small']]:size==='small',
             [classes['finish']]:Status==='finish',
@@ -147,7 +153,12 @@ export default class step extends React.Component {
             completed:<Icon type='check-circle-o'/>,
             error:<Icon type='times-circle-o' />,
         }
-        const dot=<span className={classes.dot}/>
+        const dotClass=classnames(classes.dot,{
+            [classes['dotActive']]:Status==='process',
+            [classes['dotPos']]:direction==='vertical'
+
+        });
+        const dot=<span className={dotClass}/>
         if(icon){
             labelProps.icon=icon
         }else{
