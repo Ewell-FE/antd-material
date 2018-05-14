@@ -37,10 +37,10 @@ export class Demo3md extends Component {
 const Apps = () => (
   <ul className={classes.appList}>
     <li>
-      <Link to="/apps/1">Application1</Link>：<Link to="/apps/1/detail">Detail</Link>
+      <Link to="/apps/1" replace>Application1</Link>：<Link to="/apps/1/detail" replace>Detail</Link>
     </li>
     <li>
-      <Link to="/apps/2">Application2</Link>：<Link to="/apps/2/detail">Detail</Link>
+      <Link to="/apps/2" replace>Application2</Link>：<Link to="/apps/2/detail" replace>Detail</Link>
     </li>
   </ul>
 );
@@ -60,7 +60,7 @@ const Home = withRouter((props) => {
     const url = '/'+pathSnippets.slice(0, index + 1).join('/');
     return (
       <BreadcrumbItem key={url}>
-        <Link to={url}>
+        <Link to={url} replace>
           {breadcrumbNameMap[url]}
         </Link>
       </BreadcrumbItem>
@@ -68,14 +68,14 @@ const Home = withRouter((props) => {
   });
   const breadcrumbItems = [(
     <BreadcrumbItem key="home">
-      <Link to="/">Home</Link>
+      <Link to="/" replace>Home</Link>
     </BreadcrumbItem>
   )].concat(extraBreadcrumbItems);
   return (
     <div className={classes.demo}>
       <div className={classes.demoNav}>
-        <Link to="/">Home</Link>
-        <Link to="/apps">Application List</Link>
+        <Link to="/" replace>Home</Link>
+        <Link to="/apps" replace>Application List</Link>
       </div>
       <Switch>
         <Route path="/apps" component={Apps} />

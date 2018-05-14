@@ -230,11 +230,8 @@ export default class Slider extends Component {
             </Tooltip>
         );
     }
-
-
     render() {
         const {className, classes, range, ...restProps} = this.props;
-        console.log(classes)
         const sliderClass = classnames(
             classes.root,
             className);

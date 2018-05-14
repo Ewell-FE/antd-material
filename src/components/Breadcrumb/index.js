@@ -67,7 +67,6 @@ export default class Breadcrumb extends Component {
             separator, prefixCls, className, routes, classes, params = {},
             children
         } = this.props;
-        console.log(className)
         if (routes && routes.length > 0) {
 
             // const paths = [];
@@ -88,7 +87,6 @@ export default class Breadcrumb extends Component {
             // });
         } else if (children) {
             crumbs = React.Children.map(children, (element, index) => {
-                console.log(element)
                 if (!element) {
                     return element;
                 }
