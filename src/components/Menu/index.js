@@ -54,7 +54,7 @@ const styles=theme=>{
         clearFix:theme.clearfix
     }
 }
-
+@withStyles(styles,{name:'MuiMenu-ant'})
 class Menu extends Component{
     constructor(props){
         super(props);
@@ -100,7 +100,7 @@ class Menu extends Component{
     }
 
     render(){
-        const {classes,mode,onClick,children,style}=this.props;
+        const {classes,mode,onClick,children,style,getPopupContainer}=this.props;
         let selectedKey=this.state.selectedKey;
         return (
             <div>
@@ -118,7 +118,8 @@ class Menu extends Component{
                                     openKeys:this.state.openKeys,
                                     openKeysChanges:this.props.onOpenChange || this.openKeysChanges,
                                     selectedKeyChange:this.selectedKeyChange,
-                                    selectedPath:this.state.selectedPath
+                                    selectedPath:this.state.selectedPath,
+                                    getPopupContainer:getPopupContainer
                                })
                         })
                     }
@@ -138,4 +139,4 @@ Menu.propTypes={
     style:PropTypes.object
 }
 
-export default withStyles(styles,{name:'MuiMenu-ant'})(Menu);
+export default Menu

@@ -53,7 +53,7 @@
 │   │   ├───Affix             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Breadcrumb        # ➜ 杨单丹 ✓ complete!
 │   │   ├───Dropdown          # ➜ 阿磊 ✓
-│   │   ├───Menu              # ➜ 何家佳 ✓ dev!
+│   │   ├───Menu              # ➜ 何家佳 ✓ complete!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
 │   │   ├───Steps             # ➜ 阿磊 ✓
 │   ├─── Data Entry

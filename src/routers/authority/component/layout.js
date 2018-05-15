@@ -89,10 +89,11 @@ const styles = theme => ({
         overflow: 'auto',
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
+        position:'relative',
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-        })
+        }),
     },
     'content-left': {
         marginLeft: -drawerWidth,
@@ -246,7 +247,7 @@ class PersistentDrawer extends React.Component {
                         </Toolbar>
                     </AppBar>
                     {before}
-                    <main
+                    <main id="main"
                         className={classNames(classes.content, classes[`content-${anchor}`], {
               [classes.contentShift]: open,
               [classes[`contentShift-${anchor}`]]: open,

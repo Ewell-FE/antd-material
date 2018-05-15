@@ -25,7 +25,8 @@ export class <%=component%> extends Component {
         return (
             <Menu mode="horizontal"
                   onClick={this.handleClick}
-                  selectedKey={this.state.current}>
+                  selectedKey={this.state.current}
+                  getPopupContainer={() => document.getElementById('main')}>
                 <Menu.Item key="nav1">
                     <i className="fa fa-map" aria-hidden="true" style={{marginRight:'10px'}}></i>导航一
                 </Menu.Item>

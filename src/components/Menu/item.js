@@ -23,7 +23,7 @@ const styles=theme=>{
         }
     }
 }
-
+@withStyles(styles,{name:'MuiMenuItem-ant'})
 class MenuItem extends Component{
     constructor(props){
         super(props);
@@ -65,4 +65,4 @@ MenuItem.propTypes={
     keyValue:PropTypes.string.isRequired
 }
 
-export default withStyles(styles,{name:'MuiMenuItem-ant'})(MenuItem)
+export default MenuItem

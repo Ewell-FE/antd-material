@@ -14,7 +14,8 @@ export class <%=component%> extends Component {
         return (
             <Menu mode="vertical"
                   style={{width:'256px'}}
-                  onClick={this.handleClick}>
+                  onClick={this.handleClick}
+                  getPopupContainer={() => document.getElementById('main')}>
                 <Menu.SubMenu key="side1" title={<span><i className="fa fa-envelope-o" aria-hidden="true" style={{marginRight:'10px'}}></i>导航一</span>}>
                     <Menu.Item key="subSide12">子菜单12</Menu.Item>
                     <Menu.Item key="subSide22"><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer">子菜单22</a></Menu.Item>

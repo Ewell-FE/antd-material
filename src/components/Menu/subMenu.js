@@ -9,8 +9,14 @@ import PropTypes from "prop-types";
 
 class RenderInBody extends Component{
     componentDidMount(){//新建一个div标签并塞进body
+        console.log(this.props)
         this.popup = document.createElement("div");
-        document.body.appendChild(this.popup);
+        //如果有指定渲染容器就到指定渲染容器内
+        if(this.props.getPopupContainer){
+            this.props.getPopupContainer().appendChild(this.popup);
+        }else{
+            document.body.appendChild(this.popup);
+        }
         this.popup.style='position:absolute;width:100%;left:0;top:0;';
         this._renderLayer();
     }
@@ -19,7 +25,12 @@ class RenderInBody extends Component{
     }
     componentWillUnmount(){//在组件卸载的时候，保证弹层也被卸载掉
         ReactDom.unmountComponentAtNode(this.popup);
-        document.body.removeChild(this.popup);
+        //如果有指定渲染容器就卸载指定渲染容器内容
+        if(this.props.getPopupContainer){
+            this.props.getPopupContainer().removeChild(this.popup);
+        }else{
+            document.body.removeChild(this.popup);
+        }
     }
     _renderLayer(){//将弹层渲染到body下的div标签
         ReactDom.render(this.props.children, this.popup);
@@ -124,7 +135,7 @@ const styles=theme=>{
         }
     }
 }
-
+@withStyles(styles,{name:'MuiSubMenu-ant'})
 class SubMenu extends Component{
     constructor(props){
         super(props);
@@ -157,7 +168,7 @@ class SubMenu extends Component{
         if ( !doc ) {
             return;
         }
-        docElem = doc.documentElement;
+        docElem = (this.props.getPopupContainer && this.props.getPopupContainer()) || doc.documentElement;
         //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离。
         if ( typeof elem.getBoundingClientRect !== 'undefined' ) {
             box = elem.getBoundingClientRect();
@@ -166,8 +177,8 @@ class SubMenu extends Component{
         win = window;
         //返回的对象的top属性是elem.getBoundingClientRect+window.pageYoffset||documentElement.scrollTop-documentElement.clientTop
         return {
-            top: box.top  + ( win.pageYOffset || docElem.scrollTop )  - ( docElem.clientTop  || 0 ),
-            left: box.left + ( win.pageXOffset || docElem.scrollLeft ) - ( docElem.clientLeft || 0 )
+            top: box.top  + ( win.pageYOffset || docElem.scrollTop )  - ( docElem.getBoundingClientRect().top  || 0 ),
+            left: box.left + ( win.pageXOffset || docElem.scrollLeft ) - ( docElem.getBoundingClientRect().left || 0 )
         };
     }
 
@@ -310,7 +321,7 @@ class SubMenu extends Component{
                     }
                 </div>
                 { (mode==='horizontal' || (mode==='vertical' && !this.props.isSubMenu)) &&
-                    <RenderInBody>
+                    <RenderInBody {...this.props}>
                         <MuiThemeProvider theme={curTheme}>
                         <ul className={classnames(classes.root,
                                                   {[`${classes.horizontalRoot}`]:mode==='horizontal'},
@@ -400,4 +411,4 @@ SubMenu.propTypes={
     title:PropTypes.oneOfType([PropTypes.string,PropTypes.node]).isRequired
 }
 
-export default withStyles(styles,{name:'MuiSubMenu-ant'})(SubMenu);
+export default SubMenu
