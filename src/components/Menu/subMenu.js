@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 
 class RenderInBody extends Component{
     componentDidMount(){//新建一个div标签并塞进body
-        console.log(this.props)
         this.popup = document.createElement("div");
         //如果有指定渲染容器就到指定渲染容器内
         if(this.props.getPopupContainer){
@@ -407,7 +406,7 @@ class SubMenu extends Component{
 }
 
 SubMenu.propTypes={
-    keyValue:PropTypes.string.isRequired,
+    keyValue:PropTypes.string,
     title:PropTypes.oneOfType([PropTypes.string,PropTypes.node]).isRequired
 }
 

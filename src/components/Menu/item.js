@@ -62,7 +62,7 @@ class MenuItem extends Component{
 }
 
 MenuItem.propTypes={
-    keyValue:PropTypes.string.isRequired
+    keyValue:PropTypes.string
 }
 
 export default MenuItem
