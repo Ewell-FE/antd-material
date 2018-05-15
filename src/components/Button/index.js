@@ -26,6 +26,9 @@ const styles = theme => {
                 top: '50%',
                 left: 10,
                 marginTop: -9
+            },
+            "&.active":{
+
             }
         },
         disabled: {
@@ -38,7 +41,7 @@ const styles = theme => {
             }
         },
         Default: {
-            'Default:hover,&.active': {
+            '&:hover,&.active': {
                 background: '#FFFFFF',
                 color: theme.button.hover,
                 borderColor: theme.button.hover
@@ -165,7 +168,7 @@ export class BaseButton extends Component{
             <Button
                 ref={ref=>this.button =ref}
                 className={classnames(classes.root,classes[props.size],classes[props.type],
-                {'active':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
+                {'active1':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
                 {...otherProps}
             >
                 {props.loading && <CircularProgress size={18} className="Progress"/>}

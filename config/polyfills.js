@@ -13,7 +13,8 @@ if (typeof Promise === 'undefined') {
 
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.
-Object.assign = require('object-assign');
+// Object.assign = require('object-assign');
+require('babel-polyfill')
 
 // In tests, polyfill requestAnimationFrame since jsdom doesn't provide it yet.
 // We don't polyfill it in the browser--this is user's responsibility.
