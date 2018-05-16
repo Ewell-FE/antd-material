@@ -1,36 +1,33 @@
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import classnames from 'classnames'
 import TimelineItem from './timeline-item'
-import Icon from 'material-ui/Icon';
 import {CircularProgress} from 'material-ui/Progress';
 
 
 const styles = theme => {
     return {
         root: {
-            backgroundColor:'#fff',        //将来要删掉
-            paddingTop:'10px',
-            paddingLeft:5,
-            textAlign:'left',
+            backgroundColor: '#fff',        //将来要删掉
+            paddingTop: '10px',
+            paddingLeft: 5,
+            textAlign: 'left',
 
         },
-   
+
     }
 };
 
 @withStyles(styles, {name: 'MuiTimelineAnt'})
 export default class app extends Component {
-    constructor(props) {
-        super(props)
+
+    static defaultProps = {
+        pending: false,
+        // pendingDot: <Icon type={'loading'}/>,
+        pendingDot: <CircularProgress style={{top:-4}}/>
     }
 
-
-    componentDidMount() {
-
-    }
     render() {
         const props = this.props
         const {classes} = this.props
@@ -39,7 +36,7 @@ export default class app extends Component {
         //生成幽灵节点
         var pendingItem = !!props.pending ? React.createElement(
             TimelineItem,
-            { pending: !!props.pending, dot: props.pendingDot , pendingNode:true },
+            {pending: !!props.pending, dot: props.pendingDot, pendingNode: true},
             pendingNode
         ) : null;
 
@@ -55,27 +52,21 @@ export default class app extends Component {
         })
         return React.createElement(
             'div',
-            {className:classnames(classes.root,props.className)},
+            {className: classnames(classes.root, props.className)},
             item,
             pendingItem
-
         )
 
     }
 }
-app.defaultProps = {
-    pending:false,
-    // pendingDot: <Icon type={'loading'}/>,
-    pendingDot: <CircularProgress style={{top:-4}}  />
-},
 app.propTypes = {
-    className:PropTypes.string,
-    pending:PropTypes.oneOfType([
+    className: PropTypes.string,
+    pending: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.bool,
         PropTypes.element,
     ]),
-    pendingDot:PropTypes.oneOfType([
+    pendingDot: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.element,
     ])

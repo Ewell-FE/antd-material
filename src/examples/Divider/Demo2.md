@@ -8,9 +8,9 @@ export class <%=component%> extends Component {
              <div>
                  Text
                  <Divider type="vertical" />
-                 <a href="#">Link</a>
+                 <a href="javascript:void(0)">Link</a>
                  <Divider type="vertical" />
-                 <a href="#">Link</a>
+                 <a href="javascript:void(0)">Link</a>
              </div>
         )
     }

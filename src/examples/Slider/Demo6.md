@@ -12,21 +12,13 @@ function onAfterChange(value) {
 }
 
 export class Demo6md extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-              
-            };
-        }
- 
-
     render() {
-                   return (
-                     <div>
-                         <Slider defaultValue={30} onChange={onChange} onAfterChange={onAfterChange} />
-                         <Slider range step={10} defaultValue={[20, 50]} onChange={onChange} onAfterChange={onAfterChange} />
-                       </div>
-                   );
-                 }
+           return (
+               <div>
+                 <Slider defaultValue={30} onChange={onChange} onAfterChange={onAfterChange} />
+                 <Slider range step={10} defaultValue={[20, 50]} onChange={onChange} onAfterChange={onAfterChange} />
+               </div>
+           );
+    }
 }
 ````

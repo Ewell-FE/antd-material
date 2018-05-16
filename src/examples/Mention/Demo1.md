@@ -8,9 +8,7 @@ const { toString, toContentState } = Mention;
 
 export class <%=component%> extends Component {
     onChange = (contentState) =>{
-        //console.log(contentState)
-       // debugger
-      //console.log(toString(contentState));
+      console.log(toString(contentState));
     }
 
      onSelect = (suggestion) => {

@@ -38,7 +38,6 @@ class Footer extends React.Component {
     const props = { ...this.props };
     const isMode = props.isMode;
     delete props.isMode;
-    const logoContent = { img: 'https://zos.alipayobjects.com/rmsportal/qqaimmXZVSwAhpL.svg', content: 'A efficient motion design solutions' };
     const dataSource = [
       { title: '产品', content: '产品更新记录\nAPI文档\n快速入门\n参考指南', contentLink: '#\n#\n#\n#' },
       { title: '关于', content: 'FAQ\n联系我们', contentLink: '#\n#' },

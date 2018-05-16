@@ -97,7 +97,7 @@ function cutText(str, start, end) {
     if (startIndex > 0) {
         lines.splice(startIndex, 1)
     }
-    return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`').replace(/\$/g, '\\$')
+    return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`').replace(/\$/g, '\$')
 }
 
 //根据前缀获取行前缀后的值
@@ -213,7 +213,8 @@ function createComponents() {
         "Feedback": [],
         "Other": []
     }
-    files.forEach((name) => {
+    //组件分类，并返回入口文件集合
+    let filesEntry = files.map((name) => {
         let obj = _.find(menuList, function (n) {
             return n.name === name
         })
@@ -222,7 +223,10 @@ function createComponents() {
         } else {
             menuClass['Other'].push({name: name, type: 'Other', sort: 100, desc: 'New'})
         }
+        return `export { default as ${name} } from './${name}';`
     })
+    fs.writeFileSync(path.resolve(paths.appSrc, 'components/index.js'), filesEntry.join('\n'))
+    //排序
     for (let type in menuClass) {
         menuClass[type] = _.sortBy(menuClass[type], [function (o) {
             return o.sort;

@@ -63,10 +63,7 @@ export default class Breadcrumb extends Component {
 
     render() {
         let crumbs;
-        const {
-            separator, prefixCls, className, routes, classes, params = {},
-            children
-        } = this.props;
+        const {separator, prefixCls, className, routes, classes, children} = this.props;
         if (routes && routes.length > 0) {
 
             // const paths = [];

@@ -28,7 +28,7 @@ export class Demo8md extends Component {
         onClose = (e,pane) => {
              e.stopPropagation()
              const panes=this.state.panes.filter((item)=>{
-                 return item.key !=pane.key
+                 return item.key !==pane.key
              })
              this.setState({panes})
         

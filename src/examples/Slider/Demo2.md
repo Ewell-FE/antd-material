@@ -6,7 +6,6 @@ import Slider from '@/components/Slider'
 import InputNumber from '@/components/InputNumber'
 import Slider from '@/components/Slider'
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
  
 const styles = theme => ({
@@ -44,8 +43,6 @@ handleChange = key => (event, value) => {
   }
     render() {
                const {classes} = this.props
-               let valueNum=Number(this.state.inputValue)
-                      const { spacing } = this.state;
                       return (
                            <Grid container className={classes.root} spacing={24}>
                                 <Grid item xs={8}>

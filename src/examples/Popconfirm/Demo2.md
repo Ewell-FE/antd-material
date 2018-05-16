@@ -8,7 +8,7 @@ export class <%=component%> extends Component {
     render() {
         return (
             <Popconfirm title="Are you sure？" okText="Yes" cancelText="No">
-                <a href="#">Delete</a>
+                <a href="javascript:void(0)">Delete</a>
             </Popconfirm>
         )
     }

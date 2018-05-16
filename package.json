@@ -150,7 +150,8 @@
     "extends": "react-app",
     "rules": {
       "require-yield": 0,
-      "no-undef": 0
+      "no-undef": 0,
+      "no-script-url": 0
     }
   },
   "eslintIgnore": [

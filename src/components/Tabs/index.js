@@ -11,7 +11,6 @@ import {withStyles} from 'material-ui/styles';
 import TabIndicator from 'material-ui/Tabs/TabIndicator';
 import TabScrollButton from 'material-ui/Tabs/TabScrollButton';
 import SwipeableViews from 'react-swipeable-views';
-// import Button from '@/components/Button'
 import Tab from './Tab'
 
 export const styles = theme => {

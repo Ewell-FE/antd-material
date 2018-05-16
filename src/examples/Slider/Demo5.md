@@ -10,21 +10,13 @@ let valueAfter=value+'%'
 }
 
 export class Demo5md extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-              
-            };
-        }
- 
-
     render() {
-                   return (
-                     <div>
-                         <Slider tipFormatter={formatter} />
-                         <Slider tipFormatter={null} />
-                       </div>
-                   );
-                 }
+           return (
+             <div>
+                 <Slider tipFormatter={formatter} />
+                 <Slider tipFormatter={null} />
+               </div>
+           );
+     }
 }
 ````

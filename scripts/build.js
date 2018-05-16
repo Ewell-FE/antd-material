@@ -51,6 +51,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
         copyPublicFolder();
         //生成菜单静态数据
         util.createStaticMenu()
+        //生成组件入口indexjs
+        util.createStaticMenu()
         // Start the webpack build
         return build(previousFileSizes);
     })

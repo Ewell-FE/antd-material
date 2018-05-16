@@ -91,11 +91,11 @@ export default class app extends Component {
 
         var moveKey = [],
             nextTargetKey = []
-        targetKeys.map((item)=>{
+        targetKeys.forEach((item)=>{
             nextTargetKey.push(item)
         })
         if(type === 1){
-            targetSelectedKeys.map((item,i)=>{
+            targetSelectedKeys.forEach((item,i)=>{
                 //更改selectkey,
                 const index = selectedKeys.indexOf(item)
                 if (index > -1) {selectedKeys.splice(index, 1)}
@@ -108,7 +108,7 @@ export default class app extends Component {
             //置空
             targetSelectedKeys = []
         }else{
-            sourceSelectedKeys.map((item,i)=>{
+            sourceSelectedKeys.forEach((item,i)=>{
                 //更改selectkey,
                 const index = selectedKeys.indexOf(item)
                 if (index > -1) {selectedKeys.splice(index, 1)}
@@ -147,12 +147,12 @@ export default class app extends Component {
           var selectableData = data.filter((item)=>item.disabled !== true)
             //获得操作过后的所有的selectedKeys
             if(e.target.checked){
-                selectableData.map((item)=>{
+                selectableData.forEach((item)=>{
                     const index = selectedKeys.indexOf(keys(item))
                     if (index === -1) {selectedKeys.push(keys(item))}
                 })
             }else{
-                selectableData.map((item)=>{
+                selectableData.forEach((item)=>{
                     const index = selectedKeys.indexOf(keys(item))
                     if (index > -1) {selectedKeys.splice(index, 1)}
                 })
@@ -184,7 +184,7 @@ export default class app extends Component {
     //return targetSelectedKeys:右侧选中的keys  sourceSelectedKeys:左侧选中的keys
     getSelfSelectKeys = (selectedKeys,targetKeys) =>{
         var arr1 = [],arr2 = []
-        selectedKeys.map((item,i)=>{
+        selectedKeys.forEach((item,i)=>{
             if(targetKeys.indexOf(item) > -1){
                 arr1.push(item)   //新的targetSelectedKeys
             }else{

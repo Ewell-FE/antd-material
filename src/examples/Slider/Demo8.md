@@ -16,35 +16,23 @@ let marksT = {
   },
 }
 export class Demo8md extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                disabled: false,
-            };
-        }
-    
-handleDisabledChange = (disabled) => {
-    this.setState({ disabled});
-  }
-
     render() {
-                const { disabled } = this.state;
-                   return (
-                     <div>
-                         <h4>included=true</h4>
-                         <Slider marks={marksT} defaultValue={37} />
-                         <Slider range marks={marksT} defaultValue={[26, 37]} />
-                     
-                         <h4>included=false</h4>
-                         <Slider marks={marksT} included={false} defaultValue={37} />
-                     
-                         <h4>marks & step</h4>
-                         <Slider marks={marksT} step={10} defaultValue={37} />
-                     
-                         <h4>step=null</h4>
-                         <Slider marks={marksT} step={null} defaultValue={37} />
-                       </div>
-                   );
-                 }
+        return (
+             <div>
+                 <h4>included=true</h4>
+                 <Slider marks={marksT} defaultValue={37} />
+                 <Slider range marks={marksT} defaultValue={[26, 37]} />
+
+                 <h4>included=false</h4>
+                 <Slider marks={marksT} included={false} defaultValue={37} />
+
+                 <h4>marks & step</h4>
+                 <Slider marks={marksT} step={10} defaultValue={37} />
+
+                 <h4>step=null</h4>
+                 <Slider marks={marksT} step={null} defaultValue={37} />
+             </div>
+         );
+    }
 }
 ````

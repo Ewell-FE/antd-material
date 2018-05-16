@@ -182,7 +182,6 @@ export default class app extends Component {
             searchPlaceholder = props.searchPlaceholder,
             type = props.type,
             showSearch = props.showSearch,
-            render = props.render,
             changeSelect =props.changeSelect,
             keys = props.keys,
             selectedKeys = props.selectedKeys
@@ -209,14 +208,14 @@ export default class app extends Component {
         var selectableData = data.filter((item,i)=> item.disabled !== true  )
         //获得非禁用的数据的key的数组集
         var selectableKeys = []
-        selectableData.map((item,i)=>{
+        selectableData.forEach((item,i)=>{
             selectableKeys.push(keys(item))
         })
         //判断可选的是否已全部选中,要判断是否可选的key是否全在已选的key里面,不能单纯只比两个数组的长度
         //判断是否有选中项
         var allSelected = 0       //大于0说明不是全选
         var hasSelectedKeys = 0   //大于0说明有选择项
-        selectableKeys.map((item,i)=>{
+        selectableKeys.forEach((item,i)=>{
             if(selectedKeys.indexOf(item) === -1){
                 allSelected +=1
             }else{

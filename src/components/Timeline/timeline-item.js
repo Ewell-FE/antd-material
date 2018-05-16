@@ -65,11 +65,6 @@ const styles = theme => {
 };
 @withStyles(styles, {name: 'MuiTimelineItemAnt'})
 export default class app extends Component {
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         const {classes} = this.props
         var prop = this.props
