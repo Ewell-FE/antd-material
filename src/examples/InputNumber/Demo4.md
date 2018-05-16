@@ -18,7 +18,7 @@ export class Demo4md extends Component {
         return (
             <div>
                 <InputNumber placeholder="Basic usage" step={3} min={1} max={1000} defaultValue={3}
-                             formatter={value => '$' + value.replace(/B(?=(d{3})+(?!d))/g, ',')}
+                             formatter={value => '$' + value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                              onChange={this.onChange}/>
                 <InputNumber defaultValue={100} min={0} max={100} formatter={value => value + '%'}
                              parser={value => value.replace('%', '')}

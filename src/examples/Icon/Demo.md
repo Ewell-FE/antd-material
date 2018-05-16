@@ -22,7 +22,7 @@ const styles = theme => {
          }
     }
 }
-@withStyles(styles, {name: 'MuiIcon-ant'})
+@withStyles(styles, {name: 'MuiIconAnt'})
 export class <%=component%> extends Component {
     render() {
         const {classes} = this.props

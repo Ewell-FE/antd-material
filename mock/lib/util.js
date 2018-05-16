@@ -97,7 +97,7 @@ function cutText(str, start, end) {
     if (startIndex > 0) {
         lines.splice(startIndex, 1)
     }
-    return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`').replace(/\$/g, '\$')
+    return lines.slice(startIndex, endIndex).join('\n').replace(/`/g, '\`')
 }
 
 //根据前缀获取行前缀后的值

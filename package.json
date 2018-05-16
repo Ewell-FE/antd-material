@@ -151,7 +151,8 @@
     "rules": {
       "require-yield": 0,
       "no-undef": 0,
-      "no-script-url": 0
+      "no-script-url": 0,
+      "no-useless-escape": 0
     }
   },
   "eslintIgnore": [

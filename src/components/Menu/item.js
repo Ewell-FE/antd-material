@@ -48,7 +48,7 @@ class MenuItem extends Component{
     }
 
     render(){
-        const {classes,mode,isSubMenu,children,keyValue,selectedKey}=this.props;
+        const {classes,children,keyValue,selectedKey}=this.props;
         return (
             <li className={classnames(classes.root,
                                       'menuli',
