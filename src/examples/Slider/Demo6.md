@@ -4,21 +4,21 @@
 ````jsx
 import Slider from '@/components/Slider'
 function onChange(value) {
-  console.log('onChange: ', value);
+    console.log('onChange: ', value);
 }
 
 function onAfterChange(value) {
-  console.log('onAfterChange: ', value);
+    console.log('onAfterChange: ', value);
 }
 
 export class Demo6md extends Component {
     render() {
-           return (
-               <div>
-                 <Slider defaultValue={30} onChange={onChange} onAfterChange={onAfterChange} />
-                 <Slider range step={10} defaultValue={[20, 50]} onChange={onChange} onAfterChange={onAfterChange} />
-               </div>
-           );
+        return (
+            <div>
+                <Slider defaultValue={30} onChange={onChange} onAfterChange={onAfterChange} />
+                <Slider range step={10} defaultValue={[20, 50]} onChange={onChange} onAfterChange={onAfterChange} />
+            </div>
+        );
     }
 }
 ````

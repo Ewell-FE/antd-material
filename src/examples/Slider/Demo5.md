@@ -5,18 +5,18 @@
 import Slider from '@/components/Slider'
 import { Switch } from 'antd';
 function formatter(value) {
-let valueAfter=value+'%'
-  return valueAfter;
+    let valueAfter=value+'%'
+    return valueAfter;
 }
 
 export class Demo5md extends Component {
     render() {
-           return (
-             <div>
-                 <Slider tipFormatter={formatter} />
-                 <Slider tipFormatter={null} />
-               </div>
-           );
-     }
+        return (
+            <div>
+                <Slider tipFormatter={formatter} />
+                <Slider tipFormatter={null} />
+            </div>
+        );
+    }
 }
 ````
