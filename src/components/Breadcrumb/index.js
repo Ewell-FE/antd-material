@@ -17,7 +17,7 @@ const styles = theme => {
                 color: 'rgba(0, 0, 0, 0.65)',
                 transition: 'color .3s',
                 '&:hover': {
-                    color: 'blue'
+                    color: theme.colors.primary
                 }
             },
             '& > span:last-child': {

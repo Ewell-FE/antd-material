@@ -25,6 +25,10 @@ const styles = theme => {
             '& a': {
                 lineHeight: '30px',
                 padding: '0 8px',
+                color: theme.colors.primary,
+                '&:hover': {
+                    color: theme.primary[300]
+                }
             }
         },
         appList: {

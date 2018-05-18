@@ -49,7 +49,7 @@ const styles = theme => {
                 position: 'absolute',
                 height: '4px',
                 borderRadius: '4px',
-                backgroundColor: '#9fd2f6',
+                backgroundColor: theme.primary[300],
                 transition: 'background-color 0.3s ease'
             },
             '& .yhSlider-step': {
@@ -145,12 +145,12 @@ const styles = theme => {
                 height: '14px',
                 cursor: 'pointer',
                 borderRadius: '50%',
-                border: '2px solid #9fd2f6',
+                border: '2px solid '+ theme.primary[300],
                 backgroundColor: '#fff',
                 transition: 'border-color 0.3s ease, transform .3s cubic-bezier(0.18, 0.89, 0.32, 1.28)',
 
                 '&:hover': {
-                    borderColor: '#108ee9',
+                    borderColor: theme.colors.primary,
                     transform: 'scale(1.2)',
                     transformRrigin: 'center center'
                 },
@@ -166,11 +166,11 @@ const styles = theme => {
                     backgroundColor: '#e1e1e1'
                 },
                 '& .yhSlider-track': {
-                    backgroundColor: '#108ee9'
+                    backgroundColor: theme.colors.primary
                 },
                 '& .yhSlider-handle': {
                     backgroundColor: '#fff',
-                    borderColor: '#108ee9'
+                    borderColor: theme.colors.primary
                 }
             }
 

@@ -44,15 +44,17 @@ export class Demo4md extends Component {
     }
 
     render() {
-        const { classes, min, max } = this.props;
+        const { classes } = this.props;
         const { value } = this.state;
+        const min=0;
+        const max=20;
         const mid = ((max - min) / 2).toFixed(5);
         const preColor = value >= mid ? '' : 'rgba(0, 0, 0, .45)';
         const nextColor = value >= mid ? 'rgba(0, 0, 0, .45)' : '';
         return (
             <div className={classes.demo}>
                 <Icon style={{ color: preColor }} type="frown-o" />
-                <Slider onChange={this.handleChange} value={this.state.value} />
+                <Slider onChange={this.handleChange} value={this.state.value} min={min} max={max}/>
                 <Icon style={{ color: nextColor }} type="smile-o" />
             </div>
         );
