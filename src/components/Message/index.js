@@ -93,7 +93,7 @@ export class Message extends Component {
                 <div className={classes.messageIcon}>
                     <Icon type={Icons[this.props.type]} className={classes[this.props.type]}/>
                 </div>
-                <div className={classes.messageGroup}><p>{this.props.msg}</p></div>
+                <div className={classes.messageGroup}><span>{this.props.msg}</span></div>
             </div>
         )
     }

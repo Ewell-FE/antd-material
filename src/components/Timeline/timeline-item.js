@@ -46,7 +46,7 @@ const styles = theme => {
             '& .TimelineItemContent': {
                 padding: '0 0 0 20px',
                 position: 'relative',
-                top: -6,
+                top: -5,
             },
             '& .TimelineItemLine': {
                 position: 'absolute',

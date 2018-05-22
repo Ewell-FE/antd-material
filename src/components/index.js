@@ -43,7 +43,6 @@ export { default as Switch } from './Switch';
 export { default as Table } from './Table';
 export { default as Tabs } from './Tabs';
 export { default as Tag } from './Tag';
-export { default as Template } from './Template';
 export { default as Timeline } from './Timeline';
 export { default as TimePicker } from './TimePicker';
 export { default as Tooltip } from './Tooltip';

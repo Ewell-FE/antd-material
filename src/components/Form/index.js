@@ -6,12 +6,19 @@ import {reduxForm, Field, Form} from 'redux-form'
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import {withStyles} from 'material-ui/styles';
+import omit from 'omit.js';
 import Input from './input'
 
 //渲染field组件
 let FieldHtml = (field)=> {
     var isError = field.meta.touched && field.meta.error
     var isWarn = field.meta.touched && field.meta.warning
+    if (field.render) {
+        let otherField = omit(field, ['labelWidth', 'wrapperWidth', 'layout', 'render'])
+        return (
+            <field.render field={otherField}/>
+        )
+    }
     return (
         <Input field={field} isError={isError} isWarn={isWarn}/>
     )

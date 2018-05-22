@@ -8,52 +8,51 @@ import ReactDOM from "react-dom";
 const styles = (theme)=> {
     let fontSize = theme.typography.fontSize,
         activeColor = theme.radio.primary,
-        fontColorPar=theme.palette.text.primary
+        fontColorPar = theme.palette.text.primary
     return {
-        root:{
+        root: {
             display: 'inline-block',
             fontSize: fontSize,
-            cursor:'pointer',
-            marginRight:8,
-            color:fontColorPar
+            cursor: 'pointer',
+            marginRight: 8,
+            color: fontColorPar
         },
-        indeterminate:{
-            '&>$default':{
-                color:activeColor
+        indeterminate: {
+            '&>$default': {
+                color: activeColor
             }
         },
-        readOnly:{
-            cursor:'not-allowed',
-            color:theme.disabled.color,
-            '&>$default':{
-                color:theme.disabled.color,
+        readOnly: {
+            cursor: 'not-allowed',
+            color: theme.disabled.color,
+            '&>$default': {
+                color: theme.disabled.color,
             }
         },
-        label:{
-            padding:'0 8px',
-            color:'inherit',
+        label: {
+            padding: '0 8px',
+            verticalAlign: '-1.5px',
+            color: 'inherit',
         },
-        default:{
-            width:18,
-            height:16,
-            '& svg':{
-                fontSize:'22px'
+        default: {
+            width: 16,
+            height: 16,
+            '& svg': {
+                fontSize: '22px'
             },
-            '&$checked':{
-                color:activeColor
+            '&$checked': {
+                color: activeColor
             }
         }, //不可删除
-        checked:{
-
-        },
+        checked: {},
     }
 }
 @withStyles(styles, {name: 'MuiCheckboxAnt'})
 class app extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            checked:props.defaultChecked || props.checked || false
+        this.state = {
+            checked: props.defaultChecked || props.checked || false
         }
     }
 
@@ -63,13 +62,13 @@ class app extends Component {
         disabled: false,
         indeterminate: false
     }
-    onChange = event =>{
-        if(!_.has(this.props,'checked')){
+    onChange = event => {
+        if (!_.has(this.props, 'checked')) {
             this.setState({
-                checked:event.target.checked
+                checked: event.target.checked
             })
         }
-        this.props.onChange&&this.props.onChange(event)
+        this.props.onChange && this.props.onChange(event)
     }
 
     componentDidMount() {
@@ -78,10 +77,10 @@ class app extends Component {
 
 
     render() {
-        const {classes,children,checked,disabled,indeterminate,className,style}=this.props;
-        let otherProps = _.omit(this.props, ['classes','children','className','style'])
-        let checkClass ={checked:classes.checked,root:classes.default,disabled:disabled&&classes.disabled}
-        let checkedValue = !_.has(this.props,'checked') ? this.state.checked : checked
+        const {classes, children, checked, disabled, indeterminate, className, style}=this.props;
+        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style'])
+        let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
+        let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
         return (
             <label className={classnames(classes.root,disabled&&classes.readOnly,
                 indeterminate&&classes.indeterminate,className)} style={style}>
@@ -108,8 +107,8 @@ app.propsTypes = {
     icon: PropTypes.node,
     checkedIcon: PropTypes.node,
     disabled: PropTypes.bool,
-    className:PropTypes.string, //类名
-    style:PropTypes.object, //行内样式
+    className: PropTypes.string, //类名
+    style: PropTypes.object, //行内样式
 }
 
 export default app
