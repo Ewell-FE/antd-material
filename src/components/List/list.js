@@ -2,10 +2,9 @@
  * Created by sasha on 2018/4/13.
  */
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
-import List, {
-    ListItem
-} from 'material-ui/List';
+import {withStyles} from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Pagination from '@/components/Pagination'
 import PropTypes from 'prop-types';
 import classnames from 'classnames'

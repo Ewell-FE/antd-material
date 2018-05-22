@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {withStyles} from 'material-ui/styles';
-import ButtonBase from 'material-ui/ButtonBase';
-// import {capitalize} from 'material-ui/utils/helpers';
+import {withStyles} from '@material-ui/core/styles';
+import ButtonBase from '@material-ui/core/ButtonBase';
+// import {capitalize} from '@material-ui/core/utils/helpers';
 
 export const styles = theme => {
     return {

@@ -5,7 +5,7 @@
 ````jsx
 import Steps from '@/components/Steps'
 import Icon from '@/components/Icon'
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Step = Steps.Step;
 

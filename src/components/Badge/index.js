@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import Badge from 'material-ui/Badge';
+import {withStyles} from '@material-ui/core/styles';
+import Badge from '@material-ui/core/Badge';
 import warning from 'warning'
 import style from '../Style'
 import classnames from 'classnames'

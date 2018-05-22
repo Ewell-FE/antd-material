@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Icon from '../Icon'
-import Slide from 'material-ui/transitions/Slide';
+import Slide from '@material-ui/core/Slide';
 import classnames from 'classnames'
 const styles = theme => {
     let {width,success,successBg,warn,warnBg,info,infoBg,error,errorBg}=theme.alert;

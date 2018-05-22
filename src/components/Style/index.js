@@ -1,4 +1,4 @@
-import {createMuiTheme} from 'material-ui/styles';
+import {createMuiTheme} from '@material-ui/core/styles';
 import * as themes from './theme'
 import _ from 'lodash'
 

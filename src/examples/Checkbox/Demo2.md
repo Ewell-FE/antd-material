@@ -11,7 +11,6 @@ export class <%=component%> extends Component {
         return (
             <div>
                <Checkbox defaultChecked={false} disabled >Checkbox</Checkbox>
-               <br />
                <Checkbox defaultChecked disabled >Checkbox</Checkbox>
              </div>
         )

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography'
+import Typography from '@material-ui/core/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
 import Tag from '@/components/Tag'
 import Input from '@/components/Input'
-import {withStyles} from 'material-ui/styles'
+import {withStyles} from '@material-ui/core/styles'
 
 const styles = theme => ({
     root: {
@@ -173,7 +173,7 @@ export class Demo1md extends Component {
                                 </p>
                     <Templete code={`import Tag from '@/components/Tag'
 import Input from '@/components/Input'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 const styles = theme => ({
     root: {
         display: 'inline-block',

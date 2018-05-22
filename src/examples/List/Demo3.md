@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import List from '@/components/List'
 
 export class <%=component%> extends Component {

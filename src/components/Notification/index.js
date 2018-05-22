@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import style from '../Style'
 import './style.less'
 import Icon from '@/components/Icon'

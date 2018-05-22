@@ -21,7 +21,6 @@ export class <%=component%> extends Component {
         return (
             <div>
                 <Radio defaultChecked={false} disabled={this.state.disabled}>Disabled</Radio>
-                <br />
                 <Radio defaultChecked disabled={this.state.disabled}>Disabled</Radio>
                 <div style={{ marginTop: 20 }}>
                     <Button type="Primary" onClick={this.toggleDisabled}>

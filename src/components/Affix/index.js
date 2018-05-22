@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import addEventListener from 'rc-util/lib/Dom/addEventListener';
 import shallowequal from 'shallowequal';

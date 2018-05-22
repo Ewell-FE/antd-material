@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography'
+import Typography from '@material-ui/core/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'

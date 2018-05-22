@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {MuiThemeProvider, withStyles} from 'material-ui/styles';
+import {MuiThemeProvider, withStyles} from '@material-ui/core/styles';
 import Icon from '../Icon';
-import Slide from 'material-ui/transitions/Slide';
+import Slide from '@material-ui/core/Slide';
 import style from '../Style'
 import _ from 'lodash'
 const styles = theme => {

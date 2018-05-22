@@ -3,7 +3,6 @@
 
 ````jsx
 import Slider from '@/components/Slider'
-import { Switch } from 'antd';
 function formatter(value) {
     let valueAfter=value+'%'
     return valueAfter;

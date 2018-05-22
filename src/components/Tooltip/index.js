@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import Tooltip from 'material-ui/Tooltip';
-import {withStyles} from 'material-ui/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+import {withStyles} from '@material-ui/core/styles';
 import _ from 'lodash'
 
 const styles = theme => {

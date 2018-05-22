@@ -1,5 +1,5 @@
-#  基本
-## 最简单的下拉菜单默认click触发
+#  定义事件类型
+## 最简单的下拉菜单
 
 
 ````jsx
@@ -13,15 +13,15 @@ export class <%=component%> extends Component {
     render() {
         const menu = (
             <MenuList role="menu">
-                <MenuItem onClick={(e)=>{this.menu.handleClose(e)}}>Profile</MenuItem>
-                <MenuItem onClick={(e)=>{this.menu.handleClose(e)}}>My account</MenuItem>
-                <MenuItem onClick={(e)=>{this.menu.handleClose(e)}}>Logout</MenuItem>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>My account</MenuItem>
+                <MenuItem>Logout</MenuItem>
             </MenuList>
         );
         return (
             <div>
-                <Dropdown overlay={menu} withRef={(menu)=>{this.menu = menu}}>
-                    <Button>Click Me<Icon type="angle-down"/></Button>
+                <Dropdown overlay={menu} trigger={'hover'}>
+                    <Button>Hover Me<Icon type="angle-down"/></Button>
                 </Dropdown>
             </div>
         )

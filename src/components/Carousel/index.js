@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import debounce from 'lodash/debounce';
 import classnames from 'classnames'
 import _ from 'lodash'

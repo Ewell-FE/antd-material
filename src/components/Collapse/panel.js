@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import _ from 'lodash';
-import Collapse from 'material-ui/transitions/Collapse';
+import Collapse from '@material-ui/core/Collapse';
 import Icon from '../Icon'
 
 const styles = (theme) => {

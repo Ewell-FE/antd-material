@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import Icon from '../Icon'
 import _ from 'lodash'
-import {withStyles} from "material-ui/styles/index";
+import {withStyles} from "@material-ui/core/styles";
 import ReactDOM from "react-dom";
 
 function getComponent(type) {

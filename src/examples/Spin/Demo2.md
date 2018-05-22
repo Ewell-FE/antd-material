@@ -4,7 +4,7 @@
 
 ````jsx
 import Spin from '@/components/Spin'
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles2 = theme => ({
   root:{

@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Manager, Target, Popper} from 'react-popper';
-import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-import Grow from 'material-ui/transitions/Grow';
-import Paper from 'material-ui/Paper';
-import {withStyles} from 'material-ui/styles';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => ({
     root: {
@@ -24,13 +23,19 @@ export default class app extends Component {
 
     constructor(props) {
         super(props)
+        this.handleClose = this.handleClose.bind(this)
         this.state = {
             open: false
         }
     }
 
     static defaultProps = {
-        placement: 'bottom-start'
+        placement: 'bottom-start',
+        trigger: 'click'
+    }
+
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(this)
     }
 
     handleToggle = () => {
@@ -38,17 +43,31 @@ export default class app extends Component {
     }
 
     handleClose = event => {
-        if (this.target1.contains(event.target)) {
+        if (event && this.target1.contains(event.target)) {
             return;
         }
-
         this.setState({open: false});
+    }
+
+    onMouseEnter = event => {
+        clearTimeout(this.timeout)
+        this.setState({open: true});
+    }
+
+    onMouseLeave = event => {
+        if (this.props.trigger === 'hover') {
+            this.timeout = setTimeout(()=> {
+                this.setState({open: false});
+            }, 250)
+        }
     }
 
     render() {
         const props = this.props;
         const {classes} = props
         const {open} = this.state;
+        const eventType = {'click': 'onClick', 'hover': 'onMouseEnter'}
+        const eventFunc = {'click': this.handleToggle, 'hover': this.onMouseEnter}
         return (
             <Manager style={{display:'inline-block'}}>
                 <Target>
@@ -59,10 +78,11 @@ export default class app extends Component {
                     >
                         {React.Children.map(props.children, (child, i)=> {
                             return React.cloneElement(child, {
-                                style: {margin: 0},
+                                "style": {margin: 0},
                                 "aria-owns": open ? 'menu-list-grow' : null,
                                 "aria-haspopup": "true",
-                                onClick: this.handleToggle
+                                [eventType[props.trigger]]: eventFunc[props.trigger],
+                                "onMouseLeave": this.onMouseLeave
                             })
                         })}
                     </div>
@@ -71,19 +91,20 @@ export default class app extends Component {
                     placement={props.placement}
                     eventsEnabled={open}
                     className={classNames({[classes.popperClose]: !open})}
+                    onMouseEnter={this.onMouseEnter}
+                    onMouseLeave={this.onMouseLeave}
                 >
-                    <ClickAwayListener onClickAway={this.handleClose}>
-                        <Grow in={open} id="menu-list-grow" style={{transformOrigin: '0 0 0'}}>
-                            <Paper>
-                                {props.overlay}
-                            </Paper>
-                        </Grow>
-                    </ClickAwayListener>
+                    <Grow in={open} style={{transformOrigin: '0 0 0'}}>
+                        <Paper>
+                            {props.overlay}
+                        </Paper>
+                    </Grow>
                 </Popper>
             </Manager>
         )
     }
 }
 app.propTypes = {
-    overlay: PropTypes.any
+    overlay: PropTypes.any,
+    trigger: PropTypes.oneOf(['click', 'hover'])
 };

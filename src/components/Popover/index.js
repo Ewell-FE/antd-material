@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
-import Popover from 'material-ui/Popover';
+import {withStyles} from '@material-ui/core/styles';
+import Popover from '@material-ui/core/Popover';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 const styles = theme => ({

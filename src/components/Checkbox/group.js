@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from './checbox';
 import classnames from 'classnames';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import _ from 'lodash';
 const styles = (theme)=> {
     return {

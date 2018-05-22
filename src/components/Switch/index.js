@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
-import Switch from 'material-ui/Switch';
-import {CircularProgress} from 'material-ui/Progress';
+import {withStyles} from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";

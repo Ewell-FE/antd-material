@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import classnames from 'classnames'
-import Typography from 'material-ui/Typography';
-import Input from 'material-ui/Input';
-import Chip from 'material-ui/Chip';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import Chip from '@material-ui/core/Chip';
 import Select from '../Select';
 import Icon from '../Icon'
 const styles = theme => {

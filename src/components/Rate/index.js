@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Icon from '../Icon'
 import classnames from 'classnames'

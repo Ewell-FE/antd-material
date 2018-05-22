@@ -5,8 +5,8 @@
 import Slider from '@/components/Slider'
 import InputNumber from '@/components/InputNumber'
 import Slider from '@/components/Slider'
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const stylesDecimal = theme => ({
     root: {

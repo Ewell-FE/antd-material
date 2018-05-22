@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {withStyles} from 'material-ui/styles';
-import Checkbox from 'material-ui/Checkbox';
+import {withStyles} from '@material-ui/core/styles';
+import Checkbox from '@material-ui/core/Checkbox';
 import _ from 'lodash';
 import ReactDOM from "react-dom";
 const styles = (theme)=> {

@@ -3,7 +3,7 @@
 
 ````jsx
 import Slider from '@/components/Slider'
-import { Switch } from 'antd';
+import Switch from '@/components/Switch';
 
 export class Demo1md extends Component {
     constructor(props) {

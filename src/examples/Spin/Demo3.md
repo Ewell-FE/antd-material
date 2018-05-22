@@ -5,7 +5,7 @@
 ````jsx
 import Spin from '@/components/Spin'
 import Alert from '@/components/Alert'
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles3 = theme => ({
   root:{

@@ -203,7 +203,7 @@ function ignoreImports(imps) {
 //根据组件目录创建菜单数据格式
 function createComponents() {
     let files = fs.readdirSync(path.resolve(paths.appSrc, 'components'));
-    ignore(files, ['index.js', 'Style'])
+    ignore(files, ['index.js', 'Style','template'])
     let menuClass = {
         "General": [],
         "Layout": [],
@@ -293,7 +293,7 @@ function createDemoApi() {
         let Buttons = fs.readdirSync(path.resolve(paths.appSrc, 'examples/' + file));
         ignore(Buttons, ['Title.js', 'Api.js', 'index.js'])
         let imports = [
-            `import Typography from 'material-ui/Typography'`,
+            `import Typography from '@material-ui/core/Typography'`,
             `import Api from './Api'`,
             `import Title from './Title'`,
             `import Templete from '../Template'`]

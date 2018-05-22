@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import HighLight from 'react-highlight';
-import {withStyles} from 'material-ui/styles';
-import Tooltip from 'material-ui/Tooltip';
+import {withStyles} from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Icon from '@/components/Icon'
 import './atom-one-light.css'
-import Collapse from 'material-ui/transitions/Collapse';
+import Collapse from '@material-ui/core/Collapse';
 
 class DemoCode extends Component {
     render() {

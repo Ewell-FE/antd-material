@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import style from '@/components/Style'
 import Icon from '@/components/Icon'
+import Dropdown from '@/components/Dropdown'
+import Avatar from '@/components/Avatar'
 import myTheme from '@/theme'
-import * as colors from 'material-ui/colors';
+import * as colors from '@material-ui/core/colors';
 import _ from 'lodash'
 import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+
 import {
     Route,
     Redirect,
@@ -89,7 +93,7 @@ const styles = theme => ({
         overflow: 'auto',
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
-        position:'relative',
+        position: 'relative',
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -121,6 +125,14 @@ const styles = theme => ({
     'eyedropper': {
         fontSize: '22px',
         cursor: 'pointer'
+    },
+    'selectColors': {
+        width: '240px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        "& > div": {
+            width: '60px',
+        }
     }
 });
 
@@ -146,11 +158,23 @@ class PersistentDrawer extends React.Component {
         this.props.changeTheme(style.use('theme', _.merge(myTheme, {
             overrides: {MuiAppBar: {colorPrimary: {backgroundColor: colors[color][600]}}}
         }), {primaryColor: colors[color]}))
+        this.colorsBox.handleClose()
     }
 
     render() {
         const {classes, theme, components} = this.props;
         const {anchor, open} = this.state;
+        const menu = (
+            <div className={classes.selectColors}>
+                {Object.keys(colors).map((item, i)=> {
+                    return (
+                        <span key={i} style={{cursor:'pointer'}} onClick={()=>{this.changeTheme(item)}}>
+                            <Avatar style={{ backgroundColor: colors[item][500] }} size="large"></Avatar>
+                        </span>
+                    )
+                })}
+            </div>
+        );
         const drawer = (
             <Drawer
                 variant="persistent"
@@ -239,8 +263,10 @@ class PersistentDrawer extends React.Component {
                                 Ant Design of Material
                             </Typography>
                             <span style={{ flex:1,textAlign:'right'}}>
-                                <Icon className={classes.eyedropper} onClick={()=>{this.changeTheme('red')}}
-                                      type="paint-brush"/>
+                                <Dropdown overlay={menu} withRef={(colorsBox)=>{this.colorsBox = colorsBox}}>
+                                    <Icon className={classes.eyedropper} onClick={()=>{this.changeTheme('red')}}
+                                          type="paint-brush"/>
+                                </Dropdown>
                                 <a href="https://github.com/Ewell-FE/antd-material" className={classes.github}><Icon
                                     type="github"/></a>
                             </span>
@@ -248,7 +274,7 @@ class PersistentDrawer extends React.Component {
                     </AppBar>
                     {before}
                     <main id="main"
-                        className={classNames(classes.content, classes[`content-${anchor}`], {
+                          className={classNames(classes.content, classes[`content-${anchor}`], {
               [classes.contentShift]: open,
               [classes[`contentShift-${anchor}`]]: open,
             })}
@@ -280,4 +306,4 @@ PersistentDrawer.propTypes = {
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true,name:'MuimenuAnt'})(PersistentDrawer);
+export default withStyles(styles, {withTheme: true, name: 'MuimenuAnt'})(PersistentDrawer);

@@ -1,11 +1,15 @@
 #  UI控件
 ## 使用图标，文本和UI控件（通常放在卡的底部）明确调出卡内的补充操作。
 ````jsx
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
-import PlayArrowIcon from 'material-ui-icons/PlayArrow';
-import SkipNextIcon from 'material-ui-icons/SkipNext'
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 import wx from '@/routers/assets/live-from-space.jpg'
 const styles3 = theme => ({
   card: {

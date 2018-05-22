@@ -3,11 +3,11 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import { Step, StepLabel } from 'material-ui/Stepper';
+import {withStyles} from '@material-ui/core/styles';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 import Icon from '../Icon'
-
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import omit from 'omit.js';
 import classnames from 'classnames'
 

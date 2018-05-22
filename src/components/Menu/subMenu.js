@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import ReactDom from 'react-dom';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import classnames from 'classnames';
 import './index.css';
-import Collapse from 'material-ui/transitions/Collapse';
-import { MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
+import Collapse from '@material-ui/core/Collapse';
+import { MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import PropTypes from "prop-types";
 
 class RenderInBody extends Component{

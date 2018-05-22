@@ -3,11 +3,13 @@
 
 
 ````jsx
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
-import { FormLabel, FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 
 const styles = theme => ({
       root: {

@@ -4,7 +4,7 @@
 ````jsx
 import Slider from '@/components/Slider'
 import Icon from '@/components/Icon'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 const stylesIcon = theme => {
     return {
         demo: {

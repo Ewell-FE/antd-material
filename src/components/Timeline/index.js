@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import classnames from 'classnames'
 import TimelineItem from './timeline-item'
-import {CircularProgress} from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const styles = theme => {

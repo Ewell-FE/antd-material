@@ -3,7 +3,6 @@
 
 ````jsx
 import Slider from '@/components/Slider'
-import { Switch } from 'antd';
 let marksT = {
     0: '0°C',
     26: '26°C',

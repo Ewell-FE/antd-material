@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@/components/Button';
 import Icon from '@/components/Icon'
 import Modal from './index';
-import {MuiThemeProvider} from 'material-ui/styles';
+import {MuiThemeProvider} from '@material-ui/core/styles';
 import style from '@/components/Style'
 import classnames from 'classnames'
 

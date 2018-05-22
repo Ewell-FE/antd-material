@@ -3,9 +3,9 @@
  */
 import React, {Fragment, Component} from 'react';
 import moment from 'moment';
-import {Typography} from 'material-ui';
-import {withStyles} from 'material-ui/styles';
-import {TimePicker, DatePicker} from 'material-ui-pickers';
+import {Typography} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+import {TimePicker, DatePicker} from '@material-ui/core-pickers';
 import zhcnUtils from './zh-cn';
 
 

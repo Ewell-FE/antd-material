@@ -1,7 +1,7 @@
 /**
  * Created by lilei on 2018/3/28.
  */
-import {blue, green, red, yellow, grey} from 'material-ui/colors';
+import {blue, green, red, yellow, grey} from '@material-ui/core/colors';
 export default function (config = {primaryColor: blue}) {
     let primaryColor = config.primaryColor
     return {

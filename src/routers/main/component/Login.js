@@ -3,10 +3,10 @@
  */
 import React, {Component} from 'react'
 import {reduxForm, Field} from 'redux-form'
-import {withStyles} from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import {blue} from 'material-ui/colors';
-import {CircularProgress} from 'material-ui/Progress';
+import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import {blue} from '@material-ui/core/colors';
+import {CircularProgress} from '@material-ui/core/Progress';
 import classzz from '@/classes'
 import {Input} from '@/components'
 

@@ -2,12 +2,10 @@
  * Created by sasha on 2018/4/12.
  */
 import React, {Component} from 'react'
-import {withStyles} from 'material-ui/styles';
-import{
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-} from 'material-ui/List';
+import {withStyles} from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 const styles = theme => ({

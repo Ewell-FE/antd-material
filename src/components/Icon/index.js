@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import omit from 'omit.js';
 import classnames from 'classnames'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 const styles = theme => {
     return {}
 };

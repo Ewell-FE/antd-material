@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import shallowequal from 'shallowequal';
 import classNames from 'classnames';
 import RcMention, { Nav, toString, toEditorState, getMentions } from 'rc-editor-mention';
@@ -23,7 +23,7 @@ const styles = theme => ({
         }
     }
 });
-@withStyles(styles)
+
 export class App extends Component {
     static getMentions = getMentions;
     static defaultProps = {

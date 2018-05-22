@@ -6,7 +6,7 @@
 import Breadcrumb from '@/components/Breadcrumb'
 import Alert from '@/components/Alert'
 import {HashRouter as Router, Route, Switch, Link, withRouter} from 'react-router-dom';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 
 const BreadcrumbItem = Breadcrumb.BreadcrumbItem
 @withStyles(styles, {name: 'YhuiBreadcrumbAnt'})

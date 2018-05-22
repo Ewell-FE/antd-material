@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import { RadioGroup } from 'material-ui/Radio';
+import {withStyles} from '@material-ui/core/styles';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from './index'
 const styles = theme => {
     return {

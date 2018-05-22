@@ -4,8 +4,8 @@
 import React, {Component} from 'react'
 import {reduxForm, Field, Form} from 'redux-form'
 import PropTypes from 'prop-types';
-import Grid from 'material-ui/Grid';
-import {withStyles} from 'material-ui/styles';
+import Grid from '@material-ui/core/Grid';
+import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import Input from './input'
 

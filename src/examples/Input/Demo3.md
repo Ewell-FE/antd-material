@@ -4,7 +4,7 @@
 
 ````jsx
 import Input from '@/components/Input'
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Icon from '@/components/Icon'
 
 const styles = theme => ({

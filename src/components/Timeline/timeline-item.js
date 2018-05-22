@@ -3,7 +3,7 @@ Created by xphlenx on 2018/4/13 16:42
 */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import classnames from 'classnames'
 
 

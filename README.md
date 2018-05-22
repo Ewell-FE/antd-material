@@ -52,10 +52,10 @@
 │   ├─── Navigation
 │   │   ├───Affix             # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Breadcrumb        # ➜ 杨单丹 ✓ complete!
-│   │   ├───Dropdown          # ➜ 阿磊 ✓
+│   │   ├───Dropdown          # ➜ 阿磊 ✓ complete!
 │   │   ├───Menu              # ➜ 何家佳 ✓ complete!
 │   │   ├───Pagination        # ➜ 何家佳 ✓ complete!
-│   │   ├───Steps             # ➜ 阿磊 ✓
+│   │   ├───Steps             # ➜ 林铭偲 ✓ complete!
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Cascader          # ➜ 阿磊

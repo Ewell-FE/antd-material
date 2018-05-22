@@ -1,6 +1,10 @@
 #  媒体
 ## 使用图像加强内容的卡片示例。
 ````jsx
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import qw from '@/routers/assets/contemplative_reptile.jpg'
 const styles2 = theme => ({
  card: {

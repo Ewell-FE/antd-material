@@ -2,10 +2,12 @@
 ## 虽然卡片可以支持多种动作，UI控件和溢出菜单，但请使用限制，并记住卡片是进入更复杂和详细信息的入口点。
    
 ````jsx
-import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent,CardMedia,CardHeader } from 'material-ui/Card';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import Button from '@/components/Button';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   card: {

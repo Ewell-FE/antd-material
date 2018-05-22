@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import HighLight from 'react-highlight';
 export default class App extends Component {
     render() {

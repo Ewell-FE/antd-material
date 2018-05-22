@@ -4,7 +4,7 @@
 
 ````jsx
 import Carousel from '@/components/Carousel'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 const style3 = theme =>{
     return{
         picture:{

@@ -3,10 +3,10 @@
 
 
 ````jsx
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import List from '@/components/List'
 import Button from '@/components/Button'
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import reqwest from 'reqwest';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 

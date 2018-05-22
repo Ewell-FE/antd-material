@@ -5,7 +5,6 @@
 ````jsx
 import Mention from '@/components/Mention'
 const { toString, toContentState } = Mention;
-
 export class <%=component%> extends Component {
     onChange = (contentState) =>{
       console.log(toString(contentState));

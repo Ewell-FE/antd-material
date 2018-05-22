@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Input from '../Input'
 import classnames from 'classnames'
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 
 const styles = theme => {

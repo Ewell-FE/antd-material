@@ -7,9 +7,9 @@ import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import {getNormalizedScrollLeft, detectScrollType} from 'normalize-scroll-left';
 import scroll from 'scroll';
-import {withStyles} from 'material-ui/styles';
-import TabIndicator from 'material-ui/Tabs/TabIndicator';
-import TabScrollButton from 'material-ui/Tabs/TabScrollButton';
+import {withStyles} from '@material-ui/core/styles';
+import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
+import TabScrollButton from '@material-ui/core/Tabs/TabScrollButton';
 import SwipeableViews from 'react-swipeable-views';
 import Tab from './Tab'
 
@@ -310,7 +310,7 @@ class Tabs extends React.Component {
         } = this.props;
         warning(
             !centered || !scrollable,
-            'Material-UI: you can not use the `centered={true}` and `scrollable={true}` properties ' +
+            '@material-ui/core: you can not use the `centered={true}` and `scrollable={true}` properties ' +
             'at the same time on a `Tabs` component.',
         );
 
