@@ -62,14 +62,16 @@ export class ConfirmModal extends Component {
         width:416,
         mask:true,
         maskClosable:false,
-        className:''
+        className:'',
+        onCancel:()=>{},
+        onOk:()=>{}
     }
     render(){
-        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width,className} = this.props;
+        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width,className,onCancel,onOk} = this.props;
         const okCancel = ('okCancel' in this.props) ? this.props.okCancel : true;
 
         const cancelButton = okCancel && (
-                <Button onClick={close} style={{marginRight:'10px'}}>
+                <Button onClick={()=>{close();onCancel()}} style={{marginRight:'10px'}}>
                     {cancelText}
                 </Button>
             );
@@ -94,7 +96,7 @@ export class ConfirmModal extends Component {
                     </div>
                     <div className={classes.confirmBtns}>
                         {cancelButton}
-                        <Button  type={okType} onClick={close} >
+                        <Button  type={okType} onClick={()=>{close();onOk()}} >
                             {okText}
                         </Button>
                     </div>
@@ -136,5 +138,8 @@ ConfirmModal.propTypes = {
     maskClosable:PropTypes.bool,//点击蒙层是否允许关闭
     okText:PropTypes.string,//确认按钮文字
     okType:PropTypes.string,//确认按钮类型
-    width:PropTypes.number,//宽度
+    width:PropTypes.number,//宽度,
+    onCancel:PropTypes.func,//点击取消按钮触发回调
+    onOk:PropTypes.func,//点击确定按钮触发回调
+
 }
