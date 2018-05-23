@@ -4,10 +4,11 @@
 
 ````jsx
 import Mention from '@/components/Mention'
-const { toString, toContentState } = Mention;
+const { toStrings, toContentState } = Mention;
+
 export class <%=component%> extends Component {
     onChange = (contentState) =>{
-      console.log(toString(contentState));
+        console.log(toStrings(contentState));
     }
 
      onSelect = (suggestion) => {

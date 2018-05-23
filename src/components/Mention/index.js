@@ -11,39 +11,112 @@ const styles = theme => ({
         display: 'inline-block',
         width: '100%',
         verticalAlign: 'middle',
-        '&-editor':{
-            // .input;
+        '& .MuiMentionAnt-editor':{
             lineHeight:1.5,
             padding: 0,
             display: 'block',
-            '&-wrapper':{
+            textAlign:'left',
+            appearance: "none",
+            boxSizing: "border-box",
+            width: "100%",
+            backgroundColor: "#fff",
+            border: "1px solid #d9d9d9",
+            boxShadow: "inset 0 1px 3px rgba(0, 0, 0, .05)",
+            borderRadius: "4px",
+            outline: "0",
+            resize: "vertical",
+            transition: "all .3s",
+            "&:focus,&:hover": {
+                borderColor: theme.colors.primary,
+                boxShadow: `0 0 0 2px ${theme.primary[100]}`
+            },
+            "&:disabled": {
+                cursor: "not-allowed",
+            },
+            '& .MuiMentionAnt-editor-wrapper':{
                 overflowY: 'auto',
                 height: 'auto'
+            },
+        },
+        '&.disabled':{
+            '& .MuiMentionAnt-editor.readonly':{
+                backgroundColor: '#f5f5f5',
+                opacity: 1,
+                cursor: 'not-allowed',
+                color: 'rgba(0,0,0,.25)',
             }
-        }
-    }
-});
+        },
+        '& textarea&':{
+            maxWidth: '100%',
+            height: 'auto',
+            verticalAlign: 'bottom',
+            transition: ' all .3s, height 0s',
+        },
+        '& .public-DraftEditorPlaceholder-root': {
+            position: 'absolute',
+            '& .public-DraftEditorPlaceholder-inner': {
+                color: '#bfbfbf',
+                opacity: '1',
+                outline: 'none',
+                whiteSpace: 'pre-wrap',
+                wordWrap: 'break-word',
+                height: 'auto',
+                padding: '4px 7px'
+            }
+        },
+        '& .DraftEditor-editorContainer .public-DraftEditor-content':{
+            height: 'auto',
+            padding: '4px 7px',
+        },
 
-export class App extends Component {
-    static getMentions = getMentions;
+    },
+    mentionWrap:{
+        '& .MuiMentionAnt-dropdown':{
+                //marginTop: '1.5em',
+                maxHeight: '250px',
+                minWidth: '120px',
+                backgroundColor: '#fff',
+                boxShadow: '0 1px 6px rgba(0, 0, 0, .2)',
+                borderRadius: '4px',
+                boxSizing: 'border-box',
+                zIndex: 1050,
+                left: '-9999px',
+                top: '-9999px',
+                position: 'absolute',
+                outline: 'none',
+                overflowX: 'hidden',
+                overflowY: 'auto',
+                fontSize: '12px',
+                '& .&-notfound&-item':{
+                    color: 'fade(#000, 25%)',
+                    //@{iconfont-css-prefix}-loading {
+                    //.@{iconfont-css-prefix}-loading {
+                    //  color: @primary-color;
+                    // textAlign: 'center',
+                    // display: 'block',
+                    //}
+                }
+            }
+    }
+
+});
+@withStyles(styles)
+export class Mention extends Component {
     static defaultProps = {
         prefixCls: 'MuiMentionAnt',
         notFoundContent: '无匹配结果，轻敲空格完成输入',
         loading: false,
-        multiLines: false,
+        multiLines: false
     };
-    static Nav = Nav;
-    static toString = toString;
-    static toContentState = toEditorState;
-    static toEditorState = text => {
-        console.warn('Mention.toEditorState is deprecated. Use toContentState instead.');
-        return toEditorState(text);
-    }
     constructor(props) {
         super(props)
         this.state = {
             suggestions: props.suggestions,
             focus: false,
+        }
+        const { getInstance } = props;
+        if (typeof getInstance === 'function') {
+            getInstance(this); // 在这里把this暴露给`parentComponent`
         }
     }
 
@@ -107,45 +180,49 @@ export class App extends Component {
     }
     mentionRef = ele => {
         this.mentionEle = ele;
+        return ele;
     }
 
     render() {
-        const { prefixCls, loading, classes } = this.props;
+        const { prefixCls, loading, classes,getSuggestionContainer } = this.props;
         const { suggestions, focus } = this.state;
-        const cls = classNames(classes['-wrapper'], {
+        const cls = classNames('', {
             [`${prefixCls}-active`]: focus,
         });
 
         const notFoundContent = loading
             ? <Icon type="loading" />
             : this.props.notFoundContent;
-        
+
         return (
-            <RcMention
-                {...this.props}
-                className={classNames(cls,classes['-wrapper'])}
-                ref={this.mentionRef}
-                onSearchChange={this.onSearchChange}
-                onChange={this.onChange}
-                onFocus={this.onFocus}
-                onBlur={this.onBlur}
-                suggestions={suggestions}
-                notFoundContent={notFoundContent}
-            />
+            <div className={classNames(classes.mentionWrap,'mentionWrap')}>
+                <RcMention
+                    {...this.props}
+                    className={classNames(classes.wrapper,cls)}
+                    ref={this.mentionRef}
+                    onSearchChange={this.onSearchChange}
+                    onChange={this.onChange}
+                    onFocus={this.onFocus}
+                    onBlur={this.onBlur}
+                    suggestions={suggestions}
+                    notFoundContent={notFoundContent}
+                    getSuggestionContainer={getSuggestionContainer?getSuggestionContainer:()=>document.getElementsByClassName('mentionWrap')[0]}
+                />
+            </div>
         )
     }
 }
 
-App.propTypes = {
+Mention.propTypes = {
     // prefixCls:PropTypes.string,
     suggestions:PropTypes.array,
     onSearchChange:PropTypes.func,
     onChange:PropTypes.func,
     loading: PropTypes.bool,
     className:PropTypes.string,
-    focus:PropTypes.bool,
+    // focus:PropTypes.bool,
     multiLines: PropTypes.bool,
-    // prefix:PropTypes.string,
+    prefix:PropTypes.string,
     placeholder:PropTypes.string,
     getSuggestionContainer:PropTypes.func,
     onFocus:PropTypes.func,
@@ -153,5 +230,13 @@ App.propTypes = {
     readOnly: PropTypes.bool,
     disabled: PropTypes.bool,
 }
-export default withStyles(styles, {name: 'MuiMentionAnt'})(App);
 
+Mention.toStrings = toString
+Mention.toContentState = toEditorState;
+Mention.toEditorState = text => {
+    console.warn('Mention.toEditorState is deprecated. Use toContentState instead.');
+    return toEditorState(text);
+}
+Mention.getMentions = getMentions;
+Mention.Nav = Nav;
+export default withStyles(styles, {name: 'MuiMentionAnt'})(Mention)
