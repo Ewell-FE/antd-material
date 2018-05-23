@@ -116,7 +116,7 @@ export default class MuiList extends Component {
                     }
                 </List>
                 {loadMore}
-                {pagination&&<div style={{textAlign:'right'}}><Pagination
+                {pagination&&<div style={{textAlign:'right',marginTop:'10px'}}><Pagination
                     {...this.dealCurrentData().pagination}
                     onChange={(page) => this.handleChangePage(page)}
                 /></div>}

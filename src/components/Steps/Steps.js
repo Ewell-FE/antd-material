@@ -10,9 +10,6 @@ const styles = theme => ({
     root:{
         background:'transparent'
     },
-    line:{
-        borderColor: '#1890ff'
-    },
     lineDot:{
         marginLeft:'4px'
     },
@@ -74,5 +71,10 @@ export default class Steps extends React.Component {
         );
     }
 }
-
-
+Steps.propTypes = {
+    current:PropTypes.number,//指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态
+    direction:PropTypes.oneOf(['horizontal', 'vertical']),//标题
+    progressDot:PropTypes.any,//点状步骤条，可以设置为一个 function
+    size:PropTypes.string,//指定大小，目前支持普通（default）和迷你（small）
+    status:PropTypes.oneOf(['wait', 'process','finish','error']),//指定当前步骤的状态，可选 wait process finish error
+}

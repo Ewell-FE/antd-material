@@ -32,47 +32,47 @@ const styles = theme => ({
         }
     },
     finish:{
-        color:'#1890ff',
+        color:theme.colors.primary,
         '& $dot':{
-            background:'#1890ff',
+            background:theme.colors.primary,
         },
         '&$iconContainer':{
             '& svg':{
-                color:'#1890ff',
+                color:theme.colors.primary,
             }
         }
 
     },
     process:{
-        color:'#1890ff',
+        color:theme.colors.primary,
         '& $dot':{
-            background:'#1890ff',
+            background:theme.colors.primary,
         },
         '&$iconContainer':{
             '& svg':{
-                color:'#1890ff',
+                color:theme.colors.primary,
             }
         }
     },
     wait:{
-        color:'rgba(0,0,0,.25)',
+        color:theme.colors.normal,
         '& $dot':{
-            background:'rgba(0,0,0,.25)',
+            background:theme.colors.normal,
         },
         '&$iconContainer': {
             '& svg': {
-                color: 'rgba(0,0,0,.25)',
+                color: theme.colors.normal,
             }
         }
     },
     error:{
-        color:'#f5222d',
+        color:theme.colors.error,
         '& $dot':{
-            background:'#f5222d',
+            background:theme.colors.error,
         },
         '&$iconContainer': {
             '& svg': {
-                color: '#f5222d',
+                color: theme.colors.error,
             }
         }
     },
@@ -181,4 +181,9 @@ export default class step extends React.Component {
     }
 }
 
-
+step.propTypes = {
+    title:PropTypes.string,//标题
+    description:PropTypes.any,//步骤的详情描述，可选
+    icon:PropTypes.any,//步骤图标的类型，可选
+    status:PropTypes.oneOf(['wait', 'process','finish','error']),//指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态。可选：wait process finish error
+}

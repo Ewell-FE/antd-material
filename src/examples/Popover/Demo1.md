@@ -5,7 +5,22 @@
 ````jsx
 import Popover from '@/components/Popover'
 import Button from '@/components/Button'
-import Test from '@/components/Popover/test'
+import ReactDOM from 'react-dom';
+
+class Test extends Component{
+    componentDidMount() {
+        this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.dom))
+    }
+    render(){
+        return(
+            <button
+                onClick={this.props.onClick}
+                onMouseEnter={this.props.onMouseEnter}
+                onMouseLeave={this.props.onMouseLeave}
+                ref={ref=>this.dom =ref}>组件Hover me</button>
+        )
+    }
+}
 export class <%=component%> extends Component {
     render() {
         return (
