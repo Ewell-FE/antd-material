@@ -72,7 +72,7 @@ const styles = theme => ({
     },
     mentionWrap:{
         '& .MuiMentionAnt-dropdown':{
-                //marginTop: '1.5em',
+                marginTop: '1.5em',
                 maxHeight: '250px',
                 minWidth: '120px',
                 backgroundColor: '#fff',
@@ -87,18 +87,60 @@ const styles = theme => ({
                 overflowX: 'hidden',
                 overflowY: 'auto',
                 fontSize: '12px',
+                textAlign:'left',
                 '& .&-notfound&-item':{
-                    color: 'fade(#000, 25%)',
+                    color: 'rgba(0,0,0, .25)',
                     //@{iconfont-css-prefix}-loading {
                     //.@{iconfont-css-prefix}-loading {
                     //  color: @primary-color;
                     // textAlign: 'center',
                     // display: 'block',
                     //}
+                },
+        '&-item': {
+            position: 'relative',
+            display: 'block',
+            padding: '7px 8px',
+            fontWeight: 'normal',
+            color: 'rgba(0,0,0, .65)',
+            whiteSpace: 'nowrap',
+            cursor: 'pointer',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            transition: 'background 0.3s',
+            '&:hover': {
+                    backgroundColor:'#ecf6fd',
+            },
+            '&.focus,&-active':{
+                    backgroundColor: '#ecf6fd',
+            },
+            '&-disabled':{
+                color: 'rgba(0,0,0,.25)',
+                cursor: 'not-allowed',
+            '&:hover': {
+                    color: 'rgba(0,0,0,.25)',
+                    backgroundColor: '#fff',
+                    cursor: 'not-allowed',
+                }
+            },
+            '&-selected':{
+               '&,&:hover': {
+                        backgroundColor: '#f7f7f7',
+                        fontWeight: 'bold',
+                        color: 'rgba(0,0,0, .65)',
+                    }
+                },
+
+            '&-divider': {
+                    height: '1px',
+                    margin: '1px 0',
+                    overflow: 'hidden',
+                    backgroundColor: '#e9e9e9',
+                    lineHeight: 0,
                 }
             }
+        }
     }
-
 });
 @withStyles(styles)
 export class Mention extends Component {
@@ -113,10 +155,6 @@ export class Mention extends Component {
         this.state = {
             suggestions: props.suggestions,
             focus: false,
-        }
-        const { getInstance } = props;
-        if (typeof getInstance === 'function') {
-            getInstance(this); // 在这里把this暴露给`parentComponent`
         }
     }
 
