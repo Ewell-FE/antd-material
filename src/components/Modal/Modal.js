@@ -92,7 +92,8 @@ export default class modal extends Component {
         bodyStyle:{},
         destroyOnClose:false,
         onCancel:()=>{},
-        onOk:()=>{}
+        onOk:()=>{},
+        onRendered:()=>{}
     }
     componentWillReceiveProps(nextProps) {
         if('visible' in nextProps){
@@ -102,7 +103,7 @@ export default class modal extends Component {
         }
     }
     render() {
-        const {classes,visible,onCancel,children,title,okText,cancelText,width,mask,maskClosable,onOk,header,footer,closable,confirmLoading,verticalAlign,wrapClassName,getContainer,bodyStyle,okType}= this.props
+        const {classes,visible,onCancel,children,title,okText,cancelText,width,mask,maskClosable,onOk,header,footer,closable,confirmLoading,verticalAlign,wrapClassName,getContainer,bodyStyle,okType,onRendered}= this.props
         const defaultFooter=(
             <div>
                 <Button onClick={onCancel}>{cancelText}</Button>
@@ -134,6 +135,7 @@ export default class modal extends Component {
                 disableBackdropClick={!maskClosable}
                 classes={{root}}
                 container={getContainer}
+                onRendered={onRendered}
             >
                 <div className={wrapClass} style={modalStyle}>
                     <div className={classes.modalContent}>
@@ -178,5 +180,6 @@ modal.propTypes = {
     footer:PropTypes.any,//底部内容，当不需要默认底部按钮时，可以设为 footer={null}
     visible:PropTypes.bool,//对话框是否可见
     onCancel:PropTypes.func,//点击遮罩层或右上角叉或取消按钮的回调
-    onOk:PropTypes.func//点击确定回调
+    onOk:PropTypes.func,//点击确定回调,
+    onRendered:PropTypes.func//Modal中子元素被挂载后触发回调
 }

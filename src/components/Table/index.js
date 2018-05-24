@@ -350,12 +350,12 @@ export class SimpleTable extends Component {
                     !tableObj.arr.length &&<p className={classes.noData}>暂无数据!!!</p>
                 }
                 {
-                    pagination !== false &&
-                        <div className={classes.tablePagination}>
-                            <Pagination {...tableObj['pagination']}
-                                        onShowSizeChange={(current, pageSize) => this.handleChangeRowsPerPage(current, pageSize)}
-                                        onChange={(page) => this.handleChangePage(page)}/>
-                        </div>
+                    (pagination !== false && tableObj.arr.length > 0) &&
+                    <div className={classes.tablePagination}>
+                        <Pagination {...tableObj['pagination']}
+                                    onShowSizeChange={(current, pageSize) => this.handleChangeRowsPerPage(current, pageSize)}
+                                    onChange={(page) => this.handleChangePage(page)}/>
+                    </div>
                 }
             </div>
         )
@@ -375,4 +375,4 @@ SimpleTable.propTypes = {
     expandedRowRender:PropTypes.func, //展开项
 };
 
-export default withStyles(styles)(SimpleTable);
+export default withStyles(styles,{name:'MuiTableAnt'})(SimpleTable);
