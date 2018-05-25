@@ -36,7 +36,7 @@ const styles = theme => {
         },
         label: {
             padding: '0 8px',
-            verticalAlign: '-1.5px'
+            verticalAlign: '-1px'
         },
         sizeIcon: {
             fontSize: 20,
