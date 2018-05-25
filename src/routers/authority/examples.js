@@ -10,6 +10,7 @@ export {default as Breadcrumb} from '@/examples/Breadcrumb';
 export {default as Button} from '@/examples/Button';
 export {default as Card} from '@/examples/Card';
 export {default as Carousel} from '@/examples/Carousel';
+export {default as Cascader} from '@/examples/Cascader';
 export {default as Checkbox} from '@/examples/Checkbox';
 export {default as Collapse} from '@/examples/Collapse';
 export {default as Divider} from '@/examples/Divider';
