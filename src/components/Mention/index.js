@@ -5,7 +5,8 @@ import shallowequal from 'shallowequal';
 import classNames from 'classnames';
 import RcMention, { Nav, toString, toEditorState, getMentions } from 'rc-editor-mention';
 import Icon from '../Icon';
-const styles = theme => ({
+import './style.less'
+const styles = theme =>({
     wrapper:{
         position:'relative',
         display: 'inline-block',
@@ -68,78 +69,6 @@ const styles = theme => ({
             height: 'auto',
             padding: '4px 7px',
         },
-
-    },
-    mentionWrap:{
-        '& .MuiMentionAnt-dropdown':{
-                marginTop: '1.5em',
-                maxHeight: '250px',
-                minWidth: '120px',
-                backgroundColor: '#fff',
-                boxShadow: '0 1px 6px rgba(0, 0, 0, .2)',
-                borderRadius: '4px',
-                boxSizing: 'border-box',
-                zIndex: 1050,
-                left: '-9999px',
-                top: '-9999px',
-                position: 'absolute',
-                outline: 'none',
-                overflowX: 'hidden',
-                overflowY: 'auto',
-                fontSize: '12px',
-                textAlign:'left',
-                '& .&-notfound&-item':{
-                    color: 'rgba(0,0,0, .25)',
-                    //@{iconfont-css-prefix}-loading {
-                    //.@{iconfont-css-prefix}-loading {
-                    //  color: @primary-color;
-                    // textAlign: 'center',
-                    // display: 'block',
-                    //}
-                },
-        '&-item': {
-            position: 'relative',
-            display: 'block',
-            padding: '7px 8px',
-            fontWeight: 'normal',
-            color: 'rgba(0,0,0, .65)',
-            whiteSpace: 'nowrap',
-            cursor: 'pointer',
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            transition: 'background 0.3s',
-            '&:hover': {
-                    backgroundColor:'#ecf6fd',
-            },
-            '&.focus,&-active':{
-                    backgroundColor: '#ecf6fd',
-            },
-            '&-disabled':{
-                color: 'rgba(0,0,0,.25)',
-                cursor: 'not-allowed',
-            '&:hover': {
-                    color: 'rgba(0,0,0,.25)',
-                    backgroundColor: '#fff',
-                    cursor: 'not-allowed',
-                }
-            },
-            '&-selected':{
-               '&,&:hover': {
-                        backgroundColor: '#f7f7f7',
-                        fontWeight: 'bold',
-                        color: 'rgba(0,0,0, .65)',
-                    }
-                },
-
-            '&-divider': {
-                    height: '1px',
-                    margin: '1px 0',
-                    overflow: 'hidden',
-                    backgroundColor: '#e9e9e9',
-                    lineHeight: 0,
-                }
-            }
-        }
     }
 });
 @withStyles(styles)
@@ -150,14 +79,16 @@ export class Mention extends Component {
         loading: false,
         multiLines: false
     };
-    constructor(props) {
+    constructor(props,context) {
         super(props)
         this.state = {
             suggestions: props.suggestions,
             focus: false,
         }
     }
-
+    componentDidMount() {
+         this.props.withRef && this.props.withRef(this)
+    }
     componentWillReceiveProps(nextProps) {
         const { suggestions } = nextProps;
         if (!shallowequal(suggestions, this.props.suggestions)) {
@@ -171,6 +102,7 @@ export class Mention extends Component {
         if (this.props.onSearchChange) {
             return this.props.onSearchChange(value, prefix);
         }
+        debugger
         return this.defaultSearchChange(value);
     }
 
@@ -222,31 +154,28 @@ export class Mention extends Component {
     }
 
     render() {
-        const { prefixCls, loading, classes,getSuggestionContainer } = this.props;
+        const { prefixCls, loading, classes } = this.props;
         const { suggestions, focus } = this.state;
         const cls = classNames('', {
             [`${prefixCls}-active`]: focus,
         });
 
         const notFoundContent = loading
-            ? <Icon type="loading" />
+            ? <Icon className="fa fa-spinner fa-pulse fa-fw loading" />
             : this.props.notFoundContent;
 
         return (
-            <div className={classNames(classes.mentionWrap,'mentionWrap')}>
-                <RcMention
-                    {...this.props}
-                    className={classNames(classes.wrapper,cls)}
-                    ref={this.mentionRef}
-                    onSearchChange={this.onSearchChange}
-                    onChange={this.onChange}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-                    suggestions={suggestions}
-                    notFoundContent={notFoundContent}
-                    getSuggestionContainer={getSuggestionContainer?getSuggestionContainer:()=>document.getElementsByClassName('mentionWrap')[0]}
-                />
-            </div>
+            <RcMention
+                {...this.props}
+                className={classNames(classes.wrapper,cls)}
+                ref={this.mentionRef}
+                onSearchChange={this.onSearchChange}
+                onChange={this.onChange}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                suggestions={suggestions}
+                notFoundContent={notFoundContent}
+            />
         )
     }
 }
@@ -254,13 +183,16 @@ export class Mention extends Component {
 Mention.propTypes = {
     // prefixCls:PropTypes.string,
     suggestions:PropTypes.array,
-    onSearchChange:PropTypes.func,
+    onSearchChange:PropTypes.func,//输入框中 @ 变化时回调
     onChange:PropTypes.func,
     loading: PropTypes.bool,
     className:PropTypes.string,
     // focus:PropTypes.bool,
     multiLines: PropTypes.bool,
-    prefix:PropTypes.string,
+    prefix: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+    ]),//触发弹出下拉框的字符
     placeholder:PropTypes.string,
     getSuggestionContainer:PropTypes.func,
     onFocus:PropTypes.func,

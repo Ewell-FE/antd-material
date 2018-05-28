@@ -9,7 +9,6 @@ const toStringMention = Mention.toStrings;
 export class <%=component%> extends Component {
 
       onChange = (editorState) =>{
-        //debugger
         console.log(toStringMention(editorState));
       }
 

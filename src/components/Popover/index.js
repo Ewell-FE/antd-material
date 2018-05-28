@@ -134,8 +134,13 @@ export default class Popver extends Component {
         this.setState({visible:false})
     }
     dom=null;
+
+    componentDidMount(){
+        this.props.withRef && this.props.withRef(this)
+    }
+
     render() {
-        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400}} = this.props;
+        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400},container} = this.props;
         const {visible}=this.state
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
@@ -195,6 +200,7 @@ export default class Popver extends Component {
                         horizontal:positions[placement][3],
                     }}
                     classes={{paper}}
+                    container={container}
                 >
                     <div className={arrowClassName}></div>
                     <div className={classes.title}>
