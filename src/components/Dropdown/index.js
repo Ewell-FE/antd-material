@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Manager, Target, Popper} from 'react-popper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import {withStyles} from '@material-ui/core/styles';
@@ -94,11 +95,13 @@ export default class app extends Component {
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <Grow in={open} style={{transformOrigin: '0 0 0'}}>
-                        <Paper>
-                            {props.overlay}
-                        </Paper>
-                    </Grow>
+                    <ClickAwayListener onClickAway={this.handleClose}>
+                        <Grow in={open} style={{transformOrigin: '0 0 0'}}>
+                            <Paper>
+                                {props.overlay}
+                            </Paper>
+                        </Grow>
+                    </ClickAwayListener>
                 </Popper>
             </Manager>
         )

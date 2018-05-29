@@ -4,6 +4,7 @@
 ````jsx
 import Form from '@/components/Form'
 import Select from '@/components/Select'
+import InputNumber from '@/components/InputNumber'
 import {Field} from 'redux-form'
 import Button from '@/components/Button'
 
@@ -30,27 +31,45 @@ export class <%=component%> extends Component {
         return (
             <div>
                <Form layout="horizontal" form='roleForm5'
-                                 initialValues={{}}
-                                 labelWidth="15%"
-                                 wrapperWidth="220px"
-                                 Submit={(values) => this.Submit(values)} ref="form5"
-                                 fields={[{
-                                        name:'one',
-                                        label: "输入框",
-                                    },{
-                                        type:'select',
-                                        name:'two',
-                                        label: "下拉框",
-                                        placeholder:'请选择',
-                                        options:[
-                                              { value: 'bj', label: '北京' },
-                                              { value: 'sh', label: '上海' },
-                                              { value: 'hz', label: '杭州' },
-                                              { value: 'zz', label: '郑州' },
-                                        ]
-                                    }
-                                 ]}
-               />
+                         initialValues={{}}
+                         labelWidth="15%"
+                         wrapperWidth="85%"
+                         Submit={(values) => this.Submit(values)} ref="form5"
+                         fields={[{
+                                name:'one',
+                                label: "输入框",
+                            },{
+                                type:'select',
+                                name:'two',
+                                label: "下拉框",
+                                placeholder:'请选择',
+                                options:[
+                                      { value: 'bj', label: '北京' },
+                                      { value: 'sh', label: '上海' },
+                                      { value: 'hz', label: '杭州' },
+                                      { value: 'zz', label: '郑州' },
+                                ]
+                            },{
+                                 type:'select',
+                                 name:'three',
+                                 label: "多选下拉框",
+                                 placeholder:'请选择',
+                                 multi:true,
+                                 options:[
+                                       { value: 'bj', label: '北京' },
+                                       { value: 'sh', label: '上海' },
+                                       { value: 'hz', label: '杭州' },
+                                       { value: 'zz', label: '郑州' },
+                                 ]
+                             },{
+                               type:'inputNumber',
+                               name:'four',
+                               label: "数字输入框",
+                           }
+                         ]}
+               >
+                    <Button style={{verticalAlign:'top'}} onClick={() => {this.refs.form5.submit()}}>保 存</Button>
+               </Form>
 
             </div>
         )

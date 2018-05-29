@@ -3,7 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import RcInputNumber from 'rc-input-number';
-
+import omit from 'omit.js';
 
 const styles = theme => {
 
@@ -146,7 +146,7 @@ const styles = theme => {
                 width: '100%',
                 textAlign: 'left',
                 outline: '0',
-                height: (Number.parseInt(theme.size.default,10)-2)+'px',
+                height: (Number.parseInt(theme.size.default, 10) - 2) + 'px',
                 transition: 'all 0.3s linear',
                 color: 'fade(#000, 65%)',
                 backgroundColor: '#fff',
@@ -160,7 +160,7 @@ const styles = theme => {
                 padding: '0',
                 height: theme.size.small,
                 '& input': {
-                    height:  theme.size.small ,
+                    height: theme.size.small,
                     width: '100%',
                 }
             }
@@ -169,7 +169,7 @@ const styles = theme => {
             padding: '0',
             height: theme.size.large,
             '& input': {
-                height: (Number.parseInt(theme.size.large,10)-2)+'px!important',
+                height: (Number.parseInt(theme.size.large, 10) - 2) + 'px!important',
                 width: '100%',
             }
         },
@@ -177,7 +177,7 @@ const styles = theme => {
             padding: '0',
             height: theme.size.small,
             '& input': {
-                height: (Number.parseInt(theme.size.small,10)-2)+'px!important',
+                height: (Number.parseInt(theme.size.small, 10) - 2) + 'px!important',
                 width: '100%',
             }
         },
@@ -185,26 +185,45 @@ const styles = theme => {
 };
 @withStyles(styles, {name: 'MuiInputNumberAnt'})
 export default class InputNumber extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: props.defaultValue || null
+        }
+    }
+
     static defaultProps = {
         size: 'default',
         step: 1,
         prefixCls: 'yhInputNumber',
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            value: nextProps.value
+        })
+    }
 
-    componentDidMount() {
-
+    onChange = (value)=> {
+        this.setState({value})
+        this.props.onChange && this.props.onChange(value)
     }
 
     render() {
-        const {className, classes, size, ...others} = this.props;
+        const props = this.props;
+        const {classes, size} = props
         const inputNumberClass = classnames(
             classes.yhInputNumber,
             {
                 [classes[`lg`]]: size === 'large',
                 [classes[`sm`]]: size === 'small',
-            }, className);
-        return <RcInputNumber className={inputNumberClass} {...others} />;
+            }, props.className);
+        let otherProps = omit(props, ['className', 'defaultValue', 'value', 'onChange'])
+        return <RcInputNumber
+            className={inputNumberClass}
+            value={this.state.value}
+            onChange={this.onChange}
+            {...otherProps} />;
 
     }
 }
