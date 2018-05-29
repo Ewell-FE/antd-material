@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import Input from './input'
+import Select from './select'
 
 //渲染field组件
 let FieldHtml = (field)=> {
@@ -18,6 +19,9 @@ let FieldHtml = (field)=> {
         return (
             <field.render field={otherField}/>
         )
+    }
+    if (field.type === "select") {
+        return <Select field={field} isError={isError} isWarn={isWarn}/>
     }
     return (
         <Input field={field} isError={isError} isWarn={isWarn}/>

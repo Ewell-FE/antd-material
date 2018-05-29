@@ -14,9 +14,7 @@ export class <%=component%> extends Component {
         return (
                <Select
                     placeholder='请选择'
-                    width={300}
                     onChange={this.onChange}
-                    withRef={node => this.input = node}
                     options={children}/>
         )
     }

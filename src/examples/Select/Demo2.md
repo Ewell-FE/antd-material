@@ -12,7 +12,6 @@ export class <%=component%> extends Component {
                <Select
                     placeholder='请选择'
                     multi={true}
-                    width={300}
                     options={children2}/>
         )
     }

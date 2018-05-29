@@ -35,7 +35,6 @@ export class <%=component%> extends Component {
                     onValueClick={this.gotoContributor}
                     valueKey="github"
                     labelKey="name"
-                    width={300}
                     loadOptions={this.getContributors}/>
         )
     }

@@ -1,18 +1,18 @@
-import React, {Component} from 'react'
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-import PropTypes from 'prop-types';
-import classnames from 'classnames'
-import Icon from '../Icon'
-import _ from 'lodash'
+import React, {Component} from "react";
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import Icon from "../Icon";
+import _ from "lodash";
 import {withStyles} from "@material-ui/core/styles";
 import ReactDOM from "react-dom";
+import omit from "omit.js";
 
 function getComponent(type) {
     //计算高度
     function getLineHeight(str) {
-        let num = str.split('px')[0]
-        return Number(num - 2)
+        return parseInt(str) - 2
     }
 
 //公共样式
@@ -168,69 +168,71 @@ function getComponent(type) {
             this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.select))
         }
 
+        componentWillReceiveProps(nextProps) {
+            this.setState({
+                value: nextProps.value
+            })
+        }
+
         onHandleChange = (selectOptions) => {
-            const { valueKey, onChange} = this.props
-            if (!_.has(this.props,'value')) {
-                if (selectOptions) {
-                    if (_.isArray(selectOptions)) {
-                        let arr = []
-                        selectOptions.forEach((item) => {
-                            arr.push(item[`${valueKey}`] || item.value)
-                        })
-                        this.setState({
-                            value: arr
-                        })
-                    } else {
-                        this.setState({
-                            value: selectOptions[`${valueKey}`] || selectOptions.value
-                        })
-                    }
+            const {valueKey, onChange} = this.props
+            if (selectOptions) {
+                if (_.isArray(selectOptions)) {
+                    let arr = []
+                    selectOptions.forEach((item) => {
+                        arr.push(item[`${valueKey}`] || item.value)
+                    })
+                    this.setState({
+                        value: arr
+                    })
                 } else {
                     this.setState({
-                        value: null
+                        value: selectOptions[`${valueKey}`] || selectOptions.value
                     })
                 }
-
+            } else {
+                this.setState({
+                    value: null
+                })
             }
             onChange && onChange(selectOptions)
         }
 
-        domApp = (type) => {
-            const props = this.props
-            switch (type) {
-                case 'Select':
-                    return <Select {...props}/>
-
-                case 'Async':
-                    return <Select.Async {...props}/>
-
-                case 'Creatable':
-                    return <Select.Creatable {...props}/>
-
-                case 'AsyncCreatable':
-                    return <Select.AsyncCreatable {...props}/>
-
-                default:
-                    break;
-            }
-        }
-
         render() {
             const props = this.props
-            const {classes, style, width, arrowRenderer, size} = props
-            let value = _.has(props,'value') ? props.value : this.state.value
-            return (
-                <span style={{...style, width: width}}
-                      className={classnames(classes.root, classes.control, classes[size])}>
-                {
-                    React.cloneElement(this.domApp(type), {
-                        arrowRenderer: arrowRenderer,
-                        ref: ref => this.select = ref,
-                        value: value,
-                        onChange: this.onHandleChange
-                    })
+            const {classes} = props
+            let style = props.style || {}
+            let otherStyle = omit(style, ['width', 'height'])
+            const otherProps = omit(props, ['onChange', 'options', 'value', 'style', 'width'])
+            const RenderSelect = (props) => {
+                switch (type) {
+                    case 'Select':
+                        return <Select {...props} ref={selectNode =>{this.select = selectNode}}/>
+
+                    case 'Async':
+                        return <Select.Async {...props} ref={selectNode =>{this.select = selectNode}}/>
+
+                    case 'Creatable':
+                        return <Select.Creatable {...props} ref={selectNode =>{this.select = selectNode}}/>
+
+                    case 'AsyncCreatable':
+                        return <Select.AsyncCreatable {...props} ref={selectNode =>{this.select = selectNode}}/>
+
+                    default:
+                        break;
                 }
-            </span>
+            }
+            return (
+                <span style={{width: style.width,height:style.height}}
+                      className={classnames(classes.root, classes.control, classes[props.size])}>
+                        <RenderSelect
+                            {...otherProps}
+                            style={otherStyle}
+                            value={this.state.value}
+                            onChange={this.onHandleChange}
+                            options={this.props.options}
+                        />
+                </span>
             );
 
         }
@@ -240,7 +242,6 @@ function getComponent(type) {
     App.propTypes = {
         style: PropTypes.object, //行内样式
         defaultValue: PropTypes.string, //默认值
-        width: PropTypes.any, //宽
         size: PropTypes.oneOf(['small', 'default', 'large']), //大小
         withRef: PropTypes.func,
     }

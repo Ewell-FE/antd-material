@@ -28,7 +28,7 @@ export class <%=component%> extends Component {
                        <Radio.Button value="small">Small</Radio.Button>
                  </Radio.Group>
                  <br /><br />
-                 <Select placeholder='请选择' size={size} width={300} options={children4}/>
+                 <Select placeholder='请选择' size={size} options={children4}/>
                  <br /> <br />
                  <Select placeholder='请选择'  multi={true} size={size} width={300} options={children4}/>
              </div>

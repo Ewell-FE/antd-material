@@ -28,7 +28,8 @@ const styles = theme => {
                 "display": "inline-block",
                 "width": "200px",
                 "marginBottom": " 24px",
-                "font-size": "14px"
+                "font-size": "14px",
+                "text-align": "left"
             }
         },
         "vertical": {
@@ -48,7 +49,8 @@ const styles = theme => {
             },
             "& .input": {
                 "position": "relative",
-                "font-size": "14px"
+                "font-size": "14px",
+                "text-align": "left"
             }
         },
         "horizontal": {
@@ -71,7 +73,8 @@ const styles = theme => {
                 "position": "relative",
                 "display": "inline-block",
                 "marginBottom": "24px",
-                "font-size": "14px"
+                "font-size": "14px",
+                "text-align": "left"
             }
         },
         "grid": {
@@ -94,7 +97,8 @@ const styles = theme => {
                 "position": "relative",
                 "display": "inline-block",
                 "marginBottom": "24px",
-                "font-size": "14px"
+                "font-size": "14px",
+                "text-align": "left"
             }
         },
         "inputError": {
@@ -123,7 +127,7 @@ const styles = theme => {
 export default class renderInput extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
-        let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label'])
+        let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes'])
         return (
             <div className={classes[field.layout]}>
                 {field.label &&
