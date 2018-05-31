@@ -89,7 +89,7 @@ export class <%=component%> extends Component {
                     </RadioGroup>
                     <br/>
                     <br/>
-                    <Form layout={this.state.value} form='roleForm5'
+                    <Form layout={this.state.value} form='roleForm6'
                        initialValues={{
                        remark2:true,
                        remark3:["Apple"],
@@ -103,7 +103,7 @@ export class <%=component%> extends Component {
                        }}
                        labelWidth="25%"
                        wrapperWidth="75%"
-                       Submit={(values) => {this.Submit(values)}} ref="form5"
+                       Submit={(values) => {this.Submit(values)}} ref="form6"
                        fields={[{
                            span:6,
                            name: "roleName",
@@ -202,7 +202,7 @@ export class <%=component%> extends Component {
 
                        </Form>
 
-                    <Button onClick={() => {this.refs.form5.submit() }}>保 存</Button>
+                    <Button onClick={() => {this.refs.form6.submit() }}>保 存</Button>
             </div>
         )
     }
