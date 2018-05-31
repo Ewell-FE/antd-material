@@ -10,6 +10,16 @@ import omit from 'omit.js';
 import Input from './input'
 import Select from './select'
 import InputNumber from './inputNumber'
+import Mention from './mention'
+import Checkbox from './check'
+import Radio from './radio'
+import Rate from './rate'
+import CheckboxGroup from './checkGroup'
+import RadioGroup from './radioGroup'
+import RadioButton from './radioButton'
+import Cascader from './cascader'
+import Switch from './switch'
+import Slider from './slider'
 
 //渲染field组件
 let FieldHtml = (field)=> {
@@ -21,15 +31,35 @@ let FieldHtml = (field)=> {
             <field.render field={otherField}/>
         )
     }
-    if (field.type === "select") {
-        return <Select field={field} isError={isError} isWarn={isWarn}/>
+
+    switch (field.type) {
+        case 'select':
+            return ( <Select field={field} isError={isError} isWarn={isWarn}/>)
+        case 'mention':
+            return (<Mention field={field} isError={isError} isWarn={isWarn}/>)
+        case 'check':
+            return (<Checkbox field={field} isError={isError} isWarn={isWarn}/>)
+        case 'checkgroup':
+            return (<CheckboxGroup field={field} isError={isError} isWarn={isWarn}/>)
+        case 'radio':
+            return (<Radio field={field} isError={isError} isWarn={isWarn}/>)
+        case 'radiogroup':
+            return (<RadioGroup field={field} isError={isError} isWarn={isWarn}/>)
+        case 'radiobutton':
+            return (<RadioButton field={field} isError={isError} isWarn={isWarn}/>)
+        case 'rate':
+            return (<Rate field={field} isError={isError} isWarn={isWarn}/>)
+        case 'cascader':
+            return (<Cascader field={field} isError={isError} isWarn={isWarn}/>)
+        case 'switch':
+            return (<Switch field={field} isError={isError} isWarn={isWarn}/>)
+        case 'slider':
+            return (<Slider field={field} isError={isError} isWarn={isWarn}/>)
+        case 'InputNumber':
+            return (<InputNumber field={field} isError={isError} isWarn={isWarn}/>)
+        default:
+            return (<Input field={field} isError={isError} isWarn={isWarn}/>)
     }
-    if (field.type === "inputNumber") {
-        return <InputNumber field={field} isError={isError} isWarn={isWarn}/>
-    }
-    return (
-        <Input field={field} isError={isError} isWarn={isWarn}/>
-    )
 }
 //field.layout 可选值：[ vertical , inline , horizontal ,grid] 默认为inline
 const renderField = (field) => {
@@ -45,7 +75,7 @@ const renderField = (field) => {
     )
 }
 
-const required = value => (value ? undefined : '必填项')
+const required = value => ((Array.isArray(value) && !value.length) ? '必填项' : value ? undefined : '必填项')
 const RenderFields = (props)=> {
     let validates = []
     if (props.required) {

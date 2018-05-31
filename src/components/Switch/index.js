@@ -35,7 +35,7 @@ const styles = theme => ({
         width: 18,
         height: 18,
         position: 'relative',
-        '&>div>svg': {
+        '&>div': {
             position: 'absolute',
             left: 0,
             top: 0,
@@ -131,7 +131,11 @@ export class App extends Component {
             checked: this.props.defaultChecked || false
         }
     }
-
+    componentWillReceiveProps(nextProps) {
+        if ('value' in nextProps) {
+            this.setState({ checked: nextProps.value });
+        }
+    }
     componentDidMount() {
         this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
     }
@@ -157,7 +161,7 @@ export class App extends Component {
     render() {
         const {classes, checked, loading, size} = this.props
         const icons = {}, switchClass = {}
-        const otherProps = _.omit(this.props, ['loading', 'checkedChildren', 'unCheckedChildren', 'classes'])
+        const otherProps = _.omit(this.props, ['loading', 'checkedChildren', 'unCheckedChildren', 'classes','id','onChange'])
         let checkValue = _.has(this.props, 'checked') ? checked : this.state.checked
 
         Object.assign(switchClass, {
