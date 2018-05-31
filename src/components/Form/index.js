@@ -9,6 +9,7 @@ import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import Input from './input'
 import Select from './select'
+import Mention from './mention'
 
 //渲染field组件
 let FieldHtml = (field)=> {
@@ -22,6 +23,9 @@ let FieldHtml = (field)=> {
     }
     if (field.type === "select") {
         return <Select field={field} isError={isError} isWarn={isWarn}/>
+    }
+    if (field.type === "mention") {
+        return <Mention field={field} isError={isError} isWarn={isWarn}/>
     }
     return (
         <Input field={field} isError={isError} isWarn={isWarn}/>

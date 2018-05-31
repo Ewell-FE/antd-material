@@ -102,7 +102,6 @@ export class Mention extends Component {
         if (this.props.onSearchChange) {
             return this.props.onSearchChange(value, prefix);
         }
-        debugger
         return this.defaultSearchChange(value);
     }
 
