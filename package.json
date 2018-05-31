@@ -56,6 +56,7 @@
     "promise": "8.0.1",
     "prop-types": "^15.6.0",
     "raf": "3.4.0",
+    "rc-calendar": "^9.6.1",
     "rc-cascader": "^0.13.1",
     "rc-queue-anim": "^1.5.0",
     "rc-scroll-anim": "^2.4.1",

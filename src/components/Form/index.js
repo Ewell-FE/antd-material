@@ -54,7 +54,6 @@ const RenderFields = (props)=> {
     if (props.validate) {
         validates = validates.concat(props.validate)
     }
-
     return (
         <Field {...props} component={renderField} validate={validates}/>
     )

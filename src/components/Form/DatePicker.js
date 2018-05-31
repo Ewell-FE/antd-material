@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Select from '@/components/Select'
+import DatePicker from '@/components/DatePicker'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
@@ -17,12 +17,12 @@ export default class renderInput extends Component {
                 <label style={{width:field.labelWidth}} htmlFor={`__${field.input.name}__`}>{field.required &&
                 <span className="required">* </span>}{field.label}:</label>}
                 <div className="input" style={{width:field.wrapperWidth}}>
-                    <Select
+                    <DatePicker
                         id={`__${field.input.name}__`}
                         {...inputs}
                         {...otherField}
                         className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}
-                    />
+                        options={field.options || []}/>
 
                     {isError && <div className={classnames(classes.errorInfo,classes.error)}>{field.meta.error}</div>}
                     {isWarn && <div className={classnames(classes.errorInfo,classes.warn)}>{field.meta.warning}</div>}

@@ -25,6 +25,9 @@ const styles = theme => {
             outline: "0",
             resize: "vertical",
             transition: "all .3s",
+            "&:hover": {
+                borderColor: theme.colors.primary,
+            },
             "&:focus": {
                 borderColor: theme.colors.primary,
                 boxShadow: `0 0 0 2px ${theme.primary[100]}`

@@ -13,6 +13,7 @@ export {default as Carousel} from '@/examples/Carousel';
 export {default as Cascader} from '@/examples/Cascader';
 export {default as Checkbox} from '@/examples/Checkbox';
 export {default as Collapse} from '@/examples/Collapse';
+export {default as DatePicker} from '@/examples/DatePicker';
 export {default as Divider} from '@/examples/Divider';
 export {default as Dropdown} from '@/examples/Dropdown';
 export {default as Form} from '@/examples/Form';

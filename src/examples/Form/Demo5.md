@@ -3,9 +3,6 @@
 
 ````jsx
 import Form from '@/components/Form'
-import Select from '@/components/Select'
-import InputNumber from '@/components/InputNumber'
-import {Field} from 'redux-form'
 import Button from '@/components/Button'
 
 
@@ -62,10 +59,14 @@ export class <%=component%> extends Component {
                                        { value: 'zz', label: '郑州' },
                                  ]
                              },{
-                               type:'inputNumber',
-                               name:'four',
-                               label: "数字输入框",
-                           }
+                                     type:'inputNumber',
+                                     name:'four',
+                                     label: "数字输入框",
+                             },{
+                                 type:'radio',
+                                 name:'fire',
+                                 label: "单选框",
+                             }
                          ]}
                >
                     <Button style={{verticalAlign:'top'}} onClick={() => {this.refs.form5.submit()}}>保 存</Button>
