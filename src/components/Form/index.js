@@ -20,6 +20,7 @@ import RadioButton from './radioButton'
 import Cascader from './cascader'
 import Switch from './switch'
 import Slider from './slider'
+import DatePicker from './DatePicker'
 
 //渲染field组件
 let FieldHtml = (field)=> {
@@ -55,8 +56,10 @@ let FieldHtml = (field)=> {
             return (<Switch field={field} isError={isError} isWarn={isWarn}/>)
         case 'slider':
             return (<Slider field={field} isError={isError} isWarn={isWarn}/>)
-        case 'InputNumber':
+        case 'inputnumber':
             return (<InputNumber field={field} isError={isError} isWarn={isWarn}/>)
+        case 'datepicker':
+            return (<DatePicker field={field} isError={isError} isWarn={isWarn}/>)
         default:
             return (<Input field={field} isError={isError} isWarn={isWarn}/>)
     }

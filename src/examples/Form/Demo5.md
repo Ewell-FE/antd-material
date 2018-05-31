@@ -59,13 +59,13 @@ export class <%=component%> extends Component {
                                        { value: 'zz', label: '郑州' },
                                  ]
                              },{
-                                     type:'inputNumber',
+                                     type:'inputnumber',
                                      name:'four',
                                      label: "数字输入框",
                              },{
-                                 type:'radio',
+                                 type:'datepicker',
                                  name:'fire',
-                                 label: "单选框",
+                                 label: "日期",
                              }
                          ]}
                >

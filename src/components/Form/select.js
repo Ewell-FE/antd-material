@@ -22,7 +22,7 @@ export default class renderInput extends Component {
                         {...inputs}
                         {...otherField}
                         className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}
-                    />
+                        options={field.options || []}/>
 
                     {isError && <div className={classnames(classes.errorInfo,classes.error)}>{field.meta.error}</div>}
                     {isWarn && <div className={classnames(classes.errorInfo,classes.warn)}>{field.meta.warning}</div>}

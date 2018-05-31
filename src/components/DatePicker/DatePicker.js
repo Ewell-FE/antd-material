@@ -29,7 +29,6 @@ if (cn) {
 const timePickerElement = <TimePickerPanel prefixCls="yh-time-picker-panel"
                                            defaultValue={moment('00:00:00', 'HH:mm:ss')}/>;
 
-
 @withStyles(styles, {name: 'MuiDatePickerAnt'})
 export default class app extends Component {
     constructor(props) {
@@ -45,7 +44,7 @@ export default class app extends Component {
         locale: cn ? zhCN : enUS,
         animation: 'slide-up',
         format: 'YYYY-MM-DD',
-        mode:'date'
+        mode: 'date'
     }
 
 
@@ -63,7 +62,7 @@ export default class app extends Component {
 
     render() {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value'])
         const state = this.state
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
         const calendar = (<Calendar
@@ -107,7 +106,7 @@ app.propTypes = {
     disabled: PropTypes.bool,//  禁用
     disabledDate: PropTypes.func,//不可选择的日期
     locale: PropTypes.bool,// 国际化配置
-    open:PropTypes.bool,//控制弹层是否展开
+    open: PropTypes.bool,//控制弹层是否展开
     placeholder: PropTypes.string, //输入框提示文字
     size: PropTypes.string, //输入框大小，large 高度为 40px，small 为 24px，默认是 32px
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
@@ -120,8 +119,8 @@ app.propTypes = {
     value: PropTypes.object, //moment 格式的日期对象
     onChange: PropTypes.func,//时间发生变化的回调
     onOk: PropTypes.func,
-    mode:PropTypes.oneOf(['time','date','month','year']),
-    onPanelChange:PropTypes.func,//日期面板变化时的回调
+    mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
+    onPanelChange: PropTypes.func,//日期面板变化时的回调
     dateInputPlaceholder: PropTypes.string,//日期选择里面的输入框placeholder
 
 };
