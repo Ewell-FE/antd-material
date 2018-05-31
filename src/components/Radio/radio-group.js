@@ -6,7 +6,6 @@ import Radio from './index'
 const styles = theme => {
     return {
         root: {
-            padding:5,
             display:'inline-block'
         },
         radioGroup:{
@@ -22,7 +21,11 @@ export default class app extends Component {
             value:this.props.value || this.props.defaultValue
         }
     }
-
+    componentWillReceiveProps(nextProps) {
+        if ('value' in nextProps) {
+            this.setState({ value: nextProps.value });
+        }
+    }
     onHandleChange = e =>{
         this.props.onChange&&this.props.onChange(e)
         if(!this.props.value){

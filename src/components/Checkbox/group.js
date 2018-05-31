@@ -28,7 +28,7 @@ export default class Group extends Component {
 
     onChange(e,value) {
         //连接一个空数组生成新的数组，避免更改数据源
-        let arr = (_.has(this.props,'value') ? this.props.value : this.state.value).concat([])
+        let arr = (_.has(this.props,'value') ? (this.props.value||[]) : this.state.value).concat([])
         if(e.target.checked){
             arr.push(value)
         }else{
@@ -45,7 +45,7 @@ export default class Group extends Component {
     }
     render() {
         const {options,children,style,classes,className,disabled,value}=this.props;
-        let arr = _.has(this.props,'value') ? value : this.state.value
+        let arr = _.has(this.props,'value')&&Array.isArray(value) ? value : this.state.value
         return (
             <div style={style} className={classnames(classes.root,className)}>
                 {children}

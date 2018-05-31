@@ -62,6 +62,11 @@ class app extends Component {
         disabled: false,
         indeterminate: false
     }
+    componentWillReceiveProps(nextProps) {
+        if ('value' in nextProps) {
+            this.setState({ checked: nextProps.value });
+        }
+    }
     onChange = event => {
         if (!_.has(this.props, 'checked')) {
             this.setState({
@@ -78,7 +83,7 @@ class app extends Component {
 
     render() {
         const {classes, children, checked, disabled, indeterminate, className, style}=this.props;
-        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style'])
+        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style','type','value'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
         let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
         return (
@@ -87,7 +92,7 @@ class app extends Component {
                 <Checkbox
                     inputRef={ref=>this.input = ref}
                     {...otherProps}
-                    onChange={this.onChange}
+                    onChange={(e)=>this.onChange(e)}
                     checked={checkedValue}
                     classes={checkClass}
                     disableRipple/>

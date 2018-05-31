@@ -107,7 +107,7 @@ class App extends Component {
                 stars: this.allowClear(stars, this.state.stars)
             })
         }
-        this.props.onChange(this.allowClear(stars, this.props.value||this.state.stars))
+        this.props.onChange&&this.props.onChange(this.allowClear(stars, this.props.value||this.state.stars))
 
         this.setState({
             factStar: 0
