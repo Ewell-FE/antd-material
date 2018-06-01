@@ -27,17 +27,21 @@ export default function (theme) {
                 "marginBottom": " 24px",
                 "font-size": "14px",
                 "textAlign": "left",
+                "lineHeight": "32px",
             }
         },
         "vertical": {
             "marginBottom": "24px",
+            "textAlign": "left",
+            "&>label":{
+                "width": "100%",
+            },
             "& label": {
                 "textAlign": "left",
                 "lineHeight": "32px",
                 "vertical-align": "top",
                 "fontSize": "14px",
                 "display": "inline-block",
-                "width": "100%",
                 "color": "rgba(0,0,0,0.65)",
                 "& .required": {
                     "color": theme.colors.error,
@@ -48,6 +52,8 @@ export default function (theme) {
                 "position": "relative",
                 "font-size": "14px",
                 "textAlign": "left",
+                "lineHeight": "32px",
+
             }
         },
         "horizontal": {
@@ -72,6 +78,8 @@ export default function (theme) {
                 "marginBottom": "24px",
                 "font-size": "14px",
                 "textAlign": "left",
+                "lineHeight": "32px",
+
             }
         },
         "grid": {
@@ -95,7 +103,9 @@ export default function (theme) {
                 "display": "inline-block",
                 "marginBottom": "24px",
                 "font-size": "14px",
-                "textAlign": "left"
+                "textAlign": "left",
+                "lineHeight": "32px",
+
             }
         },
         "inputError": {

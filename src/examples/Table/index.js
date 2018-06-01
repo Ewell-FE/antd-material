@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Table from '@/components/Table'
+import Table from '@/components/Table'
 
 
 
@@ -95,7 +95,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 let data2 = [{
     key: '1',
@@ -181,7 +181,7 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export class Demo3md extends Component {
@@ -265,7 +265,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -275,10 +275,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      基本
+                                      基本
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     简单的表格，最后一列是各种操作。
+                                     简单的表格，最后一列是各种操作。
                                 </p>
                     <Templete code={`import Table from '@/components/Table'
 let data1 = [{
@@ -369,15 +369,15 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo1.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo1.md`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      可选择
+                                      可选择
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     第一列是联动的选择框。
+                                     第一列是联动的选择框。
                                 </p>
                     <Templete code={`import Table from '@/components/Table'
 let data2 = [{
@@ -464,15 +464,15 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo2.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo2.md`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      嵌套子表格
+                                      嵌套子表格
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     展示每行数据更详细的信息
+                                     展示每行数据更详细的信息
                                 </p>
                     <Templete code={`import Table from '@/components/Table'
 
@@ -557,7 +557,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo3.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo3.md`}>
                         <Demo3md />
                     </Templete>
                 
