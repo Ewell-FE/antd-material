@@ -12,7 +12,7 @@ import omit from "omit.js";
 function getComponent(type) {
     //计算高度
     function getLineHeight(str) {
-        return parseInt(str) - 2
+        return parseInt(str, 10) - 2
     }
 
 //公共样式

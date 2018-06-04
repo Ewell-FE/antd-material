@@ -5,28 +5,27 @@
 ````jsx
 import DatePicker from '@/components/DatePicker'
 
-const {MonthPicker, RangePicker} = DatePicker
-
-function onChange(date, dateString) {
-  console.log(date, dateString);
-}
+const {MonthPicker, RangePicker, WeekPicker} = DatePicker
 
 export class <%=component%> extends Component {
+
+    onChange =(date, dateString) => {
+        console.log(date, dateString);
+    }
+
     render() {
-
-        onChange =(date, dateString) => {
-            console.log(date, dateString);
-        }
-
         return (
             <div>
-                <DatePicker />
+                <DatePicker style={{width:'200px'}} onChange={this.onChange}/>
                 <br />
                 <br />
                 <MonthPicker onChange={this.onChange} placeholder="Select month" />
                 <br />
                 <br />
                 <RangePicker onChange={this.onChange} />
+                <br />
+                <br />
+                <WeekPicker placeholder="please select week" onChange={this.onChange} />
             </div>
         )
     }

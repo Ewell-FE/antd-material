@@ -3,20 +3,20 @@ import Typography from '@material-ui/core/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Tag from '@/components/Tag'
-import Input from '@/components/Input'
-import {withStyles} from '@material-ui/core/styles'
+import Tag from '@/components/Tag'
+import Input from '@/components/Input'
+import {withStyles} from '@material-ui/core/styles'
 
-const styles = theme => ({
-    root: {
-        display: 'inline-block',
-        "& > input,& > span": {
-            width: 100,
-            verticalAlign: 'middle',
-        }
-    }
-})
-const CheckableTag=Tag.CheckableTag
+const styles = theme => ({
+    root: {
+        display: 'inline-block',
+        "& > input,& > span": {
+            width: 100,
+            verticalAlign: 'middle',
+        }
+    }
+})
+const CheckableTag=Tag.CheckableTag
 
 
 export class Demo1md extends Component {
@@ -31,7 +31,7 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}
+}
 
 
 @withStyles(styles, {name: 'MuiInput-ant-demo'})
@@ -86,7 +86,7 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}
+}
 
 export class Demo3md extends Component {
     render() {
@@ -99,7 +99,7 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}
+}
 
 export class Demo4md extends Component {
     constructor(props) {
@@ -133,7 +133,7 @@ export class Demo4md extends Component {
             </div>
         )
     }
-}
+}
 
 
 export default class App extends Component {
@@ -143,10 +143,10 @@ export default class App extends Component {
                 <Title />
                 
                      <Typography variant="display1" gutterBottom>
-                                      基本
+                                      基本
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     基本标签的用法，可以通过添加 closable 变为可关闭标签。可关闭标签具有 onClose afterClose 两个事件。
+                                     基本标签的用法，可以通过添加 closable 变为可关闭标签。可关闭标签具有 onClose afterClose 两个事件。
                                 </p>
                     <Templete code={`import Tag from '@/components/Tag'
 export class Demo1md extends Component {
@@ -161,15 +161,15 @@ export class Demo1md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo1.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo1.md`}>
                         <Demo1md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      动态添加和删除
+                                      动态添加和删除
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     用数组生成一组标签，可以动态添加和删除，通过监听删除动画结束的事件 afterClose 实现。
+                                     用数组生成一组标签，可以动态添加和删除，通过监听删除动画结束的事件 afterClose 实现。
                                 </p>
                     <Templete code={`import Tag from '@/components/Tag'
 import Input from '@/components/Input'
@@ -236,15 +236,15 @@ export class Demo2md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo2.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo2.md`}>
                         <Demo2md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      多彩标签
+                                      多彩标签
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     我们添加了多种预设色彩的标签样式，用作不同场景使用。如果预设值不能满足你的需求，可以设置为具体的色值。
+                                     我们添加了多种预设色彩的标签样式，用作不同场景使用。如果预设值不能满足你的需求，可以设置为具体的色值。
                                 </p>
                     <Templete code={`import Tag from '@/components/Tag'
 export class Demo3md extends Component {
@@ -258,15 +258,15 @@ export class Demo3md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo3.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo3.md`}>
                         <Demo3md />
                     </Templete>
                 
                      <Typography variant="display1" gutterBottom>
-                                      热门标签
+                                      热门标签
                                 </Typography>
                                 <p style={{margin:'24px 0 12px 0'}}>
-                                     可实现类似 Checkbox 的效果，点击切换选中效果。
+                                     可实现类似 Checkbox 的效果，点击切换选中效果。
                                 </p>
                     <Templete code={`import Tag from '@/components/Tag'
 const CheckableTag=Tag.CheckableTag
@@ -302,7 +302,7 @@ export class Demo4md extends Component {
             </div>
         )
     }
-}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo4.md`}>
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Tag/Demo4.md`}>
                         <Demo4md />
                     </Templete>
                 

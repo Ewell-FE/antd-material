@@ -17,7 +17,8 @@ class App extends Component {
                 <div className="pic-plus">
                     <img alt="material" width="550" style={{position: "relative",left: -200}}
                          src={require('@/assets/material-ui-logo.svg')}/>
-                    <img alt="react" width="150" style={{position: "relative",left: -300}} src={require('@/assets/react.svg')}/>
+                    <img alt="react" width="150" style={{position: "relative",left: -300}}
+                         src={require('@/assets/react.svg')}/>
                 </div>
             </div>
         )

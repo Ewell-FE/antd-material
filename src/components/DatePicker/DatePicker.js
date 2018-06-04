@@ -1,6 +1,5 @@
 import './calendar.css';
 import './time-picker.css';
-
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Calendar from 'rc-calendar';
@@ -18,7 +17,7 @@ import omit from 'omit.js';
 import styles from './style'
 
 const cn = true
-
+moment.locale('zh-cn')
 const now = moment();
 if (cn) {
     now.locale('zh-cn').utcOffset(8);
@@ -52,7 +51,7 @@ export default class app extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value)
+        this.props.onChange && this.props.onChange(value, value.format(this.props.format))
     }
 
     emitEmpty = (e) => {
@@ -62,14 +61,17 @@ export default class app extends Component {
 
     render() {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style'])
         const state = this.state
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
+        let style = props.style || {}
+        let otherStyle = omit(props.style, ['width', 'height'])
         const calendar = (<Calendar
             style={{ zIndex: 1000 }}
             prefixCls="yh-calendar"
             timePicker={props.showTime && timePickerElement}
             {...otherProps}
+            {...otherStyle}
         />);
         return (
             <DatePicker
@@ -85,7 +87,10 @@ export default class app extends Component {
                         return (
                             <span tabIndex="0">
                                  <Input
+                                     readOnly
+                                     size={props.size}
                                      placeholder={props.placeholder}
+                                     style={{width:style.width,height:style.height}}
                                      suffix={state.value ? suffix:<Icon type="calendar"/>}
                                      value={value ? value.format(props.showTime?'YYYY-MM-DD HH:mm:ss':props.format) : ''}
                                      onChange={this.onChangeUserName}
@@ -110,7 +115,9 @@ app.propTypes = {
     placeholder: PropTypes.string, //输入框提示文字
     size: PropTypes.string, //输入框大小，large 高度为 40px，small 为 24px，默认是 32px
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
-
+    mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
+    onPanelChange: PropTypes.func,//日期面板变化时的回调
+    
     defaultValue: PropTypes.object, //moment类型的日期对象
     disabledTime: PropTypes.func,//不可选择的时间
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js
@@ -119,8 +126,6 @@ app.propTypes = {
     value: PropTypes.object, //moment 格式的日期对象
     onChange: PropTypes.func,//时间发生变化的回调
     onOk: PropTypes.func,
-    mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
-    onPanelChange: PropTypes.func,//日期面板变化时的回调
     dateInputPlaceholder: PropTypes.string,//日期选择里面的输入框placeholder
 
 };
