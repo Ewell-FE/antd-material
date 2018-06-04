@@ -21,7 +21,7 @@ import Cascader from './cascader'
 import Switch from './switch'
 import Slider from './slider'
 import DatePicker from './DatePicker'
-
+import AutoComplete from './autoComplete'
 //渲染field组件
 let FieldHtml = (field)=> {
     var isError = field.meta.touched && field.meta.error
@@ -60,6 +60,8 @@ let FieldHtml = (field)=> {
             return (<InputNumber field={field} isError={isError} isWarn={isWarn}/>)
         case 'datepicker':
             return (<DatePicker field={field} isError={isError} isWarn={isWarn}/>)
+        case 'autoComplete':
+            return (<AutoComplete field={field} isError={isError} isWarn={isWarn}/>)
         default:
             return (<Input field={field} isError={isError} isWarn={isWarn}/>)
     }

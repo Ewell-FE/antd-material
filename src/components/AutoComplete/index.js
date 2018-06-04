@@ -7,6 +7,7 @@ import Input from '@material-ui/core/Input';
 import Chip from '@material-ui/core/Chip';
 import Select from '../Select';
 import Icon from '../Icon'
+import omit from 'omit'
 const styles = theme => {
     return  {
         root: {
@@ -77,7 +78,6 @@ function SelectWrapped(props) {
     );
 }
 
-
 @withStyles(styles)
 export class App extends Component {
     constructor(props) {
@@ -106,10 +106,12 @@ export class App extends Component {
         }
         this.props.onChange && this.props.onChange(result)
     }
-
-
+    onFocus(value){
+        this.props.onFocus && this.props.onFocus(value)
+    }
     render() {
-        const { classes,dataSource,multi,labelKey,fullWidth,onSearch,optionRenderer,placeholder,ignoreCase,...other} = this.props;
+        const { classes,dataSource,multi,labelKey,fullWidth,optionRenderer,placeholder,ignoreCase} = this.props;
+        const otherProps = omit(this.props,['classes','dataSource','multi','labelKey','fullWidth','onSearch','optionRenderer','placeholder','ignoreCase','onFocus'])
         return (
             <div className={classnames(classes.root)}>
                 <Input  classes={{input:classes.input}}
@@ -131,9 +133,10 @@ export class App extends Component {
                             optionRenderer:optionRenderer?optionRenderer:null,
                             autosize:true,
                             ignoreCase:ignoreCase?ignoreCase:false,
+                            onFocus:(result)=>this.onFocus(result),
                             onChange:(result)=>this.onSelectChange(result),
                             onInputChange:(result)=>this.onInputChange(result),
-                            ...other
+                            ...otherProps
                         }}
 
                 />
