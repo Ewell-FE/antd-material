@@ -1,0 +1,12 @@
+/* tile uploaded pictures */
+.upload-list-inline .yh-upload-list-item {
+    float: left;
+    width: 200px;
+    margin-right: 8px;
+}
+.upload-list-inline .yh-upload-animate-enter {
+    animation-name: uploadAnimateInlineIn;
+}
+.upload-list-inline .yh-upload-animate-leave {
+    animation-name: uploadAnimateInlineOut;
+}

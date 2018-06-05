@@ -161,6 +161,12 @@
             "type": "Data Entry",
             "sort": 160,
             "desc": "穿梭框"
+        },
+        {
+            "name": "Upload",
+            "type": "Data Entry",
+            "sort": 160,
+            "desc": "上传"
         }
     ],
     "Data Display": [
