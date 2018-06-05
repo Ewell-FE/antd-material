@@ -1,5 +1,5 @@
-#  查询模式 - 不确定类目
-##查询模式: 不确定类目 示例。
+#  配合Form使用
+##受控模式，例如配合 Form 使用。
 
 ````jsx
 import Button from '@/components/Button'
