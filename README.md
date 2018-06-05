@@ -1,5 +1,5 @@
 # antd-material 简介
-1.一款基于 material-ui  v1.0 的ui基础组件工程
+1.一款基于 material-ui  v1.0.0 和 ant-design rc-组件的ui基础组件工程
 
 2.这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程
 ## 为何有此项目

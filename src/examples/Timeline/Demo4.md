@@ -4,7 +4,7 @@
 
 ````jsx
 import Timeline from '@/components/Timeline'
-import {Icon} from 'antd'
+import Icon from '@/components/Icon'
 
 
 export class <%=component%> extends Component {
@@ -21,7 +21,7 @@ export class <%=component%> extends Component {
              <Timeline>
                  <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
                  <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
-                 <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />} color="red">Technical testing 2015-09-01</Timeline.Item>
+                 <Timeline.Item dot={<Icon type="clock-o" style={{ fontSize: '16px' }} />} color="red">Technical testing 2015-09-01</Timeline.Item>
                  <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
                </Timeline>
           

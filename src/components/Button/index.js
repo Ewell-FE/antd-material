@@ -27,9 +27,7 @@ const styles = theme => {
                 left: 10,
                 marginTop: -9
             },
-            "&.active":{
-
-            }
+            "&.active": {}
         },
         disabled: {
             color: "rgba(0,0,0,.25)",
@@ -101,13 +99,17 @@ const styles = theme => {
             }
         },
         small: {
-            minHeight: theme.size.small
+            minHeight: theme.size.small,
+            padding: '0 7px'
         },
         default: {
-            minHeight: theme.size.default
+            minHeight: theme.size.default,
+            padding: '0 15px'
         },
         large: {
-            minHeight: theme.size.large
+            minHeight: theme.size.large,
+            padding: '0 15px',
+            fontSize: 16
         },
         wrapper: {
             position: 'relative',
@@ -154,7 +156,7 @@ export default class app extends Component {
         return <BaseButton {...props}/>
     }
 }
-export class BaseButton extends Component{
+export class BaseButton extends Component {
 
     componentDidMount() {
         this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.button))
@@ -168,7 +170,7 @@ export class BaseButton extends Component{
             <Button
                 ref={ref=>this.button =ref}
                 className={classnames(classes.root,classes[props.size],classes[props.type],
-                {'active1':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
+                {'active':(props.group && props.activeValue===props.value),[classes.loading]:props.loading})}
                 {...otherProps}
             >
                 {props.loading && <CircularProgress size={18} className="Progress"/>}

@@ -30,17 +30,14 @@ const styles = theme => {
             } ,
             /************** 普通样式************************/
             '& .dotPoint': {
-                backgroundColor:'#fff',
-                position: 'absolute',
-                transform:'translate(-50%,-0%)',
-                left:'50%',
                 '&.dotPoint-normal':{
                     top:'0px',
                     width: 10,
                     height: 10,
                     backgroundColor: '#fff',
                     borderRadius: 100,
-                    border: '2px solid transparent'
+                    border: '2px solid transparent',
+                    margin: "0 auto"
                 },
             },
             '& .TimelineItemContent': {
@@ -73,7 +70,6 @@ export default class app extends Component {
         var normal = !this.props.dot
         var dotClass = dot.props.className || ''
         var dotStyle = dot.props.style || {}
-
         return (
             <div className={classnames(classes.root, classes[prop.type],prop.className,
                 //对普通节点设置类
@@ -88,7 +84,8 @@ export default class app extends Component {
                     {
                         React.cloneElement(
                             dot,
-                            {className: classnames('dotPoint', normal ?  'dotPoint-normal' : '',dotClass),  style: normal ? {borderColor:prop.color,...dotStyle,} :{width:'18px',...dotStyle,}},
+                            {className: classnames('dotPoint', normal ?  'dotPoint-normal' : '',dotClass),
+                                style: normal ? {borderColor:prop.color,...dotStyle} :{width:'18px',height:'18px',...dotStyle}},
                         )
                     }
                 </div>

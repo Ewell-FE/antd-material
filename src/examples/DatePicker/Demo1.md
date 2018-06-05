@@ -15,17 +15,17 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{textAlign:'left'}}>
                 <DatePicker style={{width:'200px'}} onChange={this.onChange}/>
                 <br />
                 <br />
-                <MonthPicker onChange={this.onChange} placeholder="Select month" />
+                <MonthPicker style={{width:'200px'}} onChange={this.onChange} placeholder="Select month" />
                 <br />
                 <br />
-                <RangePicker onChange={this.onChange} />
+                <RangePicker style={{width:'400px'}} onChange={this.onChange} />
                 <br />
                 <br />
-                <WeekPicker placeholder="please select week" onChange={this.onChange} />
+                <WeekPicker  style={{width:'200px'}} placeholder="please select week" onChange={this.onChange} />
             </div>
         )
     }

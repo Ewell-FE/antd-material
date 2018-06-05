@@ -4,7 +4,7 @@
 
 ````jsx
 import Timeline from '@/components/Timeline'
-import {Icon} from 'antd'
+import Icon from '@/components/Icon'
 
 
 export class <%=component%> extends Component {

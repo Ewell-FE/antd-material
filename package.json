@@ -136,14 +136,7 @@
       "react-app"
     ],
     "plugins": [
-      "transform-decorators-legacy",
-      [
-        "import",
-        {
-          "libraryName": "antd",
-          "style": true
-        }
-      ]
+      "transform-decorators-legacy"
     ],
     "ignore": [
       "./src/lib/**/*.js"

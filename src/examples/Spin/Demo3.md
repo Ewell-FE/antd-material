@@ -20,11 +20,12 @@ export class <%=component%> extends Component {
     render() {
         return (
            <Spin loading={true} tip="loading">
-                <Alert
-                      message="Alert message title"
-                      description="Further details about the context of this alert."
-                      type="info"
-                    />
+                 <Alert
+                    message="info Text"
+                    description="info Description info Description info Description info Description info Description info Description info Description info Description info Description info Description"
+                    type="info"
+                    showIcon
+                 />
            </Spin>
         )
     }

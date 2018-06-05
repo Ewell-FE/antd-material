@@ -16,7 +16,7 @@ export class <%=component%> extends Component {
 
     render() {
         return (
-            <ButtonGroup size="small" value={this.state.value} onChange={(val)=>{this.setState({value:val})}}>
+            <ButtonGroup size={this.state.value} value={this.state.value} onChange={(val)=>{this.setState({value:val})}}>
                 <Button value="small">small</Button>
                 <Button value="default">default</Button>
                 <Button value="large">large</Button>

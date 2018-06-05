@@ -59,7 +59,7 @@ export default class app extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        this.props.onChange && this.props.onChange(value, [value[0].format(this.props.format), value[1].format(this.props.format)])
 
     }
 
