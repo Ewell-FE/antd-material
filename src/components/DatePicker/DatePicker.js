@@ -17,13 +17,6 @@ import omit from 'omit.js';
 import styles from './style'
 
 const cn = true
-moment.locale('zh-cn')
-const now = moment();
-if (cn) {
-    now.locale('zh-cn').utcOffset(8);
-} else {
-    now.locale('en-gb').utcOffset(0);
-}
 
 const timePickerElement = <TimePickerPanel prefixCls="yh-time-picker-panel"
                                            defaultValue={moment('00:00:00', 'HH:mm:ss')}/>;

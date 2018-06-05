@@ -60,6 +60,7 @@
     "rc-cascader": "^0.13.1",
     "rc-queue-anim": "^1.5.0",
     "rc-scroll-anim": "^2.4.1",
+    "rc-time-picker": "^3.3.1",
     "rc-tween-one": "^1.7.3",
     "rc-upload": "^2.4.4",
     "react": "^16.0.0",

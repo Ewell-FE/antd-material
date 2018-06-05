@@ -7,7 +7,7 @@ import Input from '@material-ui/core/Input';
 import Chip from '@material-ui/core/Chip';
 import Select from 'react-select';
 import Icon from '../Icon'
-import omit from 'omit'
+import omit from 'omit.js'
 //计算高度
 function getLineHeight(str) {
     return parseInt(str, 10) - 2

@@ -19,6 +19,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 import {
@@ -264,11 +265,18 @@ class PersistentDrawer extends React.Component {
                             </Typography>
                             <span style={{ flex:1,textAlign:'right'}}>
                                 <Dropdown overlay={menu} withRef={(colorsBox)=>{this.colorsBox = colorsBox}}>
-                                    <Icon className={classes.eyedropper} onClick={()=>{this.changeTheme('red')}}
-                                          type="paint-brush"/>
+                                    <span>
+                                      <Tooltip id="tooltip-icon" title="Select theme">
+                                        <Icon className={classes.eyedropper}
+                                              type="paint-brush"/>
+                                      </Tooltip>
+                                    </span>
                                 </Dropdown>
-                                <a href="https://github.com/Ewell-FE/antd-material" className={classes.github}><Icon
-                                    type="github"/></a>
+                                <a href="https://github.com/Ewell-FE/antd-material" className={classes.github}>
+                                    <Tooltip id="tooltip-icon" title="Github repository">
+                                        <Icon type="github"/>
+                                    </Tooltip>
+                                </a>
                             </span>
                         </Toolbar>
                     </AppBar>

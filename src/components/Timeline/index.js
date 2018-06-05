@@ -9,11 +9,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = theme => {
     return {
         root: {
-            backgroundColor: '#fff',        //将来要删掉
             paddingTop: '10px',
             paddingLeft: 5,
-            textAlign: 'left',
-
+            textAlign: 'left'
         },
 
     }

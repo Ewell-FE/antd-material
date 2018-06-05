@@ -1,6 +1,6 @@
 /*
-Created by xphlenx on 2018/4/13 16:42
-*/
+ Created by xphlenx on 2018/4/13 16:42
+ */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
@@ -11,49 +11,56 @@ const styles = theme => {
     return {
         root: {
             position: 'relative',
-            marginBottom:'20px',
+            paddingBottom: '20px',
+            border: '1px solid transparent',
+            marginTop: '-1px',
             //最后一个(不包含幽灵节点)
-            '&.lastItem':{
+            '&.lastItem': {
                 //线的样式
-                '& .TimelineItemLine':{
+                '& .TimelineItemLine': {
                     borderLeft: '2px dotted #e8e8e8',
-                    display:'none',
+                    display: 'none',
                 },
                 //内容样式
-                '& .TimelineItemContent':{
-                    minHeight:'48px'
+                '& .TimelineItemContent': {
+                    minHeight: '48px'
                 },
                 //根据是否有幽灵节点,判断最后一条线是否显示
-                '&.lastItemWithPending .TimelineItemLine':{
-                    display:'block',
+                '&.lastItemWithPending .TimelineItemLine': {
+                    display: 'block',
                 }
-            } ,
+            },
             /************** 普通样式************************/
             '& .dotPoint': {
-                '&.dotPoint-normal':{
-                    top:'0px',
+                '&.dotPoint-normal': {
                     width: 10,
                     height: 10,
                     backgroundColor: '#fff',
                     borderRadius: 100,
                     border: '2px solid transparent',
-                    margin: "0 auto"
+                    margin: "0 auto",
+                    marginTop:'6px'
                 },
             },
             '& .TimelineItemContent': {
                 padding: '0 0 0 20px',
                 position: 'relative',
-                top: -5,
+                top: 0,
             },
             '& .TimelineItemLine': {
                 position: 'absolute',
-                left: 8,
-                top: '1em',
+                left: 9,
+                top: 7,
                 height: '100%',
                 borderLeft: '2px solid #e8e8e8',
             },
-            '& .dot':{
-                position:'absolute',width:'18px',height:'1.5em'
+            '& .dot': {
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '20px',
+                height: '20px',
+                textAlign: 'center'
             }
             /************** 普通样式************************/
 
@@ -84,8 +91,13 @@ export default class app extends Component {
                     {
                         React.cloneElement(
                             dot,
-                            {className: classnames('dotPoint', normal ?  'dotPoint-normal' : '',dotClass),
-                                style: normal ? {borderColor:prop.color,...dotStyle} :{width:'18px',height:'18px',...dotStyle}},
+                            {
+                                className: classnames('dotPoint', normal ? 'dotPoint-normal' : '', dotClass),
+                                style: normal ? {borderColor: prop.color, ...dotStyle} : {
+                                    width: '18px',
+                                    height: '18px', ...dotStyle
+                                }
+                            },
                         )
                     }
                 </div>
@@ -98,14 +110,14 @@ export default class app extends Component {
 }
 app.defaultProps = {
     color: 'blue',
-    
+
 }
 app.propTypes = {
-    className:PropTypes.string,
+    className: PropTypes.string,
     color: PropTypes.string,
     dot: PropTypes.object,
     last: PropTypes.bool,
-    pending:PropTypes.bool,
-    pendingNode:PropTypes.bool,
+    pending: PropTypes.bool,
+    pendingNode: PropTypes.bool,
 
 };

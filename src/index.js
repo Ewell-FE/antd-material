@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import createStore from './store/createStore'
 import {Provider} from 'react-redux'
 import App from './App';
+import moment from 'moment'
+moment.locale('zh-cn')
 // ========================================================
 // Store Instantiation
 // ========================================================

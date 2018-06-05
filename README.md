@@ -1,7 +1,7 @@
 # antd-material 简介
 1.一款基于 material-ui  v1.0.0 和 ant-design rc-组件的ui基础组件工程
 
-2.这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程
+2.这既是一款可用于实际项目的构建,也是一个组件开发自动化的工程,自动化转义markdown语法虽然没有[bisheng](https://github.com/benjycui/bisheng) 那么优秀，但是简单够用
 ## 为何有此项目
 其他优质组件库例如：[antd](https://github.com/ant-design/ant-design) 有强大易用的组件，但是自定义组件样式是它的弱点，除了样式覆盖以外，覆盖less变量的做法必须是预支持[查看](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less)的才可以,并且修改过后必须重新编译进去才可以生效。基于蚂蚁源码2次开发又需要完全遵循蚂蚁的规范从Typescript写起，本来只是样式修改，以及个别组件的易用性，却使得此事门槛变得很高，完全自定义风格变得很难很难！
 
@@ -58,22 +58,22 @@
 │   │   ├───Steps             # ➜ 林铭偲 ✓ complete!
 │   ├─── Data Entry
 │   │   ├───AutoComplete      # ➜ 郭丽丽 ✓ complete!
-│   │   ├───Cascader          # ➜ 阿磊
+│   │   ├───Cascader          # ➜ 林铭偲 ✓ complete!
 │   │   ├───Checkbox          # ➜ 何家佳 ✓ complete!
-│   │   ├───DatePicker        # ➜ 阿磊 ✓
+│   │   ├───DatePicker        # ➜ 阿磊 ✓ complete!
 │   │   ├───Form              # ➜ 阿磊 ✓ complete
 │   │   ├───Input             # ➜ 阿磊 ✓  complete!
 │   │   ├───InputNumber       # ➜ 杨单丹 ✓ complete!
-│   │   ├───Mention           # ➜ 阿磊
+│   │   ├───Mention           # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Rate              # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Radio             # ➜ 曾辉艳 ✓ complete!
 │   │   ├───Select            # ➜ 曾辉艳 ✓ complete!
-│   │   ├───Slider            # ➜ 杨单丹 dev
+│   │   ├───Slider            # ➜ 杨单丹 ✓ complete!
 │   │   ├───Switch            # ➜ 曾辉艳 ✓ complete!
 │   │   ├───TreeSelect        # ➜ 阿磊
 │   │   ├───TimePicker        # ➜ 阿磊 ✓
 │   │   ├───Transfer          # ➜ 杨林林 ✓ complete!
-│   │   ├───Upload            # ➜ 阿磊
+│   │   ├───Upload            # ➜ 林铭偲 ✓ complete!
 │   ├─── Data Display
 │   │   ├───Avatar            # ➜ 郭丽丽 ✓ complete!
 │   │   ├───Badge             # ➜ 郭丽丽 ✓ complete!
@@ -96,7 +96,7 @@
 │   │   ├───Notification      # ➜ 郭丽丽 ✓  complete！
 │   │   ├───Progress          # ➜ 胡昌哲 ✓ complete!
 │   │   ├───Popconfirm        # ➜ 曾辉艳 ✓ complete
-│   │   ├───Spin              # ➜ 阿磊 ✓ dev
+│   │   ├───Spin              # ➜ 阿磊 ✓ complete
 │   ├──── Other
 │   │   ├───Anchor            # ➜ 林铭偲 ✓ complete！
 │   │   ├───BackTop           # ➜ 林铭偲 ✓ complete！

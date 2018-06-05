@@ -56,7 +56,7 @@ export default class app extends Component {
 
     render() {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value','style'])
         const state = this.state
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
         let style = props.style || {}
