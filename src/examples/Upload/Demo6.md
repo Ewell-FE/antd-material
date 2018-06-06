@@ -11,7 +11,7 @@ const Dragger = Upload.Dragger;
 
 export class <%=component%> extends Component {
    aaa = {
-      name: 'file',
+       name: 'file',
        multiple: true,
        action: '//jsonplaceholder.typicode.com/posts/',
        onChange(info) {

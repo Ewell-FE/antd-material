@@ -118,7 +118,7 @@ export default function (theme) {
         },
         "errorInfo": {
             "position": "absolute",
-            "bottom": "-20px",
+            "bottom": "-26px",
             "left": "0",
             "font-size": "12px"
         },

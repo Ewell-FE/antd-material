@@ -24,6 +24,7 @@ export class <%=component%> extends Component {
          Message.error(info.file.name+' file upload failed.');
        }
      },
+     multiple:true
    };
 
     render() {

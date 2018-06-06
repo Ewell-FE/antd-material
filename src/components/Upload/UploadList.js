@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import Icon from '../Icon';
 import Tooltip from '../Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -109,7 +109,7 @@ export default class UploadList extends React.Component{
             icon= file.status === 'uploading'? <CircularProgress  size={20} style={{ color: grey[400] }} classes={{root:classes.root}} />:<Icon type='paperclip' />
             if (listType === 'picture' || listType === 'picture-card') {
                 if (listType === 'picture-card' && file.status === 'uploading') {
-                    icon = <div className={`${prefixCls}-list-item-uploading-text`}>uploading</div>;
+                    icon = <div className={`${prefixCls}-list-item-uploading-text`}>上传中</div>;
                 } else if (!file.thumbUrl && !file.url) {
                     icon = <Icon className={`${prefixCls}-list-item-thumbnail`} type="picture" />;
                 } else {
@@ -164,8 +164,8 @@ export default class UploadList extends React.Component{
                     onClick={e => this.handlePreview(file, e)}
                     title={file.name}
                 >
-          {file.name}
-        </span>
+                  {file.name}
+                </span>
             );
             const style = {
                 pointerEvents: 'none',

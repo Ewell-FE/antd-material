@@ -36,8 +36,6 @@ export class <%=component%> extends Component {
    };
 
     render() {
-    const state = this.state
-
         return (
             <Upload {...this.aaa}>
               <Button>

@@ -4,8 +4,10 @@
 ````jsx
 import Form from '@/components/Form'
 import Button from '@/components/Button'
-
+import Icon from '@/components/Icon'
+import Modal from '@/components/Modal'
 import Radio from '@/components/Radio'
+import Message from '@/components/Message'
 const RadioGroup = Radio.Group
 const RadioButton = Radio.Button
 
@@ -14,6 +16,10 @@ export class <%=component%> extends Component {
         super(props)
         this.state = {
             value: 'vertical',
+            fileList: [],
+            previewVisible: false,
+            previewImage: '',
+            fileList2: [],
           }
     }
     Submit(values){
@@ -23,9 +29,19 @@ export class <%=component%> extends Component {
         this.setState({value:e.target.value});
         console.log(e.target.value)
     }
+    handleCancel = () => this.setState({ previewVisible: false })
 
+     handlePreview = (file) => {
+       this.setState({
+         previewImage: file.url || file.thumbUrl,
+         previewVisible: true,
+       });
+     }
+
+     handleChange = ({ fileList }) =>{this.setState({ fileList2:fileList })}
 
     render() {
+        const {previewVisible, previewImage, fileList,fileList2}=this.state;
         const plainOptions = ['Apple', 'Pear', 'Orange'];
         const plainOptions2=[
                       { label: 'Apple', value: 'Apple' },
@@ -79,6 +95,30 @@ export class <%=component%> extends Component {
                 label: <strong>100°C</strong>,
             },
         }
+        const uploadButton = (
+                 <div>
+                   <Icon type="plus" />
+                   <div className="ant-upload-text">Upload</div>
+                 </div>
+               );
+        const uploadButton2=(
+                <Button>
+                    <Icon type="upload" /> Click to Upload
+                </Button>
+        );
+       const fileArr = [{
+             uid: -1,
+             name: 'xxx.png',
+             status: 'done',
+             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+             thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+           }, {
+             uid: -2,
+             name: 'yyy.png',
+             status: 'done',
+             url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+             thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+           }];
         return (
             <div>
                     <RadioGroup onChange={(e)=>this.onChange(e)}  defaultValue="vertical">
@@ -99,10 +139,11 @@ export class <%=component%> extends Component {
                        rate:2.5,
                        slider:30,
                        slider2:[20,50],
-                       slider3:37
+                       slider3:37,
+                       upload3:fileArr
                        }}
-                       labelWidth="25%"
-                       wrapperWidth="75%"
+                       labelWidth="90px"
+                       wrapperWidth="calc(100% - 90px)"
                        Submit={(values) => {this.Submit(values)}} ref="form6"
                        fields={[{
                            span:6,
@@ -198,11 +239,84 @@ export class <%=component%> extends Component {
                                marks:marksT,
                                step:10,
                                required: true,
-                           }]}>
+                           },{
+                               span:12,
+                               name: "dragger",
+                               label: "拖曳上传",
+                               type: 'dragger',
+                               multiple: true,
+                               action: '//jsonplaceholder.typicode.com/posts/',
+                               required: true,
+                               onRemove: (file) => {
+                                  this.setState(({ fileList }) => {
+                                    const index = fileList.indexOf(file);
+                                    const newFileList = fileList.slice();
+                                    newFileList.splice(index, 1);
+                                    return {
+                                      fileList: newFileList,
+                                    };
+                                  });
+                                },
+                                beforeUpload: (file) => {
+                                  this.setState(({ fileList }) => ({
+                                    fileList: [...fileList, file],
+                                  }));
+                                  return false;
+                                },
+                           },{
+                                span:12,
+                                name: "upload",
+                                label: "上传",
+                                type: 'upload',
+                                multiple: true,
+                                action: '//jsonplaceholder.typicode.com/posts/',
+                                listType:"picture-card",
+                                fileList:fileList2,
+                                onPreview:this.handlePreview,
+                                formChange:this.handleChange,
+                                button: uploadButton,
+                                childNum:3,
+                                required: true,
+                            },{
+                                 span:12,
+                                 name: "upload2",
+                                 label: "上传2",
+                                 type: 'upload',
+                                 multiple: true,
+                                 action: '//jsonplaceholder.typicode.com/posts/',
+                                 headers: {
+                                        authorization: 'authorization-text',
+                                      },
+                                 button: uploadButton2,
+                                 formChange(info) {
+                                        if (info.file.status !== 'uploading') {
+                                          console.log(info.file, info.fileList);
+                                        }
+                                        if (info.file.status === 'done') {
+                                          Message.success(info.file.name+' file uploaded successfully');
+                                        } else if (info.file.status === 'error') {
+                                          Message.error(info.file.name+' file upload failed.');
+                                        }
+                                      },
+                                 required: true,
+                             },{
+                                   span:12,
+                                   name: "upload3",
+                                   label: "上传3",
+                                   type: 'upload',
+                                   multiple: true,
+                                   action: '//jsonplaceholder.typicode.com/posts/',
+                                   listType: 'picture',
+                                   button: uploadButton2,
+                                   required: true,
+                               }]}>
 
                        </Form>
 
                     <Button onClick={() => {this.refs.form6.submit() }}>保 存</Button>
+                     <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                         <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                     </Modal>
             </div>
         )
     }

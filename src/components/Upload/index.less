@@ -1,7 +1,20 @@
 @upload-prefix-cls: ~"yh-upload";
 @upload-item: ~"yh-upload-list-item";
 @upload-pictrue-card-size: 104px;
-
+.clearfix{
+  zoom: 1;
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+}
 .@{upload-prefix-cls} {
   .reset-component {
     font-family: @font-family;
@@ -140,20 +153,6 @@
     padding: 0;
     list-style: none;
   }
-  .clearfix{
-    zoom: 1;
-    &:before,
-    &:after {
-      content: " ";
-      display: table;
-    }
-    &:after {
-      clear: both;
-      visibility: hidden;
-      font-size: 0;
-      height: 0;
-    }
-  }
   &-item {
     margin-top: 8px;
     font-size:14px;
@@ -167,6 +166,8 @@
       width: 100%;
       display: inline-block;
       text-align: left;
+      color:#1890ff;
+      line-height: 22px;
     }
 
     &-info {

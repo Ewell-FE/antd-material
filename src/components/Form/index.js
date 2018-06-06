@@ -22,6 +22,9 @@ import Switch from './switch'
 import Slider from './slider'
 import DatePicker from './DatePicker'
 import AutoComplete from './autoComplete'
+import Dragger from './dragger'
+import Upload from './upload'
+
 //渲染field组件
 let FieldHtml = (field)=> {
     var isError = field.meta.touched && field.meta.error
@@ -62,6 +65,10 @@ let FieldHtml = (field)=> {
             return (<DatePicker field={field} isError={isError} isWarn={isWarn}/>)
         case 'autoComplete':
             return (<AutoComplete field={field} isError={isError} isWarn={isWarn}/>)
+        case 'dragger':
+            return (<Dragger field={field} isError={isError} isWarn={isWarn}/>)
+        case 'upload':
+            return (<Upload field={field} isError={isError} isWarn={isWarn}/>)
         default:
             return (<Input field={field} isError={isError} isWarn={isWarn}/>)
     }
