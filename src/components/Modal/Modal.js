@@ -140,11 +140,11 @@ export default class modal extends Component {
                 <div className={wrapClass} style={modalStyle}>
                     <div className={classes.modalContent}>
                         {header!==null&&
-                        <div className={classes.modalHeader}>
-                            <div className={classes.modalTitle}>{title}</div>
-                            {closable&&<span className={classes.modalClose} onClick={onCancel}><Icon type="times" /></span>}
-                        </div>
+                            <div className={classes.modalHeader}>
+                                <div className={classes.modalTitle}>{title}</div>
+                            </div>
                         }
+                        {closable&&<span className={classes.modalClose} onClick={onCancel}><Icon type="times" /></span>}
                         <div className={classes.modalBody} style={bodyStyle}>
                             {
                                 Array.isArray(children)?children.map(function (child) {

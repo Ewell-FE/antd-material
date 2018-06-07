@@ -370,7 +370,11 @@
       white-space: nowrap;
       opacity: 0;
       transition: all .3s;
-
+      a{
+        &:focus{
+          outline: none;
+        }
+      }
       .fa-eye,
       .fa-trash {
         z-index: 10;
@@ -382,6 +386,9 @@
         margin: 0 4px;
         &:hover {
           color: #fff;
+        }
+        &:focus{
+          outline: none;
         }
       }
     }

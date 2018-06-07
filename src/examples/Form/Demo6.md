@@ -31,14 +31,14 @@ export class <%=component%> extends Component {
     }
     handleCancel = () => this.setState({ previewVisible: false })
 
-     handlePreview = (file) => {
+    handlePreview = (file) => {
        this.setState({
          previewImage: file.url || file.thumbUrl,
          previewVisible: true,
        });
-     }
+    }
 
-     handleChange = ({ fileList }) =>{this.setState({ fileList2:fileList })}
+    handleChange = ({ fileList }) =>{this.setState({ fileList2:fileList })}
 
     render() {
         const {previewVisible, previewImage, fileList,fileList2}=this.state;
@@ -140,6 +140,8 @@ export class <%=component%> extends Component {
                        slider:30,
                        slider2:[20,50],
                        slider3:37,
+                       dragger:fileArr,
+                       upload:fileArr,
                        upload3:fileArr
                        }}
                        labelWidth="90px"
@@ -314,9 +316,9 @@ export class <%=component%> extends Component {
                        </Form>
 
                     <Button onClick={() => {this.refs.form6.submit() }}>保 存</Button>
-                     <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                         <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                     </Modal>
+                    <Modal visible={previewVisible} header={null} footer={null} onCancel={this.handleCancel}>
+                        <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                    </Modal>
             </div>
         )
     }

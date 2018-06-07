@@ -12,6 +12,10 @@ export default class renderDragger extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
         let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes','options'])
+        let inputValue={}
+        if(field.input.value){
+            inputValue.defaultFileList=[...field.input.value]
+        }
         return (
             <div className={classes[field.layout]}>
                 {field.label &&
@@ -21,6 +25,7 @@ export default class renderDragger extends Component {
                     <Dragger
                         id={`__${field.input.name}__`}
                         {...otherField}
+                        {...inputValue}
                         className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}
                         inputChange={field.input.onChange}
                     >

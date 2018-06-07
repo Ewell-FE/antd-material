@@ -1,18 +1,14 @@
 import React, {Component} from 'react'
 import Upload from '@/components/Upload'
-import Icon from '@/components/Icon'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import styles from './style'
-Upload
 @withStyles(styles, {name: 'MuiFormCascaderAnt'})
 export default class renderDragger extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
         let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes','options','button'])
-        console.log(field.fileList)
-        console.log(field.child)
         let childButton=Array.isArray(field.fileList)&&field.childNum&&(field.fileList.length >= field.childNum) ? null : field.button;
         let inputValue={}
         if(field.input.value){
