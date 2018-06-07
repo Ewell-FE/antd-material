@@ -225,6 +225,7 @@ function createComponents() {
         }
         return `export { default as ${name} } from './${name}';`
     })
+    filesEntry.push(`export { default as Style } from './Style';`)
     fs.writeFileSync(path.resolve(paths.appSrc, 'components/index.js'), filesEntry.join('\n'))
     //排序
     for (let type in menuClass) {

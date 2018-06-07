@@ -11,8 +11,8 @@ import {withStyles} from '@material-ui/core/styles';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import 'moment/locale/en-gb';
-import Input from '@/components/Input'
-import Icon from '@/components/Icon'
+import Input from '..//Input'
+import Icon from '../Icon'
 import omit from 'omit.js';
 import styles from './style'
 

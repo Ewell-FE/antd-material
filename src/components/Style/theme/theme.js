@@ -5,14 +5,6 @@ import {blue, green, red, yellow, grey} from '@material-ui/core/colors';
 export default function (config = {primaryColor: blue}) {
     let primaryColor = config.primaryColor
     return {
-        '@global': {
-            body: {
-                fontFamily: 'Monospaced Number,Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif'
-            },
-            a: {
-                textDecoration: 'underline'
-            }
-        },
         primary: primaryColor,
         colors: {
             primary: primaryColor[600],

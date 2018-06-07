@@ -3,9 +3,9 @@ import {withStyles} from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
-import Icon from '@/components/Icon'
+import Icon from '../Icon'
 import style from "../Style";
-import Button from '@/components/Button'
+import Button from '../Button'
 import _ from 'lodash'
 const styles = theme => ({
     button: {

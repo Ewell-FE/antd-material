@@ -4,11 +4,8 @@ import {withStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import style from '../Style'
 import classnames from 'classnames'
-import classzz from '@/classes'
 
 const styles = theme => ({
-    primary: classzz.Button.primary,
-    modalCancel: classzz.Button.modalCancel,
     root: {
         display: 'inline-block'
     },

@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import RcSlider from 'rc-slider/lib/Slider';
 import RcRange from 'rc-slider/lib/Range';
 import RcHandle from 'rc-slider/lib/Handle';
-import Tooltip from '@/components/Tooltip';
+import Tooltip from '../Tooltip';
 
 export let SliderValue = 0
 const styles = theme => {

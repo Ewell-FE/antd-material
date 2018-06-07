@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import InputNumber from '@/components/InputNumber'
+import InputNumber from '../InputNumber'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';

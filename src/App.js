@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import {CssBaseline} from '@material-ui/core';
 import {MuiThemeProvider} from '@material-ui/core/styles';
-import style from '@/components/Style'
+import style from './components/Style'
 import Mytheme from './theme'
 import HOME from './routers/authority'
 import main from './routers/main'

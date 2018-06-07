@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Mention from '@/components/Mention'
+import Mention from '../Mention'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';

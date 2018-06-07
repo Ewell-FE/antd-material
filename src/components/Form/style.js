@@ -33,7 +33,7 @@ export default function (theme) {
         "vertical": {
             "marginBottom": "24px",
             "textAlign": "left",
-            "&>label":{
+            "&>label": {
                 "width": "100%",
             },
             "& label": {
@@ -118,7 +118,8 @@ export default function (theme) {
         },
         "errorInfo": {
             "position": "absolute",
-            "bottom": "-26px",
+            "bottom": "-24px",
+            "line-height": "24px",
             "left": "0",
             "font-size": "12px"
         },

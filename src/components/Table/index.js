@@ -6,8 +6,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Pagination from '@/components/Pagination';
-import Checkbox from '@/components/Checkbox';
+import Pagination from '../Pagination';
+import Checkbox from '../Checkbox';
 import _ from 'lodash'
 import classNames from 'classnames';
 

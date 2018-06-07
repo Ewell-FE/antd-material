@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import classnames from 'classnames'
+import omit from 'omit.js'
 const styles = theme => ({
     root: {
         position: "absolute",
@@ -16,8 +19,6 @@ const styles = theme => ({
         position: 'absolute',
         top: '50%',
         left: '50%',
-        marginTop: -12,
-        marginLeft: -12,
         zIndex: 10000
     },
     tip: {
@@ -33,21 +34,38 @@ const styles = theme => ({
 });
 @withStyles(styles, {name: 'MuiSpinAnt'})
 export default class Spin extends Component {
+
+    static defaultProps = {
+        size: 24
+    }
+
     render() {
-        let ProgressProps = {
-            size: 24,
-            className: this.props.classes.buttonProgress
-        }
-        Object.assign(ProgressProps, this.props.CircularProgress)
+        const props = this.props
+        const otherProps = omit(props, ['classes', 'style', 'loading', 'tip'])
+        let stylus = Object.assign({}, props.style, {
+            marginTop: -props.size / 2,
+            marginLeft: -props.size / 2
+        })
+
         return (
             <div style={{ position: this.props.wrapperStyle?'static':'relative'}}>
-                {this.props.loading &&
-                <div className={this.props.classes.root} style={this.props.style}>
-                    <CircularProgress {...ProgressProps}/>
-                    {this.props.tip && <span className={this.props.classes.tip}>{this.props.tip}</span>}
+                {props.loading &&
+                <div className={props.classes.root} style={props.style}>
+                    <CircularProgress
+                        className={classnames(props.classes.buttonProgress,props.className)}
+                        style={stylus}
+                        {...otherProps}
+                    />
+                    {props.tip && <span className={props.classes.tip}>{props.tip}</span>}
                 </div>}
-                {this.props.children}
+                {props.children}
             </div>
         )
     }
 }
+
+Spin.propTypes = {
+    size: PropTypes.number,
+    color: PropTypes.string,
+    loading: PropTypes.bool
+};

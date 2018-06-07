@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Button from '@/components/Button';
+import Button from '../Button';
 import {Modal} from '@material-ui/core';
 import Icon from '../Icon'
 import classnames from 'classnames';

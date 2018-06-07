@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import AutoComplete from '@/components/AutoComplete'
+import AutoComplete from '../AutoComplete'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';

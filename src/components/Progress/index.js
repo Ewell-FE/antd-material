@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import Icon from '@/components/Icon'
+import Icon from '../Icon'
 import _rcProgress from 'rc-progress'
 import ClassNames from 'classnames'
 import './style.less'

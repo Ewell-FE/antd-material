@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import DatePicker from '@/components/DatePicker'
+import DatePicker from '../DatePicker'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';

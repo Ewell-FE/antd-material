@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Select from '@/components/Select'
+import Select from '../Select'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
