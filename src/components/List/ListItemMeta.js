@@ -12,6 +12,12 @@ const styles = theme => ({
     denseLi:{
         '&:not(:last-child)':{
             borderBottom:'1px solid #e8e8e8'
+        },
+        '&:hover':{
+            '& ul':{
+                display:'inherit',
+                transition:'all .3s'
+            }
         }
     },
     denseSmall:{
@@ -61,6 +67,10 @@ const styles = theme => ({
         cursor:'pointer',
         '& a':{
             color: '#1890ff',
+        },
+        '& li':{
+            position:'relative',
+            padding:'0 8px'
         }
     },
     actionVertical:{
@@ -78,7 +88,32 @@ const styles = theme => ({
         right: '0',
         width: '1px',
         height: '14px'
-    }
+    },
+    actionUl:{
+        display: 'none',
+        position: 'absolute',
+        right: '-8px',
+        '-webkit-animation': 'fadeInRightBig 0.3s',
+        animation: 'fadeInRightBig 0.3s',
+        '& li':{
+            backgroundColor: '#666',
+            padding: '10px 8px',
+            opacity: '0.95',
+            '& a':{
+                color: '#fff',
+            },
+        }
+    },
+    '@keyframes fadeInRightBig': {
+        '0%': {
+            opacity: 0,
+            transform: 'translate3d(2000px, 0, 0)'
+        },
+        '100%': {
+            opacity: 1,
+            transform: 'translate3d(0, 0, 0)'
+        },
+    },
 
 });
 @withStyles(styles, {name: 'MuiListItemAnt'})
@@ -87,7 +122,7 @@ export default class ListItemMeta extends Component {
         list: PropTypes.object,
     };
     render() {
-        const {classes, description,avatar,title,content,actions,extra} = this.props;
+        const {classes, description,avatar,title,content,actions,extra,actionLeft=false} = this.props;
         const size=this.context.list.size;
         const itemLayout=this.context.list.itemLayout;
         const dense=classnames(classes.denseLi, {
@@ -116,7 +151,7 @@ export default class ListItemMeta extends Component {
             [classes['vertical']]:itemLayout==='vertical',
             [classes['actionVertical']]:itemLayout==='vertical',
             [classes['paddingLeftNone']]:!avatar,
-
+            [classes['actionUl']]:actionLeft,
         });
 
         return (
@@ -142,7 +177,7 @@ export default class ListItemMeta extends Component {
                                 actions.map(
                                     (item,index,arr)=>{
                                         return (
-                                            <li key={index} style={{position:'relative',padding:'0 8px'}}>
+                                            <li key={index}>
                                                 {item}
                                                 {index!==(arr.length-1)&&<em className={classes.em}></em>}
 

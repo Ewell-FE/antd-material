@@ -103,7 +103,7 @@ export default class MuiList extends Component {
             [classes['denseLarge']]:size==='large'
         });
         return (
-            <div style={{width: '100%'}}>
+            <div style={{width: '100%',overflow:'hidden'}}>
                 <List classes={{dense:classes.dense,root:classes.root}} dense={true} className={bordered?classnames(classes['bordered']):''}>
                     {
                         header&&<ListItem  classes={{dense}}>{header}</ListItem>
