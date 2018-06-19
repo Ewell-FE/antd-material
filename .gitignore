@@ -2,8 +2,9 @@
 
 # dependencies
 /node_modules
-/npm
 /.idea
+/npm/core
+/npm/lib
 
 # testing
 /coverage
