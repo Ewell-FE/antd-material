@@ -165,7 +165,7 @@
         {
             "name": "Upload",
             "type": "Data Entry",
-            "sort": 160,
+            "sort": 170,
             "desc": "上传"
         }
     ],

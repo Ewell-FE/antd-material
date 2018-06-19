@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Upload from '@/components/Upload'
+import Upload from '../Upload'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';

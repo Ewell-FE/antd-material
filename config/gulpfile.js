@@ -62,7 +62,7 @@ gulp.task('css', function () {
 gulp.task('less', function () {
     return gulp.src(path.resolve(paths.appSrc, 'components/**/*.less'))
         .pipe(gulp.dest(path.resolve(paths.appPub, 'lib')))
-        .pipe(cleanCSS())
+        // .pipe(cleanCSS())
         .on('error', function (err) {
             console.log('[Error]', err.toString());
         })

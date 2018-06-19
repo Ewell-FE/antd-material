@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Select from "react-select";
-import "react-select/dist/react-select.css";
+import "./select.less";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import Icon from "../Icon";

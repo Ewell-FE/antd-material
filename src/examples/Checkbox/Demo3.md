@@ -1,5 +1,5 @@
-#  不可用
-## checkbox 不可用。
+#  受控的 Checkbox
+## 联动 checkbox。
 
 
 ````jsx

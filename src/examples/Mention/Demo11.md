@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Buttom from '@/components/Button'
+import Button from '@/components/Button'
 import Form from '@/components/Form'
 const { getMentions } = Mention;
 const checkMention = value =>(getMentions(toContentState(value)).length < 2? "More than one must be selected!":undefined)

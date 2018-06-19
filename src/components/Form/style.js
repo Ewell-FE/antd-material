@@ -7,7 +7,7 @@ export default function (theme) {
             "display": "inline-block",
             "padding": "0 10px",
             "vertical-align": "middle",
-            "& label": {
+            "& > label": {
                 "lineHeight": "32px",
                 "vertical-align": "top",
                 "display": "inline-block",
@@ -35,8 +35,6 @@ export default function (theme) {
             "textAlign": "left",
             "&>label": {
                 "width": "100%",
-            },
-            "& label": {
                 "textAlign": "left",
                 "lineHeight": "32px",
                 "vertical-align": "top",
@@ -59,7 +57,7 @@ export default function (theme) {
         "horizontal": {
             "padding": "0 10px",
             "verticalAlign": "middle",
-            "& label": {
+            "& > label": {
                 "textAlign": "right",
                 "lineHeight": "32px",
                 "vertical-align": "top",
@@ -85,7 +83,7 @@ export default function (theme) {
         "grid": {
             "padding": "0 10px",
             "verticalAlign": "middle",
-            "& label": {
+            "& > label": {
                 "textAlign": "right",
                 "lineHeight": "32px",
                 "vertical-align": "top",

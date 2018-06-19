@@ -39,6 +39,11 @@ const styles = theme => ({
             position: 'absolute',
             left: 0,
             top: 0,
+            '&>svg': {
+                position: 'absolute',
+                left: 0,
+                top: 0,
+            }
         }
     },
     defaultRoot: {
@@ -176,10 +181,10 @@ export class App extends Component {
             Object.assign(icons, {
                 'icon': <span
                     className={classNames(classes.loading, size === 'small' && classes.smallIcon)}><CircularProgress
-                    size={14}/></span>,
+                    size={ size === 'small' ?14 : 18}/></span>,
                 'checkedIcon': <span
                     className={classNames(classes.loading, size === 'small' && classes.smallIcon)}><CircularProgress
-                    size={14}/></span>
+                    size={ size === 'small' ?14 : 18}/></span>
             })
         }
         if (this.props.checkedChildren || this.props.unCheckedChildren) {

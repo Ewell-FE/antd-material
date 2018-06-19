@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Upload from '@/components/Upload'
-import Icon from '@/components/Icon'
+import Upload from '../Upload'
+import Icon from '../Icon'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
