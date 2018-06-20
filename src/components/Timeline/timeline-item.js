@@ -32,12 +32,13 @@ const styles = theme => {
             },
             /************** 普通样式************************/
             '& .dotPoint': {
+                borderColor:theme.colors.primary,
                 '&.dotPoint-normal': {
                     width: 10,
                     height: 10,
                     backgroundColor: '#fff',
                     borderRadius: 100,
-                    border: '2px solid transparent',
+                    border:`2px solid ${theme.colors.primary}`,
                     margin: "0 auto",
                     marginTop:'6px'
                 },
@@ -108,10 +109,7 @@ export default class app extends Component {
         )
     }
 }
-app.defaultProps = {
-    color: 'blue',
 
-}
 app.propTypes = {
     className: PropTypes.string,
     color: PropTypes.string,

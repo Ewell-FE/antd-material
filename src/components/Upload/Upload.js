@@ -2,10 +2,26 @@ import React from "react";
 import RcUpload from 'rc-upload';
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import {withStyles} from '@material-ui/core/styles';
 import _ from "lodash";
 import UploadList from './UploadList';
 import { fileToObject, genPercentAdd, getFileItem, removeFileItem } from './utils';
-
+const styles = theme => {
+    return {
+        root:{
+            '& .yh-upload-list-item-name,& .yh-upload.yh-upload-drag p.yh-upload-drag-icon .fa':{
+                color:theme.colors.primary
+            },
+            '& .yh-upload-list-item-error .yh-upload-list-item-name':{
+                color:theme.colors.error
+            },
+            '& .yh-upload.yh-upload-drag:not(.yh-upload-disabled):hover,& .yh-upload.yh-upload-select-picture-card:hover':{
+                borderColor:theme.primary[300]
+            }
+        }
+    }
+};
+@withStyles(styles, {name: 'MuiUploadAnt'})
 export default class Upload extends React.Component {
     static defaultProps = {
         prefixCls: 'yh-upload',
@@ -215,6 +231,7 @@ export default class Upload extends React.Component {
 
     render() {
         const {
+            classes,
             prefixCls = '',
             className,
             showUploadList,
@@ -233,7 +250,7 @@ export default class Upload extends React.Component {
         };
 
         delete rcUploadProps.className;
-
+        const uploadClass=classNames(className,classes['root']);
         const uploadList = showUploadList ? this.renderUploadList(): null;
         if (type === 'drag') {
             const dragCls = classNames(prefixCls, {
@@ -243,7 +260,7 @@ export default class Upload extends React.Component {
                 [`${prefixCls}-disabled`]: disabled,
             });
             return (
-                <span className={className}>
+                <span className={uploadClass}>
                   <div
                       className={dragCls}
                       onDrop={this.onFileDrop}
@@ -272,17 +289,16 @@ export default class Upload extends React.Component {
                 <RcUpload {...rcUploadProps} ref={this.saveUpload} />
             </div>
         );
-
         if (listType === 'picture-card') {
             return (
-                <span className={className}>
+                <span className={uploadClass}>
                     {uploadList}
                     {uploadButton}
                 </span>
             );
         }
         return (
-            <span className={className}>
+            <span className={uploadClass}>
                 {uploadButton}
                 {uploadList}
             </span>
