@@ -39,7 +39,17 @@ function getComponent(type) {
                     clear: 'both',
                     minHeight: small,
                     fontSize: fontSize,
+                    '&.is-focused':{
+                        '&>.Select-control':{
+                            borderColor: theme.colors.primary,
+                            boxShadow: `0 0 0 2px ${theme.primary[100]}`
+                        }
+
+                    },
                     '&>.Select-control': {
+                        '&:hover':{
+                            borderColor: theme.colors.primary,
+                        },
                         height: '100%',
                         overflow: 'auto',
                         '& .Select-value,& .Select-placeholder,& .Select-input': {
@@ -71,13 +81,14 @@ function getComponent(type) {
                         }
                     },
                     '&>.Select-menu-outer': {
-                        marginTop: 2,
+                        marginTop: 4,
                         borderRadius: 4,
                         fontSize: 'inherit',
                         boxShadow: '0 2px 8px rgba(0,0,0,.15)',
                         '& .Select-option.is-selected': {
                             backgroundColor: theme.select.selected,
                             color: theme.select.color,
+                            fontWeight: '600'
                         },
                         '& .Select-option.is-focused': {
                             backgroundColor: theme.select.hover,

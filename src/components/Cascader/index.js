@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import RcCascader from 'rc-cascader';
-import "rc-cascader/assets/index.css";
+import "./cascader.css";
 
 import omit from 'omit.js';
 import classNames from 'classnames'
@@ -14,12 +14,16 @@ const styles = theme => {
             zIndex:9,
             '& .rc-cascader-menu':{
                 minWidth:'111px',
-                width:'auto'
+                width:'auto',
+                '& .rc-cascader-menu-item:hover':{
+                    background: theme.select.hover
+                }
             },
             '& .rc-cascader-menu-item-active':{
-                background: '#f5f5f5',
+                background: theme.select.selected,
+                color: theme.select.color,
                 fontWeight: '600'
-            }
+            },
         },
         'rc-cascader-menu':{
 
@@ -82,6 +86,9 @@ const styles = theme => {
             transition: 'all .3s',
             backgroundColor: 'transparent',
             cursor: 'pointer',
+            '&:hover':{
+                borderColor: theme.colors.primary,
+            },
         },
         lg:{
             padding: '6px 11px',

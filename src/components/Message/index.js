@@ -106,7 +106,7 @@ const styles2 = theme => {
             "top": "20px",
             "width": "100%",
             "textAlign": "center",
-            "zIndex": "100",
+            "zIndex": "1301",
             "pointerEvents": "none"
         }
     }

@@ -19,7 +19,7 @@ export class <%=component%> extends Component {
                              <RadioButton value="d">Chengdu</RadioButton>
                       </RadioGroup>
                   </div>
-                  <div>
+                  <div style={{marginTop:15}}>
                       <RadioGroup onChange={this.onChange}  defaultValue="a">
                              <RadioButton  value="a">Hangzhou</RadioButton>
                              <RadioButton  value="b">Shanghai</RadioButton>
@@ -27,7 +27,7 @@ export class <%=component%> extends Component {
                              <RadioButton value="d">Chengdu</RadioButton>
                       </RadioGroup>
                   </div>
-                  <div>
+                  <div style={{marginTop:15}}>
                       <RadioGroup onChange={this.onChange}  size='small' defaultValue="a">
                              <RadioButton  value="a">Hangzhou</RadioButton>
                              <RadioButton  value="b">Shanghai</RadioButton>

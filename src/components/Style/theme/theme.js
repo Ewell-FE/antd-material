@@ -57,7 +57,7 @@ export default function (config = {primaryColor: blue}) {
         select: {
             selected: '#fafafa',
             color: 'rgba(0,0,0,.65)',
-            hover: '#E6F7FF'
+            hover: primaryColor[50]
         },
         alert: {
             width: 100,
