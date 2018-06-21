@@ -78,7 +78,7 @@ export default class app extends Component {
                 {
                     ({value}) => {
                         return (
-                            <span tabIndex="0">
+                            <span tabIndex="0" className={props.classes.span}>
                                  <Input
                                      readOnly
                                      size={props.size}
