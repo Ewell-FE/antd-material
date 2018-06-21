@@ -51,17 +51,6 @@ export default class MuiList extends Component {
             rowsPerPage: pageSize,
         }
     }
-    getChildContext(){
-        return {
-            list:{
-                size:this.props.size||'default',
-                itemLayout:this.props.itemLayout||'horizontal'
-            }
-        }
-    }
-    static childContextTypes = {
-        list: PropTypes.object,
-    };
     //切换当前页
     handleChangePage = (page) => {
         let pagination = this.props.pagination || {}
@@ -109,7 +98,15 @@ export default class MuiList extends Component {
                         header&&<ListItem  classes={{dense}}>{header}</ListItem>
                     }
                     {
-                        data.map((item,index)=>renderItem(item,index))
+                        data.map((item,index)=>{
+                            return (React.cloneElement(
+                                renderItem(item,index),
+                                {
+                                    size:this.props.size||'default',
+                                    itemLayout:this.props.itemLayout||'horizontal'
+                                }
+                            ))
+                        })
                     }
                     {
                         footer&&<ListItem  classes={{dense}}>{footer}</ListItem>

@@ -118,13 +118,10 @@ const styles = theme => ({
 });
 @withStyles(styles, {name: 'MuiListItemAnt'})
 export default class ListItemMeta extends Component {
-    static contextTypes = {
-        list: PropTypes.object,
-    };
     render() {
         const {classes, description,avatar,title,content,actions,extra,actionLeft=false} = this.props;
-        const size=this.context.list.size;
-        const itemLayout=this.context.list.itemLayout;
+        const size=this.props.size;
+        const itemLayout=this.props.itemLayout;
         const dense=classnames(classes.denseLi, {
             [classes['denseSmall']]:size==='small',
             [classes['denseDefault']]:size==='default',
