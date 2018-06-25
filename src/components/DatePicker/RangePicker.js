@@ -10,21 +10,13 @@ import enUS from 'rc-calendar/lib/locale/en_US';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
 import {withStyles} from '@material-ui/core/styles';
 import moment from 'moment';
-import 'moment/locale/zh-cn';
-import 'moment/locale/en-gb';
 import Input from '../Input'
 import Icon from '../Icon'
 import omit from 'omit.js';
 import styles from './style'
 
 const cn = true
-moment.locale('zh-cn')
-const now = moment();
-if (cn) {
-    now.locale('zh-cn').utcOffset(8);
-} else {
-    now.locale('en-gb').utcOffset(0);
-}
+
 const timePickerElement = (
     <TimePickerPanel
         prefixCls="yh-time-picker-panel"
@@ -119,7 +111,7 @@ app.propTypes = {
     dateRender: PropTypes.func,//自定义日期单元格的内容
     disabled: PropTypes.bool,//  禁用
     disabledDate: PropTypes.func,//不可选择的日期
-    locale: PropTypes.bool,// 国际化配置
+    locale: PropTypes.object,// 国际化配置
     open: PropTypes.bool,//控制弹层是否展开
     placeholder: PropTypes.string, //输入框提示文字
     size: PropTypes.string, //输入框大小，large 高度为 40px，small 为 24px，默认是 32px

@@ -101,9 +101,9 @@
     border-width: 0 1px;
     margin-left: -1px;
     box-sizing: border-box;
-    width: 56px;
-    max-height: 144px;
-    overflow-y: auto;
+    width: 33.33%;
+    height: 180px;
+    overflow: hidden;
     position: relative;
 }
 .yh-time-picker-panel-select-active {
