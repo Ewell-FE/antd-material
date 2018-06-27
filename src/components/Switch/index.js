@@ -43,6 +43,7 @@ const styles = theme => ({
                 position: 'absolute',
                 left: 0,
                 top: 0,
+                color:theme.colors.primary,
             }
         }
     },

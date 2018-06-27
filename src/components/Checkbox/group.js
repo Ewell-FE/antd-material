@@ -21,6 +21,16 @@ export default class Group extends Component {
         }
     }
 
+    static childContextTypes = {
+        onChange: PropTypes.func,
+        arr: PropTypes.array,
+    };
+    getChildContext() {
+        return {
+            onChange: this.onChange,
+            arr:_.has(this.props,'value')&&Array.isArray(this.props.value) ? this.props.value : this.state.value
+        };
+    }
     static defaultProps = {
         defaultValue: [],
         options:[]

@@ -7,10 +7,13 @@ import Checkbox from '@/components/Checkbox';
 const CheckboxGroup = Checkbox.Group;
 import Grid from '@material-ui/core/Grid';
 export class <%=component%> extends Component {
+onChange = (value) => {
+        console.log(value)
+    }
 
     render() {
       return (
-        <CheckboxGroup>
+        <CheckboxGroup onChange={this.onChange} defaultValue={['one']}>
            <Grid container spacing={24}>
                  <Grid item xs={3}>
                        <Checkbox value='one'>One</Checkbox>

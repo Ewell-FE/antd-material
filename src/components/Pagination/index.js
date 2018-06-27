@@ -267,6 +267,12 @@ class App extends Component{
         this.props.onShowSizeChange && this.props.onShowSizeChange(current,pageSize);
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.current !== this.props.current){
+            this.setState({current:nextProps.current})
+        }
+    }
+
     render(){
         const {total,classes,showQuickJumper,showTotal,showSizeChanger,hideOnSinglePage}=this.props;
         let pageSize=this.state.pageSize,

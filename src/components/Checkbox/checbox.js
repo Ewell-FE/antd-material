@@ -62,16 +62,21 @@ class app extends Component {
         disabled: false,
         indeterminate: false
     }
+    static contextTypes = {
+        onChange: PropTypes.func,
+        arr: PropTypes.array,
+    };
     componentWillReceiveProps(nextProps) {
         if ('value' in nextProps) {
             this.setState({ checked: nextProps.value });
         }
     }
-    onChange = event => {
+    onChange = (event,value) => {
         if (!_.has(this.props, 'checked')) {
             this.setState({
                 checked: event.target.checked
             })
+            this.context.onChange&&this.context.onChange(event,value)
         }
         this.props.onChange && this.props.onChange(event)
     }
@@ -82,18 +87,20 @@ class app extends Component {
 
 
     render() {
-        const {classes, children, checked, disabled, indeterminate, className, style}=this.props;
+        const {classes, children, checked, disabled, indeterminate, className, style,value}=this.props;
+        const {arr}=this.context
         let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style','type','value'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
         let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
+        let flag = _.has(this.props, 'checked') ? false : (arr ? true : false)
         return (
             <label className={classnames(classes.root,disabled&&classes.readOnly,
                 indeterminate&&classes.indeterminate,className)} style={style}>
                 <Checkbox
                     inputRef={ref=>this.input = ref}
                     {...otherProps}
-                    onChange={(e)=>this.onChange(e)}
-                    checked={checkedValue}
+                    onChange={(e)=>this.onChange(e,value)}
+                    checked={flag?_.indexOf(arr,checkedValue||value)!==-1:checkedValue}
                     classes={checkClass}
                     disableRipple/>
                 <span className={classes.label}>{children}</span>
