@@ -2,7 +2,7 @@
   "root": "/material",
   "name": "antd-material",
   "main": "core/index.js",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "authFlag": false,
   "dependencies": {
     "@devexpress/dx-react-core": "^1.0.3",

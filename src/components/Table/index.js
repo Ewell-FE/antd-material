@@ -74,7 +74,7 @@ const styles = theme => {
             marginTop:10
         },
         activeText: {
-            color: activeColor,
+            // color: activeColor,
             '& a':{
                 color:activeColor
             }

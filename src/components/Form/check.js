@@ -16,7 +16,8 @@ export default class renderCheck extends Component {
                 {field.label &&
                 <label style={{width:field.labelWidth}} htmlFor={`__${field.input.name}__`}>{field.required &&
                 <span className="required">* </span>}{field.label}:</label>}
-                <div className="input" style={{width:field.wrapperWidth}}><Checkbox
+                <div className="input" style={{width:field.wrapperWidth}}>
+                    <Checkbox defaultChecked={field.input.value?field.input.value:false}
                     id={`__${field.input.name}__`} {...otherField} {...field.input}
                     className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}/>
                     {isError && <div className={classnames(classes.errorInfo,classes.error)}>{field.meta.error}</div>}
