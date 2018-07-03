@@ -21,7 +21,23 @@ class Test extends Component{
         )
     }
 }
+const MyButton = React.forwardRef((props, ref) => (
+  <button ref={ref}
+  onClick={props.onClick}
+  onMouseEnter={props.onMouseEnter}
+  onMouseLeave={props.onMouseLeave}>
+    {props.children}
+  </button>
+));
 export class <%=component%> extends Component {
+    constructor(props){
+        super(props);
+        this.realButton = React.createRef();
+    }
+    componentDidMount(){
+        //直接拿到 inner element ref
+        console.log(this.realButton);
+    }
     render() {
         return (
         <div>
@@ -49,7 +65,16 @@ export class <%=component%> extends Component {
                   title={<div>this is title</div>}
                   content={<div>自定义组件需要withRef属性</div>}
                   >
-                  <Test>test hover me</Test>
+                    <Test>test hover me</Test>
+                </Popover>
+            </div>
+            <div style={{display:'inline-block',marginLeft:'10px'}}>
+                <Popover
+                  placement='top'
+                  title={<div>this is title</div>}
+                  content={<div>组件使用forwardRef配合createRef,穿透获取ref</div>}
+                  >
+                  <MyButton ref={this.realButton}>组件使用forwardRef hover me</MyButton>
                 </Popover>
             </div>
         </div>

@@ -4,6 +4,7 @@ import {MuiThemeProvider, withStyles} from '@material-ui/core/styles';
 import Icon from '../Icon';
 import Slide from '@material-ui/core/Slide';
 import style from '../Style'
+import classnames from 'classnames'
 import _ from 'lodash'
 const styles = theme => {
     return {
@@ -14,9 +15,20 @@ const styles = theme => {
             "box-shadow": "0 2px 8px rgba(0, 0, 0, 0.2)",
             "padding": "10px 12px",
             "box-sizing": "border-box",
-            "backgroundColor": "#fff",
             "overflow": "hidden",
-            "height": "40px"
+            "height": "40px",
+        },
+        successMessage:{
+            "backgroundColor": "#fff",
+        },
+        warnMessage:{
+            "backgroundColor": "#fff",
+        },
+        infoMessage:{
+            "backgroundColor": "#fff",
+        },
+        errorMessage:{
+            "backgroundColor": "#fff",
         },
         messageIcon: {
             "position": "absolute",
@@ -89,7 +101,7 @@ export class Message extends Component {
     render() {
         const {classes} = this.props
         return (
-            <div className={classes.message}>
+            <div className={classnames(classes.message,classes[`${this.props.type}Message`])}>
                 <div className={classes.messageIcon}>
                     <Icon type={Icons[this.props.type]} className={classes[this.props.type]}/>
                 </div>

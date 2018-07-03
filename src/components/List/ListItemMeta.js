@@ -80,15 +80,6 @@ const styles = theme => ({
     paddingLeftNone:{
         paddingLeft:0,
     },
-    em:{
-        backgroundColor: '#e8e8e8',
-        marginTop: '-7px',
-        position: 'absolute',
-        top: '50%',
-        right: '0',
-        width: '1px',
-        height: '14px'
-    },
     actionUl:{
         display: 'none',
         position: 'absolute',
@@ -96,12 +87,16 @@ const styles = theme => ({
         '-webkit-animation': 'fadeInRightBig 0.3s',
         animation: 'fadeInRightBig 0.3s',
         '& li':{
+            padding:0,
             backgroundColor: '#666',
-            padding: '10px 8px',
             opacity: '0.95',
             '& a':{
                 color: '#fff',
             },
+            '& .operate':{
+                display: 'inline-block',
+                padding: '8px 16px',
+            }
         }
     },
     '@keyframes fadeInRightBig': {
@@ -119,7 +114,7 @@ const styles = theme => ({
 @withStyles(styles, {name: 'MuiListItemAnt'})
 export default class ListItemMeta extends Component {
     render() {
-        const {classes, description,avatar,title,content,actions,extra,actionLeft=false} = this.props;
+        const {classes, description,avatar,title,content,actions,extra,actionLeft=false,style={}} = this.props;
         const size=this.props.size;
         const itemLayout=this.props.itemLayout;
         const dense=classnames(classes.denseLi, {
@@ -153,7 +148,7 @@ export default class ListItemMeta extends Component {
 
         return (
             <ListItem classes={{dense}}>
-                <div style={{display:'flex',flexFlow:'wrap',alignItems: 'center',width: '100%'}}>
+                <div style={{display:'flex',flexFlow:'wrap',alignItems: 'center',width: '100%',...style}}>
                     <div className={titleLayout}>
                         {
                             avatar&&<ListItemAvatar>{avatar}</ListItemAvatar>
@@ -172,12 +167,17 @@ export default class ListItemMeta extends Component {
                         <ul className={actionlayout}>
                             {
                                 actions.map(
-                                    (item,index,arr)=>{
+                                    (item,index)=>{
                                         return (
                                             <li key={index}>
-                                                {item}
-                                                {index!==(arr.length-1)&&<em className={classes.em}></em>}
-
+                                                {
+                                                    React.cloneElement(
+                                                        item,
+                                                        {
+                                                            className:'operate',
+                                                        }
+                                                    )
+                                                }
                                             </li>
                                         )
                                     })
@@ -197,8 +197,8 @@ ListItemMeta.propTypes = {
     size: PropTypes.oneOf(['small', 'default','large']), //List大小类型
     actions:PropTypes.array, //action数组
     avatar:PropTypes.any, //头像信息
-    title:PropTypes.string,//主要信息
-    description:PropTypes.string,//辅助信息
+    title:PropTypes.any,//主要信息
+    description:PropTypes.any,//辅助信息
     content:PropTypes.any,//主要内容
     extra:PropTypes.any,//额外内容
 }

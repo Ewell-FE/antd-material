@@ -272,4 +272,4 @@ Tab.defaultProps = {
 };
 
 
-export default withStyles(styles, {name: 'yHTab'})(Tab);
+export default withStyles(styles, {name: 'MuiTabAnt'})(Tab);

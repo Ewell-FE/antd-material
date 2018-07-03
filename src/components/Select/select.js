@@ -32,7 +32,8 @@ function getComponent(type) {
             root: {
                 display: 'inline-block',
                 width: '100%',
-                textAlign: 'left'
+                textAlign: 'left',
+                lineHeight:'unset',
             },
             control: {
                 '&>.Select': {

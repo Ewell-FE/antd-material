@@ -305,7 +305,7 @@ class Tabs extends React.Component {
 
     render() {
         const {
-            action, size, type, centered, children: childrenProp, classes, className: classNameProp, fullWidth, indicatorColor, onChange,
+            action, size, type, centered, children: childrenProp, classes, className: classNameProp, fullWidth,tabsStyle={}, indicatorColor, onChange,
             scrollable, scrollButtons, TabScrollButton: TabScrollButtonProp, textColor, theme, value, tabBarExtraContent: tabBarExtraContentProp, ...other
         } = this.props;
         warning(
@@ -378,7 +378,7 @@ class Tabs extends React.Component {
                         role="tablist"
                         onScroll={this.handleTabsScroll}
                     >
-                        <div className={flexHeadClassName}>{children}</div>
+                        <div className={flexHeadClassName} style={{...tabsStyle}}>{children}</div>
                         {this.state.mounted && type === 'line' && indicator}
                     </div>
                     {conditionalElements.scrollButtonRight}
@@ -440,4 +440,4 @@ Tabs.defaultProps = {
 };
 Tabs.Tab = Tab
 
-export default withStyles(styles, {name: 'yHTabs', withTheme: true})(Tabs);
+export default withStyles(styles, {name: 'MuiTabsAnt', withTheme: true})(Tabs);
