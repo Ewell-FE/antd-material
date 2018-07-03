@@ -35,13 +35,37 @@ const styles = theme => {
             color: theme.disabled.color
         },
         label: {
-            padding: '0 8px',
-            verticalAlign: '-1px'
+            padding: '0 8px'
         },
-        sizeIcon: {
-            fontSize: 20,
+        checked: {
+
         },
-        checked: {}
+        imgCheck:{
+            display:'inline-block',
+            width:16,
+            height:16,
+            verticalAlign:'middle',
+            '& i':{
+                fontSize: 20,
+                marginTop:-3
+            }
+        },
+        imgUncheck:{
+            display:'inline-block',
+            width:16,
+            height:16,
+            verticalAlign:'middle',
+            '& i':{
+                fontSize: 20,
+                marginTop:-3
+            }
+        },
+        imgCheckDisabled:{
+
+        },
+        imgUncheckDisabled:{
+
+        }
     }
 };
 
@@ -51,9 +75,14 @@ export default class app extends Component {
     componentDidMount() {
         this.props.withRef && this.props.withRef(ReactDOM.findDOMNode(this.input))
     }
+    static defaultProps = {
+        classes:{},
+        icon:<Icon type='circle-o'/>,
+        checkedIcon:<Icon type='dot-circle-o'/>
+    }
 
     render() {
-        const {children, classes, disabled, defaultChecked, checked, value, style, name} = this.props
+        const {children, classes, disabled, defaultChecked, checked, value, style, name,checkedIcon,icon} = this.props
         let root = classnames(classes.rootRadio, disabled && classes.readOnly)
         let radioClass = {}
         Object.assign(radioClass, {
@@ -72,8 +101,8 @@ export default class app extends Component {
                        value={value}
                        defaultChecked={defaultChecked}
                        classes={radioClass}
-                       icon={<Icon className={classnames(classes.sizeIcon)} type='circle-o'/> }
-                       checkedIcon={<Icon className={classnames(classes.sizeIcon)} type='dot-circle-o'/> }
+                       icon={<span className={classnames(classes.imgUncheck,disabled&&classes.imgUncheckDisabled)}>{icon}</span>}
+                       checkedIcon={<span className={classnames(classes.imgCheck,disabled&&classes.imgCheckDisabled)}>{checkedIcon}</span>}
                 />
                 <span className={classes.label}>
                       {children}
@@ -89,4 +118,6 @@ app.propTypes = {
     value: PropTypes.string, //根据 value 进行比较，判断是否选中
     onChange: PropTypes.func, // 选中改变
     style: PropTypes.object, //行内样式
+    icon:PropTypes.node,
+    checkedIcon:PropTypes.node,
 };

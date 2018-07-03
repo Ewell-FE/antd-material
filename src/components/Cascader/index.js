@@ -15,7 +15,7 @@ const styles = theme => {
             '& .rc-cascader-menu':{
                 minWidth:'111px',
                 width:'auto',
-                '& .rc-cascader-menu-item:hover':{
+                '& .rc-cascader-menu-item:not(.rc-cascader-menu-item-disabled):hover':{
                     background: theme.select.hover
                 }
             },
@@ -85,10 +85,7 @@ const styles = theme => {
             borderRadius: '4px',
             transition: 'all .3s',
             backgroundColor: 'transparent',
-            cursor: 'pointer',
-            '&:hover':{
-                borderColor: theme.colors.primary,
-            },
+            cursor: 'pointer'
         },
         lg:{
             padding: '6px 11px',

@@ -35,6 +35,9 @@ let styles=(theme)=>{
                 borderColor:activeColor
             }
         },
+        simpleItem:{
+            borderWidth:'0',
+        },
         pageLink:{
             color:fontColor,
             textDecoration:'none',
@@ -191,12 +194,12 @@ class Select extends Component{
 
     render(){
         const {classes}=this.props,
-              selectBox=classes.selectBox,
-              selectOptions=classes.selectOptions,
-              selectTextBox=classes.selectTextBox,
-              selectIcon=classes.selectIcon,
-              optionLi=classes.optionLi,
-              curOption=classes.curOption;
+            selectBox=classes.selectBox,
+            selectOptions=classes.selectOptions,
+            selectTextBox=classes.selectTextBox,
+            selectIcon=classes.selectIcon,
+            optionLi=classes.optionLi,
+            curOption=classes.curOption;
         return (
             <div>
                 {this.state.isShow && <div className={classes.divMask} onClick={this.toggleShow}></div>}
@@ -233,9 +236,11 @@ class App extends Component{
 
     static defaultProps={
         defaultCurrent:1,//首次当前页
+        simple:false, //简单分页
         defaultPageSize:10,//每页显示条数
         hideOnSinglePage:false,//只有一页时分页是否隐藏
         showQuickJumper:false,//是否显示快速跳转文本框
+        showLastAndFirstJumper:true,//默认显示第一页和最后一页的跳转
         showSizeChanger:false//是否显示改变每页展示数量的下拉框
     }
 
@@ -244,6 +249,14 @@ class App extends Component{
             current:current
         })
         this.props.onChange && this.props.onChange(current,this.state.pageCount);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.current !== this.props.current){
+            this.setState({
+                current:nextProps.current
+            })
+        }
     }
 
     quickJumperFun(e){
@@ -267,14 +280,8 @@ class App extends Component{
         this.props.onShowSizeChange && this.props.onShowSizeChange(current,pageSize);
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.current !== this.props.current){
-            this.setState({current:nextProps.current})
-        }
-    }
-
     render(){
-        const {total,classes,showQuickJumper,showTotal,showSizeChanger,hideOnSinglePage}=this.props;
+        const {total,classes,showQuickJumper,showTotal,showSizeChanger,hideOnSinglePage,showLastAndFirstJumper,simple}=this.props;
         let pageSize=this.state.pageSize,
             pageCount=Math.ceil(total/pageSize),
             pageArr=[],
@@ -312,84 +319,96 @@ class App extends Component{
         }
         current=current>pageCount?pageCount:current;
         return (
-                <div>
-                    {   !hideOnSinglePage &&
-                        <ul className={classes.pageBox}>
-                            {   showTotal &&
-                                <li className={totalShow}>
-                                    {showTotal(total,[(current-1)*pageSize+1,current*pageSize>total?total:current*pageSize])}
-                                </li>
-                            }
-                            <li className={current===1?classNames(pageItem,disabledBtn):pageItem} onClick={current!==1?this.changeCurrent.bind(this,current-1):()=>(false)}>
-                                <a className={current===1?classNames(pageLink,disabledLink):pageLink}>
-                                    <i className={classNames('fa','fa-angle-left',angleSize)} aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            {   pageArr[0]!==1 &&
-                                <li className={pageItem} onClick={this.changeCurrent.bind(this,1)}>
-                                    <a className={pageLink}>1</a>
-                                </li>
-                            }
-                            {   pageArr[0]!==1 &&
-                                <li className={moreItem} onClick={this.changeCurrent.bind(this,current-5)}>
-                                    <a className={moreLink}>
-                                        <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            }
-                            {
-                                pageArr.map((item,index)=>{
-                                    return <li key={"page"+item}
-                                               className={item===current?classNames(pageItem,curItem):pageItem}
-                                               onClick={this.changeCurrent.bind(this,item)}>
-                                                <a className={item===current?classNames(pageLink,curLink):pageLink}>{item}</a>
-                                            </li>
-                                })
-                            }
-                            {   pageArr[pageArr.length-1]!==pageCount &&
-                                <li className={moreItem}  onClick={this.changeCurrent.bind(this,current+5)}>
-                                    <a className={moreLink}>
-                                        <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            }
-                            {   pageArr[pageArr.length-1]!==pageCount &&
-                                <li className={pageItem} onClick={this.changeCurrent.bind(this,pageCount)}>
-                                    <a className={pageLink}>{pageCount}</a>
-                                </li>
-                            }
-                            <li className={current===pageCount?classNames(pageItem,disabledBtn):pageItem} onClick={current!==pageCount?this.changeCurrent.bind(this,current+1):()=>(false)}>
-                                <a className={current===pageCount?classNames(pageLink,disabledLink):pageLink}>
-                                    <i className={classNames('fa','fa-angle-right',angleSize)} aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            {/*pageSize下拉框*/}
-                            {   showSizeChanger &&
-                                <li className={classNames(pageItem, selectOption)}>
-                                    <Select {...this.props} pageChange={this.pageChangeFun}/>
-                                </li>
-                            }
-                            {/*快速跳转*/}
-                            {   showQuickJumper &&
-                                <li className={quickJumper}>
-                                    <span>跳至</span><input className={quickInput} type="text" onKeyUp={this.quickJumperFun}/><span>页</span>
-                                </li>
-                            }
-                        </ul>
+            <div>
+                {   !hideOnSinglePage &&
+                <ul className={classes.pageBox}>
+                    {   showTotal &&
+                    <li className={totalShow}>
+                        {showTotal(total,[(current-1)*pageSize+1,current*pageSize>total?total:current*pageSize])}
+                    </li>
                     }
-                </div>
+                    {!simple&&showLastAndFirstJumper&&<li className={current===1?classNames(pageItem,disabledBtn):pageItem} onClick={current!==1?this.changeCurrent.bind(this,1):()=>(false)}>
+                        <a className={current===1?classNames(pageLink,disabledLink):pageLink}>
+                            <i className={classNames('fa','fa-angle-double-left',angleSize)} aria-hidden="true"></i>
+                        </a>
+                    </li>}
+                    <li className={classNames(current===1?classNames(pageItem,disabledBtn):pageItem,simple&&classes.simpleItem)} onClick={current!==1?this.changeCurrent.bind(this,current-1):()=>(false)}>
+                        <a className={current===1?classNames(pageLink,disabledLink):pageLink}>
+                            <i className={classNames('fa','fa-angle-left',angleSize)} aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    {   pageArr[0]!==1 &&
+                    <li className={classNames(pageItem,simple&&classes.simpleItem)} onClick={this.changeCurrent.bind(this,1)}>
+                        <a className={pageLink}>1</a>
+                    </li>
+                    }
+                    {   pageArr[0]!==1 &&
+                    <li className={classNames(moreItem,simple&&classes.simpleItem)} onClick={this.changeCurrent.bind(this,current-5)}>
+                        <a className={moreLink}>
+                            <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    }
+                    {
+                        pageArr.map((item,index)=>{
+                            return <li key={"page"+item}
+                                       className={classNames(item===current?classNames(pageItem,curItem):pageItem,simple&&classes.simpleItem)}
+                                       onClick={this.changeCurrent.bind(this,item)}>
+                                <a className={item===current?classNames(pageLink,curLink):pageLink}>{item}</a>
+                            </li>
+                        })
+                    }
+                    {   pageArr[pageArr.length-1]!==pageCount &&
+                    <li className={classNames(moreItem,simple&&classes.simpleItem)}  onClick={this.changeCurrent.bind(this,current+5)}>
+                        <a className={moreLink}>
+                            <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    }
+                    {   pageArr[pageArr.length-1]!==pageCount &&
+                    <li className={classNames(pageItem,simple&&classes.simpleItem)} onClick={this.changeCurrent.bind(this,pageCount)}>
+                        <a className={pageLink}>{pageCount}</a>
+                    </li>
+                    }
+                    <li className={classNames(current===pageCount?classNames(pageItem,disabledBtn):pageItem,simple&&classes.simpleItem)} onClick={current!==pageCount?this.changeCurrent.bind(this,current+1):()=>(false)}>
+                        <a className={current===pageCount?classNames(pageLink,disabledLink):pageLink}>
+                            <i className={classNames('fa','fa-angle-right',angleSize)} aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    {!simple&&showLastAndFirstJumper&&<li className={current===pageCount?classNames(pageItem,disabledBtn):pageItem} onClick={current!==pageCount?this.changeCurrent.bind(this,pageCount):()=>(false)}>
+                        <a className={current===pageCount?classNames(pageLink,disabledLink):pageLink}>
+                            <i className={classNames('fa','fa-angle-double-right',angleSize)} aria-hidden="true"></i>
+                        </a>
+                    </li>}
+                    {/*pageSize下拉框*/}
+                    {   showSizeChanger &&
+                    <li className={classNames(pageItem, selectOption)}>
+                        <Select {...this.props} pageChange={this.pageChangeFun}/>
+                    </li>
+                    }
+                    {/*快速跳转*/}
+                    {   showQuickJumper &&
+                    <li className={quickJumper}>
+                        <span>跳至</span><input className={quickInput} type="text" onKeyUp={this.quickJumperFun}/><span>页</span>
+                    </li>
+                    }
+                </ul>
+                }
+            </div>
         )
     }
 }
 
 App.propTypes={
     current:PropTypes.number,//当前页
+    simple:PropTypes.bool,//简单分页
     defaultCurrent:PropTypes.number,//默认当前页
     defaultPageSize:PropTypes.number,//默认每页显示数量
     pageSize:PropTypes.number,//每页显示数量
     showQuickJumper:PropTypes.bool,//是否显示快速跳转
     showTotal:PropTypes.func,//显示总数
     total:PropTypes.number,//数据总数
+    showLastAndFirstJumper:PropTypes.bool, //是否显示第一页和最后一页的跳转
     onChange:PropTypes.func,//页码改变时的回调，参数是改变后的页码以及每页条数
     showSizeChanger:PropTypes.bool,//是否可以改变每页条数
     onShowSizeChange:PropTypes.func,//每页条数改变的回调，参数是当前页以及每页条数

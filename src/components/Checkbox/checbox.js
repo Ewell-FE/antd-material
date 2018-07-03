@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+import Icon from '../Icon'
 import _ from 'lodash';
 import ReactDOM from "react-dom";
 const styles = (theme)=> {
@@ -27,24 +28,48 @@ const styles = (theme)=> {
             color: theme.disabled.color,
             '&>$default': {
                 color: theme.disabled.color,
+            },
+            '& i': {
+                color: theme.disabled.color,
             }
         },
         label: {
             padding: '0 8px',
-            verticalAlign: '-1px',
             color: 'inherit',
+            fontSize:14,
         },
         default: {
             width: 16,
             height: 16,
-            '& svg': {
-                fontSize: '22px'
+            '& i': {
+                fontSize: '20px',
+                verticalAlign:'top',
+                marginTop:'-3px'
             },
             '&$checked': {
                 color: activeColor
             }
         }, //不可删除
         checked: {},
+        imgCheck:{
+            width: 16,
+            height: 16,
+            display:'inline-block',
+
+        },
+        imgCheckDisabled:{},
+        imgUncheck:{
+            width: 16,
+            height: 16,
+            '& i': {
+                fontSize: '21px',
+            },
+        },
+        imgUncheckDisabled:{},
+        imgHalf:{
+            width: 16,
+            height: 16,
+        }
     }
 }
 @withStyles(styles, {name: 'MuiCheckboxAnt'})
@@ -60,7 +85,11 @@ class app extends Component {
         defaultChecked: false,
         name: '',
         disabled: false,
-        indeterminate: false
+        indeterminate: false,
+        indeterminateIcon: <Icon type='minus-square'/>,
+        checkedIcon:<Icon type='check-square'/>,
+        icon:<Icon type='square-o'/>,
+
     }
     static contextTypes = {
         onChange: PropTypes.func,
@@ -87,9 +116,9 @@ class app extends Component {
 
 
     render() {
-        const {classes, children, checked, disabled, indeterminate, className, style,value}=this.props;
+        const {classes, children, checked, disabled, indeterminate, className, style,value,icon,indeterminateIcon,checkedIcon}=this.props;
         const {arr}=this.context
-        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style','type','value'])
+        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style','type','value','icon','indeterminateIcon','checkedIcon'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
         let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
         let flag = _.has(this.props, 'checked') ? false : (arr ? true : false)
@@ -102,6 +131,9 @@ class app extends Component {
                     onChange={(e)=>this.onChange(e,value)}
                     checked={flag?_.indexOf(arr,checkedValue||value)!==-1:checkedValue}
                     classes={checkClass}
+                    icon={<span className={classnames(classes.imgUncheck,disabled&&classes.imgUncheckDisabled)}>{icon}</span>}
+                    indeterminateIcon={<span  className={classnames(classes.imgHalf)}>{indeterminateIcon}</span>}
+                    checkedIcon={<span  className={classnames(classes.imgCheck,disabled&&classes.imgCheckDisabled)}>{checkedIcon}</span>}
                     disableRipple/>
                 <span className={classes.label}>{children}</span>
             </label>
