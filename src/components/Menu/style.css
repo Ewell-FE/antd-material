@@ -7,6 +7,7 @@
     outline: none;
     margin-bottom: 0;
     padding-left: 0;
+    width: 100%;
     list-style: none;
     color: rgba(0, 0, 0, 0.65);
     background: #fff;
@@ -40,16 +41,12 @@
     transition: all .3s;
 }
 
-.yh-menu-item-group-list .yh-menu-item {
-    line-height: 40px;
-    height: 40px;
-    margin-top: 4px;
-    padding-left: 48px;
-}
-
-.yh-menu-item-group-list .yh-menu-item, .yh-menu-item-group-list .yh-menu-submenu-title {
-    padding: 0 16px 0 28px;
-}
+/*.yh-menu-item-group-list .yh-menu-item {*/
+    /*line-height: 40px;*/
+    /*height: 40px;*/
+    /*margin-top: 4px;*/
+    /*padding-left: 48px;*/
+/*}*/
 
 .yh-menu-vertical .yh-menu-item:after,
 .yh-menu-vertical-left .yh-menu-item:after,
@@ -184,7 +181,8 @@
 .yh-menu-vertical > .yh-menu-submenu > .yh-menu-submenu-title,
 .yh-menu-vertical-left > .yh-menu-submenu > .yh-menu-submenu-title,
 .yh-menu-vertical-right > .yh-menu-submenu > .yh-menu-submenu-title,
-.yh-menu-inline > .yh-menu-submenu > .yh-menu-submenu-title {
+.yh-menu-inline > .yh-menu-submenu > .yh-menu-submenu-title,
+.yh-menu-item-group-list .yh-menu-item{
     line-height: 40px;
     height: 40px;
     cursor: pointer;
@@ -382,4 +380,203 @@
         opacity: 0;
         transform: scale(0, 0);
     }
+}
+/* collapsed */
+.yh-menu-inline-collapsed {
+    width: 80px;
+}
+.yh-menu-inline-collapsed > .yh-menu-item,
+.yh-menu-inline-collapsed > .yh-menu-item-group > .yh-menu-item-group-list > .yh-menu-item,
+.yh-menu-inline-collapsed > .yh-menu-submenu > .yh-menu-submenu-title {
+    left: 0;
+    text-overflow: clip;
+    padding: 0 32px !important;
+}
+.yh-menu-inline-collapsed > .yh-menu-item .yh-menu-submenu-arrow,
+.yh-menu-inline-collapsed > .yh-menu-item-group > .yh-menu-item-group-list > .yh-menu-item .yh-menu-submenu-arrow,
+.yh-menu-inline-collapsed > .yh-menu-submenu > .yh-menu-submenu-title .yh-menu-submenu-arrow {
+    display: none;
+}
+.yh-menu-inline-collapsed > .yh-menu-item .fa,
+.yh-menu-inline-collapsed > .yh-menu-item-group > .yh-menu-item-group-list > .yh-menu-item .fa,
+.yh-menu-inline-collapsed > .yh-menu-submenu > .yh-menu-submenu-title .fa {
+    font-size: 16px;
+    line-height: 40px;
+    margin: 0;
+}
+.yh-menu-inline-collapsed > .yh-menu-item .fa + span,
+.yh-menu-inline-collapsed > .yh-menu-item-group > .yh-menu-item-group-list > .yh-menu-item .fa + span,
+.yh-menu-inline-collapsed > .yh-menu-submenu > .yh-menu-submenu-title .fa + span {
+    max-width: 0;
+    display: inline-block;
+    opacity: 0;
+}
+.yh-menu-inline-collapsed-tooltip {
+    pointer-events: none;
+}
+.yh-menu-inline-collapsed-tooltip .fa {
+    display: none;
+}
+.yh-menu-inline-collapsed-tooltip a {
+    color: rgba(255, 255, 255, 0.85);
+}
+.yh-menu-inline-collapsed .yh-menu-item-group-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+/*  drak theme */
+.yh-menu-dark,
+.yh-menu-dark .yh-menu-sub {
+    color: rgba(255, 255, 255, 0.65);
+    background: #001529;
+}
+.yh-menu-dark .yh-menu-submenu-title .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-sub .yh-menu-submenu-title .yh-menu-submenu-arrow {
+    opacity: .45;
+    transition: all .3s;
+}
+.yh-menu-dark .yh-menu-submenu-title .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-sub .yh-menu-submenu-title .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-title .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-sub .yh-menu-submenu-title .yh-menu-submenu-arrow:before {
+    background: #fff;
+}
+.yh-menu-dark.yh-menu-submenu-popup {
+    background: transparent;
+}
+.yh-menu-dark .yh-menu-inline.yh-menu-sub {
+    background: #000c17;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+}
+.yh-menu-dark.yh-menu-horizontal {
+    border-bottom-color: #001529;
+}
+.yh-menu-dark.yh-menu-horizontal > .yh-menu-item,
+.yh-menu-dark.yh-menu-horizontal > .yh-menu-submenu {
+    border-color: #001529;
+    border-bottom: 0;
+}
+.yh-menu-dark.yh-menu-horizontal > .yh-menu-item > a:before {
+    bottom: 0;
+}
+.yh-menu-dark .yh-menu-item,
+.yh-menu-dark .yh-menu-item-group-title,
+.yh-menu-dark .yh-menu-item > a {
+    color: rgba(255, 255, 255, 0.65);
+}
+.yh-menu-dark.yh-menu-inline,
+.yh-menu-dark.yh-menu-vertical,
+.yh-menu-dark.yh-menu-vertical-left,
+.yh-menu-dark.yh-menu-vertical-right {
+    border-right: 0;
+}
+.yh-menu-dark.yh-menu-inline .yh-menu-item,
+.yh-menu-dark.yh-menu-vertical .yh-menu-item,
+.yh-menu-dark.yh-menu-vertical-left .yh-menu-item,
+.yh-menu-dark.yh-menu-vertical-right .yh-menu-item {
+    border-right: 0;
+    margin-left: 0;
+    left: 0;
+}
+.yh-menu-dark.yh-menu-inline .yh-menu-item:after,
+.yh-menu-dark.yh-menu-vertical .yh-menu-item:after,
+.yh-menu-dark.yh-menu-vertical-left .yh-menu-item:after,
+.yh-menu-dark.yh-menu-vertical-right .yh-menu-item:after {
+    border-right: 0;
+}
+.yh-menu-dark.yh-menu-inline .yh-menu-item,
+.yh-menu-dark.yh-menu-inline .yh-menu-submenu-title {
+    width: 100%;
+}
+.yh-menu-dark .yh-menu-item:hover,
+.yh-menu-dark .yh-menu-item-active,
+.yh-menu-dark .yh-menu-submenu-active,
+.yh-menu-dark .yh-menu-submenu-open,
+.yh-menu-dark .yh-menu-submenu-selected,
+.yh-menu-dark .yh-menu-submenu-title:hover {
+    background-color: transparent;
+    color: #fff;
+}
+.yh-menu-dark .yh-menu-item:hover > a,
+.yh-menu-dark .yh-menu-item-active > a,
+.yh-menu-dark .yh-menu-submenu-active > a,
+.yh-menu-dark .yh-menu-submenu-open > a,
+.yh-menu-dark .yh-menu-submenu-selected > a,
+.yh-menu-dark .yh-menu-submenu-title:hover > a {
+    color: #fff;
+}
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow {
+    opacity: 1;
+}
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-item:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-item-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-active > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-open > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-selected > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-title:hover > .yh-menu-submenu-title:hover > .yh-menu-submenu-arrow:before {
+    background: #fff;
+}
+.yh-menu-dark .yh-menu-item-selected {
+    border-right: 0;
+    color: #fff;
+}
+.yh-menu-dark .yh-menu-item-selected:after {
+    border-right: 0;
+}
+.yh-menu-dark .yh-menu-item-selected > a,
+.yh-menu-dark .yh-menu-item-selected > a:hover {
+    color: #fff;
+}
+.yh-menu.yh-menu-dark .yh-menu-item-selected,
+.yh-menu-submenu-popup.yh-menu-dark .yh-menu-item-selected {
+    background-color: #1890ff;
+}
+.yh-menu-dark .yh-menu-item-disabled,
+.yh-menu-dark .yh-menu-submenu-disabled,
+.yh-menu-dark .yh-menu-item-disabled > a,
+.yh-menu-dark .yh-menu-submenu-disabled > a {
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.35) !important;
+}
+.yh-menu-dark .yh-menu-item-disabled > .yh-menu-submenu-title,
+.yh-menu-dark .yh-menu-submenu-disabled > .yh-menu-submenu-title {
+    color: rgba(255, 255, 255, 0.35) !important;
+}
+.yh-menu-dark .yh-menu-item-disabled > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-submenu-disabled > .yh-menu-submenu-title > .yh-menu-submenu-arrow:before,
+.yh-menu-dark .yh-menu-item-disabled > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after,
+.yh-menu-dark .yh-menu-submenu-disabled > .yh-menu-submenu-title > .yh-menu-submenu-arrow:after {
+    background: rgba(255, 255, 255, 0.35) !important;
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Manager, Reference, Popper} from 'react-popper';
+import {Manager, Target, Popper} from 'react-popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -74,46 +74,35 @@ export default class app extends Component {
         const eventType = {'click': 'onClick', 'hover': 'onMouseEnter'}
         const eventFunc = {'click': this.handleToggle, 'hover': this.onMouseEnter}
         return (
-            <Manager>
-                <Reference>
-                    {({ref}) => (
-                        <div
-                            style={{display:'inline-block'}}
-                            ref={ref}
-                        >
-                            <div ref={node => {
-                                this.target1 = node;
-                            }}>
-                                {React.Children.map(props.children, (child, i)=> {
-                                    return React.cloneElement(child, {
-                                        "style": {margin: 0},
-                                        "aria-owns": open ? 'menu-list-grow' : null,
-                                        "aria-haspopup": "true",
-                                        [eventType[props.trigger]]: eventFunc[props.trigger],
-                                        "onMouseLeave": this.onMouseLeave
-                                    })
-                                })}
-                            </div>
-                        </div>
-                    )}
-                </Reference>
+            <Manager style={{display:'inline-block'}}>
+                <Target>
+                    <div ref={node =>{this.target1 = node}}>
+                        {React.Children.map(props.children, (child, i)=> {
+                            return React.cloneElement(child, {
+                                "style": {margin: 0},
+                                "aria-owns": open ? 'menu-list-grow' : null,
+                                "aria-haspopup": "true",
+                                [eventType[props.trigger]]: eventFunc[props.trigger],
+                                "onMouseLeave": this.onMouseLeave
+                            })
+                        })}
+                    </div>
+                </Target>
                 <Popper
                     placement={props.placement}
                     eventsEnabled={open}
                     className={classNames({[classes.popperClose]: !open})}
                 >
-                    {({ref, style, placement, arrowProps}) => (
-                        <div ref={ref} style={style} data-placement={placement} onMouseEnter={this.clearTimeout}
-                             onMouseLeave={this.onMouseLeave}>
-                            <ClickAwayListener onClickAway={this.handleClose}>
-                                <Grow in={open} style={{transformOrigin: '0 0 0'}}>
-                                    <Paper>
-                                        {props.overlay}
-                                    </Paper>
-                                </Grow>
-                            </ClickAwayListener>
-                        </div>
-                    )}
+                    <div onMouseEnter={this.clearTimeout}
+                         onMouseLeave={this.onMouseLeave}>
+                        <ClickAwayListener onClickAway={this.handleClose}>
+                            <Grow in={open} style={{transformOrigin: '0 0 0'}}>
+                                <Paper>
+                                    {props.overlay}
+                                </Paper>
+                            </Grow>
+                        </ClickAwayListener>
+                    </div>
                 </Popper>
             </Manager>
         )
