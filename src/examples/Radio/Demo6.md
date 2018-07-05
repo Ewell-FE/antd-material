@@ -7,12 +7,19 @@ import Radio from '@/components/Radio'
 const RadioGroup = Radio.Group
 const RadioButton = Radio.Button
 export class <%=component%> extends Component {
-
+        constructor(props){
+            super(props)
+            this.state={value:'a'}
+        }
+        onChange=(e)=>{
+            console.log(e.target.value)
+            this.setState({value:e.target.value})
+        }
     render() {
         return (
             <div>
                 <div>
-                      <RadioGroup onChange={this.onChange}  size='large' defaultValue="a">
+                      <RadioGroup onChange={this.onChange}  size='large' value={this.state.value}>
                              <RadioButton  value="a">Hangzhou</RadioButton>
                              <RadioButton  value="b">Shanghai</RadioButton>
                              <RadioButton value="c">Beijing</RadioButton>

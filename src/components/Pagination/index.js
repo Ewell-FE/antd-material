@@ -37,6 +37,11 @@ let styles=(theme)=>{
         },
         simpleItem:{
             borderWidth:'0',
+            background:'transparent',
+        },
+        simpleCur:{
+            background:'transparent',
+            color:activeColor
         },
         pageLink:{
             color:fontColor,
@@ -262,7 +267,7 @@ class App extends Component{
     quickJumperFun(e){
         let inputVal=e.target.value;
         if(e.keyCode===13){
-            if(inputVal.length===0 || !/\d+/.test(inputVal) || +inputVal>this.state.current*this.state.pageSize){
+            if(inputVal.length===0 || !/\d+/.test(inputVal) || +inputVal<1){
                 e.target.value='';
                 return false;
             }
@@ -354,7 +359,7 @@ class App extends Component{
                             return <li key={"page"+item}
                                        className={classNames(item===current?classNames(pageItem,curItem):pageItem,simple&&classes.simpleItem)}
                                        onClick={this.changeCurrent.bind(this,item)}>
-                                <a className={item===current?classNames(pageLink,curLink):pageLink}>{item}</a>
+                                <a className={classNames(item===current?classNames(pageLink,curLink,simple&&classes.simpleCur):pageLink)}>{item}</a>
                             </li>
                         })
                     }
@@ -415,6 +420,6 @@ App.propTypes={
     hideOnSinglePage:PropTypes.bool//只有一页时是否隐藏分页
 }
 
-export default withStyles(styles,{name:'MuiPagination-ant'})(App);
+export default withStyles(styles,{name:'MuiPaginationAnt'})(App);
 
 

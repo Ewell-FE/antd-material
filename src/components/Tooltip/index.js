@@ -11,6 +11,7 @@ const styles = theme => {
             backgroundColor: bgc,
             borderRadius: '4px',
             minHeight: 32,
+            minWidth:60,
             padding: '6px 8px',
             position:'relative',
             color:theme.tooltip.color,

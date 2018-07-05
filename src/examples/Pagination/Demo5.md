@@ -17,6 +17,7 @@ export class <%=component%> extends Component {
                 />
                 <Pagination
                     total={85}
+                    showLastAndFirstJumper={false}
                     showTotal={(total, range) => (range[0]+' - '+range[1]+' / '+total +' 条')}
                     pageSize={20}
                     defaultCurrent={1}

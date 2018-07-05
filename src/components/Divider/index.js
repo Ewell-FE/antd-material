@@ -50,9 +50,20 @@ const styles = (theme) => {
                 transform: 'translateY(50%)',
             }
         },
+        solid:{
+            '&:before,&:after': {
+                borderTopStyle:'solid'
+            }
+        },
         dashed: {
-            background: 'none',
-            borderTop: '1px dashed #e8e8e8'
+            '&:before,&:after': {
+                borderTopStyle:'dashed'
+            }
+        },
+        dotted:{
+            '&:before,&:after': {
+                borderTopStyle:'dotted'
+            }
         },
         text: {
             display: 'inline-block',
@@ -83,13 +94,14 @@ class app extends Component {
     static defaultProps = {
         type: 'horizontal',
         orientation: 'center',
+        lineType:'solid',
         dashed: false
     }
 
     render() {
-        const {children, className, style, classes, type, dashed,orientation} = this.props
+        const {children, className, style, classes, type,orientation,lineType} = this.props
         let classProps = classnames(className, classes.root, classes[`${type}`], children && classes[`${type}Text`],
-            dashed && classes.dashed,classes[`${orientation}Text`])
+            classes[`${lineType}`],classes[`${orientation}Text`])
         return (
             <div className={classProps} style={style}>
                 {children && <span className={classes.text}>{children}</span>}
@@ -101,7 +113,7 @@ class app extends Component {
 app.propTypes = {
     type: PropTypes.oneOf(['horizontal', 'vertical']), //水平还是垂直类型
     orientation: PropTypes.oneOf(['left', 'right', 'center']), //分割线标题的位置
-    dashed: PropTypes.bool, //是否虚线
+    lineType:PropTypes.oneOf(['solid','dotted','dashed']),//分割线类型
     children:PropTypes.node, //孩子节点
     className:PropTypes.string, //类名
     style:PropTypes.object, //行内样式
