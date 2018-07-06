@@ -1,41 +1,57 @@
-# 异步加载
-## 异步加载数据
+# 标签
+## tags select，随意输入的内容（scroll the menu）
 ````jsx
-import Select from '@/components/Select'
-const Async = Select.Async;
-let options = [{ github: 'jedwatson', name: 'Jed Watson' },
-                       { github: 'bruderstein', name: 'Dave Brotherstone' },
-                          { github: 'jossmac', name: 'Joss Mackison' },
-                          { github: 'jniechcial', name: 'Jakub Niechciał' },
-                          { github: 'craigdallimore', name: 'Craig Dallimore' },
-                          { github: 'julen', name: 'Julen Ruiz Aizpuru' },
-                          { github: 'dcousens', name: 'Daniel Cousens' },
-                          { github: 'jgautsch', name: 'Jon Gautsch' },
-                          { github: 'dmitry-smirnov', name: 'Dmitry Smirnov' }];
+import Select from '@/components/Select';
+const Option = Select.Option
+
 export class <%=component%> extends Component {
 
-    getContributors (input,callback) {
-    		input = input.toLowerCase();
-    		var data = {
-    			options: options.slice(0, 6),
-    			complete: options.length <= 6,
-    		}
-    		setTimeout(function() {
-            			callback(null, data);
-            		}, 5000);
-    	}
-    	gotoContributor (value, event) {
-        		window.open('https://github.com/' + value.github);
-        	}
+    state = {
+        useAnim:0,
+        value:['a10']
+    }
+
+    onChange = (value, options) => {
+        console.log('onChange', value, options);
+        this.setState({
+          value,
+        });
+    }
+
+    onSelect = (...args) => {
+        console.log(args);
+    }
+
+    onDeselect = (...args) => {
+        console.log(args);
+    }
+
     render() {
+
+        const children = [];
+        for (let i = 10; i < 36; i++) {
+          children.push(
+            <Option key={i.toString(36) + i} disabled={i === 10} title={"中文"+ i}>
+              {'中文'+i}
+            </Option>
+          );
+        }
         return (
-               <Async
-                    placeholder='请选择'
-                    multi={true}
-                    onValueClick={this.gotoContributor}
-                    valueKey="github"
-                    labelKey="name"
-                    loadOptions={this.getContributors}/>
+            <div>
+               <Select
+                   value={this.state.value}
+                   dropdownMenuStyle={{maxHeight:200}}
+                   style={{ width: 500 }}
+                   tags
+                   allowClear
+                   onSelect={this.onSelect}
+                   onDeselect={this.onDeselect}
+                   placeholder="please select"
+                   onChange={this.onChange}
+                 >
+                   {children}
+                 </Select>
+            </div>
         )
     }
 }

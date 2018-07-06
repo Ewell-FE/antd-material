@@ -1,5 +1,5 @@
-# 多选
-## 多选，从已有条目中选择（scroll the menu）
+# 自动分词
+## 试下复制 露西,杰克 到输入框里。只在 tags 和 multiple 模式下可用。
 ````jsx
 import Select from '@/components/Select';
 const Option = Select.Option
@@ -26,12 +26,6 @@ export class <%=component%> extends Component {
         console.log(args);
     }
 
-    useAnim = (e) => {
-        this.setState({
-          useAnim: e.target.checked,
-        });
-    }
-
     render() {
 
         const children = [];
@@ -42,24 +36,18 @@ export class <%=component%> extends Component {
             </Option>
           );
         }
-        
         return (
             <div>
                <Select
                    value={this.state.value}
-                   animation={this.state.useAnim ? 'slide-up' : null}
-                   choiceTransitionName="rc-select-selection__choice-zoom"
                    dropdownMenuStyle={{maxHeight:200}}
                    style={{ width: 500 }}
-                   multiple
+                   tags
                    allowClear
-                   optionFilterProp="children"
-                   optionLabelProp="children"
                    onSelect={this.onSelect}
                    onDeselect={this.onDeselect}
                    placeholder="please select"
                    onChange={this.onChange}
-                   onFocus={() => console.log('focus')}
                    tokenSeparators={[' ', ',']}
                  >
                    {children}

@@ -110,7 +110,7 @@ class MenuComponent extends Component {
     }
 }
 
-Menu.propTypes = {
+MenuComponent.propTypes = {
     mode: PropTypes.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
     activeKey: PropTypes.object, //当前选中的menu的key
     defaultActiveFirst: PropTypes.bool, //默认选中第一个

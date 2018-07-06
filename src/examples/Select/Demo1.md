@@ -1,21 +1,40 @@
 # 基础
 ## 基础用法
 ````jsx
-import Select from '@/components/Select'
+import Select from '@/components/Select';
+const Option = Select.Option
+
 export class <%=component%> extends Component {
-    onChange = () =>{
-        console.log(this)
+    state = {
+        value:'alei'
+    }
+    handleChange = (val) =>{
+        console.log(val)
+    }
+    onChange = (value, option)=> {
+        console.log(option)
+        this.setState({
+          value
+        });
     }
     render() {
-         const children = [];
-            for (let i = 10; i < 36; i++) {
-                children.push({ value:i.toString(36) + i,label:i.toString(36) + i});
-            }
         return (
-               <Select
-                    placeholder='请选择'
-                    onChange={this.onChange}
-                    options={children}/>
+            <div>
+                   <Select defaultValue="lucy" style={{ width: 120 }} onChange={this.handleChange}>
+                        <Option value="jack">杰克</Option>
+                        <Option value="ls">露丝</Option>
+                        <Option value="disabled" disabled>Disabled</Option>
+                        <Option value="ewell">ewell</Option>
+                    </Select>
+                   <Select defaultValue="lucy" style={{ width: 120, marginLeft: 20 }} disabled>
+                        <Option value="lucy">Lucy</Option>
+                   </Select>
+                   <Select onChange={this.onChange}
+                        value={this.state.value}
+                        style={{ width: 120, marginLeft: 20 }}
+                        options={[{value:'jack',label:'杰克'},{value:'alei',label:'阿磊'}]}>
+                  </Select>
+            </div>
         )
     }
 }

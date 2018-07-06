@@ -45,6 +45,53 @@ const styles = theme => {
                 width: "100%"
             },
         },
+        inputGroup: {
+            fontSize: "14px",
+            lineHeight: "1.5",
+            color: "rgba(0,0,0,.65)",
+            boxSizing: "border-box",
+            margin: "0",
+            padding: "0",
+            listStyle: "none",
+            position: "relative",
+            display: "table",
+            borderCollapse: "separate",
+            borderSpacing: "0",
+            width: "100%",
+            "& > input": {
+                borderRadius: 0,
+                width: "100%"
+            },
+            "& > .inputGroupAddon,& > input": {
+                display: "table-cell"
+            },
+            "& .inputGroupAddon": {
+                width: "1px",
+                fontSize: "14px",
+                fontWeight: "400",
+                lineHeight: "1",
+                color: "rgba(0,0,0,.65)",
+                textAlign: "center",
+                backgroundColor: "#fafafa",
+                border: "1px solid #d9d9d9",
+                borderRadius: "4px",
+                position: "relative",
+                transition: " all .3s",
+                "&.is-string":{
+                    padding: "0 11px",
+                },
+                "&:first-child": {
+                    borderRight: 0,
+                    borderBottomRightRadius: 0,
+                    borderTopRightRadius: 0
+                },
+                "&:last-child": {
+                    borderLeft: 0,
+                    borderBottomLeftRadius: 0,
+                    borderTopLeftRadius: 0
+                },
+            }
+        },
         icon: {
             "position": "absolute",
             "top": "50%",
@@ -126,19 +173,35 @@ export default class Input extends Component {
     render() {
         const props = {...this.props}
         const {classes} = this.props
-        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style', 'classes','className'])
+        let otherProps = omit(props, ['prefix', 'suffix', 'onPressEnter', 'withRef', 'style', 'classes', 'className'])
         if ('value' in props) {
             otherProps.value = fixControlledValue(props.value);
         }
         let className = classnames(
             classes.root,
             props.className,
-            {[classes[props.size]]:props.type!=='textarea'},
+            {[classes[props.size]]: props.type !== 'textarea'},
             {[classes.leftIcon]: props.prefix},
             {[classes.rightIcon]: props.suffix}
         )
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
+        if (props.addonbefore || props.addonafter) {
+            return (
+                <span className={classnames(classes.inputGroup)}
+                      style={{width:style.width,height:style.height}}>
+                    {<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonbefore==="string"})}>{props.addonbefore}</span>}
+                     <input type="text"
+                            ref={ref=>this.input =ref}
+                            className={className}
+                            style={otherStyle}
+                            onKeyPress={this.onPressEnter.bind(this)}
+                         {...otherProps}
+                     />
+                    {<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonafter==="string"})}>{props.addonafter}</span>}
+            </span>
+            )
+        }
         if (props.suffix || props.prefix) {
             return (
                 <span className={classnames(classes.inputIconWrapper)}
@@ -183,7 +246,15 @@ Input.propTypes = {
     value: PropTypes.string,
     suffix: PropTypes.node,
     prefix: PropTypes.node,
-    size: PropTypes.string,
+    addonbefore: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    addonafter: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node
+    ]),
+    size: PropTypes.oneOf(['small', 'default', 'large']),
     id: PropTypes.string,
     disabled: PropTypes.bool,
     withRef: PropTypes.func,
