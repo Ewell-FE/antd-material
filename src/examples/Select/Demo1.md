@@ -6,7 +6,7 @@ const Option = Select.Option
 
 export class <%=component%> extends Component {
     state = {
-        value:'alei'
+        value:undefined
     }
     handleChange = (val) =>{
         console.log(val)
@@ -32,6 +32,7 @@ export class <%=component%> extends Component {
                    <Select onChange={this.onChange}
                         value={this.state.value}
                         style={{ width: 120, marginLeft: 20 }}
+                        defaultActiveFirstOption={false}
                         options={[{value:'jack',label:'杰克'},{value:'alei',label:'阿磊'}]}>
                   </Select>
             </div>

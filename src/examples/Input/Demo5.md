@@ -10,10 +10,18 @@ import Select from '@/components/Select'
 var SelectDemo = ()=>{
     return (
         <Select
-            clearable={false}
-            style={{height:'100%',border:0,width:80,backgroundColor:'transparent'}}
+            style={{width:80}}
             placeholder='请选择'
             options={[{value:"http",label:"http"},{value:"https",label:"https"}]}/>
+    )
+}
+
+var LastDemo = ()=>{
+    return (
+        <Select
+            style={{width:50}}
+            placeholder='请选择'
+            options={[{value:".com",label:".com"},{value:".io",label:".io"}]}/>
     )
 }
 
@@ -42,7 +50,7 @@ export class <%=component%> extends Component {
                 <Input addonbefore="Http://" addonafter=".com" defaultValue="mysite" />
                 <br />
                 <br />
-                <Input addonbefore={<SelectDemo />} addonafter=".com" defaultValue="mysite" />
+                <Input addonbefore={<SelectDemo />} addonafter={<LastDemo />} defaultValue="mysite" />
             </div>
         )
     }

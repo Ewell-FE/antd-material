@@ -109,15 +109,22 @@ export default class App extends Component {
         prefixCls: 'yh-select',
         size: 'default',
         optionLabelProp: 'children',
-        placeholder: <span>please select</span>
+        placeholder: "please select"
     }
 
 
     render() {
         const props = this.props
         const classes = props.classes
-        let otherProps = omit(props, ['className', 'classes', 'options'])
+        let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags'])
         let options = []
+        let modeType = (props.combobox && "combobox") || (props.multiple && "multiple") || (props.tags && "tags")
+        let modes = {
+            combobox: {combobox: true},
+            multiple: {multiple: true},
+            tags: {tags: true}
+        }[modeType || props.mode]
+        
         if (props.options) {
             props.options.forEach((item, i)=> {
                 options.push(
@@ -126,20 +133,21 @@ export default class App extends Component {
             })
         }
         return (
-            <Select {...otherProps} className={classnames(props.className,classes.root,classes[props.size])}>
+            <Select
+                className={classnames(props.className,classes.root,classes[props.size])}
+                {...otherProps}
+                {...modes}
+            >
                 {options}
                 {this.props.children}
             </Select>
         )
     }
 }
-App
-    .Option = Option
-App
-    .OptGroup = OptGroup
+App.Option = Option
+App.OptGroup = OptGroup
 
-App
-    .propTypes = {
+App.propTypes = {
     size: PropTypes.oneOf(['small', 'default', 'large']),
     options: PropTypes.array
 };

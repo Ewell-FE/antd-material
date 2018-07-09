@@ -77,19 +77,30 @@ const styles = theme => {
                 borderRadius: "4px",
                 position: "relative",
                 transition: " all .3s",
-                "&.is-string":{
+                verticalAlign: "middle",
+                "&.is-string": {
                     padding: "0 11px",
                 },
-                "&:first-child": {
+                "&:first-child,&:first-child .yh-select-selection": {
                     borderRight: 0,
                     borderBottomRightRadius: 0,
-                    borderTopRightRadius: 0
+                    borderTopRightRadius: 0,
                 },
-                "&:last-child": {
+                "&:last-child,&:last-child .yh-select-selection": {
                     borderLeft: 0,
                     borderBottomLeftRadius: 0,
                     borderTopLeftRadius: 0
                 },
+                "& .yh-select-selection": {
+                    backgroundColor: "inherit",
+                    margin: "-1px",
+                    border: "1px solid transparent",
+                    boxShadow: "none"
+                },
+                "& .yh-select-open .yh-select-selection,.yh-select-selection:focus,.yh-select-selection:hover":{
+                    boxShadow: "none",
+                    borderColor:'transparent'
+                }
             }
         },
         icon: {
@@ -190,7 +201,8 @@ export default class Input extends Component {
             return (
                 <span className={classnames(classes.inputGroup)}
                       style={{width:style.width,height:style.height}}>
-                    {<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonbefore==="string"})}>{props.addonbefore}</span>}
+                    {<span
+                        className={classnames("inputGroupAddon",{"is-string":typeof props.addonbefore==="string"})}>{props.addonbefore}</span>}
                      <input type="text"
                             ref={ref=>this.input =ref}
                             className={className}
@@ -198,7 +210,8 @@ export default class Input extends Component {
                             onKeyPress={this.onPressEnter.bind(this)}
                          {...otherProps}
                      />
-                    {<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonafter==="string"})}>{props.addonafter}</span>}
+                    {<span
+                        className={classnames("inputGroupAddon",{"is-string":typeof props.addonafter==="string"})}>{props.addonafter}</span>}
             </span>
             )
         }
