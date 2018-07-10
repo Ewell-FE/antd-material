@@ -197,40 +197,24 @@ export default class Input extends Component {
         )
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
-        if (props.addonbefore || props.addonafter) {
+        if (props.addonbefore || props.addonafter||props.suffix || props.prefix) {
             return (
-                <span className={classnames(classes.inputGroup)}
+                <span className={classnames(classes.inputGroup,{[classes.inputIconWrapper]:props.suffix || props.prefix})}
                       style={{width:style.width,height:style.height}}>
-                    {<span
-                        className={classnames("inputGroupAddon",{"is-string":typeof props.addonbefore==="string"})}>{props.addonbefore}</span>}
-                     <input type="text"
-                            ref={ref=>this.input =ref}
-                            className={className}
-                            style={otherStyle}
-                            onKeyPress={this.onPressEnter.bind(this)}
-                         {...otherProps}
-                     />
-                    {<span
-                        className={classnames("inputGroupAddon",{"is-string":typeof props.addonafter==="string"})}>{props.addonafter}</span>}
-            </span>
-            )
-        }
-        if (props.suffix || props.prefix) {
-            return (
-                <span className={classnames(classes.inputIconWrapper)}
-                      style={{width:style.width,height:style.height}}>
-                     <input type="text"
-                            ref={ref=>this.input =ref}
-                            className={className}
-                            style={otherStyle}
-                            onKeyPress={this.onPressEnter.bind(this)}
-                         {...otherProps}
-                     />
+                    {props.addonbefore&&<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonbefore==="string"})}>{props.addonbefore}</span>}
+                    <input type="text"
+                           ref={ref=>this.input =ref}
+                           className={className}
+                           style={otherStyle}
+                           onKeyPress={this.onPressEnter.bind(this)}
+                           {...otherProps}
+                    />
                     {props.prefix &&
                     <span className={classnames(classes.icon,classes.inputSuffixL,[props.size])}>{props.prefix}</span>}
                     {props.suffix &&
                     <span className={classnames(classes.icon,classes.inputSuffixR,[props.size])}>{props.suffix}</span>}
-                </span>
+                    {props.addonafter&&<span className={classnames("inputGroupAddon",{"is-string":typeof props.addonafter==="string"})}>{props.addonafter}</span>}
+            </span>
             )
         }
         if (props.type === 'textarea') {
@@ -239,7 +223,7 @@ export default class Input extends Component {
                           ref={ref=>this.input =ref}
                           style={style}
                           onKeyPress={this.onPressEnter.bind(this)}
-                    {...otherProps}
+                          {...otherProps}
                 />
             )
         }
@@ -249,7 +233,7 @@ export default class Input extends Component {
                    className={className}
                    style={style}
                    onKeyPress={this.onPressEnter.bind(this)}
-                {...otherProps}
+                   {...otherProps}
             />
         )
     }

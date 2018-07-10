@@ -4,7 +4,7 @@
 ````jsx
 import Form from '@/components/Form'
 import Button from '@/components/Button'
-
+import moment from 'moment'
 
 export class <%=component%> extends Component {
     constructor(props) {
@@ -66,6 +66,10 @@ export class <%=component%> extends Component {
                                  type:'datepicker',
                                  name:'fire',
                                  label: "日期",
+                             },{
+                                 type:'timepicker',
+                                 name:'time',
+                                 label: "时间",
                              }
                          ]}
                >

@@ -62,7 +62,7 @@ const styles = (theme)=> {
             width: 16,
             height: 16,
             '& i': {
-                fontSize: '21px',
+                fontSize: '22px',
             },
         },
         imgUncheckDisabled:{},
