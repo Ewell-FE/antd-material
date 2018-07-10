@@ -41,7 +41,7 @@ export default class app extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        value&&this.props.onChange && this.props.onChange(value, value.format(this.props.format))
     }
 
     emitEmpty = (e) => {

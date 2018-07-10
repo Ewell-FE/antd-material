@@ -25,13 +25,14 @@ export default class Spin extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        value&&this.props.onChange && this.props.onChange(value, value.format(this.props.format))
     }
 
     render() {
         const state = this.state
         const props = this.props;
         const otherProps = omit(props, ['classes', 'value', 'onChange'])
+
         return (
             <TimePicker
                 prefixCls="yh-time-picker"
