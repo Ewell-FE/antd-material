@@ -10,7 +10,7 @@ function fixControlledValue(value) {
     }
     return value;
 }
-@withStyles(styles, {name: 'MuiFormSelectAnt'})
+@withStyles(styles, {name: 'MuiFormDatePickerAnt'})
 export default class renderInput extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props

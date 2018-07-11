@@ -40,8 +40,10 @@ let styles=(theme)=>{
             background:'transparent',
         },
         simpleCur:{
-            background:'transparent',
             color:activeColor
+        },
+        simpleCurItem:{
+
         },
         pageLink:{
             color:fontColor,
@@ -357,7 +359,7 @@ class App extends Component{
                     {
                         pageArr.map((item,index)=>{
                             return <li key={"page"+item}
-                                       className={classNames(item===current?classNames(pageItem,curItem):pageItem,simple&&classes.simpleItem)}
+                                       className={classNames(item===current?classNames(pageItem,curItem,simple&&classes.simpleCurItem):pageItem,simple&&classes.simpleItem)}
                                        onClick={this.changeCurrent.bind(this,item)}>
                                 <a className={classNames(item===current?classNames(pageLink,curLink,simple&&classes.simpleCur):pageLink)}>{item}</a>
                             </li>
