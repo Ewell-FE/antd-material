@@ -2,8 +2,8 @@
 ##受控模式，例如配合 Form 使用。
 
 ````jsx
-import Button from '@/components/Button'
-import Form from '@/components/Form'
+import Button from 'antd-material/core/Button'
+import Form from 'antd-material/core/Form'
 export class <%=component%> extends Component {
     Submit(values){
         console.log(values)

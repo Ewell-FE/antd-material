@@ -2,7 +2,7 @@
 ##用 a 标签进行包裹即可。
 
 ````jsx
-import Badge from '@/components/Badge'
+import Badge from 'antd-material/core/Badge'
 export class <%=component%> extends Component {
     render() {
         return (

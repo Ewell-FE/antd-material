@@ -3,9 +3,9 @@
 
 
 ````jsx
-import Mention from '@/components/Mention'
-import Button from '@/components/Button'
-import Popover from '@/components/Popover'
+import Mention from 'antd-material/core/Mention'
+import Button from 'antd-material/core/Button'
+import Popover from 'antd-material/core/Popover'
 export class <%=component%> extends Component {
     state = {
         visible: false,

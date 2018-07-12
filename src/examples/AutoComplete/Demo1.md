@@ -2,7 +2,7 @@
 ##基本使用。通过 dataSource 设置自动完成的数据源
 
 ````jsx
-import AutoComplete from '@/components/AutoComplete'
+import AutoComplete from 'antd-material/core/AutoComplete'
 
 export class <%=component%> extends Component {
      state = {

@@ -15,7 +15,7 @@
           value: '文章',
           lable: '文章',
         }];
-import AutoComplete from '@/components/AutoComplete'
+import AutoComplete from 'antd-material/core/AutoComplete'
 export class <%=component%> extends Component {
      options(options){
         return (

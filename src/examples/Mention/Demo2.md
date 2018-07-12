@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Mention from '@/components/Mention'
+import Mention from 'antd-material/core/Mention'
 const Nav = Mention.Nav;
 let webFrameworks = [
       { name: 'React', type: 'JavaScript' },

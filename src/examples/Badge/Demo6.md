@@ -2,7 +2,7 @@
 ##用于表示状态的小圆点
 
 ````jsx
-import Badge from '@/components/Badge'
+import Badge from 'antd-material/core/Badge'
 export class <%=component%> extends Component {
 
     render() {

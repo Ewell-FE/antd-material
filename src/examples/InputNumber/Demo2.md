@@ -3,7 +3,7 @@
 
 
 ````jsx
-import InputNumber from '@/components/InputNumber'
+import InputNumber from 'antd-material/core/InputNumber'
 
 export class Demo2md extends Component {
     render() {

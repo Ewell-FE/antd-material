@@ -1,7 +1,7 @@
 # 两种大小
 ## size="small" 表示小号开关。
 ````jsx
-import Switch from '@/components/Switch'
+import Switch from 'antd-material/core/Switch'
 export class <%=component%> extends Component {
 
         render() {

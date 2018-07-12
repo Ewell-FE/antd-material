@@ -2,7 +2,7 @@
 ##不区分大小写的 AutoComplete
 
 ````jsx
-import AutoComplete from '@/components/AutoComplete'
+import AutoComplete from 'antd-material/core/AutoComplete'
 let dataSource = [{value:'Burns Bay Road',label:'Burns Bay Road'}, {value:'Downing Street',label:'Downing Street'}, {value:'Wall Street',label:'Wall Street'}];
 export class <%=component%> extends Component {
 

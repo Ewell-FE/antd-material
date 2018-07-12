@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Anchor from '@/components/Anchor'
-import Link from '@/components/Anchor/Link'
+import Anchor from 'antd-material/core/Anchor'
+import Link from 'antd-material/core/Anchor/Link'
 
 export class <%=component%> extends Component {
     render() {

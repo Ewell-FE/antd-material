@@ -2,9 +2,8 @@
 ## 设计过多元素排版默认使用垂直排列方式，或者自己自定义排版
 
 ````jsx
-import Form from '@/components/Form'
-import Button from '@/components/Button'
-import moment from 'moment'
+import Form from 'antd-material/core/Form'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
     constructor(props) {

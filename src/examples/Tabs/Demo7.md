@@ -2,7 +2,7 @@
 ## 不提供垂直样式。
 
 ````jsx
-import Tabs from '@/components/Tabs'
+import Tabs from 'antd-material/core/Tabs'
 const Tab = Tabs.Tab
 
 export class Demo7md extends Component {

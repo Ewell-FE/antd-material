@@ -2,8 +2,8 @@
 ## 用数组生成一组标签，可以动态添加和删除，通过监听删除动画结束的事件 afterClose 实现。
 
 ````jsx
-import Tag from '@/components/Tag'
-import Input from '@/components/Input'
+import Tag from 'antd-material/core/Tag'
+import Input from 'antd-material/core/Input'
 import {withStyles} from '@material-ui/core/styles';
 const styles = theme => ({
     root: {

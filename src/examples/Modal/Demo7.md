@@ -2,8 +2,8 @@
 ##各种类型的信息提示，只提供一个按钮用于关闭。
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
      info() {

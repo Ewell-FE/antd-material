@@ -2,7 +2,7 @@
 ##通常用于消息提示。
 
 ````jsx
-import Avatar from '@/components/Avatar'
+import Avatar from 'antd-material/core/Avatar'
 
 export class <%=component%> extends Component {
     render() {

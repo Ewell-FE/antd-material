@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Menu from '@/components/Menu'
-import Icon from '@/components/Icon'
+import Menu from 'antd-material/core/Menu'
+import Icon from 'antd-material/core/Icon'
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
 const Divider = Menu.Divider

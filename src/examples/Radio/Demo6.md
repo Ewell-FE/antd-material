@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Radio from '@/components/Radio'
+import Radio from 'antd-material/core/Radio'
 const RadioGroup = Radio.Group
 const RadioButton = Radio.Button
 export class <%=component%> extends Component {

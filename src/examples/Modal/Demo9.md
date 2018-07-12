@@ -2,8 +2,8 @@
 ##点击确定后异步关闭对话框，例如提交表单。
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
       state = {

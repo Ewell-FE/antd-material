@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Input from '@/components/Input'
-import Icon from '@/components/Icon'
+import Input from 'antd-material/core/Input'
+import Icon from 'antd-material/core/Icon'
 
 const Search = Input.Search
 

@@ -2,7 +2,7 @@
 ## 有图标的标签。
 
 ````jsx
-import Tabs from '@/components/Tabs'
+import Tabs from 'antd-material/core/Tabs'
 const Tab = Tabs.Tab
 export class Demo3md extends Component {
     constructor(props) {

@@ -4,9 +4,9 @@
 
 
 ````jsx
-import Popconfirm from '@/components/Popconfirm'
-import Message from '@/components/Message'
-import Button from '@/components/Button'
+import Popconfirm from 'antd-material/core/Popconfirm'
+import Message from 'antd-material/core/Message'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
       positions=['topLeft','top','topRight','leftTop','rightTop','left','right',

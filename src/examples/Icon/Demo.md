@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Icon from '@/components/Icon'
+import Icon from 'antd-material/core/Icon'
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => {

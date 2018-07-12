@@ -2,8 +2,8 @@
 ##可以设置通知从右上角、右下角、左下角、左上角弹出。
 
 ````jsx
-import Notification from '@/components/Notification'
-import Button from '@/components/Button'
+import Notification from 'antd-material/core/Notification'
+import Button from 'antd-material/core/Button'
 
 const options = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
 export class <%=component%> extends Component {

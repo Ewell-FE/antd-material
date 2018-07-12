@@ -2,8 +2,8 @@
 ##对于字符型的头像，当字符串较长时，字体大小可以根据头像宽度自动调整。
 
 ````jsx
-import Avatar from '@/components/Avatar'
-import Button from '@/components/Button'
+import Avatar from 'antd-material/core/Avatar'
+import Button from 'antd-material/core/Button'
 
 const UserList = ['U', 'Lucy', 'Tom', 'Edward'];
 const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];

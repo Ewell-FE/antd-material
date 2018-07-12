@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Table from '@/components/Table'
+import Table from 'antd-material/core/Table'
 
 export class <%=component%> extends Component {
     constructor(props){

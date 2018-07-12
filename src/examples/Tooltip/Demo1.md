@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Tooltip from '@/components/Tooltip'
+import Tooltip from 'antd-material/core/Tooltip'
 
 export class <%=component%> extends Component {
     render() {

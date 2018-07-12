@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Breadcrumb from '@/components/Breadcrumb'
-import Icon from '@/components/Icon'
+import Breadcrumb from 'antd-material/core/Breadcrumb'
+import Icon from 'antd-material/core/Icon'
 const BreadcrumbItem=Breadcrumb.BreadcrumbItem
 export class Demo2md extends Component {
     render() {

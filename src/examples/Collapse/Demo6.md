@@ -2,7 +2,7 @@
 ## 你可以通过 showArrow={false} 隐藏 Panel 组件的箭头图标。
 
 ````jsx
-import Collapse  from '@/components/Collapse'
+import Collapse  from 'antd-material/core/Collapse'
 const Panel = Collapse.Panel;
 export class <%=component%> extends Component {
     render() {

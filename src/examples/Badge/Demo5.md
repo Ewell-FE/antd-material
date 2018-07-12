@@ -2,8 +2,8 @@
 ##没有具体的数字。
 
 ````jsx
-import Badge from '@/components/Badge'
-import Icon from '@/components/Icon'
+import Badge from 'antd-material/core/Badge'
+import Icon from 'antd-material/core/Icon'
 export class <%=component%> extends Component {
 
     render() {

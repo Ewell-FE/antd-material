@@ -2,7 +2,7 @@
 ## 默认选中第一项。
 
 ````jsx
-import Tabs from '@/components/Tabs'
+import Tabs from 'antd-material/core/Tabs'
 
 const Tab = Tabs.Tab
 

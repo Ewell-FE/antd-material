@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Mention from '@/components/Mention'
+import Mention from 'antd-material/core/Mention'
 let usersData = ['afc163', 'benjycui', 'yiminghe', 'jljsj33', 'dqaria', 'RaoHai'];
 let tags = ['1.0', '2.0', '3.0'];
 

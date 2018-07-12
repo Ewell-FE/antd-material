@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Button from '@/components/Button'
-import Form from '@/components/Form'
+import Button from 'antd-material/core/Button'
+import Form from 'antd-material/core/Form'
 const { getMentions } = Mention;
 const checkMention = value =>(getMentions(toContentState(value)).length < 2? "More than one must be selected!":undefined)
 export class <%=component%> extends Component {

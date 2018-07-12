@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Alert from '@/components/Alert'
+import Alert from 'antd-material/core/Alert'
 
 export class <%=component%> extends Component {
     render() {

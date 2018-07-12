@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Input from '@/components/Input'
+import Input from 'antd-material/core/Input'
 
 export class <%=component%> extends Component {
     render() {

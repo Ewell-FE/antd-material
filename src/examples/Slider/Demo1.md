@@ -2,8 +2,8 @@
 ## 基本滑动条。当 range 为 true 时，渲染为双滑块。当 disabled 为 true 时，滑块处于不可用状态。
 
 ````jsx
-import Slider from '@/components/Slider'
-import Switch from '@/components/Switch';
+import Slider from 'antd-material/core/Slider'
+import Switch from 'antd-material/core/Switch';
 
 export class Demo1md extends Component {
     constructor(props) {

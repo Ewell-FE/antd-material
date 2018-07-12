@@ -3,9 +3,9 @@
 
 
 ````jsx
-import Steps from '@/components/Steps'
-import message from '@/components/Message'
-import Button from '@/components/Button'
+import Steps from 'antd-material/core/Steps'
+import message from 'antd-material/core/Message'
+import Button from 'antd-material/core/Button'
 
 const Step = Steps.Step;
 

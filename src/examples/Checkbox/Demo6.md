@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Checkbox from '@/components/Checkbox';
+import Checkbox from 'antd-material/core/Checkbox';
 const CheckboxGroup = Checkbox.Group;
 import Grid from '@material-ui/core/Grid';
 export class <%=component%> extends Component {

@@ -2,7 +2,7 @@
 ## 自定义各个面板的背景色、圆角和边距。
 
 ````jsx
-import Collapse  from '@/components/Collapse'
+import Collapse  from 'antd-material/core/Collapse'
 const Panel = Collapse.Panel;
 export class <%=component%> extends Component {
     render() {

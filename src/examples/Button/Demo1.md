@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Button from '@/components/Button'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
     render() {

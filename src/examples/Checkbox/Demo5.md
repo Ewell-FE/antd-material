@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Checkbox from '@/components/Checkbox';
+import Checkbox from 'antd-material/core/Checkbox';
 const CheckboxGroup = Checkbox.Group;
 
 const plainOptions5 = ['Apple', 'Pear', 'Orange'];

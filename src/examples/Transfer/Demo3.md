@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Transfer from '@/components/Transfer'
-import Button from '@/components/Button'
+import Transfer from 'antd-material/core/Transfer'
+import Button from 'antd-material/core/Button'
 
 
 

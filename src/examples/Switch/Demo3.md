@@ -1,7 +1,7 @@
 # 字符
 ## 可以添加文字和图标
 ````jsx
-import Switch from '@/components/Switch'
+import Switch from 'antd-material/core/Switch'
 export class <%=component%> extends Component {
         render(){
             return (

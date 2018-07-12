@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Steps from '@/components/Steps'
+import Steps from 'antd-material/core/Steps'
 const Step = Steps.Step;
 
 

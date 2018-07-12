@@ -2,8 +2,8 @@
 ## 可以将多个 Button 放入 Button.Group 的容器中。按钮组的size会覆盖button的size
 
 ````jsx
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 const ButtonGroup = Button.Group
 
 export class <%=component%> extends Component {

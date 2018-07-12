@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import Api from './Api'
 import Title from './Title'
 import Templete from '../Template'
-import Table from '@/components/Table'
+import Table from 'antd-material/core/Table'
 
 
 
@@ -280,7 +280,7 @@ export default class App extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      简单的表格，最后一列是各种操作。
                                 </p>
-                    <Templete code={`import Table from '@/components/Table'
+                    <Templete code={`import Table from 'antd-material/core/Table'
 let data1 = [{
     key: '1',
     name: '胡彦斌1',
@@ -379,7 +379,7 @@ export class Demo1md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      第一列是联动的选择框。
                                 </p>
-                    <Templete code={`import Table from '@/components/Table'
+                    <Templete code={`import Table from 'antd-material/core/Table'
 let data2 = [{
     key: '1',
     name: '胡彦斌1',
@@ -474,7 +474,7 @@ export class Demo2md extends Component {
                                 <p style={{margin:'24px 0 12px 0'}}>
                                      展示每行数据更详细的信息
                                 </p>
-                    <Templete code={`import Table from '@/components/Table'
+                    <Templete code={`import Table from 'antd-material/core/Table'
 
 export class Demo3md extends Component {
     constructor(props){

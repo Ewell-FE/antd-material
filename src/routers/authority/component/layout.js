@@ -30,6 +30,8 @@ import {
 import  * as demo from '../examples'
 const drawerWidth = 240;
 
+let scrollTimer = null
+
 const styles = theme => ({
     '@global body': {
         fontFamily: 'Monospaced Number,Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif'
@@ -44,6 +46,7 @@ const styles = theme => ({
         position: 'relative',
         display: 'flex',
         width: '100%',
+        backgroundColor: '#FFFFFF'
     },
     appBar: {
         position: 'absolute',
@@ -75,6 +78,8 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
         width: drawerWidth,
+        height: 'inherit',
+        borderRight: 'none',
         "&::-webkit-scrollbar": {
             width: '4px',
             height: '4px',
@@ -93,8 +98,6 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
         position: 'relative',
@@ -179,6 +182,21 @@ class PersistentDrawer extends React.Component {
                 })}
             </div>
         );
+        const oddEvent = (match, location) => {
+            if (!match) {
+                return false
+            }
+            window.cancelAnimationFrame(scrollTimer);
+            scrollTimer = window.requestAnimationFrame(function fn(){
+                var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+                if(oTop > 0){
+                    document.body.scrollTop = document.documentElement.scrollTop = oTop - 100;
+                    scrollTimer = window.requestAnimationFrame(fn);
+                }else{
+                    window.cancelAnimationFrame(scrollTimer);
+                }
+            });
+        }
         const drawer = (
             <Drawer
                 variant="persistent"
@@ -195,11 +213,11 @@ class PersistentDrawer extends React.Component {
                     </IconButton>
                 </div>
                 <div>
-                    <Divider />
                     <List style={{paddingLeft:'20px'}}>
                         <li><NavLink
                             to="/material/docs/start.html"
                             style={{color:'#314659'}}
+                            isActive={oddEvent}
                             activeStyle={{
                                 color: this.state.primary
                             }}
@@ -209,18 +227,17 @@ class PersistentDrawer extends React.Component {
                 {Object.keys(components).map((title, i)=> {
                     return (
                         <div key={i}>
-                            <Divider />
                             <List style={{paddingLeft:'20px',color:' rgba(0, 0, 0, 0.45)'}}>
                                 <li key={i}>{title}</li>
                             </List>
                             {components[title].map((item, j)=> {
                                 return (
                                     <div key={j}>
-                                        <Divider />
                                         <List style={{paddingLeft:'40px'}}>
                                             <li><NavLink
                                                 to={"/material/docs/"+item.name+".html"}
                                                 style={{color:'#314659'}}
+                                                isActive={oddEvent}
                                                 activeStyle={{
                                                             color: this.state.primary
                                                         }}

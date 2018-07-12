@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Pagination from '@/components/Pagination'
+import Pagination from 'antd-material/core/Pagination'
 
 export class <%=component%> extends Component {
     render() {

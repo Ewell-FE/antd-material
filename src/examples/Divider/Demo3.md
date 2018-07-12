@@ -1,7 +1,7 @@
 # 标题位置
 ## 修改分割线标题的位置。
 ````jsx
-import Divider  from '@/components/Divider'
+import Divider  from 'antd-material/core/Divider'
 export class <%=component%> extends Component {
     render() {
         return (

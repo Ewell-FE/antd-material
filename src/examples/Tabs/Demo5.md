@@ -2,9 +2,9 @@
 ## 大号页签用在页头区域，小号用在弹出框等较狭窄的容器内。
 
 ````jsx
-import Tabs from '@/components/Tabs'
-import Button from '@/components/Button'
-import Button from '@/components/Button'
+import Tabs from 'antd-material/core/Tabs'
+import Button from 'antd-material/core/Button'
+import Button from 'antd-material/core/Button'
 const ButtonGroup = Button.Group
 const Tab = Tabs.Tab
 export class Demo5md extends Component {

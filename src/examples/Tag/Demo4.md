@@ -2,7 +2,7 @@
 ## 可实现类似 Checkbox 的效果，点击切换选中效果。
 
 ````jsx
-import Tag from '@/components/Tag'
+import Tag from 'antd-material/core/Tag'
 const CheckableTag=Tag.CheckableTag
 export class Demo4md extends Component {
     constructor(props) {

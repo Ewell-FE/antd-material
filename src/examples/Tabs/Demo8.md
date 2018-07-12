@@ -2,7 +2,7 @@
 ## 只有卡片样式的页签支持新增和关闭选项。 使用 closable={true} 添加关闭。
 
 ````jsx
-import Tabs from '@/components/Tabs'
+import Tabs from 'antd-material/core/Tabs'
 const Tab = Tabs.Tab
 export class Demo8md extends Component {
     constructor(props) {

@@ -2,9 +2,9 @@
 ##图标可以被自定义。
 
 ````jsx
-import Notification from '@/components/Notification'
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Notification from 'antd-material/core/Notification'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 export class <%=component%> extends Component {
     openNotification(){
         Notification.open({

@@ -3,10 +3,10 @@
 
 
 ````jsx
-import Upload from '@/components/Upload'
-import Message from '@/components/Message'
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Upload from 'antd-material/core/Upload'
+import Message from 'antd-material/core/Message'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 export class <%=component%> extends Component {
    fileList = [{
      uid: -1,

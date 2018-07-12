@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Spin from '@/components/Spin'
+import Spin from 'antd-material/core/Spin'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles2 = theme => ({

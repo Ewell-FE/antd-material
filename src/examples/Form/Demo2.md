@@ -2,8 +2,8 @@
 ## 标题在输入框头部的垂直模式 layout="vertical"
 
 ````jsx
-import Form from '@/components/Form'
-import Button from '@/components/Button'
+import Form from 'antd-material/core/Form'
+import Button from 'antd-material/core/Button'
 
 const roleLength2=value => ((value && value.length>=30) ? '不能大于30个字符':undefined);
 

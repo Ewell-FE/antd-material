@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Transfer from '@/components/Transfer'
+import Transfer from 'antd-material/core/Transfer'
 
 
 

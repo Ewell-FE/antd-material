@@ -2,7 +2,7 @@
 ## 垂直方向的 Slider。
 
 ````jsx
-import Slider from '@/components/Slider'
+import Slider from 'antd-material/core/Slider'
 
 let marks = {
     0: '0°C',

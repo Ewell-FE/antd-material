@@ -3,8 +3,8 @@
 
 
 ````jsx
-import InputNumber from '@/components/InputNumber'
-import Button from '@/components/Button'
+import InputNumber from 'antd-material/core/InputNumber'
+import Button from 'antd-material/core/Button'
 export class Demo3md extends Component {
     constructor(props) {
         super(props);

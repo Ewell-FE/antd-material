@@ -2,7 +2,7 @@
 ## 使用 okText 和 cancelText 自定义按钮文字。
 
 ````jsx
-import Popconfirm from '@/components/Popconfirm'
+import Popconfirm from 'antd-material/core/Popconfirm'
 export class <%=component%> extends Component {
 
     render() {

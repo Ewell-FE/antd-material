@@ -2,8 +2,8 @@
 ##您可以直接使用 style.top 或配合其他样式来设置对话框位置。
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
        state = {

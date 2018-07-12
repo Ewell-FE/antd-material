@@ -1,7 +1,7 @@
 # 搜索框
 ## 自动补全和远程数据结合
 ````jsx
-import Select from '@/components/Select';
+import Select from 'antd-material/core/Select';
 import querystring from 'querystring';
 const Option = Select.Option
 

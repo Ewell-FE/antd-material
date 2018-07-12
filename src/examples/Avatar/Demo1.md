@@ -2,7 +2,7 @@
 ##头像有三种尺寸,两种形状可选
 
 ````jsx
-import Avatar from '@/components/Avatar'
+import Avatar from 'antd-material/core/Avatar'
 
 export class <%=component%> extends Component {
     render() {

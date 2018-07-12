@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Mention from '@/components/Mention'
+import Mention from 'antd-material/core/Mention'
 const Nav = Mention.Nav;
 let webFramework = [
   { name: 'React', type: 'JavaScript', icon: 'https://zos.alipayobjects.com/rmsportal/LFIeMPzdLcLnEUe.svg' },

@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Affix from '@/components/Affix'
-import Button from '@/components/Button'
+import Affix from 'antd-material/core/Affix'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
     render() {

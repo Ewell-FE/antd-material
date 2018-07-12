@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Checkbox from '@/components/Checkbox';
+import Checkbox from 'antd-material/core/Checkbox';
 
 export class <%=component%> extends Component {
 

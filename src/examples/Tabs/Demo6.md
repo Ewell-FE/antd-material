@@ -2,7 +2,7 @@
 ## 可以左右滑动，能容纳更多的标签。
 
 ````jsx
-import Tabs from '@/components/Tabs'
+import Tabs from 'antd-material/core/Tabs'
 const Tab = Tabs.Tab
 
 export class Demo6md extends Component {

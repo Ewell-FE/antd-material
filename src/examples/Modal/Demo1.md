@@ -2,8 +2,8 @@
 ##第一个对话框
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
      state = { visible: false }

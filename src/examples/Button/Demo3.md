@@ -2,8 +2,8 @@
 ##  当需要在 Button 内嵌入 Icon 时，直接在 Button 内使用 Icon 组件，组件内部会根据位置自动调节边距方向。
 
 ````jsx
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 
 export class <%=component%> extends Component {
     render() {

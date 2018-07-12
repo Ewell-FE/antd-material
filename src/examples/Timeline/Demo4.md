@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Timeline from '@/components/Timeline'
-import Icon from '@/components/Icon'
+import Timeline from 'antd-material/core/Timeline'
+import Icon from 'antd-material/core/Icon'
 
 
 export class <%=component%> extends Component {

@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Carousel from '@/components/Carousel'
+import Carousel from 'antd-material/core/Carousel'
 import {withStyles} from '@material-ui/core/styles';
 const style = theme =>{
     return{

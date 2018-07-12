@@ -2,8 +2,8 @@
 ## 滑块左右可以设置图标来表达业务含义。
 
 ````jsx
-import Slider from '@/components/Slider'
-import Icon from '@/components/Icon'
+import Slider from 'antd-material/core/Slider'
+import Icon from 'antd-material/core/Icon'
 import {withStyles} from '@material-ui/core/styles';
 const stylesIcon = theme => {
     return {

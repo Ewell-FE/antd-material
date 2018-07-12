@@ -2,7 +2,7 @@
 ## 基本标签的用法，可以通过添加 closable 变为可关闭标签。可关闭标签具有 onClose afterClose 两个事件。
 
 ````jsx
-import Tag from '@/components/Tag'
+import Tag from 'antd-material/core/Tag'
 export class Demo1md extends Component {
     render() {
         return (

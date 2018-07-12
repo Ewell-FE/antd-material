@@ -2,7 +2,7 @@
 ##简单的徽章展示，当 count 为 0 时，默认显示，但是可以使用 unshowZero 修改为不显示。
 
 ````jsx
-import Badge from '@/components/Badge'
+import Badge from 'antd-material/core/Badge'
 export class <%=component%> extends Component {
 
     render() {

@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Button from '@/components/Button'
-import Message from '@/components/Message'
+import Button from 'antd-material/core/Button'
+import Message from 'antd-material/core/Message'
 export class <%=component%> extends Component {
     render() {
         return (

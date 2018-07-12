@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Mention from '@/components/Mention'
+import Mention from 'antd-material/core/Mention'
 const { toStrings, toContentState } = Mention;
 
 export class <%=component%> extends Component {

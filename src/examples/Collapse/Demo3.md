@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Collapse  from '@/components/Collapse'
+import Collapse  from 'antd-material/core/Collapse'
 const Panel = Collapse.Panel;
 export class <%=component%> extends Component {
     render() {

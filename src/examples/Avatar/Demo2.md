@@ -2,7 +2,7 @@
 ##支持三种类型：图片、Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
 ````jsx
-import Avatar from '@/components/Avatar'
+import Avatar from 'antd-material/core/Avatar'
 import m1 from '@/routers/assets/image_user.png'
 export class <%=component%> extends Component {
     render() {

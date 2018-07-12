@@ -2,8 +2,8 @@
 ##使用 style 和 className 来定义样式。
 
 ````jsx
-import Notification from '@/components/Notification'
-import Button from '@/components/Button'
+import Notification from 'antd-material/core/Notification'
+import Button from 'antd-material/core/Button'
 export class <%=component%> extends Component {
     openNotification(){
         Notification.open({

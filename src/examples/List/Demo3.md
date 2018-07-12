@@ -4,7 +4,7 @@
 
 ````jsx
 import Avatar from '@material-ui/core/Avatar';
-import List from '@/components/List'
+import List from 'antd-material/core/List'
 
 export class <%=component%> extends Component {
     data=[

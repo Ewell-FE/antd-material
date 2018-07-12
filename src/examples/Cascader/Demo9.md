@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Cascader from '@/components/Cascader';
+import Cascader from 'antd-material/core/Cascader';
 function filter(inputValue, path) {
   return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
 }

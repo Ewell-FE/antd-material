@@ -2,7 +2,7 @@
 ## format 属性指定格式。
    
 ````jsx
-import Progress  from '@/components/Progress'
+import Progress  from 'antd-material/core/Progress'
 
 export class <%=component%> extends Component {
     render() {

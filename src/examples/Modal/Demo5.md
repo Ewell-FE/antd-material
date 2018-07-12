@@ -3,8 +3,8 @@
 ##不需要默认确定取消按钮时，你可以把 footer 设为 null。
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
       state = {

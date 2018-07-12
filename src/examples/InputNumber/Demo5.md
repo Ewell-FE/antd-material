@@ -2,7 +2,7 @@
 ## 和原生的数字输入框一样，value 的精度由 step 的小数位数决定
 
 ````jsx
-import InputNumber from '@/components/InputNumber'
+import InputNumber from 'antd-material/core/InputNumber'
 export class Demo5md extends Component {
     constructor(props) {
         super(props);

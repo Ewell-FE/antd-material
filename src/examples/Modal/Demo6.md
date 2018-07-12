@@ -2,8 +2,8 @@
 ##使用 confirm() 可以快捷地弹出确认框。
 
 ````jsx
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
 const confirm = Modal.confirm;
 
 export class <%=component%> extends Component {

@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Cascader from '@/components/Cascader'
+import Cascader from 'antd-material/core/Cascader'
 
 export class <%=component%> extends Component {
 

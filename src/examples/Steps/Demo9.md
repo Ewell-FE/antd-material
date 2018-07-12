@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Steps from '@/components/Steps'
-import Popover from '@/components/Popover'
+import Steps from 'antd-material/core/Steps'
+import Popover from 'antd-material/core/Popover'
 
 const Step = Steps.Step;
 

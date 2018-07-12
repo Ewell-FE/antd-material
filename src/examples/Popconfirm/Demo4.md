@@ -3,9 +3,9 @@
 
 
 ````jsx
-import Popconfirm from '@/components/Popconfirm'
-import Switch from '@/components/Switch'
-import Message  from '@/components/Message '
+import Popconfirm from 'antd-material/core/Popconfirm'
+import Switch from 'antd-material/core/Switch'
+import Message  from 'antd-material/core/Message '
 
 export class <%=component%> extends Component {
     constructor(props){

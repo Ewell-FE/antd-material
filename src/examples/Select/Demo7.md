@@ -1,7 +1,7 @@
 # 带搜索框
 ## 展开后可对选项进行搜索。
 ````jsx
-import Select from '@/components/Select';
+import Select from 'antd-material/core/Select';
 const Option = Select.Option
 
 export class <%=component%> extends Component {

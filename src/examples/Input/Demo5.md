@@ -3,9 +3,9 @@
 
 
 ````jsx
-import Input from '@/components/Input'
-import Icon from '@/components/Icon'
-import Select from '@/components/Select'
+import Input from 'antd-material/core/Input'
+import Icon from 'antd-material/core/Icon'
+import Select from 'antd-material/core/Select'
 
 var SelectDemo = ()=>{
     return (
@@ -43,8 +43,6 @@ export class <%=component%> extends Component {
     }
 
     render() {
-        const { userName } = this.state;
-        const suffix = userName ? <Icon type="close" onClick={this.emitEmpty} /> : null;
         return (
             <div>
                 <Input addonbefore="Http://" addonafter=".com" defaultValue="mysite" />

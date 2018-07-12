@@ -3,12 +3,12 @@
 
 
 ````jsx
-import Upload from '@/components/Upload'
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Upload from 'antd-material/core/Upload'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 import reqwest from 'reqwest';
-import Message from '@/components/Message'
+import Message from 'antd-material/core/Message'
 
 export class <%=component%> extends Component {
     state = {

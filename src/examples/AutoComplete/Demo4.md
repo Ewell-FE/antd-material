@@ -2,7 +2,7 @@
 ##查询模式: 不确定类目 示例。
 
 ````jsx
-import AutoComplete from '@/components/AutoComplete'
+import AutoComplete from 'antd-material/core/AutoComplete'
 function getRandomInt(max, min = 0) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Steps from '@/components/Steps'
-import Icon from '@/components/Icon'
+import Steps from 'antd-material/core/Steps'
+import Icon from 'antd-material/core/Icon'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Step = Steps.Step;

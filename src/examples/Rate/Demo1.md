@@ -1,7 +1,7 @@
 # 基础
 ## 基础用法
 ````jsx
-import Rate from '@/components/Rate'
+import Rate from 'antd-material/core/Rate'
 export class <%=component%> extends Component {
     render() {
         return (

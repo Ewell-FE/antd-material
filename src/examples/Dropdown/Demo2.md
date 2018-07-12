@@ -3,11 +3,11 @@
 
 
 ````jsx
-import Dropdown from '@/components/Dropdown'
+import Dropdown from 'antd-material/core/Dropdown'
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
 
 export class <%=component%> extends Component {
     render() {

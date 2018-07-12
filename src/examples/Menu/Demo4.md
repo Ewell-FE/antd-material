@@ -3,14 +3,11 @@
 
 
 ````jsx
-import Menu from '@/components/Menu'
-import Icon from '@/components/Icon'
-import Switch from '@/components/Switch'
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
+import Menu from 'antd-material/core/Menu'
+import Icon from 'antd-material/core/Icon'
+import Switch from 'antd-material/core/Switch'
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
-const Divider = Menu.Divider
 const MenuItemGroup = Menu.MenuItemGroup;
 
 export class <%=component%> extends Component {

@@ -1,7 +1,7 @@
 # 半星
 ## 支持半星选中
 ````jsx
-import Rate from '@/components/Rate'
+import Rate from 'antd-material/core/Rate'
 export class <%=component%> extends Component {
     render() {
         return (

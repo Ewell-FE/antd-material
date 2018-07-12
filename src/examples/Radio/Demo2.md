@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Radio from '@/components/Radio'
-import Button from '@/components/Button'
+import Radio from 'antd-material/core/Radio'
+import Button from 'antd-material/core/Button'
 export class <%=component%> extends Component {
     constructor(props){
         super(props)

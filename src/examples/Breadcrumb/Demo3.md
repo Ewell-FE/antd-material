@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Breadcrumb from '@/components/Breadcrumb'
-import Alert from '@/components/Alert'
+import Breadcrumb from 'antd-material/core/Breadcrumb'
+import Alert from 'antd-material/core/Alert'
 import {HashRouter as Router, Route, Switch, Link, withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 

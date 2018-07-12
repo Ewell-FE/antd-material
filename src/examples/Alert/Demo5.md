@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Alert from '@/components/Alert'
+import Alert from 'antd-material/core/Alert'
 const onAfterClose = function () {
     console.log('I was closed after transition.');
 };

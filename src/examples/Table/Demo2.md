@@ -3,7 +3,7 @@
 
 
 ````jsx
-import Table from '@/components/Table'
+import Table from 'antd-material/core/Table'
 let data2 = [{
     key: '1',
     name: '胡彦斌1',

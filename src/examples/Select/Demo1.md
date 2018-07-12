@@ -1,7 +1,7 @@
 # 基础
 ## 基础用法
 ````jsx
-import Select from '@/components/Select';
+import Select from 'antd-material/core/Select';
 const Option = Select.Option
 
 export class <%=component%> extends Component {

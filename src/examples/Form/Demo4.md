@@ -2,8 +2,8 @@
 ## Grid栅格的方式来进行表单布局 layout="grid"
 
 ````jsx
-import Form from '@/components/Form'
-import Button from '@/components/Button'
+import Form from 'antd-material/core/Form'
+import Button from 'antd-material/core/Button'
 
 const roleLength4=value => ((value && value.length>=30) ? '不能大于30个字符':undefined);
 

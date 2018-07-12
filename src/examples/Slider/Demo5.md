@@ -2,7 +2,7 @@
 ## 使用 tipFormatter 可以格式化 Tooltip 的内容，设置 tipFormatter={null}，则隐藏 Tooltip。
 
 ````jsx
-import Slider from '@/components/Slider'
+import Slider from 'antd-material/core/Slider'
 function formatter(value) {
     let valueAfter=value+'%'
     return valueAfter;

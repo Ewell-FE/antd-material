@@ -4,7 +4,7 @@
 ## 可通过设置 header 和 footer，来自定义列表头部和尾部。
 
 ````jsx
-import List from '@/components/List'
+import List from 'antd-material/core/List'
 
 export class <%=component%> extends Component {
     dataText=[

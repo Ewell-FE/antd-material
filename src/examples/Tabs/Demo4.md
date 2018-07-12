@@ -2,8 +2,8 @@
 ## 可以在页签右边添加附加操作。
 
 ````jsx
-import Tabs from '@/components/Tabs'
-import Button from '@/components/Button'
+import Tabs from 'antd-material/core/Tabs'
+import Button from 'antd-material/core/Button'
 
 const Tab = Tabs.Tab
 const operations = [<Button size="small">Extra Action</Button>];

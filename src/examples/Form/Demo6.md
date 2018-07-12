@@ -2,12 +2,12 @@
 ## Grid栅格的方式来进行表单布局 layout="grid"
 
 ````jsx
-import Form from '@/components/Form'
-import Button from '@/components/Button'
-import Icon from '@/components/Icon'
-import Modal from '@/components/Modal'
-import Radio from '@/components/Radio'
-import Message from '@/components/Message'
+import Form from 'antd-material/core/Form'
+import Button from 'antd-material/core/Button'
+import Icon from 'antd-material/core/Icon'
+import Modal from 'antd-material/core/Modal'
+import Radio from 'antd-material/core/Radio'
+import Message from 'antd-material/core/Message'
 const RadioGroup = Radio.Group
 const RadioButton = Radio.Button
 
@@ -41,7 +41,7 @@ export class <%=component%> extends Component {
     handleChange = ({ fileList }) =>{this.setState({ fileList2:fileList })}
 
     render() {
-        const {previewVisible, previewImage, fileList,fileList2}=this.state;
+        const {previewVisible, previewImage, fileList2}=this.state;
         const plainOptions = ['Apple', 'Pear', 'Orange'];
         const plainOptions2=[
                       { label: 'Apple', value: 'Apple' },

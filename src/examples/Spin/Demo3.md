@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Spin from '@/components/Spin'
-import Alert from '@/components/Alert'
+import Spin from 'antd-material/core/Spin'
+import Alert from 'antd-material/core/Alert'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles3 = theme => ({

@@ -1,7 +1,7 @@
 # 分组
 ## 用 OptGroup 进行选项分组。
 ````jsx
-import Select from '@/components/Select';
+import Select from 'antd-material/core/Select';
 const Option = Select.Option
 const OptGroup = Select.OptGroup
 

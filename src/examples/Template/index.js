@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import HighLight from 'react-highlight';
 import {withStyles} from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import Icon from '@/components/Icon'
+import Icon from 'antd-material/core/Icon'
 import './atom-one-light.css'
 import Collapse from '@material-ui/core/Collapse';
 

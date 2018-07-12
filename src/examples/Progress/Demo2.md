@@ -2,7 +2,7 @@
 ## 圈形的进度。
    
 ````jsx
-import Progress  from '@/components/Progress'
+import Progress  from 'antd-material/core/Progress'
 export class <%=component%> extends Component {
     render() {
         return (

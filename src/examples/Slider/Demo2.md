@@ -2,9 +2,9 @@
 ## 和 数字输入框 组件保持同步。
 
 ````jsx
-import Slider from '@/components/Slider'
-import InputNumber from '@/components/InputNumber'
-import Slider from '@/components/Slider'
+import Slider from 'antd-material/core/Slider'
+import InputNumber from 'antd-material/core/InputNumber'
+import Slider from 'antd-material/core/Slider'
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 

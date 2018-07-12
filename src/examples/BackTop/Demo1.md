@@ -3,7 +3,7 @@
 
 
 ````jsx
-import BackTop from '@/components/BackTop'
+import BackTop from 'antd-material/core/BackTop'
 
 export class <%=component%> extends Component {
     render() {

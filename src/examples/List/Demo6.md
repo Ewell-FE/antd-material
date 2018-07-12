@@ -4,8 +4,8 @@
 
 ````jsx
 import Avatar from '@material-ui/core/Avatar';
-import List from '@/components/List'
-import Button from '@/components/Button'
+import List from 'antd-material/core/List'
+import Button from 'antd-material/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import reqwest from 'reqwest';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';

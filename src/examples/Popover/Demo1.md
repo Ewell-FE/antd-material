@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Popover from '@/components/Popover'
-import Button from '@/components/Button'
+import Popover from 'antd-material/core/Popover'
+import Button from 'antd-material/core/Button'
 import ReactDOM from 'react-dom';
 
 class Test extends Component{

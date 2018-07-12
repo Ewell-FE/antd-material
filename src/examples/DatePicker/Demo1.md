@@ -3,7 +3,7 @@
 
 
 ````jsx
-import DatePicker from '@/components/DatePicker'
+import DatePicker from 'antd-material/core/DatePicker'
 
 const {MonthPicker, RangePicker, WeekPicker} = DatePicker
 

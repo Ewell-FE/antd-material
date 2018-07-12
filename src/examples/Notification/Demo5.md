@@ -2,8 +2,8 @@
 ##自定义关闭按钮的样式和文字
 
 ````jsx
-import Notification from '@/components/Notification'
-import Button from '@/components/Button'
+import Notification from 'antd-material/core/Notification'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
     close(key){

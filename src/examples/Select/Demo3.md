@@ -1,7 +1,7 @@
 # 标签
 ## tags select，随意输入的内容（scroll the menu）
 ````jsx
-import Select from '@/components/Select';
+import Select from 'antd-material/core/Select';
 const Option = Select.Option
 
 export class <%=component%> extends Component {

@@ -3,7 +3,8 @@
   "name": "antd-material",
   "main": "core/index.js",
   "version": "0.1.7",
-  "authFlag": false,
+  "homepage": "https://ewell-fe.github.io",
+  "github": "https://github.com/Ewell-FE/antd-material",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.0.0",
@@ -135,7 +136,8 @@
       "no-undef": 0,
       "no-script-url": 0,
       "no-useless-escape": 0,
-      "jsx-no-target-blank": 0
+      "react/jsx-no-target-blank": 0,
+      "jsx-a11y/href-no-hash":0
     }
   },
   "eslintIgnore": [

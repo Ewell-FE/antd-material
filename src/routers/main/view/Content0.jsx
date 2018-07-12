@@ -38,7 +38,7 @@ class Content extends Component {
                         >
                             一个高效的页面动画解决方案
                         </p>
-                        <Button onClick={()=>{window.location='/material/docs'}} key="button"
+                        <Button onClick={()=>{window.location='/material/docs/start.html'}} key="button"
                                 id={`${props.id}-button`}>
                             开始使用
                         </Button>

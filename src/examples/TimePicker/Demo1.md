@@ -3,7 +3,7 @@
 
 
 ````jsx
-import TimePicker from '@/components/TimePicker'
+import TimePicker from 'antd-material/core/TimePicker'
 
 export class <%=component%> extends Component {
 

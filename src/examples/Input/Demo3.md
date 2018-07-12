@@ -3,9 +3,9 @@
 
 
 ````jsx
-import Input from '@/components/Input'
+import Input from 'antd-material/core/Input'
 import { withStyles } from '@material-ui/core/styles';
-import Icon from '@/components/Icon'
+import Icon from 'antd-material/core/Icon'
 
 const styles = theme => ({
   root:{

@@ -1,8 +1,8 @@
 # 禁用
 ## 不可操作
 ````jsx
-import Switch from '@/components/Switch'
-import Button from '@/components/Button'
+import Switch from 'antd-material/core/Switch'
+import Button from 'antd-material/core/Button'
 export class <%=component%> extends Component {
     constructor(props){
         super(props)

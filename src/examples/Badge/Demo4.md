@@ -2,7 +2,7 @@
 ##不包裹任何元素即是独立使用，可自定样式展现。
 
 ````jsx
-import Badge from '@/components/Badge'
+import Badge from 'antd-material/core/Badge'
 export class <%=component%> extends Component {
 
     render() {

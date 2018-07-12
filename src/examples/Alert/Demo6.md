@@ -3,8 +3,8 @@
 
 
 ````jsx
-import Alert from '@/components/Alert'
-import Button from '@/components/Button'
+import Alert from 'antd-material/core/Alert'
+import Button from 'antd-material/core/Button'
 
 export class <%=component%> extends Component {
     constructor(props) {

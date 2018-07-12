@@ -1,7 +1,7 @@
 # 水平分割线
 ## 默认为水平分割线，可在中间加入文字。
 ````jsx
-import Divider  from '@/components/Divider'
+import Divider  from 'antd-material/core/Divider'
 export class <%=component%> extends Component {
     render() {
         return (
