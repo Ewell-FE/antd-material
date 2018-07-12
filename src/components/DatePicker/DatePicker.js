@@ -1,24 +1,25 @@
 import './calendar.css';
 import './time-picker.css';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Calendar from 'rc-calendar';
 import DatePicker from 'rc-calendar/lib/Picker';
-import zhCN from 'rc-calendar/lib/locale/zh_CN';
-import enUS from 'rc-calendar/lib/locale/en_US';
+// import zhCN from 'rc-calendar/lib/locale/zh_CN';
+// import enUS from 'rc-calendar/lib/locale/en_US';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import Input from '../Input'
 import Icon from '../Icon'
 import omit from 'omit.js';
 import styles from './style'
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
-const cn = true
+// const cn = true
 const timePickerElement = <TimePickerPanel prefixCls="yh-time-picker-panel"
-                                           defaultValue={moment('00:00:00', 'HH:mm:ss')}/>;
+    defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
 
-@withStyles(styles, {name: 'MuiDatePickerAnt'})
+@withStyles(styles, { name: 'MuiDatePickerAnt' })
 export default class app extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +29,9 @@ export default class app extends Component {
     }
 
     static defaultProps = {
-        placeholder: 'Select date',
-        dateInputPlaceholder: 'please input',
-        locale: cn ? zhCN : enUS,
+        // placeholder: 'Select date',
+        // dateInputPlaceholder: 'please input',
+        // locale: cn ? zhCN : enUS,
         animation: 'slide-up',
         format: 'YYYY-MM-DD',
         mode: 'date'
@@ -41,30 +42,35 @@ export default class app extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        this.props.onChange && this.props.onChange(value, value && value.format(this.props.format))
     }
 
     emitEmpty = (e) => {
         e.stopPropagation()
-        this.setState({value: null});
+        this.setState({ value: null });
     }
 
-    render() {
+    renderPicker = (locale, localeCode) => {
+        console.log(locale, localeCode)
         const props = this.props
         const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style'])
         const state = this.state
-        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
+        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
         const calendar = (<Calendar
             style={{ zIndex: 1000 }}
             prefixCls="yh-calendar"
             timePicker={props.showTime && timePickerElement}
+            dateInputPlaceholder={locale.timePickerLocale.dateInputPlaceholder}
+            locale={locale.lang}
             {...otherProps}
             {...otherStyle}
         />);
         return (
             <DatePicker
+                locale={locale}
+                localeCode={localeCode}
                 animation={this.props.animation}
                 prefixCls={props.classes.root}
                 calendar={calendar}
@@ -73,23 +79,31 @@ export default class app extends Component {
                 onOpenChange={this.props.onOpenChange}
             >
                 {
-                    ({value}) => {
+                    ({ value }) => {
                         return (
                             <span tabIndex="0" className={props.classes.span}>
-                                 <Input
-                                     readOnly
-                                     size={props.size}
-                                     placeholder={props.placeholder}
-                                     style={{width:style.width,height:style.height}}
-                                     suffix={state.value ? suffix:<Icon type="calendar"/>}
-                                     value={value ? value.format(props.showTime?'YYYY-MM-DD HH:mm:ss':props.format) : ''}
-                                     onChange={this.onChangeUserName}
-                                 />
+                                <Input
+                                    readOnly
+                                    size={props.size}
+                                    placeholder={props.placeholder || locale.lang.placeholder}
+                                    style={{ width: style.width, height: style.height }}
+                                    suffix={state.value ? suffix : <Icon type="calendar" />}
+                                    value={value ? value.format(props.showTime ? 'YYYY-MM-DD HH:mm:ss' : props.format) : ''}
+                                    onChange={this.onChangeUserName}
+                                />
                             </span>
                         )
                     }
                 }
             </DatePicker>
+        )
+    }
+
+    render() {
+        return (
+            <LocaleReceiver componentName="DatePicker">
+                {this.renderPicker}
+            </LocaleReceiver>
         )
     }
 }
@@ -107,7 +121,7 @@ app.propTypes = {
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
     mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
     onPanelChange: PropTypes.func,//日期面板变化时的回调
-    
+
     defaultValue: PropTypes.object, //moment类型的日期对象
     disabledTime: PropTypes.func,//不可选择的时间
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js

@@ -6,6 +6,7 @@ import {withStyles} from '@material-ui/core/styles';
 import _ from "lodash";
 import UploadList from './UploadList';
 import { fileToObject, genPercentAdd, getFileItem, removeFileItem } from './utils';
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 const styles = theme => {
     return {
         root:{
@@ -214,7 +215,7 @@ export default class Upload extends React.Component {
         this.upload = node;
     }
 
-    renderUploadList = () => {
+    renderUploadList = (locale) => {
         const { showUploadList, listType, onPreview } = this.props;
         const { showRemoveIcon, showPreviewIcon } = showUploadList;
         return (
@@ -225,6 +226,7 @@ export default class Upload extends React.Component {
                 onRemove={this.handleManualRemove}
                 showRemoveIcon={showRemoveIcon}
                 showPreviewIcon={showPreviewIcon}
+                locale={{ ...locale, ...this.props.locale }}
             />
         );
     }
@@ -251,7 +253,10 @@ export default class Upload extends React.Component {
 
         delete rcUploadProps.className;
         const uploadClass=classNames(className,classes['root']);
-        const uploadList = showUploadList ? this.renderUploadList(): null;
+        const uploadList = showUploadList ? 
+                        <LocaleReceiver componentName="Upload">
+                            {this.renderUploadList}
+                        </LocaleReceiver>: null;
         if (type === 'drag') {
             const dragCls = classNames(prefixCls, {
                 [`${prefixCls}-drag`]: true,

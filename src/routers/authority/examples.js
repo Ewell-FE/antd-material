@@ -22,6 +22,7 @@ export {default as Icon} from '@/examples/Icon';
 export {default as Input} from '@/examples/Input';
 export {default as InputNumber} from '@/examples/InputNumber';
 export {default as List} from '@/examples/List';
+export {default as LocaleProvider} from '@/examples/LocaleProvider';
 export {default as Mention} from '@/examples/Mention';
 export {default as Menu} from '@/examples/Menu';
 export {default as Message} from '@/examples/Message';

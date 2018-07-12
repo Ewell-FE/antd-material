@@ -33,6 +33,7 @@ export class <%=component%> extends Component {
                         value={this.state.value}
                         style={{ width: 120, marginLeft: 20 }}
                         defaultActiveFirstOption={false}
+                        placeholder={'请选择'}
                         options={[{value:'jack',label:'杰克'},{value:'alei',label:'阿磊'}]}>
                   </Select>
             </div>

@@ -1,20 +1,21 @@
 import './calendar.css';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MonthCalendar from 'rc-calendar/lib/MonthCalendar';
 import DatePicker from 'rc-calendar/lib/Picker';
-import zhCN from 'rc-calendar/lib/locale/zh_CN';
-import enUS from 'rc-calendar/lib/locale/en_US';
-import {withStyles} from '@material-ui/core/styles';
+// import zhCN from 'rc-calendar/lib/locale/zh_CN';
+// import enUS from 'rc-calendar/lib/locale/en_US';
+import { withStyles } from '@material-ui/core/styles';
 import Input from '../Input'
 import Icon from '../Icon'
 import omit from 'omit.js';
 import styles from './style'
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
-const cn = true
+// const cn = true
 
-@withStyles(styles, {name: 'MuiMonthPickerAnt'})
+@withStyles(styles, { name: 'MuiMonthPickerAnt' })
 export default class app extends Component {
     constructor(props) {
         super(props);
@@ -24,10 +25,10 @@ export default class app extends Component {
     }
 
     static defaultProps = {
-        placeholder: 'Select month',
+        // placeholder: 'Select month',
         animation: 'slide-up',
-        dateInputPlaceholder: 'please input',
-        locale: cn ? zhCN : enUS,
+        // dateInputPlaceholder: 'please input',
+        // locale: cn ? zhCN : enUS,
         format: 'YYYY-MM'
     }
 
@@ -41,24 +42,27 @@ export default class app extends Component {
 
     emitEmpty = (e) => {
         e.stopPropagation()
-        this.setState({value: null});
+        this.setState({ value: null });
     }
 
-    render() {
+    renderDatePicker = (locale, localeCode) => {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value','style'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value', 'style'])
         const state = this.state
-        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
+        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
         const calendar = (<MonthCalendar
             prefixCls="yh-calendar"
             style={{ zIndex: 1000 }}
+            locale={locale.lang}
             {...otherProps}
             {...otherStyle}
         />);
         return (
             <DatePicker
+                locale={locale}
+                localeCode={localeCode}
                 animation="slide-up"
                 prefixCls={props.classes.root}
                 disabled={state.disabled}
@@ -67,19 +71,27 @@ export default class app extends Component {
                 onChange={this.onChange}
             >
                 {
-                    ({value}) => {
+                    ({ value }) => {
                         return (<Input
                             readOnly
                             size={props.size}
                             value={value && value.format(props.format)}
-                            style={{width:style.width,height:style.height}}
-                            suffix={state.value ? suffix:<Icon type="calendar"/>}
-                            placeholder={this.props.placeholder}
+                            style={{ width: style.width, height: style.height }}
+                            suffix={state.value ? suffix : <Icon type="calendar" />}
+                            placeholder={this.props.placeholder || locale.lang.monthPlaceholder}
                         />);
                     }
                 }
 
             </DatePicker>
+        )
+    }
+
+    render() {
+        return (
+            <LocaleReceiver componentName="DatePicker">
+                {this.renderDatePicker}
+            </LocaleReceiver>
         )
     }
 }
@@ -97,7 +109,7 @@ app.propTypes = {
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
     mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
     onPanelChange: PropTypes.func,//日期面板变化时的回调
-    
+
     defaultValue: PropTypes.object, //moment类型的日期对象
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js
     monthCellContentRender: PropTypes.func,//自定义的月份内容渲染方法

@@ -19,13 +19,13 @@ export class <%=component%> extends Component {
                 <DatePicker style={{width:'200px'}} onChange={this.onChange}/>
                 <br />
                 <br />
-                <MonthPicker style={{width:'200px'}} onChange={this.onChange} placeholder="Select month" />
+                <MonthPicker style={{width:'200px'}} onChange={this.onChange}/>
                 <br />
                 <br />
                 <RangePicker style={{width:'400px'}} onChange={this.onChange} />
                 <br />
                 <br />
-                <WeekPicker  style={{width:'200px'}} placeholder="please select week" onChange={this.onChange} />
+                <WeekPicker  style={{width:'200px'}} onChange={this.onChange} />
             </div>
         )
     }

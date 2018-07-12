@@ -61,6 +61,7 @@ export class <%=component%> extends Component {
                 showArrow={false}
                 filterOption={false}
                 onChange={this.handleChange}
+                placeholder={'请输入'}
               >
                 {options}
               </Select>

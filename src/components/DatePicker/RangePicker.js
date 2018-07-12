@@ -1,21 +1,22 @@
 import './calendar.css';
 import './time-picker.css';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'rc-calendar/lib/Picker';
 import RangeCalendar from 'rc-calendar/lib/RangeCalendar';
-import zhCN from 'rc-calendar/lib/locale/zh_CN';
-import enUS from 'rc-calendar/lib/locale/en_US';
+// import zhCN from 'rc-calendar/lib/locale/zh_CN';
+// import enUS from 'rc-calendar/lib/locale/en_US';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import Input from '../Input'
 import Icon from '../Icon'
 import omit from 'omit.js';
 import styles from './style'
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
-const cn = true
+// const cn = true
 
 const timePickerElement = (
     <TimePickerPanel
@@ -28,7 +29,7 @@ function isValidRange(v) {
     return v && v[0] && v[1];
 }
 
-@withStyles(styles, {name: 'MuiMonthPickerAnt'})
+@withStyles(styles, { name: 'MuiMonthPickerAnt' })
 export default class app extends Component {
     constructor(props) {
         super(props);
@@ -39,10 +40,10 @@ export default class app extends Component {
     }
 
     static defaultProps = {
-        placeholder: 'Start Time ~ End Time',
+        // placeholder: 'Start Time ~ End Time',
         animation: 'slide-up',
-        dateInputPlaceholder: ['start', 'end'],
-        locale: cn ? zhCN : enUS,
+        // dateInputPlaceholder: ['start', 'end'],
+        // locale: cn ? zhCN : enUS,
         format: 'YYYY-MM-DD HH:mm:ss'
     }
 
@@ -57,18 +58,18 @@ export default class app extends Component {
 
     emitEmpty = (e) => {
         e.stopPropagation()
-        this.setState({value: null});
+        this.setState({ value: null });
     }
 
     onHoverChange = (hoverValue) => {
-        this.setState({hoverValue});
+        this.setState({ hoverValue });
     }
 
-    render() {
+    renderDatePicker = (locale, localeCode) => {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value','style'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value', 'style'])
         const state = this.state
-        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty}/> : <Icon type="calendar"/>
+        const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
         const calendar = (
@@ -76,11 +77,15 @@ export default class app extends Component {
                 showWeekNumber={false}
                 prefixCls="yh-calendar"
                 timePicker={timePickerElement}
+                dateInputPlaceholder={locale.timePickerLocale.RangeDateInputPlaceholder}
+                locale={locale.lang}
                 {...otherProps}
                 {...otherStyle}
             />);
         return (
             <DatePicker
+                locale={locale}
+                localeCode={localeCode}
                 animation="slide-up"
                 prefixCls={props.classes.root}
                 calendar={calendar}
@@ -88,19 +93,27 @@ export default class app extends Component {
                 onChange={this.onChange}
             >
                 {
-                    ({value}) => {
+                    ({ value }) => {
                         return (<Input
                             readOnly
                             disabled={state.disabled}
                             value={(isValidRange(value) && `${value[0].format(props.format)} - ${value[1].format(props.format)}`) || ''}
-                            style={{width:style.width,height:style.height}}
-                            suffix={state.value ? suffix:<Icon type="calendar"/>}
-                            placeholder={this.props.placeholder}
+                            style={{ width: style.width, height: style.height }}
+                            suffix={state.value ? suffix : <Icon type="calendar" />}
+                            placeholder={this.props.placeholder || locale.lang.rangePlaceholder}
                         />);
                     }
                 }
 
             </DatePicker>
+        )
+    }
+
+    render() {
+        return (
+            <LocaleReceiver componentName="DatePicker">
+                {this.renderDatePicker}
+            </LocaleReceiver>
         )
     }
 }

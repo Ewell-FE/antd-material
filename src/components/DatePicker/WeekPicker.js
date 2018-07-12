@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from './DatePicker';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import omit from 'omit.js';
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
 const styles = theme => {
     return {
@@ -25,7 +26,7 @@ const styles = theme => {
         }
     }
 }
-@withStyles(styles, {name: 'MuiWeekPickerAnt'})
+@withStyles(styles, { name: 'MuiWeekPickerAnt' })
 export default class app extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ export default class app extends Component {
     }
 
     static defaultProps = {
-        placeholder: 'select week',
+        // placeholder: 'select week',
         format: 'YYYY-Wo'
     }
 
@@ -56,17 +57,26 @@ export default class app extends Component {
     }
 
 
-    render() {
+    renderDatePicker = (locale) => {
         const props = this.props
         const otherProps = omit(props, ['classes'])
-         return (
+        return (
             <DatePicker
                 className={props.classes.root}
                 showWeekNumber
                 showDateInput
                 dateRender={this.dateRender}
+                placeholder={locale.lang.weekPlaceholder}
                 {...otherProps}
             />
+        )
+    }
+
+    render() {
+        return (
+            <LocaleReceiver componentName="DatePicker">
+                {this.renderDatePicker}
+            </LocaleReceiver>
         )
     }
 }

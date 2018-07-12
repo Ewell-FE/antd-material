@@ -18,7 +18,7 @@ export class <%=component%> extends Component {
     }
     render() {
         return (
-         <Popconfirm onConfirm={this.confirm} onCancel={this.cancel} title="Are you sure delete this task?" okText="Yes" cancelText="No">
+         <Popconfirm onConfirm={this.confirm} onCancel={this.cancel} title="Are you sure delete this task?">
             <Button type='Primary'>Delete</Button>
           </Popconfirm>
         )

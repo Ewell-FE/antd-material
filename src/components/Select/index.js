@@ -1,11 +1,12 @@
-import React, {Component} from "react";
-import Select, {Option, OptGroup} from "rc-select";
+import React, { Component } from "react";
+import Select, { Option, OptGroup } from "rc-select";
 import "./style.css";
 import PropTypes from "prop-types";
 import classnames from 'classnames'
 import Icon from "../Icon";
-import {withStyles} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import omit from "omit.js";
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
 const styles = theme => {
     let c2 = function (size, count) {
@@ -96,7 +97,7 @@ const styles = theme => {
         }
     }
 }
-@withStyles(styles, {name: 'MuiSelectAnt'})
+@withStyles(styles, { name: 'MuiSelectAnt' })
 export default class App extends Component {
     constructor(props) {
         super(props)
@@ -109,24 +110,33 @@ export default class App extends Component {
         prefixCls: 'yh-select',
         size: 'default',
         optionLabelProp: 'children',
-        placeholder: "please select"
+        placeholder: ''
     }
 
+    getNotFoundContent = (locale) => {
+        const { notFoundContent, mode } = this.props;
+        const isCombobox = mode === 'combobox';
+        if (isCombobox) {
+            // AutoComplete don't have notFoundContent defaultly
+            return notFoundContent === undefined ? null : notFoundContent;
+        }
+        return notFoundContent === undefined ? locale.notFoundContent : notFoundContent;
+    }
 
-    render() {
+    renderSelect = (locale) => {
         const props = this.props
         const classes = props.classes
         let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags'])
         let options = []
         let modeType = (props.combobox && "combobox") || (props.multiple && "multiple") || (props.tags && "tags")
         let modes = {
-            combobox: {combobox: true},
-            multiple: {multiple: true},
-            tags: {tags: true}
+            combobox: { combobox: true },
+            multiple: { multiple: true },
+            tags: { tags: true }
         }[modeType || props.mode]
-        
+
         if (props.options) {
-            props.options.forEach((item, i)=> {
+            props.options.forEach((item, i) => {
                 options.push(
                     <Option key={i} value={item.value}>{item.label}</Option>
                 )
@@ -134,13 +144,22 @@ export default class App extends Component {
         }
         return (
             <Select
-                className={classnames(props.className,classes.root,classes[props.size])}
+                className={classnames(props.className, classes.root, classes[props.size])}
+                notFoundContent={this.getNotFoundContent(locale)}
                 {...otherProps}
                 {...modes}
             >
                 {options}
                 {this.props.children}
             </Select>
+        )
+    }
+
+    render() {
+        return (
+            <LocaleReceiver componentName="Select">
+                {this.renderSelect}
+            </LocaleReceiver>
         )
     }
 }
