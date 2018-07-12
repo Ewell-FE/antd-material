@@ -21,6 +21,7 @@ import Cascader from './cascader'
 import Switch from './switch'
 import Slider from './slider'
 import DatePicker from './DatePicker'
+import TimePicker from './TimePicker'
 import AutoComplete from './autoComplete'
 import Dragger from './dragger'
 import Upload from './upload'
@@ -63,6 +64,8 @@ let FieldHtml = (field)=> {
             return (<InputNumber field={field} isError={isError} isWarn={isWarn}/>)
         case 'datepicker':
             return (<DatePicker field={field} isError={isError} isWarn={isWarn}/>)
+        case 'timepicker':
+            return (<TimePicker field={field} isError={isError} isWarn={isWarn}/>)
         case 'autoComplete':
             return (<AutoComplete field={field} isError={isError} isWarn={isWarn}/>)
         case 'dragger':

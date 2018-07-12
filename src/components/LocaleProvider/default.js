@@ -1,3 +1,3 @@
-import DefaultLocale from './en_US'
+import DefaultLocale from './zh_CN'
 
 export default DefaultLocale

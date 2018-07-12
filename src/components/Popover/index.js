@@ -140,7 +140,7 @@ export default class Popver extends Component {
     }
 
     render() {
-        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400},container} = this.props;
+        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400},container,arrow=true,wrapperContentStyle={}} = this.props;
         const {visible}=this.state
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
@@ -202,11 +202,14 @@ export default class Popver extends Component {
                     classes={{paper}}
                     container={container}
                 >
-                    <div className={arrowClassName}></div>
-                    <div className={classes.title}>
-                        {title}
-                    </div>
-                    <div className={classes.content}>
+                    {arrow&&<div className={arrowClassName}></div>}
+                    {
+                        title&&
+                        <div className={classes.title}>
+                            {title}
+                        </div>
+                    }
+                    <div className={classes.content} style={{...wrapperContentStyle}}>
                         {content}
                     </div>
                 </Popover>
@@ -220,6 +223,7 @@ Popver.propTypes = {
     placement: PropTypes.oneOf(['topLeft','top','topRight','leftTop','rightTop','left','right',
         'leftBottom','rightBottom','bottomLeft','bottom','bottomRight']), //位置类型
     trigger:PropTypes.oneOf(['click','hover']), //触发方式
+    wrapperContentStyle:PropTypes.object, //内容行内样式
     title:PropTypes.any, //标题
     content:PropTypes.any, //内容
     visible:PropTypes.bool, //是否显示Popover

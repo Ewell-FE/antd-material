@@ -42,7 +42,7 @@ export default class app extends Component {
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, value && value.format(this.props.format))
+        value&&this.props.onChange && this.props.onChange(value, value.format(this.props.format))
     }
 
     emitEmpty = (e) => {
@@ -51,7 +51,6 @@ export default class app extends Component {
     }
 
     renderPicker = (locale, localeCode) => {
-        console.log(locale, localeCode)
         const props = this.props
         const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style'])
         const state = this.state

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import DatePicker from '../DatePicker'
+import TimePicker from '../TimePicker'
 import classnames from 'classnames'
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
@@ -10,7 +10,7 @@ function fixControlledValue(value) {
     }
     return value;
 }
-@withStyles(styles, {name: 'MuiFormDatePickerAnt'})
+@withStyles(styles, {name: 'MuiFormTimePickerAnt'})
 export default class renderInput extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
@@ -23,7 +23,7 @@ export default class renderInput extends Component {
                 <label style={{width:field.labelWidth}} htmlFor={`__${field.input.name}__`}>{field.required &&
                 <span className="required">* </span>}{field.label}:</label>}
                 <div className="input" style={{width:field.wrapperWidth}}>
-                    <DatePicker
+                    <TimePicker
                         id={`__${field.input.name}__`}
                         {...inputs}
                         {...otherField}
