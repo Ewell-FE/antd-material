@@ -14,6 +14,9 @@ const styles = theme => ({
     paper: {
         marginRight: theme.spacing.unit * 2,
     },
+    popper:{
+      zIndex:1
+    },
     popperClose: {
         pointerEvents: 'none',
     },
@@ -91,7 +94,7 @@ export default class app extends Component {
                 <Popper
                     placement={props.placement}
                     eventsEnabled={open}
-                    className={classNames({[classes.popperClose]: !open})}
+                    className={classNames(classes.popper,{[classes.popperClose]: !open})}
                 >
                     <div onMouseEnter={this.clearTimeout}
                          onMouseLeave={this.onMouseLeave}>
