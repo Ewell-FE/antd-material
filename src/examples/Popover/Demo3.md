@@ -26,6 +26,7 @@ export class <%=component%> extends Component {
                content={<a onClick={this.hide} style={{cursor:'pointer',color:'#1890ff'}}>Close</a>}
                trigger='click'
                visible={this.state.visible}
+               onVisibleChange={this.handleVisibleChange}
                >
                <Button type="Primary">click me</Button>
            </Popover>

@@ -115,6 +115,15 @@ const positions={
 };
 @withStyles(styles, {name: 'MuiPopoverAnt'})
 export default class Popver extends Component {
+    static defaultProps={
+        trigger:'hover',
+        placement:'top',
+        anchorReference:'anchorEl',
+        anchorPosition:{'top':200,'left':400},
+        arrow:true,
+        wrapperContentStyle:{},
+        clickClose:false
+    }
     constructor(props) {
         super(props);
         this.state={
@@ -122,16 +131,13 @@ export default class Popver extends Component {
             el:null
         }
     }
-    componentWillReceiveProps(nextProps) {
-        if ('visible' in nextProps) {
-            this.setState({ visible: nextProps.visible });
-        }
-    }
     handleOpen=()=>{
         this.setState({visible:true})
+        this.props.onVisibleChange&&this.props.onVisibleChange(true)
     }
     handleClose=()=>{
         this.setState({visible:false})
+        this.props.onVisibleChange&&this.props.onVisibleChange(false)
     }
     dom=null;
 
@@ -140,8 +146,8 @@ export default class Popver extends Component {
     }
 
     render() {
-        const {trigger='hover',children,classes,placement='top',title,content,anchorReference='anchorEl',anchorPosition={'top':200,'left':400},container,arrow=true,wrapperContentStyle={}} = this.props;
-        const {visible}=this.state
+        const {trigger,children,classes,placement,title,content,anchorReference,anchorPosition,container,arrow,wrapperContentStyle,clickClose} = this.props;
+        const visible=this.props.visible===undefined?this.state.visible:this.props.visible;
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
             [classes['arrowYCenter']]:placement==='left'||placement==='right',
@@ -209,7 +215,7 @@ export default class Popver extends Component {
                             {title}
                         </div>
                     }
-                    <div className={classes.content} style={{...wrapperContentStyle}}>
+                    <div className={classes.content} style={{...wrapperContentStyle}} onClick={()=>{clickClose&&this.handleClose()}}>
                         {content}
                     </div>
                 </Popover>

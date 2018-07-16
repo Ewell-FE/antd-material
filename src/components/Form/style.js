@@ -107,8 +107,12 @@ export default function (theme) {
             }
         },
         "inputError": {
+
             "&.error": {
-                borderColor: theme.colors.error
+                borderColor: theme.colors.error,
+                '& .yh-select-selection,& .yh-time-picker-input':{
+                    borderColor: theme.colors.error
+                },
             },
             "&.warn": {
                 borderColor: theme.colors.warning
