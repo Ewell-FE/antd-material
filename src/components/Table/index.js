@@ -125,7 +125,8 @@ export class SimpleTable extends Component {
     static defaultProps={
         defaultExpandKey:[],
         dataSource:[],
-        columns:[]
+        columns:[],
+        rowSelectionNum:0
     }
 
     //切换当前页
@@ -242,9 +243,11 @@ export class SimpleTable extends Component {
         }
     }
 
+
+
     //是否有孩子
     loopChildren(arr, data, obj, level) {
-        const {classes, columns, rowKey,expandedRowRender} = this.props;
+        const {classes, columns, rowKey,expandedRowRender,rowSelectionNum} = this.props;
         const expandKey = this.props.expandKey || this.state.expandKey
         let rowSelection = this.props.rowSelection
         data.forEach((n, j) => {
@@ -255,40 +258,41 @@ export class SimpleTable extends Component {
             if (_.indexOf(expandKey, obj[`${rowKey}`]) === -1&&level > 0) {
                 showChild = classNames(showChild,classes.hideExpand)
             }
-            arr.push((<TableRow  key={n[`${rowKey}`]} className={showChild}>
-                {
-                    rowSelection && <TableCell className={classes.selectBox} padding='checkbox'>
+            let list = []
+            columns.map((item, i) => {
+                let ele = ''
+                let expandClass = classes.bodyTd
+                if (i === 0 && (n.children || expandTableRow)) {
+                    expandClass = classNames(expandClass, classes.expandParentTd)
+                    let str = "fa fa-plus-square-o"
+                    if (_.indexOf(expandKey, n[`${rowKey}`]) !== -1) {
+                        str = 'fa fa-minus-square-o'
+                    }
+                    ele = <i onClick={() => this.onExpand(n[`${rowKey}`], n)} className={str} aria-hidden="true"> </i>
+                }
+                if (item.render) {
+                    list.push(<TableCell  className={classNames(expandClass, classes.activeText)}
+                                          key={item.key}>{ele} {item.render(n[item.dataIndex] || undefined, n, arr.length)}</TableCell>)
+
+                } else {
+                    list.push( <TableCell className={expandClass}
+                                      key={item.key}>{ele} {n[item.dataIndex]}</TableCell>)
+
+                }
+
+            })
+            if(rowSelection){
+                list.splice(rowSelectionNum,0,
+                    <TableCell className={classes.selectBox} padding='checkbox' key='-1'>
                         <Checkbox
                             disableRipple
                             checked={_.indexOf(rowSelection.selectedRowKeys, n[`${rowKey}`]) > -1 ? true : false}
                             onChange={(e) => this.onSelectOne(e, n[`${rowKey}`])}/>
-                    </TableCell>
-                }
-                {
-                    columns.map((item, i) => {
-                        let ele = ''
-                        let expandClass = classes.bodyTd
-                        if (i === 0 && (n.children || expandTableRow)) {
-                            expandClass = classNames(expandClass, classes.expandParentTd)
-                            let str = "fa fa-plus-square-o"
-                            if (_.indexOf(expandKey, n[`${rowKey}`]) !== -1) {
-                                str = 'fa fa-minus-square-o'
-                            }
-                            ele = <i onClick={() => this.onExpand(n[`${rowKey}`], n)} className={str} aria-hidden="true"> </i>
-                        }
-                        if (item.render) {
-                            return <TableCell  className={classNames(expandClass, classes.activeText)}
-                                               key={item.key}>{ele} {item.render(n[item.dataIndex] || undefined, n, arr.length)}</TableCell>
-
-                        } else {
-                            return <TableCell className={expandClass}
-                                              key={item.key}>{ele} {n[item.dataIndex]}</TableCell>
-
-                        }
-
-                    })
-                }
-            </TableRow>))
+                    </TableCell>)
+            }
+            arr.push((<TableRow  key={n[`${rowKey}`]} className={showChild}>
+                {list}
+                </TableRow>))
             if (n.children) {
                 //有孩子继续循环
                 this.loopChildren(arr, n.children, n, level + 1)
@@ -313,30 +317,46 @@ export class SimpleTable extends Component {
     }
 
     render() {
-        const {classes, columns,pagination,rowSelection} = this.props;
+        const {classes, columns,pagination,rowSelection,rowSelectionNum} = this.props;
         let tableObj = this.dealCurrentData()
         let type = rowSelection ? this.dealCheckBoxType(tableObj.arr, rowSelection.selectedRowKeys) : 0
+            let list = []
+            columns.forEach((item, i) => {
+                list.push(<TableCell className={classes.headTh} key={item.key}>{item.title}</TableCell>)
+
+            })
+            if(rowSelection){
+                list.splice(rowSelectionNum,0,<TableCell className={classes.selectBox} padding='checkbox' key='0'>
+                    <Checkbox
+                        disableRipple
+                        indeterminate={type === 1 ? true : false}
+                        checked={type === 2 ? true : false}
+                        onChange={(e) => this.onSelectAllClick(e, tableObj.arr)}
+                    />
+                </TableCell>)
+            }
         return (
             <div className={classes.root}>
                 <Table className={classes.table}>
                     <TableHead className={classes.head}>
                         <TableRow>
-                            {
-                                rowSelection && <TableCell className={classes.selectBox} padding='checkbox'>
-                                    <Checkbox
-                                        disableRipple
-                                        indeterminate={type === 1 ? true : false}
-                                        checked={type === 2 ? true : false}
-                                        onChange={(e) => this.onSelectAllClick(e, tableObj.arr)}
-                                    />
-                                </TableCell>
-                            }
-                            {
-                                columns.map((item, i) => {
-                                    return <TableCell className={classes.headTh} key={item.key}>{item.title}</TableCell>
+                            {/*{*/}
+                                {/*rowSelection && <TableCell className={classes.selectBox} padding='checkbox'>*/}
+                                    {/*<Checkbox*/}
+                                        {/*disableRipple*/}
+                                        {/*indeterminate={type === 1 ? true : false}*/}
+                                        {/*checked={type === 2 ? true : false}*/}
+                                        {/*onChange={(e) => this.onSelectAllClick(e, tableObj.arr)}*/}
+                                    {/*/>*/}
+                                {/*</TableCell>*/}
+                            {/*}*/}
+                            {/*{*/}
+                                {/*columns.map((item, i) => {*/}
+                                    {/*return <TableCell className={classes.headTh} key={item.key}>{item.title}</TableCell>*/}
 
-                                })
-                            }
+                                {/*})*/}
+                            {/*}*/}
+                            {list}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -373,6 +393,7 @@ SimpleTable.propTypes = {
     expandKey: PropTypes.array, //展开项
     defaultExpandKey: PropTypes.array, //默认展开项
     expandedRowRender:PropTypes.func, //展开项
+    rowSelectionNum:PropTypes.number
 };
 
 export default withStyles(styles,{name:'MuiTableAnt'})(SimpleTable);
