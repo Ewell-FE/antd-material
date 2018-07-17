@@ -14,13 +14,22 @@ export default class Spin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.defaultValue || null,
+            value: props.defaultValue || props.value,
         };
     }
 
     static defaultProps = {
         placeholder: 'Select time',
         format: 'h:mm a'
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({
+                value: nextProps.value
+            })
+        }
     }
 
     onChange = (value) => {

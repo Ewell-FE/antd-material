@@ -13,7 +13,7 @@ function fixControlledValue(value) {
 @withStyles(styles, {name: 'MuiFormTimePickerAnt'})
 export default class renderInput extends Component {
     render() {
-        const {classes, field, isError, isWarn} = this.props
+        const {classes, field, isError, isWarn,format} = this.props
         let inputs = omit(field.input, ['onBlur', 'onDragStart', 'onDrop', 'onFocus'])
         inputs.value = fixControlledValue(inputs.value)
         let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label', 'classes', 'options'])
@@ -27,6 +27,7 @@ export default class renderInput extends Component {
                         id={`__${field.input.name}__`}
                         {...inputs}
                         {...otherField}
+                        format={format}
                         className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}
                     />
 
