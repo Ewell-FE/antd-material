@@ -22,9 +22,6 @@ const styles = theme => ({
 });
 @withStyles(styles, {name: 'MuiStepsAnt'})
 export default class Steps extends React.Component {
-    static propTypes = {
-        classes: PropTypes.object,
-    };
 
     state = {
         activeStep: 0,
@@ -71,6 +68,7 @@ export default class Steps extends React.Component {
         );
     }
 }
+
 Steps.propTypes = {
     current:PropTypes.number,//指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态
     direction:PropTypes.oneOf(['horizontal', 'vertical']),//标题

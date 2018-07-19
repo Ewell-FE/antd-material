@@ -3,17 +3,16 @@
 
 
 ````jsx
-import LocaleProvider from '@/components/LocaleProvider'
-import en_US from '@/components/LocaleProvider/en_US'
-import Pagination from '@/components/Pagination'
-import DatePicker from '@/components/DatePicker'
-import TimePicker from '@/components/TimePicker'
-import Modal from '@/components/Modal'
-import Button from '@/components/Button'
-import Popconfirm from '@/components/Popconfirm'
-import Message from '@/components/Message'
-import Transfer from '@/components/Transfer'
-import Select from '@/components/Select';
+import LocaleProvider from 'antd-material/core/LocaleProvider'
+import en_US from 'antd-material/core/LocaleProvider/en_US'
+import Pagination from 'antd-material/core/Pagination'
+import DatePicker from 'antd-material/core/DatePicker'
+import TimePicker from 'antd-material/core/TimePicker'
+import Modal from 'antd-material/core/Modal'
+import Button from 'antd-material/core/Button'
+import Popconfirm from 'antd-material/core/Popconfirm'
+import Transfer from 'antd-material/core/Transfer'
+import Select from 'antd-material/core/Select';
 
 const {MonthPicker, RangePicker, WeekPicker} = DatePicker
 

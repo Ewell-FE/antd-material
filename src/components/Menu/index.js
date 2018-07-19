@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Menu, {SubMenu, Item as MenuItem, ItemGroup as MenuItemGroup, Divider} from 'rc-menu';
 import {withStyles} from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
 import omit from 'omit.js'
 import animate from 'css-animation'
 import classnames from 'classnames'

@@ -11,35 +11,31 @@ import Input from '../Input'
 const styles = theme => {
     return {
         zIndex: {
-            zIndex:9,
-            '& .rc-cascader-menu':{
-                minWidth:'111px',
-                width:'auto',
-                '& .rc-cascader-menu-item:not(.rc-cascader-menu-item-disabled):hover':{
+            zIndex: 9,
+            '& .rc-cascader-menu': {
+                minWidth: '111px',
+                width: 'auto',
+                '& .rc-cascader-menu-item:not(.rc-cascader-menu-item-disabled):hover': {
                     background: theme.select.hover
                 }
             },
-            '& .rc-cascader-menu-item-active':{
+            '& .rc-cascader-menu-item-active': {
                 background: theme.select.selected,
                 color: theme.select.color,
                 fontWeight: '600'
             },
         },
-        'rc-cascader-menu':{
-
-        },
-        'rc-cascader-menu-item-active':{
-
-        },
-        picker:{
-            width:'300px',
+        'rc-cascader-menu': {},
+        'rc-cascader-menu-item-active': {},
+        picker: {
+            width: '300px',
             fontSize: '14px',
             lineHeight: '1.5',
             color: 'rgba(0,0,0,.65)',
             boxSizing: 'border-box',
             margin: '0',
             padding: '0',
-            listStyle:' none',
+            listStyle: ' none',
             position: 'relative',
             display: 'inline-block',
             cursor: 'pointer',
@@ -47,7 +43,7 @@ const styles = theme => {
             borderRadius: '4px',
             outline: '0',
         },
-        pickLabel:{
+        pickLabel: {
             position: 'absolute',
             left: '0',
             height: '20px',
@@ -61,15 +57,15 @@ const styles = theme => {
             padding: '0 12px',
             textAlign: 'left',
         },
-        pickerWithValue:{
-            '& $pickLabel':{
+        pickerWithValue: {
+            '& $pickLabel': {
                 color: 'transparent'
             }
         },
-        pickerDisabled:{
+        pickerDisabled: {
             cursor: 'not-allowed'
         },
-        input:{
+        input: {
             boxSizing: 'border-box',
             margin: '0',
             listStyle: 'none',
@@ -87,19 +83,19 @@ const styles = theme => {
             backgroundColor: 'transparent',
             cursor: 'pointer'
         },
-        lg:{
+        lg: {
             padding: '6px 11px',
             height: theme.size.large,
             fontSize: '16px',
         },
-        sm:{
+        sm: {
             padding: '1px 7px',
             height: theme.size.small,
         },
-        keyword:{
-            color:theme.colors.error,
+        keyword: {
+            color: theme.colors.error,
         },
-        arrow:{
+        arrow: {
             position: 'absolute',
             zIndex: '10',
             top: '50%',
@@ -111,14 +107,14 @@ const styles = theme => {
             lineHeight: '12px',
             color: 'rgba(0,0,0,.25)',
         },
-        arrowExpand:{
+        arrowExpand: {
             transform: 'rotate(180deg)'
         },
-        pickerClear:{
+        pickerClear: {
             position: 'absolute',
             right: '12px',
             zIndex: '11',
-            background:' #fff',
+            background: ' #fff',
             top: '50%',
             fontSize: '12px',
             color: 'rgba(0,0,0,.25)',
@@ -131,27 +127,29 @@ const styles = theme => {
         },
     }
 };
-function arrayTreeFilter(data,filterFn,options) {
+function arrayTreeFilter(data, filterFn, options) {
     options = options || {};
     options.childrenKeyName = options.childrenKeyName || "children";
     var children = data || [];
-    var result= [];
+    var result = [];
     var level = 0;
-    do {
-        var foundItem = children.filter(function(item) {
+    var func = function () {
+        var foundItem = children.filter(function (item) {
             return filterFn(item, level);
         })[0];
-        if (!foundItem) {
-            break;
+        if (foundItem) {
+            result.push(foundItem);
+            children = foundItem[options.childrenKeyName] || [];
+            level += 1;
         }
-        result.push(foundItem);
-        children = foundItem[options.childrenKeyName] || [];
-        level += 1;
+    }
+    do {
+        func()
     } while (children.length > 0);
     return result;
 }
 
-function highlightKeyword(str, keyword,classes ) {
+function highlightKeyword(str, keyword, classes) {
     return str.split(keyword)
         .map((node, index) => index === 0 ? node : [
             <span className={classes.keyword} key="seperator">{keyword}</span>,
@@ -160,13 +158,13 @@ function highlightKeyword(str, keyword,classes ) {
 }
 
 function defaultFilterOption(inputValue, path) {
-    return path.some(option => option.label .indexOf(inputValue) > -1);
+    return path.some(option => option.label.indexOf(inputValue) > -1);
 }
 
-function defaultRenderFilteredOption(inputValue, path,classes) {
-    return path.map(({ label }, index) => {
+function defaultRenderFilteredOption(inputValue, path, classes) {
+    return path.map(({label}, index) => {
         const node = label.indexOf(inputValue) > -1 ?
-            highlightKeyword(label, inputValue,classes) : label;
+            highlightKeyword(label, inputValue, classes) : label;
         return index === 0 ? node : [' / ', node];
     });
 }
@@ -175,11 +173,12 @@ function defaultSortFilteredOption(a, b, inputValue) {
     function callback(elem) {
         return (elem.label).indexOf(inputValue) > -1;
     }
+
     return a.findIndex(callback) - b.findIndex(callback);
 }
 
-function getFilledFieldNames(filedNames= {}) {
-    const names= {
+function getFilledFieldNames(filedNames = {}) {
+    const names = {
         children: filedNames.children || 'children',
         label: filedNames.label || 'label',
         value: filedNames.value || 'value',
@@ -190,7 +189,7 @@ function getFilledFieldNames(filedNames= {}) {
 const defaultDisplayRender = (label) => label.join(' / ');
 
 @withStyles(styles, {name: 'MuiCascaderAnt'})
-export default class Cascader extends React.Component{
+export default class Cascader extends React.Component {
     static defaultProps = {
         placeholder: 'Please select',
         transitionName: 'slide-up',
@@ -200,7 +199,6 @@ export default class Cascader extends React.Component{
         allowClear: true,
         notFoundContent: 'Not Found',
     };
-
 
 
     constructor(props) {
@@ -216,18 +214,18 @@ export default class Cascader extends React.Component{
 
     componentWillReceiveProps(nextProps) {
         if ('value' in nextProps) {
-            this.setState({ value: nextProps.value || [] });
+            this.setState({value: nextProps.value || []});
         }
         if ('popupVisible' in nextProps) {
-            this.setState({ popupVisible: nextProps.popupVisible });
+            this.setState({popupVisible: nextProps.popupVisible});
         }
         if (nextProps.showSearch && this.props.options !== nextProps.options) {
-            this.setState({ flattenOptions: this.flattenTree(nextProps.options, nextProps.changeOnSelect) });
+            this.setState({flattenOptions: this.flattenTree(nextProps.options, nextProps.changeOnSelect)});
         }
     }
 
     handleChange = (value, selectedOptions) => {
-        this.setState({ inputValue: '' });
+        this.setState({inputValue: ''});
         if (selectedOptions[0].__IS_FILTERED_OPTION) {
             const unwrappedValue = value[0];
             const unwrappedSelectedOptions = selectedOptions[0].path;
@@ -258,7 +256,7 @@ export default class Cascader extends React.Component{
     }
 
     handleInputClick = (e) => {
-        const { inputFocused, popupVisible } = this.state;
+        const {inputFocused, popupVisible} = this.state;
         // Prevent `Trigger` behaviour.
         if (inputFocused || popupVisible) {
             e.stopPropagation();
@@ -274,12 +272,12 @@ export default class Cascader extends React.Component{
 
     handleInputChange = (e) => {
         const inputValue = e.target.value;
-        this.setState({ inputValue });
+        this.setState({inputValue});
     }
 
     setValue = (value, selectedOptions) => {
         if (!('value' in this.props)) {
-            this.setState({ value });
+            this.setState({value});
         }
         const onChange = this.props.onChange;
         if (onChange) {
@@ -288,11 +286,11 @@ export default class Cascader extends React.Component{
     }
 
     getLabel() {
-        const { options, displayRender = defaultDisplayRender,filedNames } = this.props;
+        const {options, displayRender = defaultDisplayRender, filedNames} = this.props;
         const names = getFilledFieldNames(filedNames);
         const value = this.state.value;
         const unwrappedValue = Array.isArray(value[0]) ? value[0] : value;
-        const selectedOptions= arrayTreeFilter(options,
+        const selectedOptions = arrayTreeFilter(options,
             (o, level) => o[names.value] === unwrappedValue[level],
         );
         const label = selectedOptions.map(o => o[names.label]);
@@ -306,12 +304,12 @@ export default class Cascader extends React.Component{
             this.setValue([]);
             this.handlePopupVisibleChange(false);
         } else {
-            this.setState({ inputValue: '' });
+            this.setState({inputValue: ''});
         }
     }
 
-    flattenTree(options, changeOnSelect, ancestor=[]) {
-        let flattenOptions=[];
+    flattenTree(options, changeOnSelect, ancestor = []) {
+        let flattenOptions = [];
         options.forEach((option) => {
             const path = ancestor.concat(option);
             if (changeOnSelect || !option.children || !option.children.length) {
@@ -325,28 +323,28 @@ export default class Cascader extends React.Component{
     }
 
     generateFilteredOptions(classes) {
-        const { showSearch, notFoundContent } = this.props;
+        const {showSearch, notFoundContent} = this.props;
         const {
             filter = defaultFilterOption,
             render = defaultRenderFilteredOption,
             sort = defaultSortFilteredOption,
         } = showSearch;
-        const { flattenOptions, inputValue } = this.state;
+        const {flattenOptions, inputValue} = this.state;
         const filtered = flattenOptions.filter((path) => filter(this.state.inputValue, path))
             .sort((a, b) => sort(a, b, inputValue));
 
         if (filtered.length > 0) {
             return filtered.map((path) => {
                 return {
-                        __IS_FILTERED_OPTION: true,
-                        path,
-                        label: render(inputValue, path,classes),
-                        value: path.map((o) => o.value),
-                        disabled: path.some((o) => o.disabled),
-                    };
+                    __IS_FILTERED_OPTION: true,
+                    path,
+                    label: render(inputValue, path, classes),
+                    value: path.map((o) => o.value),
+                    disabled: path.some((o) => o.disabled),
+                };
             });
         }
-        return [{ label: notFoundContent, value: 'NOT_FOUND', disabled: true }];
+        return [{label: notFoundContent, value: 'NOT_FOUND', disabled: true}];
     }
 
     focus() {
@@ -362,13 +360,14 @@ export default class Cascader extends React.Component{
     }
 
     render() {
-        const { props, state } = this;
-        const { classes, children, placeholder, size, disabled,
+        const {props, state} = this;
+        const {
+            classes, children, placeholder, size, disabled,
             className, style, allowClear, showSearch = false, ...otherProps,
         } = props;
         const value = state.value;
 
-        const sizeCls = classNames(classes.input,{
+        const sizeCls = classNames(classes.input, {
             [classes['lg']]: size === 'large',
             [classes['sm']]: size === 'small',
         });
@@ -420,7 +419,7 @@ export default class Cascader extends React.Component{
             this.cachedOptions = options;
         }
 
-        const dropdownMenuColumnStyle= {};
+        const dropdownMenuColumnStyle = {};
         const isNotFound = (options || []).length === 1 && options[0].value === 'ANT_CASCADER_NOT_FOUND';
         if (isNotFound) {
             dropdownMenuColumnStyle.height = 'auto';
@@ -452,7 +451,7 @@ export default class Cascader extends React.Component{
             onChange={showSearch ? this.handleInputChange : undefined}
         />
                     {clearIcon}
-                    <Icon type="angle-down" className={arrowCls} />
+                    <Icon type="angle-down" className={arrowCls}/>
       </span>
             );
         return (
@@ -472,26 +471,26 @@ export default class Cascader extends React.Component{
     }
 }
 Cascader.propTypes = {
-    allowClear:PropTypes.bool,//是否支持清除
-    changeOnSelect:PropTypes.bool,//当此项为 true 时，点选每级菜单选项值都会发生变化，具体见上面的演示
-    className:PropTypes.string,//自定义类名
-    defaultValue:PropTypes.any,//默认的选中项
-    disabled:PropTypes.bool,//禁用
-    displayRender:PropTypes.func,//选择后展示的渲染函数
-    expandTrigger:PropTypes.oneOf(['click', 'hover']),//次级菜单的展开方式，可选 'click' 和 'hover'
-    getPopupContainer:PropTypes.func,//菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位
-    loadData:PropTypes.func,//	用于动态加载选项，无法与 showSearch 一起使用
-    notFoundContent:PropTypes.string,//当下拉列表为空时显示的内容
-    options:PropTypes.any,//可选项数据源
-    placeholder:PropTypes.string,//输入框占位文本
-    popupClassName:PropTypes.string,//自定义浮层类名
-    popupPlacement:PropTypes.oneOf(['bottomLeft', 'bottomRight','topLeft','topRight']),//浮层预设位置：bottomLeft bottomRight topLeft topRight
-    popupVisible:PropTypes.bool,//控制浮层显隐
-    showSearch:PropTypes.any,//在选择框中显示搜索框
-    size:PropTypes.oneOf(['large', 'default','small']),//输入框大小，可选 large default small
-    style:PropTypes.object,//自定义样式
-    value:PropTypes.any,//指定选中项
-    onChange:PropTypes.func,//选择完成后的回调
-    onPopupVisibleChange:PropTypes.func,//显示/隐藏浮层的回调
-    filedNames:PropTypes.object,//自定义 options 中 label name children 的字段
+    allowClear: PropTypes.bool,//是否支持清除
+    changeOnSelect: PropTypes.bool,//当此项为 true 时，点选每级菜单选项值都会发生变化，具体见上面的演示
+    className: PropTypes.string,//自定义类名
+    defaultValue: PropTypes.any,//默认的选中项
+    disabled: PropTypes.bool,//禁用
+    displayRender: PropTypes.func,//选择后展示的渲染函数
+    expandTrigger: PropTypes.oneOf(['click', 'hover']),//次级菜单的展开方式，可选 'click' 和 'hover'
+    getPopupContainer: PropTypes.func,//菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位
+    loadData: PropTypes.func,//	用于动态加载选项，无法与 showSearch 一起使用
+    notFoundContent: PropTypes.string,//当下拉列表为空时显示的内容
+    options: PropTypes.any,//可选项数据源
+    placeholder: PropTypes.string,//输入框占位文本
+    popupClassName: PropTypes.string,//自定义浮层类名
+    popupPlacement: PropTypes.oneOf(['bottomLeft', 'bottomRight', 'topLeft', 'topRight']),//浮层预设位置：bottomLeft bottomRight topLeft topRight
+    popupVisible: PropTypes.bool,//控制浮层显隐
+    showSearch: PropTypes.any,//在选择框中显示搜索框
+    size: PropTypes.oneOf(['large', 'default', 'small']),//输入框大小，可选 large default small
+    style: PropTypes.object,//自定义样式
+    value: PropTypes.any,//指定选中项
+    onChange: PropTypes.func,//选择完成后的回调
+    onPopupVisibleChange: PropTypes.func,//显示/隐藏浮层的回调
+    filedNames: PropTypes.object,//自定义 options 中 label name children 的字段
 }

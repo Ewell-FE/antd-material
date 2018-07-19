@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import {Component} from 'react'
 import PropTypes from 'prop-types'
 import LocaleDefault from '../LocaleProvider/default'
 
@@ -8,8 +8,8 @@ export default class LocaleReceiver extends Component {
     }
 
     getLocale = () => {
-        const { componentName, defaultLocale } = this.props
-        const { antLocale } = this.context
+        const {componentName, defaultLocale} = this.props
+        const {antLocale} = this.context
         const localeFromContext = antLocale && antLocale[componentName]
         return {
             ...(typeof defaultLocale === 'undefined' ? LocaleDefault[componentName] : defaultLocale ),
@@ -18,7 +18,7 @@ export default class LocaleReceiver extends Component {
     }
 
     getLocaleCode = () => {
-        const { antLocale } = this.context
+        const {antLocale} = this.context
         const localeCode = antLocale && antLocale.locale
         if (antLocale && antLocale.exist && !localeCode) {
             return 'zh-cn'

@@ -98,14 +98,8 @@ const styles = theme => ({
 
 });
 
-@withStyles(styles, {name: 'MuiStepAnt'})
-export default class step extends React.Component {
-    static propTypes = {
-        classes: PropTypes.object,
-    };
-    static contextTypes = {
-        step: PropTypes.object,
-    };
+class step extends React.Component {
+
     render() {
         const stepProps = omit(this.props, [
             'title',
@@ -180,6 +174,9 @@ export default class step extends React.Component {
         );
     }
 }
+step.contextTypes = {
+    step: PropTypes.object
+}
 
 step.propTypes = {
     title:PropTypes.string,//标题
@@ -187,3 +184,5 @@ step.propTypes = {
     icon:PropTypes.any,//步骤图标的类型，可选
     status:PropTypes.oneOf(['wait', 'process','finish','error']),//指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态。可选：wait process finish error
 }
+
+export default withStyles(styles, {name: 'MuiStepAnt'})(step)

@@ -3,7 +3,6 @@ import Select, { Option, OptGroup } from "rc-select";
 import "./style.css";
 import PropTypes from "prop-types";
 import classnames from 'classnames'
-import Icon from "../Icon";
 import { withStyles } from "@material-ui/core/styles";
 import omit from "omit.js";
 import LocaleReceiver from '../LocaleProvider/LocaleReceiver'

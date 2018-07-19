@@ -7,7 +7,6 @@ import Menu from 'antd-material/core/Menu'
 import Icon from 'antd-material/core/Icon'
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
-const Divider = Menu.Divider
 const MenuItemGroup = Menu.MenuItemGroup;
 
 export class <%=component%> extends Component {

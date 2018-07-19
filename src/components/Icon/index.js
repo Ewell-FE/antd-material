@@ -8,7 +8,7 @@ const styles = theme => {
 };
 
 
-@withStyles(styles, {name: 'MuiIcon-ant'})
+@withStyles(styles, {name: 'MuiIconAnt'})
 export default class app extends Component {
     render() {
         const props = {...this.props}

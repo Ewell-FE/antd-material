@@ -259,7 +259,7 @@ export class SimpleTable extends Component {
                 showChild = classNames(showChild,classes.hideExpand)
             }
             let list = []
-            columns.map((item, i) => {
+            columns.forEach((item, i) => {
                 let ele = ''
                 let expandClass = classes.bodyTd
                 if (i === 0 && (n.children || expandTableRow)) {

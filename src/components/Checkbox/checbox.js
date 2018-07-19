@@ -36,37 +36,37 @@ const styles = (theme)=> {
         label: {
             padding: '0 8px',
             color: 'inherit',
-            fontSize:14,
+            fontSize: 14,
         },
         default: {
             width: 16,
             height: 16,
             '& i': {
                 fontSize: '20px',
-                verticalAlign:'top',
-                marginTop:'-3px'
+                verticalAlign: 'top',
+                marginTop: '-3px'
             },
             '&$checked': {
                 color: activeColor
             }
         }, //不可删除
         checked: {},
-        imgCheck:{
+        imgCheck: {
             width: 16,
             height: 16,
-            display:'inline-block',
+            display: 'inline-block',
 
         },
-        imgCheckDisabled:{},
-        imgUncheck:{
+        imgCheckDisabled: {},
+        imgUncheck: {
             width: 16,
             height: 16,
             '& i': {
                 fontSize: '22px',
             },
         },
-        imgUncheckDisabled:{},
-        imgHalf:{
+        imgUncheckDisabled: {},
+        imgHalf: {
             width: 16,
             height: 16,
         }
@@ -87,25 +87,23 @@ class app extends Component {
         disabled: false,
         indeterminate: false,
         indeterminateIcon: <Icon type='minus-square'/>,
-        checkedIcon:<Icon type='check-square'/>,
-        icon:<Icon type='square-o'/>,
+        checkedIcon: <Icon type='check-square'/>,
+        icon: <Icon type='square-o'/>,
 
     }
-    static contextTypes = {
-        onChange: PropTypes.func,
-        arr: PropTypes.array,
-    };
+
     componentWillReceiveProps(nextProps) {
         if ('value' in nextProps) {
-            this.setState({ checked: nextProps.value });
+            this.setState({checked: nextProps.value});
         }
     }
-    onChange = (event,value) => {
+
+    onChange = (event, value) => {
         if (!_.has(this.props, 'checked')) {
             this.setState({
                 checked: event.target.checked
             })
-            this.context.onChange&&this.context.onChange(event,value)
+            this.context.onChange && this.context.onChange(event, value)
         }
         this.props.onChange && this.props.onChange(event)
     }
@@ -116,9 +114,9 @@ class app extends Component {
 
 
     render() {
-        const {classes, children, checked, disabled, indeterminate, className, style,value,icon,indeterminateIcon,checkedIcon}=this.props;
+        const {classes, children, checked, disabled, indeterminate, className, style, value, icon, indeterminateIcon, checkedIcon}=this.props;
         const {arr}=this.context
-        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style','type','value','icon','indeterminateIcon','checkedIcon'])
+        let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style', 'type', 'value', 'icon', 'indeterminateIcon', 'checkedIcon'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
         let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
         let flag = _.has(this.props, 'checked') ? false : (arr ? true : false)
@@ -154,5 +152,8 @@ app.propsTypes = {
     className: PropTypes.string, //类名
     style: PropTypes.object, //行内样式
 }
-
+Object.assign(app.contextTypes, {
+    onChange: PropTypes.func,
+    arr: PropTypes.array,
+})
 export default app
