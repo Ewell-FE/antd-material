@@ -34,7 +34,8 @@ export default class app extends Component {
         // locale: cn ? zhCN : enUS,
         animation: 'slide-up',
         format: 'YYYY-MM-DD',
-        mode: 'date'
+        mode: 'date',
+        disabled:false
     }
 
 
@@ -83,6 +84,7 @@ export default class app extends Component {
                 calendar={calendar}
                 value={state.value}
                 onChange={this.onChange}
+                disabled={props.disabled}
                 onOpenChange={this.props.onOpenChange}
             >
                 {
@@ -94,6 +96,7 @@ export default class app extends Component {
                                     size={props.size}
                                     placeholder={props.placeholder || locale.lang.placeholder}
                                     style={{ width: style.width, height: style.height }}
+                                    disabled={props.disabled}
                                     suffix={state.value ? suffix : <Icon type="calendar" />}
                                     value={value ? value.format(props.showTime ? 'YYYY-MM-DD HH:mm:ss' : props.format) : ''}
                                     onChange={this.onChangeUserName}
