@@ -72,12 +72,12 @@ const styles = (theme)=> {
         }
     }
 }
-@withStyles(styles, {name: 'MuiCheckboxAnt'})
 class app extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            checked: props.defaultChecked || props.checked || false
+            checked: props.defaultChecked || props.checked || false,
+            value: props.defaultValue || props.value || undefined
         }
     }
 
@@ -93,19 +93,19 @@ class app extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ('value' in nextProps) {
-            this.setState({checked: nextProps.value});
+        if (this.state.value !== nextProps.value || this.state.checked !== Boolean(nextProps.checked)) {
+            this.setState({value: nextProps.value, checked: Boolean(nextProps.checked)});
         }
     }
 
     onChange = (event, value) => {
         if (!_.has(this.props, 'checked')) {
             this.setState({
-                checked: event.target.checked
+                checked: !this.state.checked
             })
             this.context.onChange && this.context.onChange(event, value)
         }
-        this.props.onChange && this.props.onChange(event)
+        this.props.onChange && this.props.onChange(event, value)
     }
 
     componentDidMount() {
@@ -114,12 +114,12 @@ class app extends Component {
 
 
     render() {
-        const {classes, children, checked, disabled, indeterminate, className, style, value, icon, indeterminateIcon, checkedIcon}=this.props;
+        const {classes, children, disabled, indeterminate, className, style, icon, indeterminateIcon, checkedIcon}=this.props;
         const {arr}=this.context
         let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style', 'type', 'value', 'icon', 'indeterminateIcon', 'checkedIcon'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
-        let checkedValue = !_.has(this.props, 'checked') ? this.state.checked : checked
-        let flag = _.has(this.props, 'checked') ? false : (arr ? true : false)
+        let {value, checked} = this.state
+
         return (
             <label className={classnames(classes.root,disabled&&classes.readOnly,
                 indeterminate&&classes.indeterminate,className)} style={style}>
@@ -127,7 +127,7 @@ class app extends Component {
                     inputRef={ref=>this.input = ref}
                     {...otherProps}
                     onChange={(e)=>this.onChange(e,value)}
-                    checked={flag?_.indexOf(arr,checkedValue||value)!==-1:checkedValue}
+                    checked={_.indexOf(arr,value)!==-1 || checked}
                     classes={checkClass}
                     icon={<span className={classnames(classes.imgUncheck,disabled&&classes.imgUncheckDisabled)}>{icon}</span>}
                     indeterminateIcon={<span  className={classnames(classes.imgHalf)}>{indeterminateIcon}</span>}
@@ -152,8 +152,8 @@ app.propsTypes = {
     className: PropTypes.string, //类名
     style: PropTypes.object, //行内样式
 }
-Object.assign(app.contextTypes, {
+app.contextTypes = {
     onChange: PropTypes.func,
-    arr: PropTypes.array,
-})
-export default app
+    arr: PropTypes.array
+}
+export default withStyles(styles, {name: 'MuiCheckboxAnt'})(app)
