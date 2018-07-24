@@ -142,9 +142,13 @@ function arrayTreeFilter(data, filterFn, options) {
             children = foundItem[options.childrenKeyName] || [];
             level += 1;
         }
+        return foundItem
     }
     do {
-        func()
+        var item = func()
+        if (!item) {
+            break
+        }
     } while (children.length > 0);
     return result;
 }
