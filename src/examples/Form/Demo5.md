@@ -46,6 +46,12 @@ export class <%=component%> extends Component {
                                       { value: 'zz', label: '郑州' },
                                 ]
                             },{
+                                  type:'select',
+                                  name:'twos',
+                                  label: "下拉框",
+                                  placeholder:'请选择',
+                                  OptGroup:{Manager:[{value:'jack',label:'jack'}],Engineer:[{value:'Yiminghe',label:'Yiminghe'}]}
+                              },{
                                  type:'select',
                                  name:'three',
                                  label: "多选下拉框",

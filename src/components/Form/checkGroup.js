@@ -31,7 +31,7 @@ export default class renderCheckGroup extends Component {
                                 {field.options.map((item, index)=> {
                                     return (
                                         <Grid item xs={Number(field.xs)} key={index}>
-                                            <Checkbox value={item}>{item}</Checkbox>
+                                            <Checkbox value={item.value||item}>{item.label||item}</Checkbox>
                                         </Grid>
                                     )
                                 })}

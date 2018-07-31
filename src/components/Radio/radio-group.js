@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
+import classnames from 'classnames';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from './index'
+
 const styles = theme => {
     return {
         root: {
@@ -36,9 +38,9 @@ export default class app extends Component {
     }
 
     render() {
-        const {classes,value,children,style,name,disabled,size,options}= this.props
+        const {classes,value,children,style,name,disabled,size,options,className}= this.props
         return (
-            <div className={classes.root} style={style}>
+            <div className={classnames(classes.root,className)} style={style}>
                 {
                     options ?
                         <RadioGroup

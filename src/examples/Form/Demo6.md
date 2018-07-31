@@ -179,6 +179,7 @@ export class <%=component%> extends Component {
                            name: "remark3",
                            label: "复选组",
                            type: 'checkgroup',
+                            xs:6,
                            options:plainOptions,
                            required: true,
                        }, {
@@ -186,6 +187,7 @@ export class <%=component%> extends Component {
                             name: "remark4",
                             label: "复选组2",
                             type: 'checkgroup',
+                            xs:6,
                             options:plainOptions2,
                             required: true,
                        }, {
