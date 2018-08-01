@@ -44,4 +44,7 @@ export default {
         uploadError: 'Upload error',
         previewFile: 'Preview file',
     },
+    Table:{
+        noData:'No Data'
+    }
 };

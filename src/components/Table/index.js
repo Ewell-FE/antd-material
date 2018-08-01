@@ -10,7 +10,7 @@ import Pagination from '../Pagination';
 import Checkbox from '../Checkbox';
 import _ from 'lodash'
 import classNames from 'classnames';
-
+import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 const styles = theme => {
     let activeColor = theme.radio.primary,
         fontColor = theme.palette.text.primary,
@@ -126,7 +126,8 @@ export class SimpleTable extends Component {
         defaultExpandKey:[],
         dataSource:[],
         columns:[],
-        rowSelectionNum:0
+        rowSelectionNum:0,
+        noData:'暂无数据！！！'
     }
 
     //切换当前页
@@ -316,8 +317,8 @@ export class SimpleTable extends Component {
         return arr
     }
 
-    render() {
-        const {classes, columns,pagination,rowSelection,rowSelectionNum} = this.props;
+    renderTable=(context)=> {
+        const {classes, columns,pagination,rowSelection,rowSelectionNum,noData} = this.props;
         let tableObj = this.dealCurrentData()
         let type = rowSelection ? this.dealCheckBoxType(tableObj.arr, rowSelection.selectedRowKeys) : 0
             let list = []
@@ -367,7 +368,7 @@ export class SimpleTable extends Component {
 
                 </Table>
                 {
-                    !tableObj.arr.length &&<p className={classes.noData}>暂无数据!!!</p>
+                    !tableObj.arr.length &&<p className={classes.noData}>{context.noData}</p>
                 }
                 {
                     (pagination !== false && tableObj.arr.length > 0) &&
@@ -378,6 +379,14 @@ export class SimpleTable extends Component {
                     </div>
                 }
             </div>
+        )
+    }
+    render() {
+        return (
+            <LocaleReceiver
+                componentName="Table">
+                {this.renderTable}
+            </LocaleReceiver>
         )
     }
 }
@@ -393,7 +402,8 @@ SimpleTable.propTypes = {
     expandKey: PropTypes.array, //展开项
     defaultExpandKey: PropTypes.array, //默认展开项
     expandedRowRender:PropTypes.func, //展开项
-    rowSelectionNum:PropTypes.number
+    rowSelectionNum:PropTypes.number,
+    noData:PropTypes.node
 };
 
 export default withStyles(styles,{name:'MuiTableAnt'})(SimpleTable);
