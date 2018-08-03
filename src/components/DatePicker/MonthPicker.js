@@ -20,7 +20,7 @@ export default class app extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.defaultValue
+            value: props.defaultValue || props.value,
         };
     }
 
@@ -33,6 +33,13 @@ export default class app extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({
+                value: nextProps.value
+            })
+        }
+    }
     onChange = (value) => {
         this.setState({
             value,
