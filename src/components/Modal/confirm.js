@@ -2,56 +2,56 @@ import React, {Component} from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Button from '../Button';
 import Icon from '../Icon'
 import Modal from './index';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import style from '../Style'
+import ActionButton from './ActionButton';
 import classnames from 'classnames'
 
 const styles = theme => {
     return{
-    success: {
-        color:'#52c41a'
-    },
-    warn: {
-        color: '#faad14'
-    },
-    info: {
-        color: '#1890ff'
-    },
-    error: {
-        color: '#f5222d'
-    },
-    confirm:{
-        color: '#faad14'
-    },
-    confirmIcon:{
-        fontSize: '22px',
-        marginRight: '16px',
-        float: 'left',
-        lineHeight:1
+        success: {
+            color:'#52c41a'
         },
-    confirmTitle:{
-        color: 'rgba(0,0,0,.85)',
-        fontWeight: '500',
-        fontSize: '16px',
-        lineHeight: '22px',
-        display: 'block',
-        overflow: 'auto'
-    },
-    confirmContent:{
-        marginLeft: '38px',
-        fontSize: '14px',
-        color: 'rgba(0,0,0,.65)',
-        marginTop: '8px'
-    },
-    confirmBtns:{
-        marginTop: '24px',
-        marginBottom:'10px',
-        float: 'right'
-    }
-}};
+        warn: {
+            color: '#faad14'
+        },
+        info: {
+            color: '#1890ff'
+        },
+        error: {
+            color: '#f5222d'
+        },
+        confirm:{
+            color: '#faad14'
+        },
+        confirmIcon:{
+            fontSize: '22px',
+            marginRight: '16px',
+            float: 'left',
+            lineHeight:1
+        },
+        confirmTitle:{
+            color: 'rgba(0,0,0,.85)',
+            fontWeight: '500',
+            fontSize: '16px',
+            lineHeight: '22px',
+            display: 'block',
+            overflow: 'auto'
+        },
+        confirmContent:{
+            marginLeft: '38px',
+            fontSize: '14px',
+            color: 'rgba(0,0,0,.65)',
+            marginTop: '8px'
+        },
+        confirmBtns:{
+            marginTop: '24px',
+            marginBottom:'10px',
+            float: 'right'
+        }
+    }};
 @withStyles(styles, {name: 'MuiConfirmModalAnt'})
 export class ConfirmModal extends Component {
     static defaultProps={
@@ -71,36 +71,36 @@ export class ConfirmModal extends Component {
         const okCancel = ('okCancel' in this.props) ? this.props.okCancel : true;
 
         const cancelButton = okCancel && (
-                <Button onClick={()=>{close();onCancel()}} style={{marginRight:'10px'}}>
+                <ActionButton actionFn={onCancel} closeModal={close}>
                     {cancelText}
-                </Button>
+                </ActionButton>
             );
         return (
-                <Modal
-                    title=""
-                    header={null}
-                    footer={null}
-                    visible={visible}
-                    width={width}
-                    onCancel={close}
-                    afterClose={afterClose}
-                    mask={mask}
-                    maskClosable={maskClosable}
-                    closable={false}
-                    wrapClassName={className}
-                >
-                    <div>
-                        <span className={classnames(classes.confirmIcon,classes[type])}><Icon type={iconType} /></span>
-                        <span className={classes.confirmTitle}>{title}</span>
-                        <div className={classes.confirmContent}>{content}</div>
-                    </div>
-                    <div className={classes.confirmBtns}>
-                        {cancelButton}
-                        <Button  type={okType} onClick={()=>{close();onOk()}} >
-                            {okText}
-                        </Button>
-                    </div>
-                </Modal>
+            <Modal
+                title=""
+                header={null}
+                footer={null}
+                visible={visible}
+                width={width}
+                onCancel={close}
+                afterClose={afterClose}
+                mask={mask}
+                maskClosable={maskClosable}
+                closable={false}
+                wrapClassName={className}
+            >
+                <div>
+                    <span className={classnames(classes.confirmIcon,classes[type])}><Icon type={iconType} /></span>
+                    <span className={classes.confirmTitle}>{title}</span>
+                    <div className={classes.confirmContent}>{content}</div>
+                </div>
+                <div className={classes.confirmBtns}>
+                    {cancelButton}
+                    <ActionButton style={{marginLeft:'10px'}} type={okType} actionFn={onOk} closeModal={close} autoFocus>
+                        {okText}
+                    </ActionButton>
+                </div>
+            </Modal>
         );
     }
 }

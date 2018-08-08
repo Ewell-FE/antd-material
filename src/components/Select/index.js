@@ -137,7 +137,7 @@ export default class App extends Component {
         if (props.options) {
             props.options.forEach((item, i) => {
                 options.push(
-                    <Option key={i} value={item.value}>{item.label}</Option>
+                    <Option key={i} value={item.value} disabled={item.disabled||false}>{item.label}</Option>
                 )
             })
         }
