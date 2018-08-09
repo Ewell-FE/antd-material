@@ -46,7 +46,7 @@ export default class app extends Component {
                         <RadioGroup
                             name={name}
                             className={classes.radioGroup}
-                            value={value || this.state.value}
+                            value={(value || this.state.value)+''}
                             onChange={this.onHandleChange}
                         >
                             {
@@ -60,7 +60,7 @@ export default class app extends Component {
                         : <RadioGroup
                             name={name}
                             className={classes.radioGroup}
-                            value={value || this.state.value}
+                            value={(value || this.state.value)+''}
                             onChange={this.onHandleChange}>
                             {React.Children.map(children, (child, i)=> {
                             return React.cloneElement(child, {
