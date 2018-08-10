@@ -127,7 +127,7 @@ export default class App extends Component {
         const classes = props.classes
         let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags','value'])
         if (props.value) {
-            otherProps.defaultValue = props.value+''
+            otherProps.defaultValue =typeof props.value=='number' ? props.value+'':props.value
         }
         let options = []
         let modeType = (props.combobox && "combobox") || (props.multiple && "multiple") || (props.tags && "tags")
