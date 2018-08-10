@@ -20,7 +20,7 @@ export class <%=component%> extends Component {
     render() {
         return (
             <div>
-                   <Select defaultValue="lucy" inputWidth="150" onChange={this.handleChange}>
+                   <Select defaultValue="lucy" style={{ width: 120}} onChange={this.handleChange}>
                         <Option value="jack">杰克</Option>
                         <Option value="ls">露丝</Option>
                         <Option value="disabled" disabled>Disabled</Option>

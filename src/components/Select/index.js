@@ -148,7 +148,6 @@ export default class App extends Component {
             <Select
                 className={classnames(props.className, classes.root, classes[props.size])}
                 notFoundContent={this.getNotFoundContent(locale)}
-                style={props.inputWidth ? { maxWidth:/%/.test(props.inputWidth)?props.inputWidth:props.inputWidth + 'px' } : {}}
                 {...otherProps}
                 {...modes}
             >
