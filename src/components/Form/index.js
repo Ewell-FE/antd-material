@@ -25,6 +25,7 @@ import TimePicker from './TimePicker'
 import AutoComplete from './autoComplete'
 import Dragger from './dragger'
 import Upload from './upload'
+import classnames from 'classnames'
 
 //渲染field组件
 let FieldHtml = (field)=> {
@@ -144,9 +145,9 @@ export class FormComponent extends Component {
     }
 
     render() {
-        const {classes} =this.props
+        const {classes,className} =this.props
         return (
-            <Form className={classes.root} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+            <Form className={classnames(classes.root,{[`${className}`]:className})} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                 <GridBox {...this.props}>
                     {this.props.fields && this.props.fields.map((item, i)=> {
                         return (

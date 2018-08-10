@@ -115,7 +115,7 @@ app.propTypes = {
     disabled: PropTypes.bool,//当前选项是否只读
     defaultChecked: PropTypes.bool, //默认是否选中
     checked: PropTypes.bool, //是否选中
-    value: PropTypes.string, //根据 value 进行比较，判断是否选中
+    value: PropTypes.any, //根据 value 进行比较，判断是否选中
     onChange: PropTypes.func, // 选中改变
     style: PropTypes.object, //行内样式
     icon:PropTypes.node,

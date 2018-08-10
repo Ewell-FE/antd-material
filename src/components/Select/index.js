@@ -125,7 +125,10 @@ export default class App extends Component {
     renderSelect = (locale) => {
         const props = this.props
         const classes = props.classes
-        let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags'])
+        let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags','value'])
+        if (props.value) {
+            otherProps.defaultValue = props.value+''
+        }
         let options = []
         let modeType = (props.combobox && "combobox") || (props.multiple && "multiple") || (props.tags && "tags")
         let modes = {
@@ -137,7 +140,7 @@ export default class App extends Component {
         if (props.options) {
             props.options.forEach((item, i) => {
                 options.push(
-                    <Option key={i} value={item.value}>{item.label}</Option>
+                    <Option key={i} value={item.value} disabled={item.disabled||false}>{item.label}</Option>
                 )
             })
         }
