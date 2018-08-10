@@ -51,7 +51,11 @@ export default class app extends Component {
         this.setState({
             value
         });
-        value&&this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        if(value){
+            this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        }else{
+            this.props.onChange && this.props.onChange(null,'')
+        }
     }
 
     emitEmpty = (e) => {
@@ -61,7 +65,7 @@ export default class app extends Component {
 
     renderPicker = (locale, localeCode) => {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style','mode'])
         const state = this.state
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
@@ -69,11 +73,12 @@ export default class app extends Component {
         const calendar = (<Calendar
             style={{ zIndex: 1000 }}
             prefixCls="yh-calendar"
-            timePicker={props.showTime && timePickerElement}
+            timePicker={props.showTime&&timePickerElement}
             dateInputPlaceholder={locale.timePickerLocale.dateInputPlaceholder}
             locale={locale.lang}
             {...otherProps}
             {...otherStyle}
+            format={props.showTime?'YYYY-MM-DD HH:mm:ss':props.format}
         />);
         return (
             <DatePicker
@@ -93,6 +98,7 @@ export default class app extends Component {
                             <span tabIndex="0" className={props.classes.span}>
                                 <Input
                                     readOnly
+                                    className={props.className}
                                     size={props.size}
                                     placeholder={props.placeholder || locale.lang.placeholder}
                                     style={{ width: style.width, height: style.height }}
@@ -131,7 +137,6 @@ app.propTypes = {
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
     mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
     onPanelChange: PropTypes.func,//日期面板变化时的回调
-
     defaultValue: PropTypes.object, //moment类型的日期对象
     disabledTime: PropTypes.func,//不可选择的时间
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js

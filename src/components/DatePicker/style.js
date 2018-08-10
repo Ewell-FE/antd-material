@@ -57,6 +57,25 @@ export default function (theme) {
             },
             '& .yh-calendar-range .yh-calendar-in-range-cell':{
                 background:theme.colors.light,
+            },
+            '& .yh-time-picker-panel-inner':{
+                boxShadow:'none',
+                borderColor:'transparent',
+                '& .yh-time-picker-panel-input-wrap':{
+                    display:'none'
+                },
+                '& .yh-time-picker-panel-select':{
+                    height:'216px'
+                }
+            },
+            '& .yh-calendar-range-left .yh-time-picker-panel-inner':{
+                borderRight:'2px solid #e8e8e8',
+                borderRadius:'0',
+                borderBottom:'1px solid #e8e8e8'
+            },
+            '& .yh-calendar-range-right .yh-time-picker-panel-inner':{
+                borderBottom:'1px solid #e8e8e8',
+                borderRadius:'0',
             }
         },
         span:{

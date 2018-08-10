@@ -33,11 +33,14 @@ export default class Spin extends Component {
     }
 
     onChange = (value) => {
-        console.log(moment.locale())
         this.setState({
             value
         });
-        value && this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        if(value){
+            this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+        }else{
+            this.props.onChange && this.props.onChange(null,'')
+        }
     }
 
     renderTimePicker = (locale) => {
