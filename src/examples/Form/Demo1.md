@@ -17,6 +17,7 @@ export class <%=component%> extends Component {
         return (
             <div>
                 <Form form='roleForm1'
+                      className='addclassname'
                   initialValues={{}}
                   Submit={(values) => this.Submit(values)} ref="form1"
                   fields={[{
