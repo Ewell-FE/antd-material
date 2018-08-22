@@ -1,7 +1,9 @@
 import CalendarLocale from 'rc-calendar/lib/locale/en_US'
+import Pagination from 'rc-pagination/lib/locale/en_US';
 
 export default {
     locale: 'en',
+    Pagination,
     DatePicker: {
         lang: {
             placeholder: 'Select date',
@@ -18,10 +20,6 @@ export default {
     },
     TimePicker: {
         placeholder: 'Select time',
-    },
-    Pagination: {
-        pageUnit: 'page',
-        jumpText: 'jumpTo'
     },
     Modal: {
         okText: 'Ok',
@@ -44,7 +42,7 @@ export default {
         uploadError: 'Upload error',
         previewFile: 'Preview file',
     },
-    Table:{
-        noData:'No Data'
+    Table: {
+        noData: 'No Data'
     }
 };

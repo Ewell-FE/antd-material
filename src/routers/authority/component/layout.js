@@ -30,7 +30,18 @@ import  * as demo from '../examples'
 const drawerWidth = 240;
 
 let scrollTimer = null
-
+const oddEvent = () => {
+    window.cancelAnimationFrame(scrollTimer);
+    scrollTimer = window.requestAnimationFrame(function fn(){
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if(oTop > 0){
+            document.body.scrollTop = document.documentElement.scrollTop = oTop - 100;
+            scrollTimer = window.requestAnimationFrame(fn);
+        }else{
+            window.cancelAnimationFrame(scrollTimer);
+        }
+    });
+}
 const styles = theme => ({
     '@global body': {
         fontFamily: 'Monospaced Number,Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif'
@@ -181,21 +192,6 @@ class PersistentDrawer extends React.Component {
                 })}
             </div>
         );
-        const oddEvent = (match, location) => {
-            if (!match) {
-                return false
-            }
-            window.cancelAnimationFrame(scrollTimer);
-            scrollTimer = window.requestAnimationFrame(function fn(){
-                var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-                if(oTop > 0){
-                    document.body.scrollTop = document.documentElement.scrollTop = oTop - 100;
-                    scrollTimer = window.requestAnimationFrame(fn);
-                }else{
-                    window.cancelAnimationFrame(scrollTimer);
-                }
-            });
-        }
         const drawer = (
             <Drawer
                 variant="persistent"
@@ -216,7 +212,7 @@ class PersistentDrawer extends React.Component {
                         <li><NavLink
                             to="/material/docs/start.html"
                             style={{color:'#314659'}}
-                            isActive={oddEvent}
+                            onClick={oddEvent}
                             activeStyle={{
                                 color: this.state.primary
                             }}
@@ -234,9 +230,9 @@ class PersistentDrawer extends React.Component {
                                     <div key={j}>
                                         <List style={{paddingLeft:'40px'}}>
                                             <li><NavLink
+                                                onClick={oddEvent}
                                                 to={"/material/docs/"+item.name+".html"}
                                                 style={{color:'#314659'}}
-                                                isActive={oddEvent}
                                                 activeStyle={{
                                                             color: this.state.primary
                                                         }}

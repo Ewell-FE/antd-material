@@ -84,7 +84,7 @@ export class <%=component%> extends Component {
         };
         return (
             <div className='table-example' style={{background:'#fff',padding:20}}>
-                <Table columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
+                <Table rowSelectionNum={1} columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
             </div>
         )
     }

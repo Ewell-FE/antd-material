@@ -1,26 +1,14 @@
-#  基本
-## 简单的表格，最后一列是各种操作。
+#  可选择
+## 第一列是联动的选择框。
 
 
 ````jsx
 import Table from 'antd-material/core/Table'
-let data1 = [{
+let data4 = [{
     key: '1',
     name: '胡彦斌1',
     age: 32,
-    address: '西湖区湖底公园1号',
-     children:[{
-              key: '7',
-              name: '胡彦祖7',
-              age: 88,
-              address: '西湖区湖底公园2号',
-               children:[{
-                            key: 'ss',
-                            name: 'fff',
-                            age: 88,
-                            address: '龙井山'
-                            }]
-              }]
+    address: '西湖区湖底公园1号'
 }, {
     key: '2',
     name: '胡彦祖2',
@@ -31,12 +19,6 @@ let data1 = [{
     name: '胡彦祖3',
     age: 42,
     address: '西湖区湖底公园1号'
-    ,children:[{
-                  key: '9',
-                  name: 'aaa',
-                  age: 88,
-                  address: 'hhh'
-                  }]
 }, {
     key: '4',
     name: '胡彦祖4',
@@ -57,13 +39,17 @@ export class <%=component%> extends Component {
     constructor(props){
         super(props)
         this.state = {
-            expandKey:[]
+            current:1,
+            pageSize:5,
+            selectedRowKeys:[]
         }
+
     }
-    onExpand(expandKeys,record){
-        this.setState({
-            expandKey:expandKeys
-        })
+    onChange=page=>{
+        this.setState({current:page})
+    }
+    onSelectChange = (selectedRowKeys) => {
+        this.setState({ selectedRowKeys });
     }
     render() {
         const columns = [{
@@ -85,10 +71,20 @@ export class <%=component%> extends Component {
                 <div><span style={{marginRight:5}}>编辑</span><span>删除</span></div>
             ),
         }];
+        const pagination  = {
+            current:this.state.current,
+            pageSize:5,
+            total:6,
+            onChange:this.onChange,
+            showQuickJumper:true
+        }
+        const rowSelection = {
+            selectedRowKeys:this.state.selectedRowKeys,
+            onChange: this.onSelectChange
+        };
         return (
             <div className='table-example' style={{background:'#fff',padding:20}}>
-                <Table columns={columns} expandKey={this.state.expandKey}
-                onExpand={(expandKeys,record)=>this.onExpand(expandKeys,record)} rowKey={'key'}  dataSource={data1}/>
+                <Table bordered columns={columns} rowKey={'key'}  pagination={pagination}  dataSource={data4}/>
             </div>
         )
     }

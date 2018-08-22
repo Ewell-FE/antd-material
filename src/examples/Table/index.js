@@ -21,7 +21,7 @@ let data1 = [{
                             key: 'ss',
                             name: 'fff',
                             age: 88,
-                            address: '混蛋混蛋'
+                            address: '龙井山'
                             }]
               }]
 }, {
@@ -177,7 +177,7 @@ export class Demo2md extends Component {
         };
         return (
             <div className='table-example' style={{background:'#fff',padding:20}}>
-                <Table columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
+                <Table rowSelectionNum={1} columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
             </div>
         )
     }
@@ -267,6 +267,92 @@ export class Demo3md extends Component {
     }
 }
 
+let data4 = [{
+    key: '1',
+    name: '胡彦斌1',
+    age: 32,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '2',
+    name: '胡彦祖2',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '3',
+    name: '胡彦祖3',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '4',
+    name: '胡彦祖4',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '5',
+    name: '胡彦祖5',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '6',
+    name: '胡彦祖6',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}]
+export class Demo4md extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            current:1,
+            pageSize:5,
+            selectedRowKeys:[]
+        }
+
+    }
+    onChange=page=>{
+        this.setState({current:page})
+    }
+    onSelectChange = (selectedRowKeys) => {
+        this.setState({ selectedRowKeys });
+    }
+    render() {
+        const columns = [{
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name'
+        }, {
+            title: '年龄',
+            dataIndex: 'age',
+            key: 'age',
+        }, {
+            title: '住址',
+            dataIndex: 'address',
+            key: 'address',
+        }, {
+            title: '操作',
+            key: 'action',
+            render: (text, record) => (
+                <div><span style={{marginRight:5}}>编辑</span><span>删除</span></div>
+            ),
+        }];
+        const pagination  = {
+            current:this.state.current,
+            pageSize:5,
+            total:6,
+            onChange:this.onChange,
+            showQuickJumper:true
+        }
+        const rowSelection = {
+            selectedRowKeys:this.state.selectedRowKeys,
+            onChange: this.onSelectChange
+        };
+        return (
+            <div className='table-example' style={{background:'#fff',padding:20}}>
+                <Table bordered columns={columns} rowKey={'key'}  pagination={pagination}  dataSource={data4}/>
+            </div>
+        )
+    }
+}
+
 
 export default class App extends Component {
     render() {
@@ -295,7 +381,7 @@ let data1 = [{
                             key: 'ss',
                             name: 'fff',
                             age: 88,
-                            address: '混蛋混蛋'
+                            address: '龙井山'
                             }]
               }]
 }, {
@@ -460,7 +546,7 @@ export class Demo2md extends Component {
         };
         return (
             <div className='table-example' style={{background:'#fff',padding:20}}>
-                <Table columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
+                <Table rowSelectionNum={1} columns={columns} rowKey={'key'} rowSelection={rowSelection} pagination={pagination}  dataSource={data2}/>
             </div>
         )
     }
@@ -559,6 +645,101 @@ export class Demo3md extends Component {
     }
 }`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo3.md`}>
                         <Demo3md />
+                    </Templete>
+                
+                     <Typography variant="display1" gutterBottom>
+                                      可选择
+                                </Typography>
+                                <p style={{margin:'24px 0 12px 0'}}>
+                                     第一列是联动的选择框。
+                                </p>
+                    <Templete code={`import Table from 'antd-material/core/Table'
+let data4 = [{
+    key: '1',
+    name: '胡彦斌1',
+    age: 32,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '2',
+    name: '胡彦祖2',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '3',
+    name: '胡彦祖3',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '4',
+    name: '胡彦祖4',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '5',
+    name: '胡彦祖5',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}, {
+    key: '6',
+    name: '胡彦祖6',
+    age: 42,
+    address: '西湖区湖底公园1号'
+}]
+export class Demo4md extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            current:1,
+            pageSize:5,
+            selectedRowKeys:[]
+        }
+
+    }
+    onChange=page=>{
+        this.setState({current:page})
+    }
+    onSelectChange = (selectedRowKeys) => {
+        this.setState({ selectedRowKeys });
+    }
+    render() {
+        const columns = [{
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name'
+        }, {
+            title: '年龄',
+            dataIndex: 'age',
+            key: 'age',
+        }, {
+            title: '住址',
+            dataIndex: 'address',
+            key: 'address',
+        }, {
+            title: '操作',
+            key: 'action',
+            render: (text, record) => (
+                <div><span style={{marginRight:5}}>编辑</span><span>删除</span></div>
+            ),
+        }];
+        const pagination  = {
+            current:this.state.current,
+            pageSize:5,
+            total:6,
+            onChange:this.onChange,
+            showQuickJumper:true
+        }
+        const rowSelection = {
+            selectedRowKeys:this.state.selectedRowKeys,
+            onChange: this.onSelectChange
+        };
+        return (
+            <div className='table-example' style={{background:'#fff',padding:20}}>
+                <Table bordered columns={columns} rowKey={'key'}  pagination={pagination}  dataSource={data4}/>
+            </div>
+        )
+    }
+}`} github={`https://github.com/Ewell-FE/antd-material/tree/master/src/examples/Table/Demo4.md`}>
+                        <Demo4md />
                     </Templete>
                 
                 <Api />

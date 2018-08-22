@@ -119,7 +119,6 @@ class app extends Component {
         let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style', 'type', 'value', 'icon', 'indeterminateIcon', 'checkedIcon'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
         let {value, checked} = this.state
-
         return (
             <label className={classnames(classes.root,disabled&&classes.readOnly,
                 indeterminate&&classes.indeterminate,className)} style={style}>
@@ -133,7 +132,7 @@ class app extends Component {
                     indeterminateIcon={<span  className={classnames(classes.imgHalf)}>{indeterminateIcon}</span>}
                     checkedIcon={<span  className={classnames(classes.imgCheck,disabled&&classes.imgCheckDisabled)}>{checkedIcon}</span>}
                     disableRipple/>
-                <span className={classes.label}>{children}</span>
+                {children && <span className={classes.label}>children</span>}
             </label>
         )
     }

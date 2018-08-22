@@ -15,6 +15,8 @@ export class <%=component%> extends Component {
                     pageSize={20}
                     defaultCurrent={1}
                 />
+                <br />
+                <br />
                 <Pagination
                     total={85}
                     showLastAndFirstJumper={false}

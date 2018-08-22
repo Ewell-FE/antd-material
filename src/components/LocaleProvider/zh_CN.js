@@ -1,7 +1,9 @@
 import CalendarLocale from 'rc-calendar/lib/locale/zh_CN'
+import Pagination from 'rc-pagination/lib/locale/zh_CN';
 
 export default {
     locale: 'zh-cn',
+    Pagination,
     DatePicker: {
         lang: {
             placeholder: '请选择日期',
@@ -18,10 +20,6 @@ export default {
     },
     TimePicker: {
         placeholder: '请选择时间',
-    },
-    Pagination: {
-        pageUnit: '页',
-        jumpText: '跳至'
     },
     Modal: {
         okText: '确定',
@@ -44,7 +42,7 @@ export default {
         uploadError: '上传错误',
         previewFile: '预览文件',
     },
-    Table:{
-        noData:'暂无数据'
+    Table: {
+        noData: '暂无数据'
     }
 };
