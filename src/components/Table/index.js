@@ -8,7 +8,8 @@ import omit from 'omit.js';
 import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 import Pagination from '../Pagination'
 import Checkbox from '../Checkbox';
-
+import Icon from '../Icon';
+import _ from 'lodash'
 const styles = theme => {
     return {
         root: {
@@ -38,7 +39,9 @@ export class SimpleTable extends Component {
             defaultCurrent: 1,
             defaultPageSize: 10,
             total: 0
-        }
+        },
+        sortColumn: null,
+        sortOrder: null,
     }
 
     renderPagination = (data) => {
@@ -63,6 +66,8 @@ export class SimpleTable extends Component {
     }
 
     selectAll = (e) => {
+        let rowSelection = this.props.rowSelection
+        let data = this.props.data || this.props.dataSource || []
         let selectedRowKeys = {}
         if (e.target.checked) {
             let data = this.props.data || this.props.dataSource || []
@@ -71,7 +76,12 @@ export class SimpleTable extends Component {
                 selectedRowKeys[key] = record
             })
         }
-        this.setState({selectedRowKeys, checkedAll: e.target.checked})
+        let selectCount = Object.keys(selectedRowKeys).length
+        let checkedAll = selectCount === this.filterData(data).length
+        let indeterminate = selectCount > 0 && !checkedAll
+        this.setState({selectedRowKeys, checkedAll: e.target.checked,indeterminate},()=>{
+            rowSelection.onChange && rowSelection.onChange(Object.keys(selectedRowKeys), Object.values(selectedRowKeys))
+        })
 
     }
     select = (checked, key, record) => {
@@ -95,9 +105,111 @@ export class SimpleTable extends Component {
             rowSelection.onChange && rowSelection.onChange(Object.keys(selectedRowKeys), Object.values(selectedRowKeys))
         })
     }
+    renderColumnsDropdown=(columns)=> {
+        const { prefixCls } = this.props;
+        const {sortOrder,sortColumn}=this.state;
+        return columns.map((item,i)=>{
+            let column = { ...item };
+            let key = column.key || column.dataIndex || i;
+            let sortButton;
+            if (column.sorter) {
+                column.className = classNames(column.className, {
+                    [`${prefixCls}-column-sort`]: sortOrder,
+                });
+                const isColumn=sortColumn&&(sortColumn.key===column.key)
+                const isAscend = isColumn&&sortOrder === 'ascend';
+                const isDescend = isColumn&&sortOrder === 'descend';
+                sortButton = (
+                    <div className={`${prefixCls}-column-sorter`}>
+                        <span
+                            className={`${prefixCls}-column-sorter-up ${isAscend ? 'on' : 'off'}`}
+                            title="↑"
+                            onClick={() => this.toggleSortOrder('ascend', column)}
+                        >
+                            <Icon type="caret-up" />
+                        </span>
+                        <span
+                            className={`${prefixCls}-column-sorter-down ${isDescend ? 'on' : 'off'}`}
+                            title="↓"
+                            onClick={() => this.toggleSortOrder('descend', column)}
+                        >
+                            <Icon type="caret-down" />
+                        </span>
+                    </div>
+                );
+            }
+            column.title = (
+                <span key={key}>
+                    {column.title}
+                    {sortButton}
+                </span>
+            );
+            if (sortButton) {
+                column.className = classNames(`${prefixCls}-column-has-filters`, column.className);
+            }
+            return column;
+        })
+    }
+    toggleSortOrder(order, column) {
+        let { sortColumn, sortOrder } = this.state;
+        // 只同时允许一列进行排序，否则会导致排序顺序的逻辑问题
+        if (!sortColumn) {  // 当前列未排序
+            sortOrder = order;
+            sortColumn = column;
+        } else {                      // 当前列已排序
+            if (sortOrder === order&&(sortColumn.key===column.key)) {  // 切换为未排序状态
+                sortOrder = '';
+                sortColumn = null;
+            } else {                    // 切换为排序状态
+                sortOrder = order;
+                sortColumn = column;
+            }
+        }
+        this.setState({
+            sortOrder,
+            sortColumn,
+        })
+    }
+    getSorterFn() {
+        const { sortOrder, sortColumn } = this.state;
+        if (!sortOrder || !sortColumn ||
+            typeof sortColumn.sorter !== 'function') {
+            return;
+        }
 
-    filterColumns = (columns) => {
+        return (a, b) => {
+            let result = (sortColumn.sorter)(a, b);
+            if (result !== 0) {
+                return (sortOrder === 'descend') ? -result : result;
+            }
+            return 0;
+        };
+    }
+    getLocalData(dataSource) {
+        let data = dataSource || [];
+        // 优化本地排序
+        data = data.slice(0);
+        const sorterFn = this.getSorterFn();
+        if (sorterFn) {
+            data = data.sort((a,b)=>sorterFn(a,b));
+        }
+        return data;
+    }
+    filterData = (_data) => {
+        let data=this.getLocalData(_data)
+        if(this.props.pagination){
+            let PaginationConfig = this.props.pagination || this.props.defaultPagination
+            let pageSize = PaginationConfig.pageSize || PaginationConfig.defaultPageSize
+            let current = PaginationConfig.current || PaginationConfig.defaultCurrent
+            if (data.length > pageSize) {
+                return data.slice((current - 1) * pageSize, current * pageSize)
+            }
+        }
+        return data
+    }
+    filterColumns = (_columns) => {
         let props = this.props
+        let columns=this.renderColumnsDropdown(_columns)
         if (!props.rowSelection) {
             return columns
         }
@@ -123,17 +235,6 @@ export class SimpleTable extends Component {
         })
         return newColumns
     }
-
-    filterData = (data) => {
-        let PaginationConfig = this.props.pagination || this.props.defaultPagination
-        let pageSize = PaginationConfig.pageSize || PaginationConfig.defaultPageSize
-        let current = PaginationConfig.current || PaginationConfig.defaultCurrent
-        if (data.length > pageSize) {
-            return data.slice((current - 1) * pageSize, current * pageSize)
-        }
-        return data
-    }
-
     renderTable = (context) => {
         const props = this.props
         const {classes, prefixCls, showHeader} = this.props
@@ -164,6 +265,32 @@ export class SimpleTable extends Component {
                 indeterminate: false
             })
         }
+        //改变选中项
+        if (nextProps.rowSelection && nextProps.rowSelection.selectedRowKeys !== this.props.rowSelection.selectedRowKeys) {
+            let data = this.props.data || this.props.dataSource || []
+            let selectCount = nextProps.rowSelection.selectedRowKeys.length
+            let checkedAll = selectCount === this.filterData(data).length&&data.length
+            let indeterminate = selectCount > 0 && !checkedAll
+            this.setState({
+                selectedRowKeys: this.getSelectedRowkeys(nextProps.rowSelection.selectedRowKeys),
+                checkedAll,
+                indeterminate
+            })
+        }
+    }
+
+    //把外部的数组改成对象
+    getSelectedRowkeys =(arr)=>{
+        let obj = {}
+        let data = this.props.data || this.props.dataSource || []
+        data.forEach((item)=>{
+            if(_.indexOf(arr,item[this.props.rowKey]) !== -1){
+                Object.assign(obj,{
+                    [item[this.props.rowKey]]:item
+                })
+            }
+        })
+        return obj
     }
 
     render() {

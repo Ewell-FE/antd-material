@@ -45,6 +45,7 @@ const styles = theme => {
             width:16,
             height:16,
             verticalAlign:'middle',
+            lineHeight:'16px',
             '& i':{
                 fontSize: 20,
                 marginTop:-3
@@ -55,6 +56,7 @@ const styles = theme => {
             width:16,
             height:16,
             verticalAlign:'middle',
+            lineHeight:'16px',
             '& i':{
                 fontSize: 20,
                 marginTop:-3
