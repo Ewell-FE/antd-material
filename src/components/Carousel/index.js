@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick-theme.css";
@@ -61,6 +62,8 @@ export default class App extends Component {
             window.addEventListener('resize', this.onWindowResized);
         }
         this.innerSlider = this.slick && this.slick.innerSlider;
+        this.props.withRef && this.props.withRef(this.slick)
+
     }
 
     componentWillUnmount() {

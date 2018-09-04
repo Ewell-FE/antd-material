@@ -59,6 +59,7 @@ export default class app extends Component {
     emitEmpty = (e) => {
         e.stopPropagation()
         this.setState({ value: null });
+        this.props.onChange && this.props.onChange(null, ['', ''])
     }
 
     onHoverChange = (hoverValue) => {
