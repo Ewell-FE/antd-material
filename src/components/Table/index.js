@@ -65,19 +65,33 @@ export class SimpleTable extends Component {
         return recordKey === undefined ? index : recordKey;
     }
 
+    getDisabledSelection=()=>{
+        let rowSelection = this.props.rowSelection
+        let data = this.props.data || this.props.dataSource || [],list=[]
+        this.filterData(data).forEach((item,index)=>{
+            let disabled = rowSelection.getCheckboxProps&&rowSelection.getCheckboxProps(item,index).disabled||false
+            if(!disabled){
+                list.push(item)
+            }
+        })
+        return list.length
+    }
+
     selectAll = (e) => {
         let rowSelection = this.props.rowSelection
         let data = this.props.data || this.props.dataSource || []
         let selectedRowKeys = {}
         if (e.target.checked) {
-            let data = this.props.data || this.props.dataSource || []
             data.forEach((record, index) => {
                 let key = this.getRecordKey(record, index)
-                selectedRowKeys[key] = record
+                let disabled = rowSelection.getCheckboxProps&&rowSelection.getCheckboxProps(record,index).disabled||false
+                if(!disabled){
+                    selectedRowKeys[key] = record
+                }
             })
         }
         let selectCount = Object.keys(selectedRowKeys).length
-        let checkedAll = selectCount === this.filterData(data).length
+        let checkedAll = selectCount === this.getDisabledSelection()
         let indeterminate = selectCount > 0 && !checkedAll
         this.setState({selectedRowKeys, checkedAll: e.target.checked,indeterminate},()=>{
             rowSelection.onChange && rowSelection.onChange(Object.keys(selectedRowKeys), Object.values(selectedRowKeys))
@@ -94,7 +108,7 @@ export class SimpleTable extends Component {
             delete selectedRowKeys[key]
         }
         let selectCount = Object.keys(selectedRowKeys).length
-        let checkedAll = selectCount === this.filterData(data).length
+        let checkedAll = selectCount === this.getDisabledSelection()
         let indeterminate = selectCount > 0 && !checkedAll
 
         this.setState({
@@ -217,17 +231,19 @@ export class SimpleTable extends Component {
         let newColumns = columns.map(function (item) {
             return item
         })
-
+        let data = props.data || props.dataSource || []
+        const checkboxAllDisabled = rowSelection.getCheckboxProps&&data.every((item, index) => rowSelection.getCheckboxProps(item, index).disabled)||false;
         newColumns.splice(this.props.rowSelectionNum, 0, {
             title: <Checkbox checked={this.state.checkedAll} onChange={this.selectAll}
-                             indeterminate={this.state.indeterminate}/>,
+                             indeterminate={this.state.indeterminate} disabled={checkboxAllDisabled}/>,
             key: '__all__',
             fixed: rowSelection.fixed,
             width: rowSelection.columnWidth || '60px',
             render: (value, record, index) => {
                 let key = this.getRecordKey(record, index)
+                let checkboxProps = rowSelection.getCheckboxProps&&rowSelection.getCheckboxProps(record,index)||{}
                 return (
-                    <Checkbox checked={!!this.state.selectedRowKeys[key]} onChange={(e) => {
+                    <Checkbox checked={!!this.state.selectedRowKeys[key]} {...checkboxProps}  onChange={(e) => {
                         this.select(e.target.checked, key, record)
                     }}/>
                 )
@@ -269,10 +285,10 @@ export class SimpleTable extends Component {
         if (nextProps.rowSelection && nextProps.rowSelection.selectedRowKeys !== this.props.rowSelection.selectedRowKeys) {
             let data = this.props.data || this.props.dataSource || []
             let selectCount = nextProps.rowSelection.selectedRowKeys.length
-            let checkedAll = selectCount === this.filterData(data).length&&data.length
+            let checkedAll = selectCount === this.getDisabledSelection()&&data.length
             let indeterminate = selectCount > 0 && !checkedAll
             this.setState({
-                selectedRowKeys: this.getSelectedRowkeys(nextProps.rowSelection.selectedRowKeys),
+                selectedRowKeys: this.getSelectedRowkeys(nextProps.rowSelection,nextProps.rowSelection.selectedRowKeys),
                 checkedAll,
                 indeterminate
             })
@@ -280,11 +296,12 @@ export class SimpleTable extends Component {
     }
 
     //把外部的数组改成对象
-    getSelectedRowkeys =(arr)=>{
+    getSelectedRowkeys =(rowSelection,arr)=>{
         let obj = {}
         let data = this.props.data || this.props.dataSource || []
-        data.forEach((item)=>{
-            if(_.indexOf(arr,item[this.props.rowKey]) !== -1){
+        data.forEach((item,index)=>{
+            let disabled = rowSelection.getCheckboxProps&&rowSelection.getCheckboxProps(item,index).disabled||false
+            if(_.indexOf(arr,item[this.props.rowKey]) !== -1&&!disabled){
                 Object.assign(obj,{
                     [item[this.props.rowKey]]:item
                 })

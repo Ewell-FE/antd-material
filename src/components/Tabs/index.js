@@ -303,6 +303,15 @@ class Tabs extends React.Component {
         }
     };
 
+    getCurrentIndex = (arr,value)=>{
+        let index = 0
+        arr.forEach((item,i)=>{
+            if(item.props.value === value){
+                index = i
+            }
+        })
+        return index
+    }
     render() {
         const {
             action, size, type, centered, children: childrenProp, classes, className: classNameProp, fullWidth,tabsStyle={}, indicatorColor, onChange,
@@ -388,7 +397,7 @@ class Tabs extends React.Component {
                     </div>
                 </div>
                 <SwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                                index={this.props.selectnum}
+                                index={this.getCurrentIndex(children,value)}
                                 onChangeIndex={this.props.handleChange}>
                     {
                         children.map((item, i) => {

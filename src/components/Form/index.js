@@ -109,7 +109,7 @@ let GridBox = (props)=> {
     if (props.layout === 'grid') {
         return (
             <div style={{flexGrow:1}}>
-                <Grid container spacing={24}>
+                <Grid container spacing={props.spacing||24}>
                     {props.children}
                 </Grid>
             </div>
