@@ -10,6 +10,17 @@ export default function (theme) {
             "list-style": "none",
             "position": "absolute",
             "z-index": "1050",
+            '&.yh-calendar-noSeconds':{
+                '& .yh-time-picker-panel-select':{
+                    width:'50%',
+                    '&:last-child':{
+                        display:'none'
+                    },
+                    '&:nth-child(2)':{
+                        borderRightWidth:0,
+                    }
+                }
+            },
             '& .yh-calendar-today .yh-calendar-date':{
                 borderColor:theme.colors.primary,
                 color:theme.colors.primary

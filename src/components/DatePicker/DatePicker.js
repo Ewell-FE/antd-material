@@ -32,8 +32,9 @@ export default class app extends Component {
         // placeholder: 'Select date',
         // dateInputPlaceholder: 'please input',
         // locale: cn ? zhCN : enUS,
+        // showTime:false,
         animation: 'slide-up',
-        format: 'YYYY-MM-DD',
+        format: '',
         mode: 'date',
         disabled:false
     }
@@ -48,11 +49,12 @@ export default class app extends Component {
     }
 
     onChange = (value) => {
+        let format = this.props.format|| (this.props.showTime?'YYYY-MM-DD HH:mm:ss':'YYYY-MM-DD')
         this.setState({
             value
         });
         if(value){
-            this.props.onChange && this.props.onChange(value, value.format(this.props.format))
+            this.props.onChange && this.props.onChange(value, value.format(format))
         }else{
             this.props.onChange && this.props.onChange(null,'')
         }
@@ -63,6 +65,17 @@ export default class app extends Component {
         this.setState({ value: null });
     }
 
+    //判断是否有时间 时-分-秒
+    getSeconds=(format)=>{
+        let flag = true
+        if(format.match('ss')){
+            flag = false
+        }
+        return flag
+    }
+
+
+
     renderPicker = (locale, localeCode) => {
         const props = this.props
         const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'defaultValue', 'placeholder', 'value', 'style','mode'])
@@ -70,6 +83,7 @@ export default class app extends Component {
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
+        let format = props.format|| (props.showTime?'YYYY-MM-DD HH:mm:ss':'YYYY-MM-DD')
         const calendar = (<Calendar
             style={{ zIndex: 1000 }}
             prefixCls="yh-calendar"
@@ -78,7 +92,7 @@ export default class app extends Component {
             locale={locale.lang}
             {...otherProps}
             {...otherStyle}
-            format={props.showTime?'YYYY-MM-DD HH:mm:ss':props.format}
+            format={format}
         />);
         return (
             <DatePicker
@@ -87,6 +101,7 @@ export default class app extends Component {
                 animation={this.props.animation}
                 prefixCls={props.classes.root}
                 calendar={calendar}
+                dropdownClassName={this.getSeconds(format)?'yh-calendar-noSeconds':''}
                 value={state.value}
                 onChange={this.onChange}
                 disabled={props.disabled}
@@ -104,7 +119,7 @@ export default class app extends Component {
                                     style={{ width: style.width, height: style.height }}
                                     disabled={props.disabled}
                                     suffix={state.value ? suffix : <Icon type="calendar" />}
-                                    value={value ? value.format(props.showTime ? 'YYYY-MM-DD HH:mm:ss' : props.format) : ''}
+                                    value={value ? value.format(format) : ''}
                                     onChange={this.onChangeUserName}
                                 />
                             </span>
