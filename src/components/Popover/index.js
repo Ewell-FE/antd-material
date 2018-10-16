@@ -184,7 +184,7 @@ export default class Popver extends Component {
             })
         }
         return(
-            <div>
+            <React.Fragment>
                 {
                     React.cloneElement(children, {
                         ...defaultChildren,
@@ -219,7 +219,7 @@ export default class Popver extends Component {
                         {content}
                     </div>
                 </Popover>
-            </div>
+            </React.Fragment>
 
         )
 
