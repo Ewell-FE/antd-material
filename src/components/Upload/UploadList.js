@@ -101,7 +101,8 @@ export default class UploadList extends React.Component{
     }
 
     render() {
-        const {classes, prefixCls, items = [], listType, showPreviewIcon, showRemoveIcon } = this.props;
+        const {classes, prefixCls, items = [], listType, showPreviewIcon, showRemoveIcon} = this.props;
+        const {uploading,uploadError} = this.props.locale
         const list = items.map(file => {
             let progress,icon;
 
@@ -109,7 +110,7 @@ export default class UploadList extends React.Component{
             icon= file.status === 'uploading'? <CircularProgress  size={20} style={{ color: grey[400] }} classes={{root:classes.root}} />:<Icon type='paperclip' />
             if (listType === 'picture' || listType === 'picture-card') {
                 if (listType === 'picture-card' && file.status === 'uploading') {
-                    icon = <div className={`${prefixCls}-list-item-uploading-text`}>上传中</div>;
+                    icon = <div className={`${prefixCls}-list-item-uploading-text`}>{uploading}</div>;
                 } else if (!file.thumbUrl && !file.url) {
                     icon = <Icon className={`${prefixCls}-list-item-thumbnail`} type="picture" />;
                 } else {
@@ -195,7 +196,7 @@ export default class UploadList extends React.Component{
             if (file.response && typeof file.response === 'string') {
                 message = file.response;
             } else {
-                message = (file.error && file.error.statusText) || '上传失败';
+                message = (file.error && file.error.statusText) || uploadError;
             }
             const iconAndPreview = (file.status === 'error')
                 ? <Tooltip title={message}><span>{icon}{preview}</span></Tooltip>

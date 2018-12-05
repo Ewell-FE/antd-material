@@ -49,13 +49,20 @@ export default class app extends Component {
 
 
     onChange = (value) => {
+        let format = this.props.format|| (this.props.showTime?'YYYY-MM-DD HH:mm:ss':'YYYY-MM-DD')
         this.setState({
             value
         });
-        this.props.onChange && this.props.onChange(value, [value[0].format(this.props.format), value[1].format(this.props.format)])
+        this.props.onChange && this.props.onChange(value, [value[0].format(format), value[1].format(format)])
 
     }
-
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({
+                value: nextProps.value
+            })
+        }
+    }
     emitEmpty = (e) => {
         e.stopPropagation()
         this.setState({ value: null });
@@ -73,15 +80,17 @@ export default class app extends Component {
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
         let otherStyle = omit(props.style, ['width', 'height'])
+        let format = props.format|| (props.showTime?'YYYY-MM-DD HH:mm:ss':'YYYY-MM-DD')
         const calendar = (
             <RangeCalendar
                 showWeekNumber={false}
                 prefixCls="yh-calendar"
-                timePicker={timePickerElement}
+                timePicker={props.showTime&&timePickerElement}
                 dateInputPlaceholder={locale.timePickerLocale.RangeDateInputPlaceholder}
                 locale={locale.lang}
                 {...otherProps}
                 {...otherStyle}
+                format={format}
             />);
         return (
             <DatePicker
@@ -132,7 +141,6 @@ app.propTypes = {
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
     mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
     onPanelChange: PropTypes.func,//日期面板变化时的回调
-
     defaultValue: PropTypes.object, //moment类型的日期对象
     disabledTime: PropTypes.func,//不可选择的时间
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js
@@ -140,7 +148,7 @@ app.propTypes = {
     renderExtraFooter: PropTypes.node, // 在面板中添加额外的页脚
     showTime: PropTypes.bool,// 增加时间选择功能
     "showTime.defaultValue": PropTypes.object,//设置用户选择日期时默认的时分秒，例子
-    value: PropTypes.object, //moment 格式的日期对象
+    value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), //moment 格式的日期对象
     onChange: PropTypes.func,//时间发生变化的回调
     onOk: PropTypes.func
 };

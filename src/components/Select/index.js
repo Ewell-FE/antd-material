@@ -101,7 +101,7 @@ export default class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.defaultValue || undefined
+            value: props.defaultValue || props.value ||undefined
         }
     }
 
@@ -109,7 +109,7 @@ export default class App extends Component {
         prefixCls: 'yh-select',
         size: 'default',
         optionLabelProp: 'children',
-        placeholder: 'please select'
+        placeholder: ''
     }
 
     getNotFoundContent = (locale) => {
@@ -127,6 +127,16 @@ export default class App extends Component {
         })
         this.props.onChange&&this.props.onChange(e)
     }
+
+
+    componentWillReceiveProps(nextProps){
+        if(this.props.value !== nextProps.value){
+            this.setState({
+                value:nextProps.value
+            })
+        }
+    }
+
 
     renderSelect = (locale) => {
         const props = this.props
@@ -153,6 +163,7 @@ export default class App extends Component {
                 notFoundContent={this.getNotFoundContent(locale)}
                 {...otherProps}
                 {...modes}
+                dropdownClassName={classnames(otherProps.dropdownClassName,classes.dropMenu)}
                 value={this.state.value}
                 onChange={this.onChange}
             >
