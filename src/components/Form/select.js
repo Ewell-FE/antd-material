@@ -10,7 +10,7 @@ const { Option, OptGroup } = Select;
 export default class renderInput extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
-        let inputs = omit(field.input,['onBlur','onDragStart','onDrop','onFocus'])
+        let inputs = omit(field.input,['onDragStart','onDrop'])
         let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes','options'])
         let select;
         if(field.OptGroup){
