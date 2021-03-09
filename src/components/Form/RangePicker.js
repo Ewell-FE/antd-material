@@ -5,7 +5,6 @@ import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
 import styles from './style'
 function fixControlledValue(value) {
-    console.log(value)
     return Array.isArray(value)?value.map((item)=>item===""?null:item):[null,null];
 }
 const RangePicker= DatePicker.RangePicker
