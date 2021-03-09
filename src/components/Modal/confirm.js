@@ -57,19 +57,25 @@ export class ConfirmModal extends Component {
     static defaultProps={
         iconType:'question-circle',
         okType:'Primary',
-        okText:'ok',
-        cancelText:'cancel',
+        okText:'Confirm',
+        cancelText:'Cancel',
         width:416,
         mask:true,
         maskClosable:false,
+        disableEscapeKeyDown:true,
         className:'',
         onCancel:()=>{},
         onOk:()=>{}
     }
     render(){
-        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width,className,onCancel,onOk} = this.props;
+        const {classes,afterClose,visible,title,content,close,iconType,type,okType,okText,cancelText,mask,maskClosable,width,className,onCancel,onOk,disableEscapeKeyDown,rootClassName,onRendered} = this.props;
+        const okHide = ('okHide' in this.props) ? this.props.okHide : true;
         const okCancel = ('okCancel' in this.props) ? this.props.okCancel : true;
-
+        const OkButton = okHide && (
+            <ActionButton style={{marginLeft:'10px'}} type={okType} actionFn={onOk} closeModal={close} autoFocus>
+                {okText}
+            </ActionButton>
+        );
         const cancelButton = okCancel && (
                 <ActionButton actionFn={onCancel} closeModal={close}>
                     {cancelText}
@@ -86,8 +92,11 @@ export class ConfirmModal extends Component {
                 afterClose={afterClose}
                 mask={mask}
                 maskClosable={maskClosable}
+                disableEscapeKeyDown={disableEscapeKeyDown}
                 closable={false}
                 wrapClassName={className}
+                rootClassName={rootClassName}
+                onRendered={onRendered}
             >
                 <div>
                     <span className={classnames(classes.confirmIcon,classes[type])}><Icon type={iconType} /></span>
@@ -95,10 +104,8 @@ export class ConfirmModal extends Component {
                     <div className={classes.confirmContent}>{content}</div>
                 </div>
                 <div className={classes.confirmBtns}>
+                    {OkButton}
                     {cancelButton}
-                    <ActionButton style={{marginLeft:'10px'}} type={okType} actionFn={onOk} closeModal={close} autoFocus>
-                        {okText}
-                    </ActionButton>
                 </div>
             </Modal>
         );
@@ -138,7 +145,7 @@ ConfirmModal.propTypes = {
     maskClosable:PropTypes.bool,//点击蒙层是否允许关闭
     okText:PropTypes.string,//确认按钮文字
     okType:PropTypes.string,//确认按钮类型
-    width:PropTypes.number,//宽度,
+    width:PropTypes.any,//宽度,
     onCancel:PropTypes.func,//点击取消按钮触发回调
     onOk:PropTypes.func,//点击确定按钮触发回调
 

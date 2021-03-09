@@ -28,7 +28,7 @@ const styles = theme => {
         'rc-cascader-menu': {},
         'rc-cascader-menu-item-active': {},
         picker: {
-            width: '300px',
+            width: '100%',
             fontSize: '14px',
             lineHeight: '1.5',
             color: 'rgba(0,0,0,.65)',
@@ -367,7 +367,7 @@ export default class Cascader extends React.Component {
         const {props, state} = this;
         const {
             classes, children, placeholder, size, disabled,
-            className, style, allowClear, showSearch = false, ...otherProps,
+            className, style, allowClear, showSearch = false, ...otherProps
         } = props;
         const value = state.value;
 

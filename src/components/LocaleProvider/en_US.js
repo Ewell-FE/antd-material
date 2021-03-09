@@ -6,41 +6,45 @@ export default {
     Pagination,
     DatePicker: {
         lang: {
-            placeholder: 'Select date',
-            monthPlaceholder: 'Select month',
-            rangePlaceholder: 'Start date ~ End date',
-            weekPlaceholder: 'Select week',
+            placeholder: 'Select Date',
+            monthPlaceholder: 'Select Month',
+            rangePlaceholder: '      From       ~        To',
+            weekPlaceholder: 'Select Week',
             ...CalendarLocale,
+            ok:'Confirm',
+            timeSelect:'Select Time',
+            dateSelect:'Select Date',
         },
         timePickerLocale: {
-            dateInputPlaceholder: 'Please input',
-            RangeDateInputPlaceholder: ['Start date', 'End date'],
-            placeholder: 'Select time',
+            dateInputPlaceholder: 'Please Input',
+            RangeDateInputPlaceholder: ['Start Date', 'End Date'],
+            placeholder: 'Select Time',
         },
     },
     TimePicker: {
-        placeholder: 'Select time',
+        placeholder: 'Select Time',
     },
     Modal: {
-        okText: 'Ok',
+        okText: 'Confirm',
         cancelText: 'Cancel',
     },
     Popconfirm: {
-        okText: 'Ok',
+        okText: 'Confirm',
         cancelText: 'Cancel',
     },
     Transfer: {
         notFoundContent: ['Not Found'],
-        searchPlaceholder: ['Search here'],
+        searchPlaceholder: ['Search Here'],
     },
     Select: {
-        notFoundContent: 'Not Found'
+        notFoundContent: 'Not Found',
+        enterAlertContent: 'Enter Characters'
     },
     Upload: {
         uploading: 'Uploading...',
-        removeFile: 'Remove file',
-        uploadError: 'Upload error',
-        previewFile: 'Preview file',
+        removeFile: 'Remove File',
+        uploadError: 'Upload Error',
+        previewFile: 'Preview File',
     },
     Table: {
         noData: 'No Data'

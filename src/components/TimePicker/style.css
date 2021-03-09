@@ -1,9 +1,23 @@
 .yh-time-picker {
     display: inline-block;
     box-sizing: border-box;
+    position: relative;
 }
 .yh-time-picker * {
     box-sizing: border-box;
+}
+.yh-time-picker-clear {
+    position: absolute;
+    right: 6px;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 0;
+}
+.yh-time-picker-clear:focus{
+    outline: none;
 }
 .yh-time-picker-input {
     width: 100%;
@@ -14,11 +28,11 @@
     cursor: text;
     font-size: 12px;
     line-height: 1.5;
-    color: #666;
+    color: #1a1a1a;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
+    border: 1px solid #ADB4C2;
+    border-radius: 2px;
     transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .yh-time-picker-input[disabled] {
@@ -101,7 +115,7 @@
     border-width: 0 1px;
     margin-left: -1px;
     box-sizing: border-box;
-    width: 33.33%;
+    width: 56px;
     height: 180px;
     overflow: hidden;
     position: relative;

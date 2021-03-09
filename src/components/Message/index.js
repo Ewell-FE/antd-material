@@ -142,24 +142,28 @@ let show = function (options) {
         index: ++index
     }
     Object.assign(defaultOptions, options || {})
+    const renderMessage = ()=>{
+        let messageBox = document.createElement('div')
+        box.appendChild(messageBox);
+        div[index] = messageBox
+        ReactDOM.render(
+            <Slide direction="down" in={true}>
+                <div>
+                    <MuiThemeProvider theme={style.theme}>
+                        <Message {...defaultOptions}/>
+                    </MuiThemeProvider>
+                </div>
+            </Slide>, messageBox);
+    }
     if (!box) {
         emptyBox = document.createElement('div')
         document.body.appendChild(emptyBox);
         ReactDOM.render(<MuiThemeProvider theme={style.theme}>
             <BoxMsg withRef={(dom)=>{box=dom}}/>
-        </MuiThemeProvider>, emptyBox);
+        </MuiThemeProvider>, emptyBox,()=>renderMessage());
+    }else{
+        renderMessage()
     }
-    let messageBox = document.createElement('div')
-    box.appendChild(messageBox);
-    div[index] = messageBox
-    ReactDOM.render(
-        <Slide direction="down" in={true}>
-            <div>
-                <MuiThemeProvider theme={style.theme}>
-                    <Message {...defaultOptions}/>
-                </MuiThemeProvider>
-            </div>
-        </Slide>, messageBox);
 }
 export default {
     success: function (str, timer, callback) {

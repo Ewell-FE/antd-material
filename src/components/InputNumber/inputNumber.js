@@ -188,7 +188,7 @@ export default class InputNumber extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.defaultValue || null
+            value: props.defaultValue || props.value || null
         }
     }
 
@@ -231,12 +231,12 @@ export default class InputNumber extends Component {
 InputNumber.propTypes = {
     size: PropTypes.oneOf(['small', 'default', 'large']),//大小
     step: PropTypes.number || PropTypes.string,//步长
-    value: PropTypes.string,//当前值
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),//当前值
     prefixCls: PropTypes.string,
     disabled: PropTypes.bool,//是否禁止点击
     min: PropTypes.number,//最小值
     max: PropTypes.number,//最大值
-    defaultValue: PropTypes.number,//默认值
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),//默认值
     formatter: PropTypes.func,//控制输入框格式
     parser: PropTypes.func,//控制输入框格式
     onChange: PropTypes.func,//控制输入框格式

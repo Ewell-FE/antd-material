@@ -84,16 +84,16 @@ export default class app extends Component {
     }
 
     render() {
-        const {children, classes, disabled, defaultChecked, checked, value, style, name,checkedIcon,icon} = this.props
+        const {children, classes, disabled, defaultChecked, checked, value, style, name,checkedIcon,icon,className} = this.props
         let root = classnames(classes.rootRadio, disabled && classes.readOnly)
         let radioClass = {}
         Object.assign(radioClass, {
             root: classes.root,
             checked: classes.checked,
-            disabled: classes.disabled
+            disabled: classes.disabled,
         })
         return (
-            <label className={root} style={style}>
+            <label className={classnames(root,className)} style={style}>
                 <Radio disabled={disabled}
                        inputRef={ref=>this.input = ref}
                        disableRipple

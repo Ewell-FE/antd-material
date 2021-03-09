@@ -16,8 +16,8 @@ import styles from './style'
 import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
 // const cn = true
-const timePickerElement = <TimePickerPanel prefixCls="yh-time-picker-panel"
-    defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
+const timePickerElement =(props)=><TimePickerPanel {...props}  prefixCls="yh-time-picker-panel"
+                                                    defaultValue={(props.defaultCalendarValue||moment('00:00:00', 'HH:mm:ss'))} />;
 
 @withStyles(styles, { name: 'MuiDatePickerAnt' })
 export default class app extends Component {
@@ -62,16 +62,27 @@ export default class app extends Component {
 
     emitEmpty = (e) => {
         e.stopPropagation()
-        this.setState({ value: null });
+        this.setState({ value: null },()=>{
+            this.props.onChange && this.props.onChange(null,'')
+        });
+    }
+    onOk=()=>{
+        let date = moment(new Date()).set({'hour': 0, 'minute': 0});
+        let value = this.state.value?this.state.value:date
+        let format = this.props.format|| (this.props.showTime?'YYYY-MM-DD HH:mm:ss':'YYYY-MM-DD')
+        this.props.onChange && this.props.onChange(value, value.format(format))
     }
 
-    //判断是否有时间 时-分-秒
-    getSeconds=(format)=>{
-        let flag = true
-        if(format.match('ss')){
-            flag = false
-        }
-        return flag
+    generateShowHourMinuteSecond=(format) =>{
+        return {
+            showHour: (
+                format.indexOf('H') > -1 ||
+                format.indexOf('h') > -1 ||
+                format.indexOf('k') > -1
+            ),
+            showMinute: format.indexOf('m') > -1,
+            showSecond: format.indexOf('s') > -1,
+        };
     }
 
 
@@ -87,11 +98,14 @@ export default class app extends Component {
         const calendar = (<Calendar
             style={{ zIndex: 1000 }}
             prefixCls="yh-calendar"
-            timePicker={props.showTime&&timePickerElement}
+            timePicker={props.showTime&&timePickerElement({...this.generateShowHourMinuteSecond(format||''),...props.disabledDateTime||{},defaultCalendarValue:props.defaultCalendarValue})}
             dateInputPlaceholder={locale.timePickerLocale.dateInputPlaceholder}
             locale={locale.lang}
             {...otherProps}
             {...otherStyle}
+            //showOk={this.state.value?true:false}
+            onOk={this.onOk}
+            defaultValue={props.defaultCalendarValue}
             format={format}
         />);
         return (
@@ -101,11 +115,11 @@ export default class app extends Component {
                 animation={this.props.animation}
                 prefixCls={props.classes.root}
                 calendar={calendar}
-                dropdownClassName={this.getSeconds(format)?'yh-calendar-noSeconds':''}
                 value={state.value}
                 onChange={this.onChange}
                 disabled={props.disabled}
                 onOpenChange={this.props.onOpenChange}
+                dropdownClassName={otherProps.dropdownClassName||''}
             >
                 {
                     ({ value }) => {
@@ -119,7 +133,7 @@ export default class app extends Component {
                                     style={{ width: style.width, height: style.height }}
                                     disabled={props.disabled}
                                     suffix={state.value ? suffix : <Icon type="calendar" />}
-                                    value={value ? value.format(format) : ''}
+                                    value={this.props.displayRenderValue ? this.props.displayRenderValue(value || ''):(value && value.format? value.format(format) : '')}
                                     onChange={this.onChangeUserName}
                                 />
                             </span>

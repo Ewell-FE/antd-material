@@ -30,7 +30,7 @@ export default class app extends Component {
     }
     onHandleChange = e =>{
         this.props.onChange&&this.props.onChange(e)
-        if(!this.props.value){
+        if(!_.has(this.props,'value')){
             this.setState({
                 value:e.target.value
             })
@@ -38,7 +38,7 @@ export default class app extends Component {
     }
 
     render() {
-        const {classes,value,children,style,name,disabled,size,options,className}= this.props
+        const {classes,value,children,style,name,disabled,size,options,className,renderOtherChild}= this.props
         return (
             <div className={classnames(classes.root,className)} style={style}>
                 {
@@ -52,7 +52,7 @@ export default class app extends Component {
                             {
                                 options.map((item, i) => {
                                     return (
-                                        <Radio disabled={disabled || item.disabled} value={item.value} key={i}>{item.label}</Radio>
+                                        <Radio {...item} disabled={disabled || item.disabled}  value={item.value} key={i}>{item.label}{renderOtherChild?renderOtherChild(item.value||item):''}</Radio>
                                     )
                                 })
                             }
@@ -63,10 +63,11 @@ export default class app extends Component {
                             value={(value || this.state.value)+''}
                             onChange={this.onHandleChange}>
                             {React.Children.map(children, (child, i)=> {
-                            return React.cloneElement(child, {
-                                disabled:disabled || child.props.disabled,
-                                size:size
-                            })
+                                if (!child){return null}
+                                return React.cloneElement(child, {
+                                    disabled:disabled || child.props.disabled,
+                                    size:size
+                                })
                         })}
                         </RadioGroup>
                 }

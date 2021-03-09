@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames'
+import Popover from "../Popover";
 const styles = theme => ({
     yhAnchorLink:{
         padding: '8px 8px 8px 16px',
@@ -32,6 +33,9 @@ export default class Link extends Component {
     componentDidMount() {
         this.context.anchor.registerLink(this.props.href);
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.context.anchor.registerLink(this.props.href);
+    }
 
     componentWillUnmount() {
         this.context.anchor.unregisterLink(this.props.href);
@@ -46,15 +50,30 @@ export default class Link extends Component {
         const active = this.context.anchor.activeLink === href;
         const wrapperClassName = classNames(classes['yhAnchorLink'], {
             [classes['yhAnchorLinkActive']]: active,
+        },{
+            ['active']: active,
         });
         const titleClassName = classNames(classes['yhAnchorLinkTitle'], {
             [classes['yhAnchorLinkTitleActive']]: active,
         }, {
             [classes['yhAnchorLinkActive']]: active,
+        },{
+            ['active']: active,
         });
+        const isPop=this.context.anchor.isPop;
         return(
             <div className={wrapperClassName}>
-                <a className={titleClassName} href={href} title={title} onClick={this.handleClick}>{title}</a>
+                <a className={titleClassName} href={href} title={isPop?null:title} onClick={this.handleClick}>
+                    {isPop?
+                        <Popover title=''  placement='topLeft' content={
+                            <div style={{maxWidth: '200px'}}>
+                                {title}
+                            </div>
+                        }>
+                            <span>{title}</span>
+                        </Popover>
+                        :title}
+                </a>
                 {
                     children.map(function (child) {
                         return child

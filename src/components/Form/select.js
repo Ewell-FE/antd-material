@@ -11,7 +11,7 @@ export default class renderInput extends Component {
     render() {
         const {classes, field, isError, isWarn} = this.props
         let inputs = omit(field.input,['onDragStart','onDrop'])
-        let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes','options'])
+        let otherField = omit(field, ['input', 'labelWidth', 'wrapperWidth', 'meta', 'layout', 'label','classes','options','outerStyle'])
         let select;
         if(field.OptGroup){
             select=<Select
@@ -19,7 +19,7 @@ export default class renderInput extends Component {
                 {...inputs}
                 {...otherField}
                 className={classnames(field.className, classes.inputError ,{'error': isError}, {'warn': isWarn})}
-                >
+            >
                 {
                     Array.isArray(Object.keys(field.OptGroup))&&Object.keys(field.OptGroup).map((item,key)=>{
                         return(
@@ -31,7 +31,7 @@ export default class renderInput extends Component {
                         )
                     })
                 }
-                </Select>
+            </Select>
         }else {
             select=<Select
                 id={`__${field.input.name}__`}
@@ -41,7 +41,7 @@ export default class renderInput extends Component {
                 options={field.options || []}/>
         }
         return (
-            <div className={classes[field.layout]}>
+            <div className={classes[field.layout]} style={{...(field.outerStyle||{})}}>
                 {field.label &&
                 <label style={{width:field.labelWidth}} htmlFor={`__${field.input.name}__`}>{field.required &&
                 <span className="required">* </span>}{field.label}:</label>}

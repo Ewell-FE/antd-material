@@ -37,6 +37,7 @@ export default class Upload extends React.Component {
         className: '',
         disabled: false,
         supportServerRender: true,
+        openFileDialogOnClick:true,
     };
 
 
@@ -216,7 +217,7 @@ export default class Upload extends React.Component {
     }
 
     renderUploadList = (locale) => {
-        const { showUploadList, listType, onPreview } = this.props;
+        const { showUploadList, listType, onPreview,showName=false } = this.props;
         const { showRemoveIcon, showPreviewIcon } = showUploadList;
         return (
             <UploadList
@@ -227,11 +228,12 @@ export default class Upload extends React.Component {
                 showRemoveIcon={showRemoveIcon}
                 showPreviewIcon={showPreviewIcon}
                 locale={{ ...locale, ...this.props.locale }}
+                showName={showName}
             />
         );
     }
 
-    render() {
+    render(){
         const {
             classes,
             prefixCls = '',
@@ -326,6 +328,7 @@ Upload.propTypes = {
     showUploadList:PropTypes.any,//是否展示 uploadList, 可设为一个对象，用于单独设定 showPreviewIcon 和 showRemoveIcon
     supportServerRender:PropTypes.bool,//服务端渲染时需要打开这个
     withCredentials:PropTypes.bool,//上传请求时是否携带 cookie
+    openFileDialogOnClick:PropTypes.bool,//点击是否打开文件对话框
     onChange:PropTypes.func,//上传文件改变时的状态
     onPreview:PropTypes.func,//点击文件链接或预览图标时的回调
     onRemove:PropTypes.func,//点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。

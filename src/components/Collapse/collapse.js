@@ -49,7 +49,7 @@ class app extends Component {
     }
     onHandleChoose(obj){
         let activeKey = _.has(this.props,'activeKey') ? this.props.activeKey : this.state.activeKey
-        let keys
+        let keys,_this=this
         if(!this.props.accordion){
             //打开多个的处理
             if(_.indexOf(activeKey,obj.key) !== -1){
@@ -63,12 +63,21 @@ class app extends Component {
         }else{
             keys = obj.key === activeKey ? '' : obj.key
         }
-        if(!_.has(this.props,'activeKey')){
-                this.setState({
+        let open=()=>{
+            if(!_.has(_this.props,'activeKey')){
+                _this.setState({
                     activeKey:keys
                 })
+            }
+            _this.props.onChange&&_this.props.onChange(keys)
         }
-        this.props.onChange&&this.props.onChange(keys)
+        if(this.props.openPanel){
+            this.props.openPanel(obj.key).then(()=>open())
+        }else {
+            open()
+        }
+
+
 
     }
     render() {
@@ -76,15 +85,20 @@ class app extends Component {
         let keys = _.has(this.props,'activeKey') ? activeKey : this.state.activeKey
         return (
             <div className={classnames(classes.root,className,bordered === false&&classes.noBorder)} style={style}>
-                {React.Children.map(children, (child, i)=> {
-                    return React.cloneElement(child, {
+                {React.Children && React.Children.map(children, (child, i)=> {
+                    if((typeof child === 'object')||(typeof child === 'function')){
+                        return React.cloneElement(child, {
                             accordion:accordion,
                             activeKey:keys,
                             bordered:bordered,
-                            disabled:disabled || child.props.disabled,
-                            panelKey:child.key,
+                            disabled:disabled || (child && child.props && child.props.disabled),
+                            panelKey:child&&child.key,
                             onChange:()=>this.onHandleChoose(child)
                         })
+                    }else {
+                        return null
+                    }
+
                 })}
             </div>
         )

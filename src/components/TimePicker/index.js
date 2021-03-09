@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import './style.css';
 import TimePicker from 'rc-time-picker';
-import moment from 'moment'
 import omit from 'omit.js'
 import LocaleReceiver from '../LocaleProvider/LocaleReceiver';
-
+import Icon from '../Icon'
 const styles = theme => ({});
 
 
@@ -19,8 +18,9 @@ export default class Spin extends Component {
     }
 
     static defaultProps = {
-        placeholder: 'Select time',
-        format: 'h:mm a'
+        placeholder: 'Select Time',
+        format: 'h:mm a',
+        allowClear:true
     }
 
 
@@ -43,11 +43,23 @@ export default class Spin extends Component {
         }
     }
 
+    generateShowHourMinuteSecond=(format) =>{
+        return {
+            showHour: (
+                format.indexOf('H') > -1 ||
+                format.indexOf('h') > -1 ||
+                format.indexOf('k') > -1
+            ),
+            showMinute: format.indexOf('m') > -1,
+            showSecond: format.indexOf('s') > -1,
+        };
+    }
+
+
     renderTimePicker = (locale) => {
         const state = this.state
         const props = this.props;
         const otherProps = omit(props, ['classes', 'value', 'onChange'])
-
         return (
             <TimePicker
                 prefixCls="yh-time-picker"
@@ -55,6 +67,9 @@ export default class Spin extends Component {
                 value={state.value}
                 placeholder={props.placeholder === undefined ? locale.placeholder : props.placeholder}
                 {...otherProps}
+                inputIcon={state.value&&props.allowClear&&!props.disabled&&<span onClick={(e)=>{e.stopPropagation();this.onChange(null)}} className="yh-time-picker-clear" title="clear" tabIndex="0">
+                    <Icon type="close" className="yh-time-picker-clear-icon"/></span>}
+                {...this.generateShowHourMinuteSecond(props.format||'')}
             />
         )
     }

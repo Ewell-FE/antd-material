@@ -59,7 +59,7 @@ const styles = theme => {
             borderSpacing: "0",
             width: "100%",
             "& > input": {
-                borderRadius: 0,
+                borderRadius: '2px',
                 width: "100%"
             },
             "& > .inputGroupAddon,& > input": {
@@ -73,7 +73,7 @@ const styles = theme => {
                 color: "rgba(0,0,0,.65)",
                 textAlign: "center",
                 backgroundColor: "#fafafa",
-                border: "1px solid #d9d9d9",
+                border: "1px solid #ADB4C2",
                 borderRadius: "4px",
                 position: "relative",
                 transition: " all .3s",
@@ -240,7 +240,10 @@ export default class Input extends Component {
 }
 Input.propTypes = {
     type: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
     suffix: PropTypes.node,
     prefix: PropTypes.node,
     addonbefore: PropTypes.oneOfType([

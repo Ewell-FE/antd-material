@@ -93,6 +93,9 @@ const styles = theme => {
             "& .yh-select-selection__clear ,& .yh-select-arrow": {
                 right: "8px"
             }
+        },
+        dropMenu:{
+
         }
     }
 }
@@ -101,7 +104,9 @@ export default class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.defaultValue || props.value ||undefined
+            value: props.defaultValue || props.value ||undefined,
+            searchValue:'',
+            showSearch:props.filterOption||props.onSearch?true:false
         }
     }
 
@@ -109,37 +114,66 @@ export default class App extends Component {
         prefixCls: 'yh-select',
         size: 'default',
         optionLabelProp: 'children',
-        placeholder: ''
+        placeholder: 'Select',
+        notFoundContentSpecial:'noEnter'
     }
 
-    getNotFoundContent = (locale) => {
-        const { notFoundContent, mode } = this.props;
+    getNotFoundContent = (locale,options) => {
+        const { notFoundContent, notFoundContentSpecial, mode,enterAlertContent,searchNum } = this.props;
         const isCombobox = mode === 'combobox';
         if (isCombobox) {
             // AutoComplete don't have notFoundContent defaultly
             return notFoundContent === undefined ? null : notFoundContent;
         }
+        if(notFoundContentSpecial === 'noEnter'){
+            if(this.props.onSearch){
+                //判断是输入搜索
+                if(this.state.searchValue.length===0){
+                    return null
+                }else if(searchNum){
+                    if(this.state.searchValue.length<searchNum){
+                        return enterAlertContent? enterAlertContent : locale.enterAlertContent
+                    }
+                }
+            }
+        }
+        if(notFoundContentSpecial === 'special'){
+            if (options===null||options.length === 0) {
+                return null;
+            } else{
+                return locale.notFoundContent
+            }
+        }
+
         return notFoundContent === undefined ? locale.notFoundContent : notFoundContent;
     }
     onChange=(e)=>{
         this.setState({
             value:e
         })
-        this.props.onChange&&this.props.onChange(e)
+        this.props.onChange&&this.props.onChange(e||null)
     }
 
 
     componentWillReceiveProps(nextProps){
-        if(this.props.value !== nextProps.value){
+        if(this.props.value !== nextProps.value || this.state.value !== nextProps.value){
             this.setState({
                 value:nextProps.value
             })
         }
     }
-
+    onSearch=(searchValue)=>{
+        this.setState({searchValue})
+        this.props.onSearch&&this.props.onSearch(searchValue)
+    }
+    onBlur=(e)=>{
+        this.setState({searchValue:''})
+        this.props.onBlur&&this.props.onBlur(e)
+    }
 
     renderSelect = (locale) => {
         const props = this.props
+        const { notFoundContentSpecial } = this.props;
         const classes = props.classes
         let otherProps = omit(props, ['className', 'classes', 'options', 'combobox', 'multiple', 'tags'])
         let options = []
@@ -153,20 +187,35 @@ export default class App extends Component {
         if (props.options) {
             props.options.forEach((item, i) => {
                 options.push(
-                    <Option key={i} value={item.value} disabled={item.disabled||false}>{item.label}</Option>
+                    <Option key={i} value={item.value} disabled={item.disabled||false} className={item.className||''}>{item.label}</Option>
                 )
+            })
+        }
+        if (notFoundContentSpecial === 'special') {
+            delete otherProps.notFoundContent
+            Object.assign(otherProps,{
+                onSearch:this.onSearch
+            })
+        }
+        if (notFoundContentSpecial === 'noEnter') {
+            Object.assign(otherProps,{
+                onSearch:this.onSearch
             })
         }
         return (
             <Select
                 className={classnames(props.className, classes.root, classes[props.size])}
-                notFoundContent={this.getNotFoundContent(locale)}
+                notFoundContent={this.getNotFoundContent(locale,options)}
                 {...otherProps}
                 {...modes}
-                dropdownClassName={classnames(otherProps.dropdownClassName,classes.dropMenu)}
-                value={this.state.value}
+                dropdownClassName={(options.length === 0 && notFoundContentSpecial === 'special')||(options.length === 0 && !this.state.searchValue && notFoundContentSpecial === 'noEnter') ?
+                    classnames(otherProps.dropdownClassName) : classnames(otherProps.dropdownClassName,classes.dropMenu)}
+                value={this.state.value||undefined}
                 onChange={this.onChange}
+                onBlur={this.onBlur}
+                showSearch={this.state.showSearch}
             >
+                {/*{(!this.state.searchValue && notFoundContentSpecial === 'noEnter')?[]:options}*/}
                 {options}
                 {this.props.children}
             </Select>

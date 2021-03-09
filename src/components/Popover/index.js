@@ -3,6 +3,9 @@ import {withStyles} from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
+import omit from 'omit.js';
+import _ from 'lodash';
+
 const styles = theme => ({
     button: {
         marginBottom: theme.spacing.unit * 4,
@@ -148,6 +151,8 @@ export default class Popver extends Component {
     render() {
         const {trigger,children,classes,placement,title,content,anchorReference,anchorPosition,container,arrow,wrapperContentStyle,clickClose} = this.props;
         const visible=this.props.visible===undefined?this.state.visible:this.props.visible;
+        let otherProps = omit(this.props, ['visible','children', 'trigger', 'classes', 'placement', 'title', 'content', 'anchorReference','anchorPosition','container','arrow','wrapperContentStyle','clickClose'])
+
         const arrowClassName=classnames(classes['arrow'], {
             [classes['arrowXCenter']]:placement==='top'||placement==='bottom',
             [classes['arrowYCenter']]:placement==='left'||placement==='right',
@@ -170,11 +175,11 @@ export default class Popver extends Component {
             [classes['popover']]:trigger==='hover'
         });
         const defaultChildren={
-            onClick:  trigger==='click'?this.handleOpen:()=>{},
+            onClick:  trigger==='click'?this.handleOpen:()=>{_.isFunction(_.get(children,'props.onClick'))&&_.get(children,'props.onClick')()},
             onMouseEnter:trigger==='hover'?this.handleOpen:()=>{},
             onMouseLeave:trigger==='hover'?this.handleClose:()=>{}
         }
-        if (typeof (children.type)==='function'){
+        if (_.isFunction(children.type)){
             Object.assign(defaultChildren,{
                 withRef:(dom)=>this.dom=dom,
             })
@@ -207,6 +212,7 @@ export default class Popver extends Component {
                     }}
                     classes={{paper}}
                     container={container}
+                    {...otherProps}
                 >
                     {arrow&&<div className={arrowClassName}></div>}
                     {

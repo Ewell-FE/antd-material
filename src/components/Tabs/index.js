@@ -302,7 +302,6 @@ class Tabs extends React.Component {
             }
         }
     };
-
     getCurrentIndex = (arr,value)=>{
         let index = 0
         arr.forEach((item,i)=>{
@@ -348,7 +347,7 @@ class Tabs extends React.Component {
                 return null;
             }
 
-            const childValue = child.props.value || childIndex;
+            const childValue = _.isUndefined(child.props.value) ? childIndex : child.props.value;
             this.valueToIndex[childValue] = childIndex;
             const selected = childValue === value;
             childIndex += 1;

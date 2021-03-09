@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import {withStyles} from '@material-ui/core/styles';
 import omit from 'omit.js';
+import _ from 'lodash'
 import Input from './input'
 import Select from './select'
 import InputNumber from './inputNumber'
@@ -22,6 +23,7 @@ import Switch from './switch'
 import Slider from './slider'
 import DatePicker from './DatePicker'
 import TimePicker from './TimePicker'
+import RangePicker from './RangePicker'
 import AutoComplete from './autoComplete'
 import Dragger from './dragger'
 import Upload from './upload'
@@ -67,12 +69,16 @@ let FieldHtml = (field)=> {
             return (<DatePicker field={field} isError={isError} isWarn={isWarn}/>)
         case 'timepicker':
             return (<TimePicker field={field} isError={isError} isWarn={isWarn}/>)
+        case 'rangepicker':
+            return (<RangePicker field={field} isError={isError} isWarn={isWarn}/>)
         case 'autoComplete':
             return (<AutoComplete field={field} isError={isError} isWarn={isWarn}/>)
         case 'dragger':
             return (<Dragger field={field} isError={isError} isWarn={isWarn}/>)
         case 'upload':
             return (<Upload field={field} isError={isError} isWarn={isWarn}/>)
+        case 'div':
+            return (<div style={{...(field.style||{})}}>{_.isFunction(field.renderComponent)?field.renderComponent(field):field.component}</div>)
         default:
             return (<Input field={field} isError={isError} isWarn={isWarn}/>)
     }
@@ -80,9 +86,12 @@ let FieldHtml = (field)=> {
 //field.layout 可选值：[ vertical , inline , horizontal ,grid] 默认为inline
 const renderField = (field) => {
     if (field.layout === 'grid') {
+        let afterComponent=field.afterComponent
+        field = omit(field, ['afterComponent'])
         return (
             <Grid item xs={field.span}>
                 <FieldHtml {...field}/>
+                {afterComponent}
             </Grid>
         )
     }
@@ -109,7 +118,7 @@ let GridBox = (props)=> {
     if (props.layout === 'grid') {
         return (
             <div style={{flexGrow:1}}>
-                <Grid container spacing={props.spacing||24}>
+                <Grid container spacing={[0,8,16,24,32,40].includes(props.spacing)?props.spacing:24}>
                     {props.children}
                 </Grid>
             </div>
@@ -141,7 +150,7 @@ export class FormComponent extends Component {
     }
 
     handleSubmit(values) {
-        this.props.Submit(values)
+        this.props.Submit && this.props.Submit(values)
     }
 
     render() {

@@ -18,12 +18,8 @@ import LocaleReceiver from '../LocaleProvider/LocaleReceiver'
 
 // const cn = true
 
-const timePickerElement = (
-    <TimePickerPanel
-        prefixCls="yh-time-picker-panel"
-        defaultValue={[moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]}
-    />
-);
+const timePickerElement =(props)=><TimePickerPanel {...props}  prefixCls="yh-time-picker-panel"
+                                                   defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
 
 function isValidRange(v) {
     return v && v[0] && v[1];
@@ -34,7 +30,7 @@ export default class app extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.defaultValue,
+            value: props.defaultValue||props.value,
             hoverValue: []
         };
     }
@@ -73,9 +69,21 @@ export default class app extends Component {
         this.setState({ hoverValue });
     }
 
+    generateShowHourMinuteSecond=(format) =>{
+        return {
+            showHour: (
+                format.indexOf('H') > -1 ||
+                format.indexOf('h') > -1 ||
+                format.indexOf('k') > -1
+            ),
+            showMinute: format.indexOf('m') > -1,
+            showSecond: format.indexOf('s') > -1,
+        };
+    }
+
     renderDatePicker = (locale, localeCode) => {
         const props = this.props
-        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value', 'style'])
+        const otherProps = omit(this.props, ['classes', 'showTime', 'onChange', 'onOpenChange', 'placeholder', 'value', 'style','type'])
         const state = this.state
         const suffix = props.allowClear ? <Icon type="close" onClick={this.emitEmpty} /> : <Icon type="calendar" />
         let style = props.style || {}
@@ -85,7 +93,7 @@ export default class app extends Component {
             <RangeCalendar
                 showWeekNumber={false}
                 prefixCls="yh-calendar"
-                timePicker={props.showTime&&timePickerElement}
+                timePicker={props.showTime?timePickerElement({...this.generateShowHourMinuteSecond(format||''),...props.disabledDateTime||{},}):null}
                 dateInputPlaceholder={locale.timePickerLocale.RangeDateInputPlaceholder}
                 locale={locale.lang}
                 {...otherProps}
@@ -96,18 +104,21 @@ export default class app extends Component {
             <DatePicker
                 locale={locale}
                 localeCode={localeCode}
-                animation="slide-up"
+                // animation="slide-up"
                 prefixCls={props.classes.root}
                 calendar={calendar}
                 value={state.value}
                 onChange={this.onChange}
+                dropdownClassName={otherProps.dropdownClassName||''}
             >
                 {
                     ({ value }) => {
                         return (<Input
                             readOnly
+                            className={props.className}
                             disabled={state.disabled}
-                            value={(isValidRange(value) && `${value[0].format(props.format)} - ${value[1].format(props.format)}`) || ''}
+                            //value={(isValidRange(value) && `${value[0].format(props.format)} - ${value[1].format(props.format)}`) || ''}
+                            value={isValidRange(value) &&(this.props.displayRenderValue ? this.props.displayRenderValue(value || ''):(value ? `${value[0].format(props.format)} - ${value[1].format(props.format)}` : ''))}
                             style={{ width: style.width, height: style.height }}
                             suffix={state.value ? suffix : <Icon type="calendar" />}
                             placeholder={this.props.placeholder || locale.lang.rangePlaceholder}
@@ -141,7 +152,7 @@ app.propTypes = {
     onOpenChange: PropTypes.func,//弹出日历和关闭日历的回调
     mode: PropTypes.oneOf(['time', 'date', 'month', 'year']),
     onPanelChange: PropTypes.func,//日期面板变化时的回调
-    defaultValue: PropTypes.object, //moment类型的日期对象
+    defaultValue: PropTypes.array, //moment类型的日期对象
     disabledTime: PropTypes.func,//不可选择的时间
     format: PropTypes.string,// 展示的日期格式，配置参考 moment.js
     ranges: PropTypes.array,// 	预设时间范围快捷选择

@@ -34,7 +34,8 @@ export default {
         searchPlaceholder: ['请输入搜索内容'],
     },
     Select: {
-        notFoundContent: '无匹配结果'
+        notFoundContent: '无匹配结果',
+        enterAlertContent: '请输入4个字符'
     },
     Upload: {
         uploading: '文件上传中',

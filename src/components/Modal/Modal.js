@@ -104,11 +104,11 @@ export default class modal extends Component {
         }
     }
     renderModal = (locale) => {
-        const { classes, visible, onCancel, children, title, okText, cancelText, width, mask, maskClosable, onOk, header, footer, closable, confirmLoading, verticalAlign, wrapClassName, getContainer, bodyStyle, okType, onRendered } = this.props
+        const { classes, visible, onClose, onCancel, children, title, okText, cancelText, width, mask, maskClosable, onOk, header, footer, closable, confirmLoading, verticalAlign, wrapClassName, getContainer, bodyStyle, okType, onRendered,disableEscapeKeyDown,rootClassName,okDisabled } = this.props
         const defaultFooter = (
             <div>
+                <Button type={okType} disabled={okDisabled} onClick={onOk} loading={confirmLoading}>{okText || locale.okText}</Button>
                 <Button onClick={onCancel}>{cancelText || locale.cancelText}</Button>
-                <Button type={okType} onClick={onOk} loading={confirmLoading}>{okText || locale.okText}</Button>
             </div>);
         let modalFooter;
         if (!footer) {
@@ -123,19 +123,20 @@ export default class modal extends Component {
             </div>)
         }
         let style = verticalAlign ? Object.assign({}, this.props.style, { top: 0 }) : this.props.style;
-        const modalStyle = Object.assign({ width: width + 'px' }, style);
+        const modalStyle = Object.assign({ width: _.isNumber(width)?width + 'px': width}, style);
         const wrapClass = classnames(classes.modal, wrapClassName);
         const root = classnames({
             [classes['root']]: verticalAlign
-        });
+        },rootClassName);
         return (
             <Modal
                 open={visible}
-                onClose={onCancel}
+                onClose={onClose||onCancel}
                 hideBackdrop={!mask}
                 disableBackdropClick={!maskClosable}
                 classes={{ root }}
                 container={getContainer}
+                disableEscapeKeyDown={disableEscapeKeyDown}
                 onRendered={onRendered}
             >
                 <div className={wrapClass} style={modalStyle}>
@@ -173,7 +174,7 @@ modal.propTypes = {
     okText: PropTypes.string,//确认按钮文字
     okType: PropTypes.string,//确认按钮类型
     cancelText: PropTypes.string,//取消按钮文字
-    width: PropTypes.number,//宽度
+    width: PropTypes.any,//宽度
     mask: PropTypes.bool,//是否展示遮罩
     maskClosable: PropTypes.bool,//点击蒙层是否允许关闭
     closable: PropTypes.bool,//是否显示右上角的关闭按钮
@@ -181,6 +182,7 @@ modal.propTypes = {
     style: PropTypes.object,//可用于设置浮层的样式，调整浮层位置等
     verticalAlign: PropTypes.bool,//是否垂直居中
     wrapClassName: PropTypes.string,//对话框外层容器的类名
+    rootClassName: PropTypes.string,//对话框最外层容器的类名
     getContainer: PropTypes.func,//指定 Modal 挂载的 HTML 节点
     bodyStyle: PropTypes.object,//Modal body 样式
     destroyOnClose: PropTypes.bool,//关闭时销毁 Modal 里的子元素
@@ -190,5 +192,6 @@ modal.propTypes = {
     visible: PropTypes.bool,//对话框是否可见
     onCancel: PropTypes.func,//点击遮罩层或右上角叉或取消按钮的回调
     onOk: PropTypes.func,//点击确定回调,
-    onRendered: PropTypes.func//Modal中子元素被挂载后触发回调
+    onRendered: PropTypes.func,//Modal中子元素被挂载后触发回调
+    okDisabled: PropTypes.bool,//确认按钮是否可以点击
 }

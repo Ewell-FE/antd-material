@@ -82,7 +82,7 @@ export default class app extends Component {
                         return (<Input
                             readOnly
                             size={props.size}
-                            value={value && value.format(props.format)}
+                            value={this.props.displayRenderValue ? this.props.displayRenderValue(value || ''):(value ? value.format(props.format) : '')}
                             style={{ width: style.width, height: style.height }}
                             suffix={state.value ? suffix : <Icon type="calendar" />}
                             placeholder={this.props.placeholder || locale.lang.monthPlaceholder}

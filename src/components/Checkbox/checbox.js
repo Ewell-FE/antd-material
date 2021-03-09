@@ -66,6 +66,7 @@ const styles = (theme)=> {
             },
         },
         imgUncheckDisabled: {},
+        imgUncheckError:{},
         imgHalf: {
             width: 16,
             height: 16,
@@ -101,7 +102,7 @@ class app extends Component {
     onChange = (event, value) => {
         if (!_.has(this.props, 'checked')) {
             this.setState({
-                checked: !this.state.checked
+                checked:event.target.checked
             })
             this.context.onChange && this.context.onChange(event, value)
         }
@@ -114,7 +115,7 @@ class app extends Component {
 
 
     render() {
-        const {classes, children, disabled, indeterminate, className, style, icon, indeterminateIcon, checkedIcon}=this.props;
+        const {classes, children, disabled, indeterminate, className, style, icon, indeterminateIcon, checkedIcon, erroricon,iserror}=this.props;
         const {arr}=this.context
         let otherProps = _.omit(this.props, ['classes', 'children', 'className', 'style', 'type', 'value', 'icon', 'indeterminateIcon', 'checkedIcon'])
         let checkClass = {checked: classes.checked, root: classes.default, disabled: disabled && classes.disabled}
@@ -128,11 +129,11 @@ class app extends Component {
                     onChange={(e)=>this.onChange(e,value)}
                     checked={_.indexOf(arr,value)!==-1 || checked}
                     classes={checkClass}
-                    icon={<span className={classnames(classes.imgUncheck,disabled&&classes.imgUncheckDisabled)}>{icon}</span>}
+                    icon={<span className={classnames(classes.imgUncheck,erroricon==='true'&&iserror&&classes.imgUncheckError,disabled&&classes.imgUncheckDisabled)}>{icon}</span>}
                     indeterminateIcon={<span  className={classnames(classes.imgHalf)}>{indeterminateIcon}</span>}
                     checkedIcon={<span  className={classnames(classes.imgCheck,disabled&&classes.imgCheckDisabled)}>{checkedIcon}</span>}
                     disableRipple/>
-                {children && <span className={classes.label}>children</span>}
+                {children && <span className={classes.label}>{children}</span>}
             </label>
         )
     }

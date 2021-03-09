@@ -101,7 +101,7 @@ export default class UploadList extends React.Component{
     }
 
     render() {
-        const {classes, prefixCls, items = [], listType, showPreviewIcon, showRemoveIcon} = this.props;
+        const {classes, prefixCls, items = [], listType, showPreviewIcon, showRemoveIcon,showName} = this.props;
         const {uploading,uploadError} = this.props.locale
         const list = items.map(file => {
             let progress,icon;
@@ -190,7 +190,10 @@ export default class UploadList extends React.Component{
                 <Icon type="times"  onClick={() => this.handleClose(file)} />
             ) : null;
             const actions = (listType === 'picture-card' && file.status !== 'uploading')
-                ? <span className={`${prefixCls}-list-item-actions`}>{previewIcon}{removeIcon}</span>
+                ? <div className={`${prefixCls}-list-item-actions`} >
+                    <div style={{textAlign:'center'}}>{previewIcon}{removeIcon}</div>
+                    {showName&&<div className='show-name'>{file.name}</div>}
+                  </div>
                 : removeIconCross;
             let message;
             if (file.response && typeof file.response === 'string') {
@@ -199,8 +202,8 @@ export default class UploadList extends React.Component{
                 message = (file.error && file.error.statusText) || uploadError;
             }
             const iconAndPreview = (file.status === 'error')
-                ? <Tooltip title={message}><span>{icon}{preview}</span></Tooltip>
-                : <span>{icon}{preview}</span>;
+                ? <Tooltip title={message}><div style={{height:'100%'}}>{icon}{preview}</div></Tooltip>
+                : <div style={{height:'100%'}}>{icon}{preview}</div>;
 
             return (
                 <div className={infoUploadingClass} key={file.uid}>

@@ -51,7 +51,7 @@ export default class Group extends Component {
                 value:arr
             })
         }
-        this.props.onChange&&this.props.onChange(arr)
+        this.props.onChange&&this.props.onChange(arr,e.target.checked,value)
     }
     render() {
         const {options,children,style,classes,className,disabled,value}=this.props;

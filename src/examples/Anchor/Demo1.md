@@ -4,8 +4,7 @@
 
 ````jsx
 import Anchor from 'antd-material/core/Anchor'
-import Link from 'antd-material/core/Anchor/Link'
-
+const Link=Anchor.Link
 export class <%=component%> extends Component {
     render() {
         return (

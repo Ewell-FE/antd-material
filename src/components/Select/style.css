@@ -244,11 +244,11 @@
     height: auto;
 }
 .yh-select-selection--multiple .yh-select-selection__placeholder {
-    margin-left: 6px;
+    /*margin-left: 6px;*/
 }
 .yh-select-selection--multiple > ul > li,
 .yh-select-selection--multiple .yh-select-selection__rendered > ul > li {
-    margin-top: 3px;
+    margin-top: 5px;
     height: 24px;
     line-height: 22px;
 }

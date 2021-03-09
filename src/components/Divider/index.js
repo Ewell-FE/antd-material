@@ -11,7 +11,7 @@ const styles = (theme) => {
             fontSize:theme.typography.fontSize,
             padding: 0,
             color: theme.palette.text.primary,
-            background: '#e8e8e8',
+            // background: '#e8e8e8',
         },
         horizontal: {
             display: 'block',
@@ -19,6 +19,7 @@ const styles = (theme) => {
             width: '100%',
             margin: '24px 0',
             clear: 'both',
+            borderTop:'1px solid #e8e8e8'
         },
         vertical: {
             margin: '0 8px',
@@ -103,7 +104,7 @@ class app extends Component {
         let classProps = classnames(className, classes.root, classes[`${type}`], children && classes[`${type}Text`],
             classes[`${lineType}`],classes[`${orientation}Text`])
         return (
-            <div className={classProps} style={style}>
+            <div className={classProps} style={{...style,borderTopStyle:lineType}}>
                 {children && <span className={classes.text}>{children}</span>}
             </div>
         )

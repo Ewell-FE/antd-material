@@ -29,7 +29,7 @@ export default class app extends Component {
         super(props)
         this.handleClose = this.handleClose.bind(this)
         this.state = {
-            open: false
+            open: props.open||false
         }
     }
 
@@ -42,8 +42,16 @@ export default class app extends Component {
         this.props.withRef && this.props.withRef(this)
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        if(nextProps.open !== this.props.open){
+            this.setState({open:nextProps.open})
+        }
+    }
+
     handleToggle = () => {
-        this.setState({open: !this.state.open});
+        if(!_.has(this.props,'open')){
+            this.setState({open: !this.state.open});
+        }
     }
 
     handleClose = event => {
@@ -81,8 +89,9 @@ export default class app extends Component {
                 <Target>
                     <div ref={node =>{this.target1 = node}}>
                         {React.Children.map(props.children, (child, i)=> {
+                            let style=child&&child.props&&child.props.style?child.props.style:{}
                             return React.cloneElement(child, {
-                                "style": {margin: 0},
+                                "style": {margin: 0,...style},
                                 "aria-owns": open ? 'menu-list-grow' : null,
                                 "aria-haspopup": "true",
                                 [eventType[props.trigger]]: eventFunc[props.trigger],

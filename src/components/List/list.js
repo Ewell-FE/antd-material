@@ -98,7 +98,7 @@ export default class MuiList extends Component {
                         header&&<ListItem  classes={{dense}}>{header}</ListItem>
                     }
                     {
-                        data.map((item,index)=>{
+                        Array.isArray(data)&&data.map((item,index)=>{
                             return (React.cloneElement(
                                 renderItem(item,index),
                                 {
