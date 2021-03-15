@@ -27,15 +27,13 @@ gulp.task('serve', function () {
 });
 
 //发布任务
-gulp.task('pub', ['js','css','less'])
+gulp.task('pub', ['js','css','less','image'])
 // 发布前打包处理
 gulp.task('js', function () {
     console.log(paths.appPub)
     return gulp.src(path.resolve(paths.appSrc, 'components/**/*.js'))
         .pipe(Babel({
-            "presets": [
-                "es2015"
-            ],
+            "presets": ["es2015"],
             "plugins": [
                 "transform-class-properties",
                 "transform-decorators-legacy"
@@ -69,4 +67,11 @@ gulp.task('less', function () {
         .pipe(gulp.dest(path.resolve(paths.appPub, 'core')));
 });
 
+gulp.task('image', function () {
+    return gulp.src(path.resolve(paths.appSrc, 'components/**/images/**'))
+        .on('error', function (err) {
+            console.log('[Error]', err.toString());
+        })
+        .pipe(gulp.dest(path.resolve(paths.appPub, 'core')));
+})
 gulp.task('default', ['serve']);

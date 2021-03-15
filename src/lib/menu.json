@@ -1,6 +1,5 @@
 {
-    "General": [
-        {
+    "General": [{
             "name": "Button",
             "type": "General",
             "sort": 10,
@@ -13,8 +12,7 @@
             "desc": "图标"
         }
     ],
-    "Layout": [
-        {
+    "Layout": [{
             "name": "Grid",
             "type": "Layout",
             "sort": 10,
@@ -27,8 +25,7 @@
             "desc": "布局"
         }
     ],
-    "Navigation": [
-        {
+    "Navigation": [{
             "name": "Affix",
             "type": "Navigation",
             "sort": 10,
@@ -65,8 +62,7 @@
             "desc": "步骤条"
         }
     ],
-    "Data Entry": [
-        {
+    "Data Entry": [{
             "name": "AutoComplete",
             "type": "Data Entry",
             "sort": 10,
@@ -169,8 +165,7 @@
             "desc": "上传"
         }
     ],
-    "Data Display": [
-        {
+    "Data Display": [{
             "name": "Avatar",
             "type": "Data Display",
             "sort": 10,
@@ -255,8 +250,7 @@
             "desc": "树形控件"
         }
     ],
-    "Feedback": [
-        {
+    "Feedback": [{
             "name": "Alert",
             "type": "Feedback",
             "sort": 10,
@@ -299,8 +293,7 @@
             "desc": "加载中"
         }
     ],
-    "Other": [
-        {
+    "Other": [{
             "name": "Anchor",
             "type": "Other",
             "sort": 10,
@@ -323,6 +316,12 @@
             "type": "Other",
             "sort": 40,
             "desc": "国际化"
+        },
+        {
+            "name": "Loading",
+            "type": "Other",
+            "sort": 100,
+            "desc": "New"
         }
     ]
 }

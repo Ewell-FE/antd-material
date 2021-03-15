@@ -2,7 +2,7 @@
   "root": "/material",
   "name": "antd-material",
   "main": "core/index.js",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "authFlag": false,
   "license": "MIT",
   "peerDependencies": {

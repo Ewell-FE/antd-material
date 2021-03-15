@@ -22,11 +22,11 @@ const styles = theme => ({
         marginLeft: '-4px',
     },
     yhAnchorInk:{
-    position: 'absolute',
-    height: '100%',
-    left: '0',
-    top: '0',
-    '&::before':{
+        position: 'absolute',
+        height: '100%',
+        left: '0',
+        top: '0',
+        '&::before':{
             content: '""',
             position: 'relative',
             width: '2px',
@@ -153,8 +153,7 @@ function getDomByAttr(List,attr,value) {
     })
     return dom;
 }
-@withStyles(styles, {name: 'MuiAnchorAnt'})
-export default class Anchor extends Component {
+class Anchor extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -326,6 +325,7 @@ Anchor.propTypes = {
     showInk:PropTypes.bool,//是否显示小圆点
     fixTop:PropTypes.number,//固定模式固定位置
 }
+export default withStyles(styles, {name: 'MuiAnchorAnt'})(Anchor)
 
 
 

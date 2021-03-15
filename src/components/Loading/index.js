@@ -20,7 +20,7 @@ export default  class Loading extends Component{
         const {children,loading,size='default',wrapperStyle={}}  = this.props
         return(
                 <div style={wrapperStyle} className='loading-mask'>
-                    {loading && <div className={`loading-root ${size}`}><div className='loading-bgk'><img src={require("./loading.svg")} alt=""/>{size==='small'&&<span>Loading......</span>}</div></div>}
+                    {loading && <div className={`loading-root ${size}`}><div className='loading-bgk'><img src={require("./images/loading.svg")} alt=""/>{size==='small'&&<span>Loading......</span>}</div></div>}
                 {children}
             </div>
         )

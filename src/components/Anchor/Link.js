@@ -25,8 +25,7 @@ const styles = theme => ({
     }
 });
 
-@withStyles(styles, {name: 'MuiLinkAnt'})
-export default class Link extends Component {
+class Link extends Component {
     static contextTypes = {
         anchor: PropTypes.object,
     };
@@ -87,6 +86,7 @@ Link.propTypes = {
     href:PropTypes.string,//锚点链接
     title:PropTypes.any,//文字内容
 }
+export default withStyles(styles, {name: 'MuiLinkAnt'})(Link)
 
 
 
